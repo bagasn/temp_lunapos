@@ -1,0 +1,117 @@
+name: pos
+description: "Luna POS - Point of Sales Application"
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.8.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  # Navigation
+  go_router: ^15.1.2
+
+  # HTTP Client
+  dio: ^5.9.0
+  retrofit: '>=4.4.1 <4.5.0'
+
+  # Functional programming
+  equatable: ^2.0.7
+
+  # State Management
+  flutter_bloc: ^9.1.1
+
+
+  # Dependency Injection
+  get_it: ^9.1.0
+  injectable: ^2.5.0
+
+  # Firebase
+  firebase_core: ^3.13.1
+  cloud_firestore: ^5.6.9
+  firebase_messaging: ^15.2.5
+
+  # Local Storage
+  shared_preferences: ^2.5.3
+
+  # Network Image
+  cached_network_image: ^3.4.1
+
+  # Loading Overlay
+  loader_overlay: ^5.0.0
+
+  # Permission
+  permission_handler: ^12.0.3
+
+  # Localization
+  intl: ^0.20.2
+
+  # Env
+  flutter_dotenv: ^5.2.1
+
+  # Utilities
+  dartz: ^0.10.1
+  logger: ^2.6.2
+  pretty_dio_logger: ^1.4.0
+  json_annotation: ^4.9.0
+  uuid: ^4.5.1
+  flutter_svg: ^2.0.17
+
+  # Icons
+  cupertino_icons: ^1.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  build_runner: ^2.4.15
+  injectable_generator: ^2.7.0
+  retrofit_generator: '>=9.1.6 <9.7.0'
+  json_serializable: ^6.9.5
+  flutter_gen_runner: '>=5.4.0 <5.14.0'
+
+flutter:
+  generate: true
+  uses-material-design: true
+
+  assets:
+    - envs/dev.env
+    - envs/prod.env
+    - assets/color/
+    - assets/images/
+    - assets/icons/
+
+  fonts:
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/inter/Inter_18pt-Light.ttf
+          weight: 300
+        - asset: assets/fonts/inter/Inter_18pt-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/inter/Inter_18pt-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/inter/Inter_18pt-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/inter/Inter_18pt-Bold.ttf
+          weight: 700
+
+flutter_gen:
+  output: lib/generated/
+
+  integrations:
+    flutter_svg: true
+
+  fonts:
+    outputs:
+      class_name: AppFonts
+
+  colors:
+    inputs:
+      - assets/color/colors.xml
+    outputs:
+      class_name: AppColors

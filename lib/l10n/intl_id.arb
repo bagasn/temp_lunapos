@@ -1,0 +1,145 @@
+{
+  "@@locale": "id",
+  "@@last_modified": "2024-01-01",
+
+  "appName": "Luna POS",
+  "@appName": { "description": "Application name" },
+
+  "selamatDatangSahabatLuna": "Selamat Datang Sahabat LUNA!",
+  "@selamatDatangSahabatLuna": { "description": "Welcome greeting on login" },
+
+  "masuk": "Masuk",
+  "@masuk": { "description": "Sign in button label" },
+
+  "email": "Email",
+  "@email": { "description": "Email field label" },
+
+  "cthEmail": "Cth: joe@mail.com",
+  "@cthEmail": { "description": "Email placeholder" },
+
+  "kataSandi": "Kata Sandi",
+  "@kataSandi": { "description": "Password field label" },
+
+  "masukkanKataSandi": "Masukkan kata sandi",
+  "@masukkanKataSandi": { "description": "Password placeholder" },
+
+  "authenticationKey": "Authentication Key",
+  "@authenticationKey": { "description": "Auth key toggle label" },
+
+  "lupaPassword": "Lupa Password?",
+  "@lupaPassword": { "description": "Forgot password link" },
+
+  "belumPunyaAkun": "Belum punya Akun?",
+  "@belumPunyaAkun": { "description": "No account label" },
+
+  "buatAkunSekarang": "Buat Akun Sekarang!",
+  "@buatAkunSekarang": { "description": "Create account button" },
+
+  "butuhBantuan": "Butuh Bantuan?",
+  "@butuhBantuan": { "description": "Need help button" },
+
+  "client": "Client",
+  "@client": { "description": "Client mode button" },
+
+  "satuAplikasiKasir": "Satu Aplikasi Kasir untuk Semua Jenis Usaha",
+  "@satuAplikasiKasir": { "description": "App tagline" },
+
+  "untungadaLuna": "#UntungadaLUNA",
+  "@untungadaLuna": { "description": "Brand hashtag" },
+
+  "copyright": "© 2022 - PT LUNA Aplikasi Indonesia. All rights reserved.",
+  "@copyright": { "description": "Copyright text" },
+
+  "pilihOutlet": "PILIH OUTLET",
+  "@pilihOutlet": { "description": "Select outlet title" },
+
+  "cariOutlet": "Cari Outlet",
+  "@cariOutlet": { "description": "Search outlet placeholder" },
+
+  "logOut": "Log Out",
+  "@logOut": { "description": "Log out button" },
+
+  "konfirmasiLogout": "Anda akan keluar. Lanjutkan?",
+  "@konfirmasiLogout": { "description": "Logout confirmation message" },
+
+  "outletTidakDitemukan": "Outlet tidak ditemukan",
+  "@outletTidakDitemukan": { "description": "No outlet found message" },
+
+  "daftarOrder": "Daftar Order",
+  "@daftarOrder": { "description": "Order list title" },
+
+  "tipePenjualan": "Tipe Penjualan",
+  "@tipePenjualan": { "description": "Sales type label" },
+
+  "semua": "Semua",
+  "@semua": { "description": "All category filter" },
+
+  "favorit": "Favorit",
+  "@favorit": { "description": "Favorites category filter" },
+
+  "promoDiskon": "Promo & Diskon",
+  "@promoDiskon": { "description": "Promo & Discount category filter" },
+
+  "printTagihan": "Print Tagihan",
+  "@printTagihan": { "description": "Print bill button" },
+
+  "simpan": "Simpan",
+  "@simpan": { "description": "Save button" },
+
+  "bayar": "Bayar",
+  "@bayar": { "description": "Pay button" },
+
+  "hapus": "Hapus",
+  "@hapus": { "description": "Delete button" },
+
+  "diskon": "Diskon",
+  "@diskon": { "description": "Discount label" },
+
+  "catatan": "Catatan",
+  "@catatan": { "description": "Notes label" },
+
+  "total": "Total",
+  "@total": { "description": "Total label" },
+
+  "totalItem": "Total ({count} items)",
+  "@totalItem": {
+    "description": "Total with item count",
+    "placeholders": { "count": { "type": "int" } }
+  },
+
+  "sisaStok": "Sisa Stok: {count} Pcs",
+  "@sisaStok": {
+    "description": "Remaining stock label",
+    "placeholders": { "count": { "type": "int" } }
+  },
+
+  "stokHabis": "STOK HABIS",
+  "@stokHabis": { "description": "Out of stock label" },
+
+  "cariNamaSKUProduk": "Cari Nama/SKU Produk",
+  "@cariNamaSKUProduk": { "description": "Product search placeholder" },
+
+  "sinkronisasiData": "Sinkronisasi Data...",
+  "@sinkronisasiData": { "description": "Syncing data message" },
+
+  "sinkronisasiSelesai": "Sinkronisasi selesai",
+  "@sinkronisasiSelesai": { "description": "Sync complete message" },
+
+  "gagalSinkronisasi": "Gagal sinkronisasi. Coba lagi.",
+  "@gagalSinkronisasi": { "description": "Sync failed message" },
+
+  "ya": "Ya",
+  "@ya": { "description": "Yes" },
+
+  "batal": "Batal",
+  "@batal": { "description": "Cancel" },
+
+  "lanjutkan": "Lanjutkan",
+  "@lanjutkan": { "description": "Continue" },
+
+  "emailAtauPasswordTidakValid": "Email atau password tidak valid",
+  "@emailAtauPasswordTidakValid": { "description": "Invalid credential error" },
+
+  "terjadi_kesalahan": "Terjadi kesalahan. Silakan coba lagi.",
+  "@terjadi_kesalahan": { "description": "Generic error message" }
+}
