@@ -5,16 +5,22 @@ import 'package:pos/features/auth/login/domain/usecases/login_usecase.dart';
 import 'package:pos/features/auth/select_outlet/domain/entities/outlet_entity.dart';
 import 'package:pos/features/auth/select_outlet/presentation/bloc/select_outlet_event.dart';
 import 'package:pos/features/auth/select_outlet/presentation/bloc/select_outlet_state.dart';
+import 'package:pos/core/local_storage/auth_preferences.dart';
+import 'package:pos/core/database/app_database_manager.dart';
 
 @injectable
 class SelectOutletBloc extends Bloc<SelectOutletEvent, SelectOutletState> {
   final SelectOutletUseCase _selectOutletUseCase;
   final OutletPreferences _outletPreferences;
+  final AuthPreferences _authPreferences;
+  final AppDatabaseManager _appDatabaseManager;
   List<OutletEntity> _allOutlets = [];
 
   SelectOutletBloc(
     this._selectOutletUseCase,
     this._outletPreferences,
+    this._authPreferences,
+    this._appDatabaseManager,
   ) : super(const SelectOutletInitial()) {
     on<OutletsLoaded>(_onOutletsLoaded);
     on<OutletSearchChanged>(_onSearchChanged);
@@ -60,6 +66,20 @@ class SelectOutletBloc extends Bloc<SelectOutletEvent, SelectOutletState> {
     result.fold(
       (failure) => emit(SelectOutletFailure(failure.message)),
       (_) async {
+        final companyId = await _authPreferences.companyId();
+        
+        if (companyId != null) {
+          final success = await _appDatabaseManager.openDatabase(
+            tenantId: companyId,
+            outletId: event.outlet.outletId,
+          );
+          
+          if (!success) {
+            emit(const SelectOutletFailure('Gagal membuka database lokal.'));
+            return;
+          }
+        }
+
         await _outletPreferences.saveSelectedOutlet(
           outletId: event.outlet.outletId,
           outletName: event.outlet.outletName,
