@@ -6,7 +6,7 @@ DatabaseConnection connectDatabase(String dbName) {
     final result = await WasmDatabase.open(
       databaseName: dbName,
       sqlite3Uri: Uri.parse('sqlite3.wasm'),
-      driftWorkerUri: Uri.parse('drift_worker.dart.js'),
+      driftWorkerUri: Uri.parse('drift_worker.js'),
     );
 
     if (result.missingFeatures.isNotEmpty) {
