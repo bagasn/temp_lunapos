@@ -43,8 +43,7 @@ class OutletPreferences {
     return id != null && id.isNotEmpty;
   }
 
-  Future<String?> selectedOutletId() =>
-      _prefs.getString(_Key.selectedOutletId);
+  Future<String?> selectedOutletId() => _prefs.getString(_Key.selectedOutletId);
 
   Future<String?> selectedOutletName() =>
       _prefs.getString(_Key.selectedOutletName);

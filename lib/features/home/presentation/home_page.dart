@@ -25,13 +25,13 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (_) => getIt<ProductBloc>()),
+        BlocProvider(create: (_) => locator<ProductBloc>()),
         BlocProvider(
-          create: (_) => getIt<PosBloc>()..add(const PosInitRequested()),
+          create: (_) => locator<PosBloc>()..add(const PosInitRequested()),
         ),
         BlocProvider(
           create: (_) =>
-              getIt<SyncBloc>()..add(const SyncStarted(force: true)),
+              locator<SyncBloc>()..add(const SyncStarted(force: true)),
         ),
       ],
       child: const _HomeView(),
@@ -48,9 +48,7 @@ class _HomeView extends StatelessWidget {
       listener: (context, state) {
         if (state is SyncCompleted) {
           // Load products after sync completes
-          context
-              .read<ProductBloc>()
-              .add(const ProductsLoadRequested());
+          context.read<ProductBloc>().add(const ProductsLoadRequested());
         }
       },
       child: Scaffold(
@@ -124,9 +122,8 @@ class _ProductPanel extends StatelessWidget {
               Expanded(
                 child: TextField(
                   controller: _searchController,
-                  onChanged: (v) => context
-                      .read<ProductBloc>()
-                      .add(ProductSearchChanged(v)),
+                  onChanged: (v) =>
+                      context.read<ProductBloc>().add(ProductSearchChanged(v)),
                   decoration: InputDecoration(
                     hintText: 'Cari Nama/SKU Produk',
                     prefixIcon: const Icon(
@@ -176,9 +173,9 @@ class _ProductPanel extends StatelessWidget {
                     );
                   }
                   return IconButton(
-                    onPressed: () => context
-                        .read<SyncBloc>()
-                        .add(const SyncStarted(force: true)),
+                    onPressed: () => context.read<SyncBloc>().add(
+                      const SyncStarted(force: true),
+                    ),
                     icon: const Icon(
                       Icons.sync_rounded,
                       color: AppColorConstants.primaryPurple,
@@ -200,9 +197,9 @@ class _ProductPanel extends StatelessWidget {
                 child: CategoryFilterBar(
                   categories: state.categories,
                   selectedCategoryId: state.selectedCategoryId,
-                  onCategorySelected: (id) => context
-                      .read<ProductBloc>()
-                      .add(ProductCategoryFilterChanged(id)),
+                  onCategorySelected: (id) => context.read<ProductBloc>().add(
+                    ProductCategoryFilterChanged(id),
+                  ),
                 ),
               );
             }

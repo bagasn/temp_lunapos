@@ -3,7 +3,7 @@ import 'package:injectable/injectable.dart';
 
 import 'injection_container.config.dart';
 
-final getIt = GetIt.instance;
+final locator = GetIt.instance;
 
 @InjectableInit(
   initializerName: 'init',
@@ -11,7 +11,7 @@ final getIt = GetIt.instance;
   asExtension: true,
 )
 Future<void> configureDependencies(String environment) async =>
-    getIt.init(environment: environment);
+    locator.init(environment: environment);
 
 abstract class Env {
   static const dev = 'dev';

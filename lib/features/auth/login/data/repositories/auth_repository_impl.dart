@@ -75,20 +75,20 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   TokenEntity _mapToEntity(TokenResponseModel model) => TokenEntity(
-        accessToken: model.accessToken,
-        refreshToken: model.refreshToken,
-        companyId: model.companyId,
-        outletId: model.outletId,
-        outletName: model.outletName,
-        hasCompany: model.hasCompany,
-      );
+    accessToken: model.accessToken,
+    refreshToken: model.refreshToken,
+    companyId: model.companyId,
+    outletId: model.outletId,
+    outletName: model.outletName,
+    hasCompany: model.hasCompany,
+  );
 
   OutletEntity _mapOutletToEntity(OutletModel model) => OutletEntity(
-        outletId: model.outletId ?? '',
-        outletName: model.outletName ?? '',
-        companyName: model.companyName ?? '',
-        posAuthKey: model.posAuthKey ?? '',
-        outletPictureUrl: model.outletPicture?.largeUrl,
-        subscriptionDueDate: model.subscriptionDueDate,
-      );
+    outletId: model.outletId?.toString() ?? '',
+    outletName: model.outletName ?? '',
+    companyName: model.companyName ?? '',
+    posAuthKey: model.posAuthKey ?? '',
+    outletPictureUrl: model.outletPicture?.largeUrl,
+    subscriptionDueDate: model.subscriptionDueDate,
+  );
 }

@@ -17,8 +17,8 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (_) => getIt<LoginBloc>()),
-        BlocProvider(create: (_) => getIt<SelectOutletBloc>()),
+        BlocProvider(create: (_) => locator<LoginBloc>()),
+        BlocProvider(create: (_) => locator<SelectOutletBloc>()),
       ],
       child: const _LoginView(),
     );

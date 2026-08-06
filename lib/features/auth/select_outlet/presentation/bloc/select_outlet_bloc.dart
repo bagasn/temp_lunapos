@@ -27,15 +27,11 @@ class SelectOutletBloc extends Bloc<SelectOutletEvent, SelectOutletState> {
     on<OutletSelected>(_onOutletSelected);
   }
 
-  void _onOutletsLoaded(
-    OutletsLoaded event,
-    Emitter<SelectOutletState> emit,
-  ) {
+  void _onOutletsLoaded(OutletsLoaded event, Emitter<SelectOutletState> emit) {
     _allOutlets = event.outlets;
-    emit(SelectOutletLoaded(
-      allOutlets: _allOutlets,
-      filteredOutlets: _allOutlets,
-    ));
+    emit(
+      SelectOutletLoaded(allOutlets: _allOutlets, filteredOutlets: _allOutlets),
+    );
   }
 
   void _onSearchChanged(
@@ -46,13 +42,15 @@ class SelectOutletBloc extends Bloc<SelectOutletEvent, SelectOutletState> {
     final filtered = keyword.isEmpty
         ? _allOutlets
         : _allOutlets
-            .where((o) => o.outletName.toLowerCase().contains(keyword))
-            .toList();
-    emit(SelectOutletLoaded(
-      allOutlets: _allOutlets,
-      filteredOutlets: filtered,
-      keyword: event.keyword,
-    ));
+              .where((o) => o.outletName.toLowerCase().contains(keyword))
+              .toList();
+    emit(
+      SelectOutletLoaded(
+        allOutlets: _allOutlets,
+        filteredOutlets: filtered,
+        keyword: event.keyword,
+      ),
+    );
   }
 
   Future<void> _onOutletSelected(
@@ -63,32 +61,31 @@ class SelectOutletBloc extends Bloc<SelectOutletEvent, SelectOutletState> {
     final result = await _selectOutletUseCase(
       SelectOutletParams(event.outlet.posAuthKey),
     );
-    result.fold(
-      (failure) => emit(SelectOutletFailure(failure.message)),
-      (_) async {
-        final companyId = await _authPreferences.companyId();
-        
-        if (companyId != null) {
-          final success = await _appDatabaseManager.openDatabase(
-            tenantId: companyId,
-            outletId: event.outlet.outletId,
-          );
-          
-          if (!success) {
-            emit(const SelectOutletFailure('Gagal membuka database lokal.'));
-            return;
-          }
-        }
+    result.fold((failure) => emit(SelectOutletFailure(failure.message)), (
+      _,
+    ) async {
+      final companyId = await _authPreferences.companyId();
 
-        await _outletPreferences.saveSelectedOutlet(
-          outletId: event.outlet.outletId,
-          outletName: event.outlet.outletName,
-          companyName: event.outlet.companyName,
-          posAuthKey: event.outlet.posAuthKey,
-          outletPictureUrl: event.outlet.outletPictureUrl,
+      if (companyId != null) {
+        final success = await _appDatabaseManager.openDatabase(
+          tenantId: companyId,
+          outletId: event.outlet.outletId.toString(),
         );
-        emit(const SelectOutletSuccess());
-      },
-    );
+
+        if (!success) {
+          emit(const SelectOutletFailure('Gagal membuka database lokal.'));
+          return;
+        }
+      }
+
+      await _outletPreferences.saveSelectedOutlet(
+        outletId: event.outlet.outletId,
+        outletName: event.outlet.outletName,
+        companyName: event.outlet.companyName,
+        posAuthKey: event.outlet.posAuthKey,
+        outletPictureUrl: event.outlet.outletPictureUrl,
+      );
+      emit(const SelectOutletSuccess());
+    });
   }
 }

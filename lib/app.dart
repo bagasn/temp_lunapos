@@ -27,7 +27,7 @@ class _PosAppState extends State<PosApp> {
       persistenceEnabled: true,
       cacheSizeBytes: Settings.CACHE_SIZE_UNLIMITED,
     );
-    _router = createAppRouter(getIt<SessionManager>());
+    _router = createAppRouter(locator<SessionManager>());
   }
 
   @override
