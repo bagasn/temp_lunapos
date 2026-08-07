@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:pos/core/theme/app_colors.dart';
 import 'package:pos/core/theme/app_text_styles.dart';
 import 'package:pos/features/home/domain/entities/product_entity.dart';
-import 'package:pos/shared/utilities/currency_formatter.dart';
+import 'package:pos/shared/utilities/number_formatter.dart';
 
 class ProductCard extends StatelessWidget {
   final ProductEntity product;
@@ -24,9 +24,7 @@ class ProductCard extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
-            border: Border.all(
-              color: AppColorConstants.borderLight,
-            ),
+            border: Border.all(color: AppColorConstants.borderLight),
           ),
           child: Opacity(
             opacity: isOutOfStock ? 0.5 : 1.0,
@@ -64,7 +62,7 @@ class ProductCard extends StatelessWidget {
                         ),
                         const SizedBox(height: 4),
                         Text(
-                          CurrencyFormatter.format(product.price),
+                          NumberFormatter.format(product.price),
                           style: AppTextStyles.bodySmall.copyWith(
                             color: AppColorConstants.primaryPurple,
                             fontWeight: FontWeight.w700,

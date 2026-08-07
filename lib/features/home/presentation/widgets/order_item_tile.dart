@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pos/core/theme/app_colors.dart';
 import 'package:pos/core/theme/app_text_styles.dart';
 import 'package:pos/features/home/data/models/order_model.dart';
-import 'package:pos/shared/utilities/currency_formatter.dart';
+import 'package:pos/shared/utilities/number_formatter.dart';
 
 class OrderItemTile extends StatelessWidget {
   final OrderLineModel orderLine;
@@ -64,7 +64,7 @@ class OrderItemTile extends StatelessWidget {
               const Spacer(),
               // Subtotal
               Text(
-                CurrencyFormatter.format(orderLine.subTotal),
+                NumberFormatter.format(orderLine.subTotal),
                 style: AppTextStyles.titleMedium.copyWith(
                   color: AppColorConstants.primaryPurple,
                   fontWeight: FontWeight.w700,
@@ -102,10 +102,7 @@ class _QuantityControl extends StatelessWidget {
           _buildButton(Icons.remove_rounded, onDecrease),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12),
-            child: Text(
-              '$quantity',
-              style: AppTextStyles.titleMedium,
-            ),
+            child: Text('$quantity', style: AppTextStyles.titleMedium),
           ),
           _buildButton(Icons.add_rounded, onIncrease),
         ],

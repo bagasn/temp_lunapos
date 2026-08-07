@@ -7,7 +7,7 @@ import 'package:pos/features/home/presentation/bloc/pos/pos_bloc.dart';
 import 'package:pos/features/home/presentation/bloc/pos/pos_event.dart';
 import 'package:pos/features/home/presentation/bloc/pos/pos_state.dart';
 import 'package:pos/features/home/presentation/widgets/order_item_tile.dart';
-import 'package:pos/shared/utilities/currency_formatter.dart';
+import 'package:pos/shared/utilities/number_formatter.dart';
 
 class OrderPanel extends StatelessWidget {
   const OrderPanel({super.key});
@@ -18,9 +18,7 @@ class OrderPanel extends StatelessWidget {
       width: 320,
       decoration: const BoxDecoration(
         color: AppColorConstants.surfaceOrderPanel,
-        border: Border(
-          left: BorderSide(color: AppColorConstants.borderLight),
-        ),
+        border: Border(left: BorderSide(color: AppColorConstants.borderLight)),
       ),
       child: BlocBuilder<PosBloc, PosState>(
         builder: (context, state) {
@@ -99,17 +97,17 @@ class OrderPanel extends StatelessWidget {
                         final newQty = line.quantity + delta;
                         if (newQty <= 0) {
                           context.read<PosBloc>().add(
-                                PosOrderLineRemoved(line.id),
-                              );
+                            PosOrderLineRemoved(line.id),
+                          );
                         } else {
                           context.read<PosBloc>().add(
-                                PosOrderLineQuantityChanged(line.id, newQty),
-                              );
+                            PosOrderLineQuantityChanged(line.id, newQty),
+                          );
                         }
                       },
-                      onRemove: () => context
-                          .read<PosBloc>()
-                          .add(PosOrderLineRemoved(line.id)),
+                      onRemove: () => context.read<PosBloc>().add(
+                        PosOrderLineRemoved(line.id),
+                      ),
                     );
                   },
                 ),
@@ -180,7 +178,7 @@ class OrderPanel extends StatelessWidget {
                 ),
               ),
               Text(
-                CurrencyFormatter.format(order.grandTotal),
+                NumberFormatter.format(order.grandTotal),
                 style: AppTextStyles.headlineMedium.copyWith(
                   color: AppColorConstants.primaryPurple,
                   fontWeight: FontWeight.w700,
@@ -256,10 +254,7 @@ class OrderPanel extends StatelessWidget {
       children: [
         Container(
           padding: const EdgeInsets.all(16),
-          child: Text(
-            'Daftar Order',
-            style: AppTextStyles.titleLarge,
-          ),
+          child: Text('Daftar Order', style: AppTextStyles.titleLarge),
         ),
         const Expanded(
           child: Center(

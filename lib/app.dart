@@ -22,11 +22,6 @@ class _PosAppState extends State<PosApp> {
   @override
   void initState() {
     super.initState();
-    // Enable Firestore offline persistence
-    FirebaseFirestore.instance.settings = const Settings(
-      persistenceEnabled: true,
-      cacheSizeBytes: Settings.CACHE_SIZE_UNLIMITED,
-    );
     _router = createAppRouter(locator<SessionManager>());
   }
 
