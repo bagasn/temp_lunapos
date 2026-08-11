@@ -10,5 +10,5 @@ void main() async {
   await dotenv.load(fileName: 'envs/dev.env');
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await configureDependencies(Env.dev);
-  runApp(const PosApp());
+  runApp(const LunaposApp());
 }

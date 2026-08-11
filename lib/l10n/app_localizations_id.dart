@@ -12,139 +12,63 @@ class AppLocalizationsId extends AppLocalizations {
   String get appName => 'Luna POS';
 
   @override
-  String get selamatDatangSahabatLuna => 'Selamat Datang Sahabat LUNA!';
+  String get txt_welcomeToLuna => 'Selamat Datang Sahabat LUNA!';
 
   @override
-  String get masuk => 'Masuk';
+  String get txt_login => 'Masuk';
 
   @override
-  String get email => 'Email';
+  String get txt_email => 'Email';
 
   @override
-  String get cthEmail => 'Cth: joe@mail.com';
+  String get hint_email => 'Cth: joe@mail.com';
 
   @override
-  String get kataSandi => 'Kata Sandi';
+  String get txt_password => 'Kata Sandi';
 
   @override
-  String get masukkanKataSandi => 'Masukkan kata sandi';
+  String get hint_inputPassword => 'Masukkan kata sandi';
 
   @override
-  String get authenticationKey => 'Authentication Key';
+  String get lbl_authenticationKey => 'Authentication Key';
 
   @override
-  String get lupaPassword => 'Lupa Password?';
+  String get btn_forgetPassword => 'Lupa Password?';
 
   @override
-  String get belumPunyaAkun => 'Belum punya Akun?';
+  String get lbl_notHaveAccountYet => 'Belum punya Akun?';
 
   @override
-  String get buatAkunSekarang => 'Buat Akun Sekarang!';
+  String get btn_createAnAccount => 'Buat Akun Sekarang!';
 
   @override
-  String get butuhBantuan => 'Butuh Bantuan?';
+  String get btn_needHelp => 'Butuh Bantuan?';
 
   @override
-  String get client => 'Client';
+  String get btn_client => 'Client';
 
   @override
-  String get satuAplikasiKasir => 'Satu Aplikasi Kasir untuk Semua Jenis Usaha';
+  String get txt_lunaBrandMoto => 'Satu Aplikasi Kasir untuk Semua Jenis Usaha';
 
   @override
-  String get untungadaLuna => '#UntungadaLUNA';
+  String get txt_lunaHashtag => '#UntungadaLUNA';
 
   @override
   String get copyright =>
       '© 2022 - PT LUNA Aplikasi Indonesia. All rights reserved.';
 
   @override
-  String get pilihOutlet => 'PILIH OUTLET';
+  String get title_chooseOutlet => 'PILIH OUTLET';
 
   @override
-  String get cariOutlet => 'Cari Outlet';
+  String get hint_findOutlet => 'Cari Outlet';
 
   @override
-  String get logOut => 'Log Out';
+  String get txt_logout => 'Keluar';
 
   @override
-  String get konfirmasiLogout => 'Anda akan keluar. Lanjutkan?';
+  String get txt_logoutConfirmation => 'Anda akan keluar. Lanjutkan?';
 
   @override
-  String get outletTidakDitemukan => 'Outlet tidak ditemukan';
-
-  @override
-  String get daftarOrder => 'Daftar Order';
-
-  @override
-  String get tipePenjualan => 'Tipe Penjualan';
-
-  @override
-  String get semua => 'Semua';
-
-  @override
-  String get favorit => 'Favorit';
-
-  @override
-  String get promoDiskon => 'Promo & Diskon';
-
-  @override
-  String get printTagihan => 'Print Tagihan';
-
-  @override
-  String get simpan => 'Simpan';
-
-  @override
-  String get bayar => 'Bayar';
-
-  @override
-  String get hapus => 'Hapus';
-
-  @override
-  String get diskon => 'Diskon';
-
-  @override
-  String get catatan => 'Catatan';
-
-  @override
-  String get total => 'Total';
-
-  @override
-  String totalItem(int count) {
-    return 'Total ($count items)';
-  }
-
-  @override
-  String sisaStok(int count) {
-    return 'Sisa Stok: $count Pcs';
-  }
-
-  @override
-  String get stokHabis => 'STOK HABIS';
-
-  @override
-  String get cariNamaSKUProduk => 'Cari Nama/SKU Produk';
-
-  @override
-  String get sinkronisasiData => 'Sinkronisasi Data...';
-
-  @override
-  String get sinkronisasiSelesai => 'Sinkronisasi selesai';
-
-  @override
-  String get gagalSinkronisasi => 'Gagal sinkronisasi. Coba lagi.';
-
-  @override
-  String get ya => 'Ya';
-
-  @override
-  String get batal => 'Batal';
-
-  @override
-  String get lanjutkan => 'Lanjutkan';
-
-  @override
-  String get emailAtauPasswordTidakValid => 'Email atau password tidak valid';
-
-  @override
-  String get terjadi_kesalahan => 'Terjadi kesalahan. Silakan coba lagi.';
+  String get err_outletNotFound => 'Outlet tidak ditemukan';
 }

@@ -4,26 +4,36 @@ import 'package:pos/core/local_storage/session_manager.dart';
 import 'package:pos/core/navigation/app_route_paths.dart';
 import 'package:pos/features/auth/login/presentation/login_page.dart';
 import 'package:pos/features/auth/select_outlet/presentation/select_outlet_page.dart';
+import 'package:pos/features/boot/presentation/boot_page.dart';
 import 'package:pos/features/home/presentation/home_page.dart';
 
 GoRouter createAppRouter(SessionManager sessionManager) {
   return GoRouter(
-    initialLocation: AppRoutePaths.login.path,
+    initialLocation: AppRoutePaths.splash.path,
     redirect: (context, state) async {
-      final isLogged = await sessionManager.isLoggedIn;
-      final hasOutlet = await sessionManager.hasOutletSelected;
       final location = state.uri.toString();
 
+      final isBooting = location.startsWith(AppRoutePaths.splash.path);
+      if (isBooting) {
+        return null;
+      }
+
+      final isLogged = await sessionManager.isLoggedIn;
+      final hasOutlet = await sessionManager.hasActiveOutlet;
+
       final isOnLogin = location.startsWith(AppRoutePaths.login.path);
-      final isOnSelectOutlet =
-          location.startsWith(AppRoutePaths.selectOutlet.path);
+      final isOnSelectOutlet = location.startsWith(
+        AppRoutePaths.selectOutlet.path,
+      );
 
       if (!isLogged && !isOnLogin) {
         return AppRoutePaths.login.path;
       }
 
-      if (isLogged && !hasOutlet && !isOnSelectOutlet && !isOnLogin) {
-        return AppRoutePaths.login.path;
+      if (isLogged && !hasOutlet) {
+        if (!isOnSelectOutlet || !isOnLogin) {
+          return AppRoutePaths.selectOutlet.path;
+        }
       }
 
       if (isLogged && hasOutlet && isOnLogin) {
@@ -34,7 +44,13 @@ GoRouter createAppRouter(SessionManager sessionManager) {
     },
     routes: [
       GoRoute(
-        path: AppRoutePaths.login.path,
+        path: AppRoutePaths.splash.navigationPath,
+        builder: (context, state) {
+          return BootPage();
+        },
+      ),
+      GoRoute(
+        path: AppRoutePaths.login.navigationPath,
         builder: (context, state) => const LoginPage(),
         routes: [
           GoRoute(
@@ -44,14 +60,11 @@ GoRouter createAppRouter(SessionManager sessionManager) {
         ],
       ),
       GoRoute(
-        path: AppRoutePaths.home.path,
+        path: AppRoutePaths.home.navigationPath,
         builder: (context, state) => const HomePage(),
       ),
     ],
-    errorBuilder: (context, state) => Scaffold(
-      body: Center(
-        child: Text('Page not found: ${state.uri}'),
-      ),
-    ),
+    errorBuilder: (context, state) =>
+        Scaffold(body: Center(child: Text('Page not found: ${state.uri}'))),
   );
 }

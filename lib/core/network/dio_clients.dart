@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:pos/core/di/injection_container.dart';
 import 'package:pos/core/local_storage/auth_preferences.dart';
 import 'package:pos/core/network/interceptors/auth_interceptor.dart';
 import 'package:pos/core/network/interceptors/auth_lunaone_interceptor.dart';
@@ -31,31 +30,39 @@ abstract class DioModule {
 
   @Named('basicDio')
   @singleton
-  Dio basicDio() {
+  Dio basicDio(LocaleInterceptor localeInterceptor) {
     final dio = Dio(_options());
-    dio.interceptors.add(LocaleInterceptor(locator()));
+    dio.interceptors.add(localeInterceptor);
     dio.interceptors.add(_dioLogger);
     return dio;
   }
 
   @Named('authDio')
   @singleton
-  Dio authDio(AuthPreferences authSession) {
+  Dio authDio(
+    AuthPreferences authSession,
+    LocaleInterceptor localeInterceptor,
+    RefreshTokenInterceptor refreshTokenInterceptor,
+  ) {
     final dio = Dio(_options());
-    dio.interceptors.add(LocaleInterceptor(locator()));
+    dio.interceptors.add(localeInterceptor);
     dio.interceptors.add(AuthInterceptor(authSession));
-    dio.interceptors.add(locator<RefreshTokenInterceptor>());
+    dio.interceptors.add(refreshTokenInterceptor);
     dio.interceptors.add(_dioLogger);
     return dio;
   }
 
   @Named('lunaoneDio')
   @singleton
-  Dio lunaoneDio(AuthPreferences authSession) {
+  Dio lunaoneDio(
+    AuthPreferences authSession,
+    LocaleInterceptor localeInterceptor,
+    RefreshTokenInterceptor refreshTokenInterceptor,
+  ) {
     final dio = Dio(_options());
-    dio.interceptors.add(LocaleInterceptor(locator()));
+    dio.interceptors.add(localeInterceptor);
     dio.interceptors.add(AuthLunaoneInterceptor(authSession));
-    dio.interceptors.add(locator<RefreshTokenInterceptor>());
+    dio.interceptors.add(refreshTokenInterceptor);
     dio.interceptors.add(_dioLogger);
     return dio;
   }

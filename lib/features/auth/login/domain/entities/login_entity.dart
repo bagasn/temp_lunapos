@@ -1,4 +1,4 @@
-class TokenEntity {
+class LoginEntity {
   final String accessToken;
   final String refreshToken;
   final String? outletId;
@@ -7,7 +7,7 @@ class TokenEntity {
   final String? companyName;
   final bool hasCompany;
 
-  const TokenEntity({
+  const LoginEntity({
     required this.accessToken,
     required this.refreshToken,
     this.outletId,

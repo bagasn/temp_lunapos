@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:pos/core/local_storage/session_manager.dart';
 
-@injectable
+@lazySingleton
 class LocaleInterceptor extends Interceptor {
   final SessionManager _sessionManager;
 

@@ -108,85 +108,85 @@ abstract class AppLocalizations {
   ///
   /// In id, this message translates to:
   /// **'Selamat Datang Sahabat LUNA!'**
-  String get selamatDatangSahabatLuna;
+  String get txt_welcomeToLuna;
 
   /// Sign in button label
   ///
   /// In id, this message translates to:
   /// **'Masuk'**
-  String get masuk;
+  String get txt_login;
 
   /// Email field label
   ///
   /// In id, this message translates to:
   /// **'Email'**
-  String get email;
+  String get txt_email;
 
   /// Email placeholder
   ///
   /// In id, this message translates to:
   /// **'Cth: joe@mail.com'**
-  String get cthEmail;
+  String get hint_email;
 
   /// Password field label
   ///
   /// In id, this message translates to:
   /// **'Kata Sandi'**
-  String get kataSandi;
+  String get txt_password;
 
   /// Password placeholder
   ///
   /// In id, this message translates to:
   /// **'Masukkan kata sandi'**
-  String get masukkanKataSandi;
+  String get hint_inputPassword;
 
   /// Auth key toggle label
   ///
   /// In id, this message translates to:
   /// **'Authentication Key'**
-  String get authenticationKey;
+  String get lbl_authenticationKey;
 
-  /// Forgot password link
+  /// Forgot password Button
   ///
   /// In id, this message translates to:
   /// **'Lupa Password?'**
-  String get lupaPassword;
+  String get btn_forgetPassword;
 
   /// No account label
   ///
   /// In id, this message translates to:
   /// **'Belum punya Akun?'**
-  String get belumPunyaAkun;
+  String get lbl_notHaveAccountYet;
 
   /// Create account button
   ///
   /// In id, this message translates to:
   /// **'Buat Akun Sekarang!'**
-  String get buatAkunSekarang;
+  String get btn_createAnAccount;
 
   /// Need help button
   ///
   /// In id, this message translates to:
   /// **'Butuh Bantuan?'**
-  String get butuhBantuan;
+  String get btn_needHelp;
 
   /// Client mode button
   ///
   /// In id, this message translates to:
   /// **'Client'**
-  String get client;
+  String get btn_client;
 
   /// App tagline
   ///
   /// In id, this message translates to:
   /// **'Satu Aplikasi Kasir untuk Semua Jenis Usaha'**
-  String get satuAplikasiKasir;
+  String get txt_lunaBrandMoto;
 
   /// Brand hashtag
   ///
   /// In id, this message translates to:
   /// **'#UntungadaLUNA'**
-  String get untungadaLuna;
+  String get txt_lunaHashtag;
 
   /// Copyright text
   ///
@@ -198,175 +198,31 @@ abstract class AppLocalizations {
   ///
   /// In id, this message translates to:
   /// **'PILIH OUTLET'**
-  String get pilihOutlet;
+  String get title_chooseOutlet;
 
   /// Search outlet placeholder
   ///
   /// In id, this message translates to:
   /// **'Cari Outlet'**
-  String get cariOutlet;
+  String get hint_findOutlet;
 
   /// Log out button
   ///
   /// In id, this message translates to:
-  /// **'Log Out'**
-  String get logOut;
+  /// **'Keluar'**
+  String get txt_logout;
 
   /// Logout confirmation message
   ///
   /// In id, this message translates to:
   /// **'Anda akan keluar. Lanjutkan?'**
-  String get konfirmasiLogout;
+  String get txt_logoutConfirmation;
 
   /// No outlet found message
   ///
   /// In id, this message translates to:
   /// **'Outlet tidak ditemukan'**
-  String get outletTidakDitemukan;
-
-  /// Order list title
-  ///
-  /// In id, this message translates to:
-  /// **'Daftar Order'**
-  String get daftarOrder;
-
-  /// Sales type label
-  ///
-  /// In id, this message translates to:
-  /// **'Tipe Penjualan'**
-  String get tipePenjualan;
-
-  /// All category filter
-  ///
-  /// In id, this message translates to:
-  /// **'Semua'**
-  String get semua;
-
-  /// Favorites category filter
-  ///
-  /// In id, this message translates to:
-  /// **'Favorit'**
-  String get favorit;
-
-  /// Promo & Discount category filter
-  ///
-  /// In id, this message translates to:
-  /// **'Promo & Diskon'**
-  String get promoDiskon;
-
-  /// Print bill button
-  ///
-  /// In id, this message translates to:
-  /// **'Print Tagihan'**
-  String get printTagihan;
-
-  /// Save button
-  ///
-  /// In id, this message translates to:
-  /// **'Simpan'**
-  String get simpan;
-
-  /// Pay button
-  ///
-  /// In id, this message translates to:
-  /// **'Bayar'**
-  String get bayar;
-
-  /// Delete button
-  ///
-  /// In id, this message translates to:
-  /// **'Hapus'**
-  String get hapus;
-
-  /// Discount label
-  ///
-  /// In id, this message translates to:
-  /// **'Diskon'**
-  String get diskon;
-
-  /// Notes label
-  ///
-  /// In id, this message translates to:
-  /// **'Catatan'**
-  String get catatan;
-
-  /// Total label
-  ///
-  /// In id, this message translates to:
-  /// **'Total'**
-  String get total;
-
-  /// Total with item count
-  ///
-  /// In id, this message translates to:
-  /// **'Total ({count} items)'**
-  String totalItem(int count);
-
-  /// Remaining stock label
-  ///
-  /// In id, this message translates to:
-  /// **'Sisa Stok: {count} Pcs'**
-  String sisaStok(int count);
-
-  /// Out of stock label
-  ///
-  /// In id, this message translates to:
-  /// **'STOK HABIS'**
-  String get stokHabis;
-
-  /// Product search placeholder
-  ///
-  /// In id, this message translates to:
-  /// **'Cari Nama/SKU Produk'**
-  String get cariNamaSKUProduk;
-
-  /// Syncing data message
-  ///
-  /// In id, this message translates to:
-  /// **'Sinkronisasi Data...'**
-  String get sinkronisasiData;
-
-  /// Sync complete message
-  ///
-  /// In id, this message translates to:
-  /// **'Sinkronisasi selesai'**
-  String get sinkronisasiSelesai;
-
-  /// Sync failed message
-  ///
-  /// In id, this message translates to:
-  /// **'Gagal sinkronisasi. Coba lagi.'**
-  String get gagalSinkronisasi;
-
-  /// Yes
-  ///
-  /// In id, this message translates to:
-  /// **'Ya'**
-  String get ya;
-
-  /// Cancel
-  ///
-  /// In id, this message translates to:
-  /// **'Batal'**
-  String get batal;
-
-  /// Continue
-  ///
-  /// In id, this message translates to:
-  /// **'Lanjutkan'**
-  String get lanjutkan;
-
-  /// Invalid credential error
-  ///
-  /// In id, this message translates to:
-  /// **'Email atau password tidak valid'**
-  String get emailAtauPasswordTidakValid;
-
-  /// Generic error message
-  ///
-  /// In id, this message translates to:
-  /// **'Terjadi kesalahan. Silakan coba lagi.'**
-  String get terjadi_kesalahan;
+  String get err_outletNotFound;
 }
 
 class _AppLocalizationsDelegate

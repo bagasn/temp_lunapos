@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:go_router/go_router.dart';
@@ -8,15 +7,16 @@ import 'package:pos/core/local_storage/session_manager.dart';
 import 'package:pos/core/navigation/app_router.dart';
 import 'package:pos/core/theme/app_theme.dart';
 import 'package:pos/l10n/app_localizations.dart';
+import 'package:toastification/toastification.dart';
 
-class PosApp extends StatefulWidget {
-  const PosApp({super.key});
+class LunaposApp extends StatefulWidget {
+  const LunaposApp({super.key});
 
   @override
-  State<PosApp> createState() => _PosAppState();
+  State<LunaposApp> createState() => _LunaposAppState();
 }
 
-class _PosAppState extends State<PosApp> {
+class _LunaposAppState extends State<LunaposApp> {
   late final GoRouter _router;
 
   @override
@@ -28,30 +28,37 @@ class _PosAppState extends State<PosApp> {
   @override
   Widget build(BuildContext context) {
     return GlobalLoaderOverlay(
-      child: MaterialApp.router(
-        title: 'Luna POS',
-        theme: AppTheme.lightTheme,
-        debugShowCheckedModeBanner: false,
-        routerConfig: _router,
-        localizationsDelegates: const [
-          AppLocalizations.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        supportedLocales: const [
-          Locale('id'), // Indonesian
-          Locale('en'), // English
-        ],
-        localeResolutionCallback: (locale, supportedLocales) {
-          if (locale == null) return const Locale('id');
-          for (final supportedLocale in supportedLocales) {
-            if (supportedLocale.languageCode == locale.languageCode) {
-              return supportedLocale;
+      child: ToastificationWrapper(
+        config: ToastificationConfig(
+          alignment: Alignment.topCenter,
+          maxToastLimit: 1,
+          animationDuration: Duration(milliseconds: 200),
+        ),
+        child: MaterialApp.router(
+          title: 'Luna POS',
+          theme: AppTheme.lightTheme,
+          debugShowCheckedModeBanner: false,
+          routerConfig: _router,
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: const [
+            Locale('id'), // Indonesian
+            Locale('en'), // English
+          ],
+          localeResolutionCallback: (locale, supportedLocales) {
+            if (locale == null) return const Locale('id');
+            for (final supportedLocale in supportedLocales) {
+              if (supportedLocale.languageCode == locale.languageCode) {
+                return supportedLocale;
+              }
             }
-          }
-          return const Locale('id');
-        },
+            return const Locale('id');
+          },
+        ),
       ),
     );
   }

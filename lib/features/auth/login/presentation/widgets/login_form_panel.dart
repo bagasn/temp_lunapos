@@ -33,11 +33,11 @@ class _LoginFormPanelState extends State<LoginFormPanel> {
   void _submit(BuildContext context) {
     if (!_formKey.currentState!.validate()) return;
     context.read<LoginBloc>().add(
-          LoginSubmitted(
-            username: _emailController.text.trim(),
-            password: _passwordController.text,
-          ),
-        );
+      LoginSubmitted(
+        username: _emailController.text.trim(),
+        password: _passwordController.text,
+      ),
+    );
   }
 
   @override
@@ -97,7 +97,9 @@ class _LoginFormPanelState extends State<LoginFormPanel> {
                 // Email/Auth key field
                 LunaTextField(
                   label: _isAuthKeyMode ? 'Authentication Key' : 'Email',
-                  hint: _isAuthKeyMode ? 'Masukkan auth key...' : 'Cth: joe@mail.com',
+                  hint: _isAuthKeyMode
+                      ? 'Masukkan auth key...'
+                      : 'Cth: joe@mail.com',
                   controller: _emailController,
                   keyboardType: _isAuthKeyMode
                       ? TextInputType.text
@@ -126,7 +128,9 @@ class _LoginFormPanelState extends State<LoginFormPanel> {
                       color: AppColorConstants.textLight,
                     ),
                     validator: (v) {
-                      if (v == null || v.isEmpty) return 'Kata sandi wajib diisi';
+                      if (v == null || v.isEmpty) {
+                        return 'Kata sandi wajib diisi';
+                      }
                       return null;
                     },
                     enabled: !isLoading,
@@ -169,7 +173,7 @@ class _LoginFormPanelState extends State<LoginFormPanel> {
                         const SizedBox(width: 8),
                         Expanded(
                           child: Text(
-                            state.message,
+                            state.error.errorMessage,
                             style: AppTextStyles.bodySmall.copyWith(
                               color: AppColorConstants.statusError,
                             ),

@@ -1,12 +1,23 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:dio/dio.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:logger/logger.dart';
+
 import 'package:pos/core/di/injection_container.dart';
 
 abstract class Failure {
   final String message;
+
   const Failure(this.message);
+
+  @override
+  String toString() {
+    final className = runtimeType.toString();
+    return '$className(message: $message)';
+  }
+
+  String get errorMessage => message;
 }
 
 class ServerFailure extends Failure {
@@ -76,6 +87,14 @@ class NetworkFailure extends Failure {
 
   factory NetworkFailure.message(String message) {
     return NetworkFailure(-1, message);
+  }
+
+  @override
+  String get errorMessage {
+    if (code <= 0) {
+      return message;
+    }
+    return '[$code] $message';
   }
 }
 

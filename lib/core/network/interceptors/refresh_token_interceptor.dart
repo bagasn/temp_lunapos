@@ -4,8 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:pos/core/local_storage/session_manager.dart';
 import 'package:pos/core/network/api_endpoints.dart';
-import 'package:pos/features/auth/login/data/datasources/login_service.dart';
-import 'package:pos/features/auth/shared/data/models/token_response.dart';
+import 'package:pos/shared/data/response/token_response.dart';
 import 'package:pos/shared/utilities/log_util.dart';
 
 @lazySingleton

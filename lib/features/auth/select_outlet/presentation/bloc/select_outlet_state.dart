@@ -1,42 +1,41 @@
 import 'package:equatable/equatable.dart';
-import 'package:pos/features/auth/select_outlet/domain/entities/outlet_entity.dart';
+import 'package:pos/features/auth/select_outlet/domain/entities/auth_outlet_entity.dart';
+import 'package:pos/shared/domain/entities/failure.dart';
 
-sealed class SelectOutletState extends Equatable {
-  const SelectOutletState();
+sealed class AuthOutletState extends Equatable {
+  const AuthOutletState();
   @override
   List<Object?> get props => [];
 }
 
-final class SelectOutletInitial extends SelectOutletState {
-  const SelectOutletInitial();
+final class AuthOutletInitial extends AuthOutletState {
+  const AuthOutletInitial();
 }
 
-final class SelectOutletLoaded extends SelectOutletState {
-  final List<OutletEntity> allOutlets;
-  final List<OutletEntity> filteredOutlets;
-  final String keyword;
+final class AuthOutletFetching extends AuthOutletState {
+  const AuthOutletFetching();
+}
 
-  const SelectOutletLoaded({
-    required this.allOutlets,
-    required this.filteredOutlets,
-    this.keyword = '',
-  });
+final class AuthOutletDataState extends AuthOutletState {
+  final List<AuthOutletEntity> outlets;
+
+  const AuthOutletDataState({required this.outlets});
 
   @override
-  List<Object?> get props => [allOutlets, filteredOutlets, keyword];
+  List<Object?> get props => outlets;
 }
 
-final class SelectOutletSelecting extends SelectOutletState {
-  const SelectOutletSelecting();
+final class AuthOutletTokenFetching extends AuthOutletState {
+  const AuthOutletTokenFetching();
 }
 
-final class SelectOutletSuccess extends SelectOutletState {
-  const SelectOutletSuccess();
+final class AuthOutletTokenSuccess extends AuthOutletState {
+  const AuthOutletTokenSuccess();
 }
 
-final class SelectOutletFailure extends SelectOutletState {
-  final String message;
-  const SelectOutletFailure(this.message);
+final class AuthOutletFailure extends AuthOutletState {
+  final Failure error;
+  const AuthOutletFailure(this.error);
   @override
-  List<Object?> get props => [message];
+  List<Object?> get props => [error];
 }

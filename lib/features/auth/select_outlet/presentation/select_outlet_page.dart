@@ -15,9 +15,9 @@ class SelectOutletPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<SelectOutletBloc, SelectOutletState>(
+    return BlocListener<SelectOutletBloc, AuthOutletState>(
       listener: (context, state) {
-        if (state is SelectOutletSuccess) {
+        if (state is AuthOutletTokenSuccess) {
           context.go(AppRoutePaths.home.path);
         }
       },
@@ -107,10 +107,7 @@ class _SelectOutletView extends StatelessWidget {
                 context.go(AppRoutePaths.login.path);
               }
             },
-            icon: const Icon(
-              Icons.logout_rounded,
-              color: Colors.white,
-            ),
+            icon: const Icon(Icons.logout_rounded, color: Colors.white),
             tooltip: 'Log Out',
           ),
         ],
@@ -145,24 +142,23 @@ class _SelectOutletView extends StatelessWidget {
             focusedBorder: InputBorder.none,
             contentPadding: const EdgeInsets.symmetric(vertical: 14),
           ),
-          onChanged: (v) => context
-              .read<SelectOutletBloc>()
-              .add(OutletSearchChanged(v)),
+          onChanged: (v) =>
+              context.read<SelectOutletBloc>().add(OutletSearchChanged(v)),
         ),
       ),
     );
   }
 
   Widget _buildOutletList() {
-    return BlocBuilder<SelectOutletBloc, SelectOutletState>(
+    return BlocBuilder<SelectOutletBloc, AuthOutletState>(
       builder: (context, state) {
-        if (state is SelectOutletInitial) {
+        if (state is AuthOutletInitial) {
           return const Center(
             child: CircularProgressIndicator(color: Colors.white),
           );
         }
-        if (state is SelectOutletLoaded) {
-          if (state.filteredOutlets.isEmpty) {
+        if (state is AuthOutletDataState) {
+          if (state.outlets.isEmpty) {
             return Center(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -185,22 +181,22 @@ class _SelectOutletView extends StatelessWidget {
           }
           return ListView.builder(
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
-            itemCount: state.filteredOutlets.length,
+            itemCount: state.outlets.length,
             itemBuilder: (ctx, i) {
-              final outlet = state.filteredOutlets[i];
+              final outlet = state.outlets[i];
               return Padding(
                 padding: const EdgeInsets.only(bottom: 12),
                 child: OutletCard(
                   outlet: outlet,
-                  onTap: () => context
-                      .read<SelectOutletBloc>()
-                      .add(OutletSelected(outlet)),
+                  onTap: () => context.read<SelectOutletBloc>().add(
+                    OutletSelected(outlet),
+                  ),
                 ),
               );
             },
           );
         }
-        if (state is SelectOutletSelecting) {
+        if (state is AuthOutletTokenFetching) {
           return const Center(
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -219,10 +215,10 @@ class _SelectOutletView extends StatelessWidget {
             ),
           );
         }
-        if (state is SelectOutletFailure) {
+        if (state is AuthOutletFailure) {
           return Center(
             child: Text(
-              state.message,
+              state.error.errorMessage,
               style: AppTextStyles.bodyMedium.copyWith(color: Colors.white),
             ),
           );
