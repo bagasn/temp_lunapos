@@ -5,14 +5,7 @@ import 'package:pos/features/auth/login/data/models/token_response_model.dart';
 import 'package:pos/features/auth/select_outlet/data/models/outlet_model.dart';
 
 abstract class AuthRemoteDatasource {
-  Future<TokenResponseModel> loginWithPassword({
-    required String username,
-    required String password,
-  });
-
-  Future<TokenResponseModel> loginWithAuthKey({
-    required String posAuthKey,
-  });
+  Future<TokenResponseModel> loginWithAuthKey({required String posAuthKey});
 
   Future<List<OutletModel>> getOutlets(String accessToken);
 }
@@ -28,34 +21,15 @@ class AuthRemoteDatasourceImpl implements AuthRemoteDatasource {
   );
 
   @override
-  Future<TokenResponseModel> loginWithPassword({
-    required String username,
-    required String password,
-  }) async {
-    final body =
-        'grant_type=password&username=$username&password=$password&client_id=luna-main-web&client_secret=';
-    final response = await _basicDio.post(
-      ApiEndpoints.baseUrlAuth + ApiEndpoints.token,
-      data: body,
-      options: Options(
-        contentType: 'application/x-www-form-urlencoded',
-      ),
-    );
-    return TokenResponseModel.fromJson(response.data as Map<String, dynamic>);
-  }
-
-  @override
   Future<TokenResponseModel> loginWithAuthKey({
     required String posAuthKey,
   }) async {
     final body =
         'grant_type=password&username=$posAuthKey&password=password-authKey-web&client_id=luna-main-web&client_secret=';
     final response = await _basicDio.post(
-      ApiEndpoints.baseUrlAuth + ApiEndpoints.token,
+      ApiEndpoints.baseUrlAuth + '/token',
       data: body,
-      options: Options(
-        contentType: 'application/x-www-form-urlencoded',
-      ),
+      options: Options(contentType: 'application/x-www-form-urlencoded'),
     );
     return TokenResponseModel.fromJson(response.data as Map<String, dynamic>);
   }
@@ -64,9 +38,7 @@ class AuthRemoteDatasourceImpl implements AuthRemoteDatasource {
   Future<List<OutletModel>> getOutlets(String accessToken) async {
     final response = await _authDio.get(
       ApiEndpoints.baseUrlPos + ApiEndpoints.outlet,
-      options: Options(
-        headers: {'Authorization': 'Bearer $accessToken'},
-      ),
+      options: Options(headers: {'Authorization': 'Bearer $accessToken'}),
     );
     final list = response.data as List;
     return list

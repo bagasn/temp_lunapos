@@ -7,12 +7,10 @@ import 'package:pos/features/auth/login/presentation/bloc/login_state.dart';
 @injectable
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final LoginUseCase _loginUseCase;
-  final GetOutletsUseCase _getOutletsUseCase;
 
-  LoginBloc(this._loginUseCase, this._getOutletsUseCase)
-      : super(const LoginInitial()) {
+  LoginBloc(this._loginUseCase) : super(const LoginInitial()) {
     on<LoginSubmitted>(_onLoginSubmitted);
-    on<LoginReset>((_,emit) => emit(const LoginInitial()));
+    on<LoginReset>((_, emit) => emit(const LoginInitial()));
   }
 
   Future<void> _onLoginSubmitted(
@@ -32,13 +30,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           emit(const LoginFailure('Akun belum memiliki perusahaan/toko.'));
           return;
         }
-        final outletsResult = await _getOutletsUseCase(
-          GetOutletsParams(token.accessToken),
-        );
-        outletsResult.fold(
-          (failure) => emit(LoginFailure(failure.message)),
-          (outlets) => emit(LoginSuccess(outlets)),
-        );
       },
     );
   }

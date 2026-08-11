@@ -3,56 +3,60 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 final class _Key {
   const _Key._();
-  static const selectedOutletId = 'outlet_selected_id';
-  static const selectedOutletName = 'outlet_selected_name';
-  static const selectedCompanyName = 'outlet_selected_company_name';
-  static const selectedPosAuthKey = 'outlet_selected_pos_auth_key';
-  static const selectedOutletPictureUrl = 'outlet_selected_picture_url';
+  static const outletId = 'active_outlet_id';
+  static const outletPosAuthKey = 'active_outlet_pos_auth_key';
+  static const outletName = 'active_outlet_name';
+  static const companyId = 'active_outlet_company_id';
+  static const companyName = 'active_outlet_company_name';
+  static const selectedOutletPictureUrl = 'active_outlet_picture_url';
 }
 
 @singleton
-class OutletPreferences {
+class ActiveOutletPreferences {
   final _prefs = SharedPreferencesAsync();
 
-  Future<void> saveSelectedOutlet({
+  Future<void> setActiveOutlet({
     required String outletId,
-    required String outletName,
-    required String companyName,
     required String posAuthKey,
+    required String outletName,
+    required String companyId,
+    required String companyName,
     String? outletPictureUrl,
   }) async {
-    await _prefs.setString(_Key.selectedOutletId, outletId);
-    await _prefs.setString(_Key.selectedOutletName, outletName);
-    await _prefs.setString(_Key.selectedCompanyName, companyName);
-    await _prefs.setString(_Key.selectedPosAuthKey, posAuthKey);
+    await _prefs.setString(_Key.outletId, outletId);
+    await _prefs.setString(_Key.outletPosAuthKey, posAuthKey);
+    await _prefs.setString(_Key.outletName, outletName);
+    await _prefs.setString(_Key.companyId, companyId);
+    await _prefs.setString(_Key.companyName, companyName);
+
     if (outletPictureUrl != null) {
       await _prefs.setString(_Key.selectedOutletPictureUrl, outletPictureUrl);
     }
   }
 
   Future<void> clear() async {
-    await _prefs.remove(_Key.selectedOutletId);
-    await _prefs.remove(_Key.selectedOutletName);
-    await _prefs.remove(_Key.selectedCompanyName);
-    await _prefs.remove(_Key.selectedPosAuthKey);
+    await _prefs.remove(_Key.outletId);
+    await _prefs.remove(_Key.outletPosAuthKey);
+    await _prefs.remove(_Key.outletName);
+    await _prefs.remove(_Key.companyId);
+    await _prefs.remove(_Key.companyName);
     await _prefs.remove(_Key.selectedOutletPictureUrl);
   }
 
-  Future<bool> hasSelectedOutlet() async {
-    final id = await _prefs.getString(_Key.selectedOutletId);
+  Future<bool> hasActiveOutlet() async {
+    final id = await _prefs.getString(_Key.outletId);
     return id != null && id.isNotEmpty;
   }
 
-  Future<String?> selectedOutletId() => _prefs.getString(_Key.selectedOutletId);
+  Future<String?> outletId() => _prefs.getString(_Key.outletId);
 
-  Future<String?> selectedOutletName() =>
-      _prefs.getString(_Key.selectedOutletName);
+  Future<String?> outletName() => _prefs.getString(_Key.outletName);
 
-  Future<String?> selectedCompanyName() =>
-      _prefs.getString(_Key.selectedCompanyName);
+  Future<String?> companyId() => _prefs.getString(_Key.companyId);
 
-  Future<String?> selectedPosAuthKey() =>
-      _prefs.getString(_Key.selectedPosAuthKey);
+  Future<String?> companyName() => _prefs.getString(_Key.companyName);
+
+  Future<String?> outletPosAuthKey() => _prefs.getString(_Key.outletPosAuthKey);
 
   Future<String?> selectedOutletPictureUrl() =>
       _prefs.getString(_Key.selectedOutletPictureUrl);

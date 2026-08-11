@@ -7,8 +7,6 @@ import 'package:pos/features/auth/login/presentation/bloc/login_bloc.dart';
 import 'package:pos/features/auth/login/presentation/bloc/login_state.dart';
 import 'package:pos/features/auth/login/presentation/widgets/login_form_panel.dart';
 import 'package:pos/features/auth/login/presentation/widgets/login_left_panel.dart';
-import 'package:pos/features/auth/select_outlet/presentation/bloc/select_outlet_bloc.dart';
-import 'package:pos/features/auth/select_outlet/presentation/bloc/select_outlet_event.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -16,10 +14,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (_) => locator<LoginBloc>()),
-        BlocProvider(create: (_) => locator<SelectOutletBloc>()),
-      ],
+      providers: [BlocProvider(create: (_) => locator<LoginBloc>())],
       child: const _LoginView(),
     );
   }
@@ -56,7 +51,6 @@ class _LoginView extends StatelessWidget {
   }
 
   void _onSuccess(BuildContext context, LoginSuccess state) {
-    context.read<SelectOutletBloc>().add(OutletsLoaded(state.outlets));
     context.go(AppRoutePaths.selectOutlet.path);
   }
 }

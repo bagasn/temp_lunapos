@@ -3,17 +3,17 @@ import 'package:injectable/injectable.dart';
 import 'package:pos/core/local_storage/auth_preferences.dart';
 
 @injectable
-class AuthInterceptor extends Interceptor {
+class AuthLunaoneInterceptor extends Interceptor {
   final AuthPreferences _authSession;
 
-  AuthInterceptor(this._authSession);
+  AuthLunaoneInterceptor(this._authSession);
 
   @override
   void onRequest(
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) async {
-    final token = await _authSession.accesToken();
+    final token = await _authSession.lunaoneAccessToken();
 
     if (token != null && token.isNotEmpty) {
       options.headers['Authorization'] = 'Bearer $token';

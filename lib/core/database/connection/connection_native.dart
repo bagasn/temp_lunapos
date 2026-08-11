@@ -9,7 +9,11 @@ DatabaseConnection connectDatabase(String dbName) {
   return DatabaseConnection.delayed(
     Future(() async {
       final dbFolder = await getApplicationDocumentsDirectory();
-      final file = File(p.join(dbFolder.path, '$dbName.sqlite'));
+      if (!await dbFolder.exists()) {
+        await dbFolder.create(recursive: true);
+      }
+
+      final localDbFile = File(p.join(dbFolder.path, '$dbName.sqlite'));
 
       // Also work around limitations on old Android versions
       if (Platform.isAndroid) {
@@ -19,7 +23,12 @@ DatabaseConnection connectDatabase(String dbName) {
       final cachebase = (await getTemporaryDirectory()).path;
       sqlite3.tempDirectory = cachebase;
 
-      return DatabaseConnection(NativeDatabase.createInBackground(file));
+      return DatabaseConnection(
+        NativeDatabase.createInBackground(
+          localDbFile,
+          logStatements: false, // kDebugMode,
+        ),
+      );
     }),
   );
 }

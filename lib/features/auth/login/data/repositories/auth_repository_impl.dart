@@ -2,20 +2,20 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:pos/core/local_storage/session_manager.dart';
-import 'package:pos/features/auth/login/data/datasources/auth_remote_datasource.dart';
+import 'package:pos/features/auth/login/data/datasources/login_service.dart';
 import 'package:pos/features/auth/login/data/models/token_response_model.dart';
 import 'package:pos/features/auth/login/domain/entities/token_entity.dart';
-import 'package:pos/features/auth/login/domain/repositories/auth_repository.dart';
+import 'package:pos/features/auth/login/domain/repositories/login_repository.dart';
 import 'package:pos/features/auth/select_outlet/data/models/outlet_model.dart';
 import 'package:pos/features/auth/select_outlet/domain/entities/outlet_entity.dart';
 import 'package:pos/shared/domain/entities/failure.dart';
 
-@LazySingleton(as: AuthRepository)
-class AuthRepositoryImpl implements AuthRepository {
-  final AuthRemoteDatasource _datasource;
+@LazySingleton(as: LoginRepository)
+class AuthRepositoryImpl implements LoginRepository {
+  final LoginService _loginService;
   final SessionManager _sessionManager;
 
-  AuthRepositoryImpl(this._datasource, this._sessionManager);
+  AuthRepositoryImpl(this._loginService, this._sessionManager);
 
   @override
   Future<Either<Failure, TokenEntity>> loginWithPassword({
@@ -23,19 +23,24 @@ class AuthRepositoryImpl implements AuthRepository {
     required String password,
   }) async {
     try {
-      final model = await _datasource.loginWithPassword(
+      final response = await _loginService.loginWithPassword(
         username: username,
         password: password,
       );
       await _sessionManager.auth.saveUserToken(
-        accessToken: model.accessToken,
-        refreshToken: model.refreshToken ?? '',
+        accessToken: response.accessToken,
+        refreshToken: response.refreshToken,
       );
-      return Right(_mapToEntity(model));
-    } on DioException catch (e) {
-      return Left(ServerFailure(e.message ?? 'Login failed'));
+      return Right(
+        TokenEntity(
+          accessToken: response.accessToken,
+          refreshToken: response.refreshToken,
+          companyName: response.companyName,
+          hasCompany: response.companyId != null,
+        ),
+      );
     } catch (e) {
-      return Left(UnknownFailure(e.toString()));
+      return Left(NetworkFailure.error(e));
     }
   }
 
@@ -44,8 +49,9 @@ class AuthRepositoryImpl implements AuthRepository {
     String accessToken,
   ) async {
     try {
-      final models = await _datasource.getOutlets(accessToken);
-      return Right(models.map(_mapOutletToEntity).toList());
+      // final models = await _datasource.getOutlets(accessToken);
+      // return Right(models.map(_mapOutletToEntity).toList());
+      return right([]);
     } on DioException catch (e) {
       return Left(ServerFailure(e.message ?? 'Failed to get outlets'));
     } catch (e) {
@@ -58,15 +64,17 @@ class AuthRepositoryImpl implements AuthRepository {
     required String posAuthKey,
   }) async {
     try {
-      final model = await _datasource.loginWithAuthKey(posAuthKey: posAuthKey);
-      await _sessionManager.auth.saveOutletToken(
-        accessToken: model.accessToken,
-        refreshToken: model.refreshToken ?? '',
-        companyId: model.companyId ?? '',
-        outletId: model.outletId ?? '',
-        outletName: model.outletName ?? '',
-      );
-      return Right(_mapToEntity(model));
+      // TODO: Remove unused code
+      // final model = await _datasource.loginWithAuthKey(posAuthKey: posAuthKey);
+      // await _sessionManager.auth.saveOutletToken(
+      //   accessToken: model.accessToken,
+      //   refreshToken: model.refreshToken ?? '',
+      //   companyId: model.companyId ?? '',
+      //   outletId: model.outletId ?? '',
+      //   outletName: model.outletName ?? '',
+      // );
+      // return Right(_mapToEntity(model));
+      return Right(TokenEntity(accessToken: '', refreshToken: ''));
     } on DioException catch (e) {
       return Left(ServerFailure(e.message ?? 'Failed to select outlet'));
     } catch (e) {
@@ -76,7 +84,7 @@ class AuthRepositoryImpl implements AuthRepository {
 
   TokenEntity _mapToEntity(TokenResponseModel model) => TokenEntity(
     accessToken: model.accessToken,
-    refreshToken: model.refreshToken,
+    refreshToken: model.refreshToken ?? '',
     companyId: model.companyId,
     outletId: model.outletId,
     outletName: model.outletName,

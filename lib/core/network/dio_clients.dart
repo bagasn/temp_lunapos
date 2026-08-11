@@ -1,53 +1,62 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:pos/core/local_storage/session_manager.dart';
+import 'package:pos/core/di/injection_container.dart';
+import 'package:pos/core/local_storage/auth_preferences.dart';
 import 'package:pos/core/network/interceptors/auth_interceptor.dart';
+import 'package:pos/core/network/interceptors/auth_lunaone_interceptor.dart';
+import 'package:pos/core/network/interceptors/locale_interceptor.dart';
+import 'package:pos/core/network/interceptors/refresh_token_interceptor.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
+
+final _dioLogger = PrettyDioLogger(
+  requestBody: true,
+  maxWidth: 90,
+  enabled: kDebugMode,
+  filter: (options, args) {
+    // if (options.path.startsWith('/dashboard')) return false;
+
+    return true;
+  },
+);
 
 @module
 abstract class DioModule {
+  BaseOptions _options() => BaseOptions(
+    headers: {'Content-Type': 'application/json; charset=UTF-8'},
+    responseType: ResponseType.json,
+    sendTimeout: const Duration(minutes: 2),
+    receiveTimeout: const Duration(minutes: 2),
+  );
+
   @Named('basicDio')
   @singleton
   Dio basicDio() {
-    final dio = Dio(
-      BaseOptions(
-        connectTimeout: const Duration(seconds: 30),
-        receiveTimeout: const Duration(seconds: 30),
-        contentType: 'application/x-www-form-urlencoded',
-      ),
-    );
-    dio.interceptors.add(
-      PrettyDioLogger(
-        requestHeader: true,
-        requestBody: true,
-        responseBody: true,
-        error: true,
-        compact: true,
-      ),
-    );
+    final dio = Dio(_options());
+    dio.interceptors.add(LocaleInterceptor(locator()));
+    dio.interceptors.add(_dioLogger);
     return dio;
   }
 
   @Named('authDio')
   @singleton
-  Dio authDio(SessionManager sessionManager) {
-    final dio = Dio(
-      BaseOptions(
-        connectTimeout: const Duration(seconds: 30),
-        receiveTimeout: const Duration(seconds: 30),
-        contentType: 'application/json',
-      ),
-    );
-    dio.interceptors.addAll([
-      AuthInterceptor(sessionManager),
-      PrettyDioLogger(
-        requestHeader: true,
-        requestBody: true,
-        responseBody: true,
-        error: true,
-        compact: true,
-      ),
-    ]);
+  Dio authDio(AuthPreferences authSession) {
+    final dio = Dio(_options());
+    dio.interceptors.add(LocaleInterceptor(locator()));
+    dio.interceptors.add(AuthInterceptor(authSession));
+    dio.interceptors.add(locator<RefreshTokenInterceptor>());
+    dio.interceptors.add(_dioLogger);
+    return dio;
+  }
+
+  @Named('lunaoneDio')
+  @singleton
+  Dio lunaoneDio(AuthPreferences authSession) {
+    final dio = Dio(_options());
+    dio.interceptors.add(LocaleInterceptor(locator()));
+    dio.interceptors.add(AuthLunaoneInterceptor(authSession));
+    dio.interceptors.add(locator<RefreshTokenInterceptor>());
+    dio.interceptors.add(_dioLogger);
     return dio;
   }
 }
