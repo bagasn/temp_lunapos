@@ -1,10 +1,8 @@
 import 'package:injectable/injectable.dart';
-import 'package:pos/core/database/app_database.dart';
 import 'package:pos/core/local_storage/auth_preferences.dart';
 import 'package:pos/core/local_storage/device_preferences.dart';
 import 'package:pos/core/local_storage/outlet_preferences.dart';
 import 'package:pos/core/local_storage/setting_preferences.dart';
-import 'package:pos/shared/data/response/token_response.dart';
 
 @singleton
 class SessionManager {
@@ -30,6 +28,20 @@ class SessionManager {
     );
 
     await activeOutlet.clear();
+  }
+
+  Future<void> setupOutletLogin({
+    required String accessToken,
+    required String refreshToken,
+    required String lunaoneToken,
+    required String lunaoneRefreshToken,
+  }) async {
+    await auth.saveOutletToken(
+      accessToken: accessToken,
+      refreshToken: refreshToken,
+      lunaoneToken: lunaoneToken,
+      lunaoneRefreshToken: lunaoneRefreshToken,
+    );
   }
 
   Future<bool> get isLoggedIn => auth.isLogged();

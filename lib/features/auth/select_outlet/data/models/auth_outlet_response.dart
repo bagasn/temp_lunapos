@@ -2,10 +2,10 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pos/shared/data/models/api_picture_model.dart';
 
-part 'outlet_response.g.dart';
+part 'auth_outlet_response.g.dart';
 
 @JsonSerializable()
-class OutletResponse {
+class AuthOutletResponse {
   final int outletId;
   final String outletName;
   final String companyName;
@@ -14,7 +14,7 @@ class OutletResponse {
   final String subscriptionDueDate;
   final ApiPictureModel? outletPicture;
 
-  OutletResponse({
+  AuthOutletResponse({
     required this.outletId,
     required this.outletName,
     required this.companyName,
@@ -24,8 +24,8 @@ class OutletResponse {
     this.outletPicture,
   });
 
-  factory OutletResponse.fromJson(Map<String, dynamic> json) =>
-      _$OutletResponseFromJson(json);
+  factory AuthOutletResponse.fromJson(Map<String, dynamic> json) =>
+      _$AuthOutletResponseFromJson(json);
 
-  Map<String, dynamic> toJson() => _$OutletResponseToJson(this);
+  Map<String, dynamic> toJson() => _$AuthOutletResponseToJson(this);
 }

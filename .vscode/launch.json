@@ -6,7 +6,12 @@
       "type": "dart",
       "request": "launch",
       "program": "lib/main_dev.dart",
-      "args": [" -d chrome --web-browser-flag \"--disable-web-security\""]
+      "args": [
+        "-d",
+        "chrome",
+        "--web-browser-flag",
+        "\"--disable-web-security\""
+      ]
     }
   ]
 }

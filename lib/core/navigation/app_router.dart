@@ -19,7 +19,7 @@ GoRouter createAppRouter(SessionManager sessionManager) {
       }
 
       final isLogged = await sessionManager.isLoggedIn;
-      final hasOutlet = await sessionManager.hasActiveOutlet;
+      final hasActiveOutlet = await sessionManager.hasActiveOutlet;
 
       final isOnLogin = location.startsWith(AppRoutePaths.login.path);
       final isOnSelectOutlet = location.startsWith(
@@ -30,13 +30,13 @@ GoRouter createAppRouter(SessionManager sessionManager) {
         return AppRoutePaths.login.path;
       }
 
-      if (isLogged && !hasOutlet) {
+      if (isLogged && !hasActiveOutlet) {
         if (!isOnSelectOutlet || !isOnLogin) {
-          return AppRoutePaths.selectOutlet.path;
+          return AppRoutePaths.login.path;
         }
       }
 
-      if (isLogged && hasOutlet && isOnLogin) {
+      if (isLogged && hasActiveOutlet && isOnLogin) {
         return AppRoutePaths.home.path;
       }
 

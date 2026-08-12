@@ -2,9 +2,8 @@
 import 'package:dio/dio.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:logger/logger.dart';
 
-import 'package:pos/core/di/injection_container.dart';
+import 'package:pos/shared/utilities/log_util.dart';
 
 abstract class Failure {
   final String message;
@@ -29,11 +28,7 @@ class NetworkFailure extends Failure {
   const NetworkFailure(this.code, super.message);
 
   factory NetworkFailure.error(Object error, {StackTrace? stackTrace}) {
-    locator<Logger>().e(
-      '--- NetworkError ---',
-      error: error,
-      stackTrace: stackTrace,
-    );
+    LogUtil.e('===> NetworkError <===', error: error, stackTrace: stackTrace);
     switch (error) {
       case FirebaseException _:
         return NetworkFailure(494, '${error.message} (${error.plugin})');
@@ -76,7 +71,7 @@ class NetworkFailure extends Failure {
       case StateError _:
         return NetworkFailure.message(error.toString());
       default:
-        locator<Logger>().e(
+        LogUtil.e(
           'Unhandled Exception\n'
           'Exception Type: ${error.runtimeType}',
           error: error,

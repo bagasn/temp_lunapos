@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:loader_overlay/loader_overlay.dart';
+import 'package:pos/core/di/injection_container.dart';
+import 'package:pos/core/local_storage/session_manager.dart';
 import 'package:pos/core/navigation/app_route_paths.dart';
 import 'package:pos/core/theme/app_colors.dart';
 import 'package:pos/core/theme/app_text_styles.dart';
-import 'package:pos/features/auth/select_outlet/presentation/bloc/select_outlet_bloc.dart';
-import 'package:pos/features/auth/select_outlet/presentation/bloc/select_outlet_event.dart';
-import 'package:pos/features/auth/select_outlet/presentation/bloc/select_outlet_state.dart';
+import 'package:pos/features/auth/select_outlet/presentation/bloc/auth_outlet_bloc.dart';
+import 'package:pos/features/auth/select_outlet/presentation/bloc/auth_outlet_event.dart';
+import 'package:pos/features/auth/select_outlet/presentation/bloc/auth_outlet_state.dart';
 import 'package:pos/features/auth/select_outlet/presentation/widgets/outlet_card.dart';
 import 'package:pos/shared/widgets/dialog/confirmation_dialog.dart';
 
@@ -15,13 +18,16 @@ class SelectOutletPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<SelectOutletBloc, AuthOutletState>(
-      listener: (context, state) {
-        if (state is AuthOutletTokenSuccess) {
-          context.go(AppRoutePaths.home.path);
-        }
-      },
-      child: const _SelectOutletView(),
+    return BlocProvider(
+      create: (context) => locator<AuthOutletBloc>(),
+      child: BlocListener<AuthOutletBloc, AuthOutletState>(
+        listener: (context, state) {
+          if (state is AuthOutletTokenSuccess) {
+            context.go(AppRoutePaths.home.path);
+          }
+        },
+        child: const _SelectOutletView(),
+      ),
     );
   }
 }
@@ -31,20 +37,27 @@ class _SelectOutletView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              AppColorConstants.primaryPurpleDark,
-              AppColorConstants.backgroundPurple,
-              AppColorConstants.primaryPurpleLight,
-            ],
+    return BlocListener<AuthOutletBloc, AuthOutletState>(
+      listener: (context, state) {
+        if (state is AuthOutletTokenFetching) {
+          context.loaderOverlay.show();
+        } else {
+          context.loaderOverlay.hide();
+        }
+      },
+      child: Scaffold(
+        body: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                AppColorConstants.primaryPurpleDark,
+                AppColorConstants.backgroundPurple,
+                AppColorConstants.primaryPurpleLight,
+              ],
+            ),
           ),
-        ),
-        child: SafeArea(
           child: Column(
             children: [
               _buildHeader(context),
@@ -103,7 +116,10 @@ class _SelectOutletView extends StatelessWidget {
                 context: context,
                 message: 'Anda akan keluar. Lanjutkan?',
               );
-              if (confirm == true && context.mounted) {
+              if (confirm != true) return;
+
+              await locator<SessionManager>().clearSession();
+              if (context.mounted) {
                 context.go(AppRoutePaths.login.path);
               }
             },
@@ -143,16 +159,16 @@ class _SelectOutletView extends StatelessWidget {
             contentPadding: const EdgeInsets.symmetric(vertical: 14),
           ),
           onChanged: (v) =>
-              context.read<SelectOutletBloc>().add(OutletSearchChanged(v)),
+              context.read<AuthOutletBloc>().add(OutletSearchChanged(v)),
         ),
       ),
     );
   }
 
   Widget _buildOutletList() {
-    return BlocBuilder<SelectOutletBloc, AuthOutletState>(
+    return BlocBuilder<AuthOutletBloc, AuthOutletState>(
       builder: (context, state) {
-        if (state is AuthOutletInitial) {
+        if (state is AuthOutletInitial || state is AuthOutletFetching) {
           return const Center(
             child: CircularProgressIndicator(color: Colors.white),
           );
@@ -188,7 +204,7 @@ class _SelectOutletView extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 12),
                 child: OutletCard(
                   outlet: outlet,
-                  onTap: () => context.read<SelectOutletBloc>().add(
+                  onTap: () => context.read<AuthOutletBloc>().add(
                     OutletSelected(outlet),
                   ),
                 ),

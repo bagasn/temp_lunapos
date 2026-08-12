@@ -3,12 +3,13 @@ import 'package:injectable/injectable.dart';
 import 'package:pos/core/local_storage/session_manager.dart';
 import 'package:pos/features/auth/select_outlet/domain/entities/auth_outlet_entity.dart';
 import 'package:pos/features/auth/select_outlet/domain/usecases/auth_outlet_usecase.dart';
-import 'package:pos/features/auth/select_outlet/presentation/bloc/select_outlet_event.dart';
-import 'package:pos/features/auth/select_outlet/presentation/bloc/select_outlet_state.dart';
+import 'package:pos/features/auth/select_outlet/presentation/bloc/auth_outlet_event.dart';
+import 'package:pos/features/auth/select_outlet/presentation/bloc/auth_outlet_state.dart';
 import 'package:pos/core/database/app_database_manager.dart';
+import 'package:pos/shared/domain/entities/failure.dart';
 
 @injectable
-class SelectOutletBloc extends Bloc<AuthOutletEvent, AuthOutletState> {
+class AuthOutletBloc extends Bloc<AuthOutletEvent, AuthOutletState> {
   final SessionManager _sessionManager;
   final AppDatabaseManager _databaseManager;
   final GetAuthOutletUsecase _getOutletUseCase;
@@ -16,7 +17,7 @@ class SelectOutletBloc extends Bloc<AuthOutletEvent, AuthOutletState> {
   String _searchKeyword = '';
   List<AuthOutletEntity> _allOutlets = [];
 
-  SelectOutletBloc(
+  AuthOutletBloc(
     this._sessionManager,
     this._databaseManager,
     this._getOutletUseCase,
@@ -25,10 +26,28 @@ class SelectOutletBloc extends Bloc<AuthOutletEvent, AuthOutletState> {
     on<AuthOutletsLoaded>(_onOutletsLoaded);
     on<OutletSearchChanged>(_onSearchChanged);
     // on<OutletSelected>(_onOutletSelected);
+
+    add(AuthOutletFetchStarted());
   }
 
   void _onFetch(AuthOutletFetchStarted event, Emitter emit) async {
     emit(AuthOutletFetching());
+
+    final userToken = await _sessionManager.auth.userAccessToken();
+    if (userToken == null) {
+      return emit(AuthOutletFailure(AuthFailure('Cannot find authorization')));
+    }
+
+    final result = await _getOutletUseCase(GetAuthOutletParams(userToken));
+
+    await result.fold(
+      (failure) {
+        emit(AuthOutletFailure(failure));
+      },
+      (data) {
+        add(AuthOutletsLoaded(data));
+      },
+    );
   }
 
   void _onOutletsLoaded(
@@ -61,6 +80,9 @@ class SelectOutletBloc extends Bloc<AuthOutletEvent, AuthOutletState> {
     Emitter<AuthOutletState> emit,
   ) {
     _searchKeyword = event.keyword.toLowerCase().trim();
+
+    emit(AuthOutletFetching());
+
     add(AuthOutletsLoaded(_allOutlets));
   }
 

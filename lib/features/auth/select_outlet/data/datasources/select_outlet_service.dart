@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:pos/core/network/api_endpoints.dart';
-import 'package:pos/features/auth/select_outlet/data/models/outlet_response.dart';
+import 'package:pos/features/auth/select_outlet/data/models/auth_outlet_response.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'select_outlet_service.g.dart';
@@ -15,7 +15,7 @@ abstract class SelectOutletService {
   }
 
   @GET('/outlet')
-  Future<List<OutletResponse>> getOutlets({
+  Future<List<AuthOutletResponse>> getOutlets({
     @Header('Authorization') required String tokenAuth,
   });
 }
