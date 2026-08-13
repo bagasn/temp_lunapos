@@ -15,4 +15,8 @@ source ./scripts/setup_drift_web.sh
 
 # 3. Menjalankan flutter ke target browser
 echo "🚀 Running Luna POS ($FLAVOR) di browser..."
-flutter run -d chrome --web-browser-flag "--disable-web-security" --target "$TARGET"
+flutter run -d chrome \
+  --web-browser-flag "--disable-web-security" \
+  --target "$TARGET" \
+  --web-header="Cross-Origin-Opener-Policy=same-origin" \
+  --web-header="Cross-Origin-Embedder-Policy=require-corp"

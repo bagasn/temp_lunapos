@@ -3,6 +3,7 @@ import 'package:pos/core/local_storage/auth_preferences.dart';
 import 'package:pos/core/local_storage/device_preferences.dart';
 import 'package:pos/core/local_storage/outlet_preferences.dart';
 import 'package:pos/core/local_storage/setting_preferences.dart';
+import 'package:pos/features/auth/select_outlet/domain/entities/auth_outlet_entity.dart';
 
 @singleton
 class SessionManager {
@@ -33,14 +34,25 @@ class SessionManager {
   Future<void> setupOutletLogin({
     required String accessToken,
     required String refreshToken,
-    required String lunaoneToken,
-    required String lunaoneRefreshToken,
+    required bool haveLunaone,
+    required String? lunaoneToken,
+    required String? lunaoneRefreshToken,
+    required AuthOutletEntity selectedOutlet,
   }) async {
     await auth.saveOutletToken(
       accessToken: accessToken,
       refreshToken: refreshToken,
+      haveLunaone: haveLunaone,
       lunaoneToken: lunaoneToken,
       lunaoneRefreshToken: lunaoneRefreshToken,
+    );
+    await activeOutlet.setActiveOutlet(
+      posAuthKey: selectedOutlet.posAuthKey,
+      outletId: selectedOutlet.outletId,
+      outletName: selectedOutlet.outletName,
+      companyId: selectedOutlet.companyId,
+      companyName: selectedOutlet.companyName,
+      outletPictureUrl: selectedOutlet.outletPictureUrl,
     );
   }
 

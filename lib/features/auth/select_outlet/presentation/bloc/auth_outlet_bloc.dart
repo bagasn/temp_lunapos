@@ -13,6 +13,7 @@ class AuthOutletBloc extends Bloc<AuthOutletEvent, AuthOutletState> {
   final SessionManager _sessionManager;
   final AppDatabaseManager _databaseManager;
   final GetAuthOutletUsecase _getOutletUseCase;
+  final OutletLoginUseCase _outletLoginUseCase;
 
   String _searchKeyword = '';
   List<AuthOutletEntity> _allOutlets = [];
@@ -21,11 +22,12 @@ class AuthOutletBloc extends Bloc<AuthOutletEvent, AuthOutletState> {
     this._sessionManager,
     this._databaseManager,
     this._getOutletUseCase,
+    this._outletLoginUseCase,
   ) : super(const AuthOutletInitial()) {
     on<AuthOutletFetchStarted>(_onFetch);
     on<AuthOutletsLoaded>(_onOutletsLoaded);
-    on<OutletSearchChanged>(_onSearchChanged);
-    // on<OutletSelected>(_onOutletSelected);
+    on<AuthOutletSearchChanged>(_onSearchChanged);
+    on<AuthOutletSelected>(_onOutletSelected);
 
     add(AuthOutletFetchStarted());
   }
@@ -76,7 +78,7 @@ class AuthOutletBloc extends Bloc<AuthOutletEvent, AuthOutletState> {
   }
 
   void _onSearchChanged(
-    OutletSearchChanged event,
+    AuthOutletSearchChanged event,
     Emitter<AuthOutletState> emit,
   ) {
     _searchKeyword = event.keyword.toLowerCase().trim();
@@ -87,38 +89,26 @@ class AuthOutletBloc extends Bloc<AuthOutletEvent, AuthOutletState> {
   }
 
   Future<void> _onOutletSelected(
-    OutletSelected event,
+    AuthOutletSelected event,
     Emitter<AuthOutletState> emit,
   ) async {
-    // emit(const SelectOutletSelecting());
-    // final result = await _selectOutletUseCase(
-    //   // SelectOutletParams(event.outlet.posAuthKey),
-    // );
-    // result.fold((failure) => emit(SelectOutletFailure(failure.message)), (
-    //   _,
-    // ) async {
-    // final companyId = await _authPreferences.companyId();
+    emit(const AuthOutletTokenFetching());
+    final result = await _outletLoginUseCase(OutletLoginParams(event.outlet));
+    await result.fold(
+      (error) {
+        emit(AuthOutletFailure(error));
+      },
+      (data) async {
+        final isOpened = await _databaseManager.openPosDatabase(
+          tenantId: event.outlet.companyId,
+          outletId: event.outlet.outletId,
+        );
 
-    // if (companyId != null) {
-    //   final success = await _appDatabaseManager.openDatabase(
-    //     tenantId: companyId,
-    //     outletId: event.outlet.outletId.toString(),
-    //   );
-
-    //   if (!success) {
-    //     emit(const SelectOutletFailure('Gagal membuka database lokal.'));
-    //     return;
-    //   }
-    // }
-
-    // await _outletPreferences.setOutletActive(
-    //   outletId: event.outlet.outletId,
-    //   outletName: event.outlet.outletName,
-    //   companyName: event.outlet.companyName,
-    //   posAuthKey: event.outlet.posAuthKey,
-    //   outletPictureUrl: event.outlet.outletPictureUrl,
-    // );
-    // emit(const SelectOutletSuccess());
-    // });
+        if (isOpened) {
+        } else {}
+      },
+    );
   }
+
+  void _startFetchInitialData() async {}
 }

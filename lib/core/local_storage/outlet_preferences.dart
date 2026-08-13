@@ -16,17 +16,17 @@ class ActiveOutletPreferences {
   final _prefs = SharedPreferencesAsync();
 
   Future<void> setActiveOutlet({
-    required String outletId,
     required String posAuthKey,
+    required int outletId,
     required String outletName,
-    required String companyId,
+    required int companyId,
     required String companyName,
     String? outletPictureUrl,
   }) async {
-    await _prefs.setString(_Key.outletId, outletId);
+    await _prefs.setInt(_Key.outletId, outletId);
     await _prefs.setString(_Key.outletPosAuthKey, posAuthKey);
     await _prefs.setString(_Key.outletName, outletName);
-    await _prefs.setString(_Key.companyId, companyId);
+    await _prefs.setInt(_Key.companyId, companyId);
     await _prefs.setString(_Key.companyName, companyName);
 
     if (outletPictureUrl != null) {
@@ -48,11 +48,11 @@ class ActiveOutletPreferences {
     return id != null && id.isNotEmpty;
   }
 
-  Future<String?> outletId() => _prefs.getString(_Key.outletId);
+  Future<int?> outletId() => _prefs.getInt(_Key.outletId);
 
   Future<String?> outletName() => _prefs.getString(_Key.outletName);
 
-  Future<String?> companyId() => _prefs.getString(_Key.companyId);
+  Future<int?> companyId() => _prefs.getInt(_Key.companyId);
 
   Future<String?> companyName() => _prefs.getString(_Key.companyName);
 

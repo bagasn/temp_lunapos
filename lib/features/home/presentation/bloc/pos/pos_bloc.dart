@@ -9,19 +9,16 @@ class PosBloc extends Bloc<PosEvent, PosState> {
   final OrderRepository _orderRepository;
 
   PosBloc(this._orderRepository) : super(const PosInitial()) {
-    on<PosInitRequested>(_onInit);
-    on<PosProductAdded>(_onProductAdded);
-    on<PosOrderLineQuantityChanged>(_onQtyChanged);
-    on<PosOrderLineRemoved>(_onLineRemoved);
-    on<PosSaveRequested>(_onSave);
-    on<PosPayRequested>(_onPay);
-    on<PosNewOrderStarted>(_onNewOrder);
+    // on<PosInitRequested>(_onInit);
+    // on<PosProductAdded>(_onProductAdded);
+    // on<PosOrderLineQuantityChanged>(_onQtyChanged);
+    // on<PosOrderLineRemoved>(_onLineRemoved);
+    // on<PosSaveRequested>(_onSave);
+    // on<PosPayRequested>(_onPay);
+    // on<PosNewOrderStarted>(_onNewOrder);
   }
 
-  Future<void> _onInit(
-    PosInitRequested event,
-    Emitter<PosState> emit,
-  ) async {
+  Future<void> _onInit(PosInitRequested event, Emitter<PosState> emit) async {
     final existingResult = await _orderRepository.getActiveOrder();
     final existing = existingResult.fold((_) => null, (o) => o);
 
@@ -91,10 +88,7 @@ class PosBloc extends Bloc<PosEvent, PosState> {
     );
   }
 
-  Future<void> _onSave(
-    PosSaveRequested event,
-    Emitter<PosState> emit,
-  ) async {
+  Future<void> _onSave(PosSaveRequested event, Emitter<PosState> emit) async {
     final current = state;
     if (current is! PosOrderActive) return;
     emit(PosSaving(current.order));
@@ -105,10 +99,7 @@ class PosBloc extends Bloc<PosEvent, PosState> {
     );
   }
 
-  Future<void> _onPay(
-    PosPayRequested event,
-    Emitter<PosState> emit,
-  ) async {
+  Future<void> _onPay(PosPayRequested event, Emitter<PosState> emit) async {
     final current = state;
     if (current is! PosOrderActive) return;
     emit(PosSaving(current.order));

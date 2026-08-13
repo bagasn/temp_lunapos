@@ -8,13 +8,13 @@ import 'package:pos/shared/data/response/token_response.dart';
 import 'package:pos/shared/utilities/log_util.dart';
 
 @lazySingleton
-class RefreshTokenInterceptor extends Interceptor {
+class RefreshTokenTenantInterceptor extends Interceptor {
   Completer<bool>? _refreshCompleter;
 
   final Dio basicDio;
   final SessionManager sessionManager;
 
-  RefreshTokenInterceptor({
+  RefreshTokenTenantInterceptor({
     @Named('basicDio') required this.basicDio,
     required this.sessionManager,
   });
@@ -22,9 +22,10 @@ class RefreshTokenInterceptor extends Interceptor {
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) async {
     if (err.response?.statusCode == 401) {
-      final String? posAuthKey = await sessionManager.activeOutlet
-          .outletPosAuthKey();
-      if (posAuthKey == null) {
+      final String? refreshToken = await sessionManager.auth.refreshToken();
+      final int? companyId = await sessionManager.activeOutlet.companyId();
+
+      if (refreshToken == null || companyId == null) {
         // TODO: put auto logout function here.
         return handler.reject(err);
       }
@@ -36,14 +37,14 @@ class RefreshTokenInterceptor extends Interceptor {
       } else {
         _refreshCompleter = Completer();
         try {
-          final tokenResponse = await _requestRefreshToken(posAuthKey);
+          final tokenResponse = await _requestRefreshToken(
+            refreshToken,
+            companyId,
+          );
 
-          await sessionManager.auth.saveOutletToken(
+          await sessionManager.auth.saveUserToken(
             accessToken: tokenResponse.accessToken,
             refreshToken: tokenResponse.refreshToken,
-            haveLunaone: tokenResponse.haveLunaone,
-            lunaoneToken: tokenResponse.tokenLunaone,
-            lunaoneRefreshToken: tokenResponse.refreshTokenLunaone,
           );
 
           _refreshCompleter?.complete(true);
@@ -64,7 +65,7 @@ class RefreshTokenInterceptor extends Interceptor {
 
       //* Set new token and try again.
       if (isRefreshTokenSuccess) {
-        final newToken = await sessionManager.auth.accesToken();
+        final newToken = await sessionManager.auth.userAccessToken();
         err.requestOptions.headers['Authorization'] = 'Bearer $newToken';
         return handler.resolve(await basicDio.fetch(err.requestOptions));
       } else {
@@ -76,7 +77,10 @@ class RefreshTokenInterceptor extends Interceptor {
     return handler.reject(err);
   }
 
-  Future<TokenResponse> _requestRefreshToken(String posAuthKey) async {
+  Future<TokenResponse> _requestRefreshToken(
+    String refreshToken,
+    int companyId,
+  ) async {
     final response = await basicDio.post(
       '${ApiEndpoints.baseUrlAuth}/token',
       options: Options(
@@ -86,8 +90,9 @@ class RefreshTokenInterceptor extends Interceptor {
         receiveTimeout: const Duration(minutes: 2),
       ),
       data:
-          'grant_type:password&'
-          'username:$posAuthKey&'
+          'grant_type:refresh_token&'
+          'refresh_token:$refreshToken&'
+          'company_id:$companyId&'
           'client_id:luna-main-mobile',
     );
 

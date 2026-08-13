@@ -33,9 +33,14 @@ final class OutletLoginParams {
   const OutletLoginParams(this.outlet);
 }
 
+@injectable
 class OutletLoginUseCase extends UseCase<TokenResponse, OutletLoginParams> {
+  final AuthOutletRepository _repository;
+
+  OutletLoginUseCase(this._repository);
+
   @override
   Future<Either<Failure, TokenResponse>> call(OutletLoginParams params) {
-    throw UnimplementedError();
+    return _repository.loginOutlet(outlet: params.outlet);
   }
 }

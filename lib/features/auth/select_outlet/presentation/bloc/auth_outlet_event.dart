@@ -16,16 +16,16 @@ final class AuthOutletsLoaded extends AuthOutletEvent {
   List<Object?> get props => [outlets];
 }
 
-final class OutletSearchChanged extends AuthOutletEvent {
+final class AuthOutletSearchChanged extends AuthOutletEvent {
   final String keyword;
-  const OutletSearchChanged(this.keyword);
+  const AuthOutletSearchChanged(this.keyword);
   @override
   List<Object?> get props => [keyword];
 }
 
-final class OutletSelected extends AuthOutletEvent {
+final class AuthOutletSelected extends AuthOutletEvent {
   final AuthOutletEntity outlet;
-  const OutletSelected(this.outlet);
+  const AuthOutletSelected(this.outlet);
   @override
   List<Object?> get props => [outlet];
 }

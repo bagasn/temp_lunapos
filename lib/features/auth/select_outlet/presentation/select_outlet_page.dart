@@ -159,7 +159,7 @@ class _SelectOutletView extends StatelessWidget {
             contentPadding: const EdgeInsets.symmetric(vertical: 14),
           ),
           onChanged: (v) =>
-              context.read<AuthOutletBloc>().add(OutletSearchChanged(v)),
+              context.read<AuthOutletBloc>().add(AuthOutletSearchChanged(v)),
         ),
       ),
     );
@@ -205,7 +205,7 @@ class _SelectOutletView extends StatelessWidget {
                 child: OutletCard(
                   outlet: outlet,
                   onTap: () => context.read<AuthOutletBloc>().add(
-                    OutletSelected(outlet),
+                    AuthOutletSelected(outlet),
                   ),
                 ),
               );

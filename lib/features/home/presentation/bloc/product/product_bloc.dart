@@ -14,10 +14,10 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
   List<ProductEntity> _allProducts = [];
 
   ProductBloc(this._getProductsUseCase, this._getCategoriesUseCase)
-      : super(const ProductInitial()) {
-    on<ProductsLoadRequested>(_onLoad);
-    on<ProductSearchChanged>(_onSearch);
-    on<ProductCategoryFilterChanged>(_onCategoryFilter);
+    : super(const ProductInitial()) {
+    // on<ProductsLoadRequested>(_onLoad);
+    // on<ProductSearchChanged>(_onSearch);
+    // on<ProductCategoryFilterChanged>(_onCategoryFilter);
   }
 
   Future<void> _onLoad(
@@ -28,42 +28,43 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
     final productsResult = await _getProductsUseCase(const NoParams());
     final categoriesResult = await _getCategoriesUseCase(const NoParams());
 
-    productsResult.fold(
-      (failure) => emit(ProductError(failure.message)),
-      (products) {
-        _allProducts = products;
-        final categories = categoriesResult.fold(
-          (_) => <CategoryEntity>[],
-          (cats) => cats,
-        );
-        emit(ProductLoaded(
+    productsResult.fold((failure) => emit(ProductError(failure.message)), (
+      products,
+    ) {
+      _allProducts = products;
+      final categories = categoriesResult.fold(
+        (_) => <CategoryEntity>[],
+        (cats) => cats,
+      );
+      emit(
+        ProductLoaded(
           allProducts: products,
           filteredProducts: products,
           categories: categories,
-        ));
-      },
-    );
+        ),
+      );
+    });
   }
 
-  void _onSearch(
-    ProductSearchChanged event,
-    Emitter<ProductState> emit,
-  ) {
+  void _onSearch(ProductSearchChanged event, Emitter<ProductState> emit) {
     final current = state;
     if (current is! ProductLoaded) return;
     final keyword = event.keyword.toLowerCase();
     final filtered = keyword.isEmpty
         ? _applyCategory(_allProducts, current.selectedCategoryId)
-        : _applyCategory(_allProducts, current.selectedCategoryId)
-            .where((p) => p.name.toLowerCase().contains(keyword))
-            .toList();
-    emit(ProductLoaded(
-      allProducts: _allProducts,
-      filteredProducts: filtered,
-      categories: current.categories,
-      selectedCategoryId: current.selectedCategoryId,
-      keyword: event.keyword,
-    ));
+        : _applyCategory(
+            _allProducts,
+            current.selectedCategoryId,
+          ).where((p) => p.name.toLowerCase().contains(keyword)).toList();
+    emit(
+      ProductLoaded(
+        allProducts: _allProducts,
+        filteredProducts: filtered,
+        categories: current.categories,
+        selectedCategoryId: current.selectedCategoryId,
+        keyword: event.keyword,
+      ),
+    );
   }
 
   void _onCategoryFilter(
@@ -73,13 +74,15 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
     final current = state;
     if (current is! ProductLoaded) return;
     final filtered = _applyCategory(_allProducts, event.categoryId);
-    emit(ProductLoaded(
-      allProducts: _allProducts,
-      filteredProducts: filtered,
-      categories: current.categories,
-      selectedCategoryId: event.categoryId,
-      keyword: current.keyword,
-    ));
+    emit(
+      ProductLoaded(
+        allProducts: _allProducts,
+        filteredProducts: filtered,
+        categories: current.categories,
+        selectedCategoryId: event.categoryId,
+        keyword: current.keyword,
+      ),
+    );
   }
 
   List<ProductEntity> _applyCategory(

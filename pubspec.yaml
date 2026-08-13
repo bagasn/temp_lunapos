@@ -74,6 +74,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   toastification: ^3.2.0
 
+  vector_graphics: any
 dev_dependencies:
   flutter_test:
     sdk: flutter

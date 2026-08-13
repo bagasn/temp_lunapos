@@ -27,9 +27,9 @@ class OrderLocalDatasourceImpl implements OrderLocalDatasource {
   );
 
   Future<(String outletId, String deviceId)> _getIds() async {
-    final outletId = await _outletPrefs.outletId() ?? '';
+    final outletId = await _outletPrefs.outletId() ?? 0;
     final deviceId = await _devicePrefs.getOrCreateDeviceId();
-    return (outletId, deviceId);
+    return (outletId.toString(), deviceId);
   }
 
   @override

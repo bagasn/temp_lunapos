@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:pos/core/local_storage/session_manager.dart';
-import 'package:pos/features/auth/select_outlet/data/datasources/select_outlet_service.dart';
+import 'package:pos/features/auth/select_outlet/data/datasources/auth_outlet_service.dart';
 import 'package:pos/features/auth/select_outlet/domain/entities/auth_outlet_entity.dart';
 import 'package:pos/features/auth/select_outlet/domain/repositories/auth_outlet_repository.dart';
 import 'package:pos/shared/data/datasources/token_service.dart';
@@ -10,7 +10,7 @@ import 'package:pos/shared/domain/entities/failure.dart';
 
 @LazySingleton(as: AuthOutletRepository)
 class AuthOutletRepositoryImpl extends AuthOutletRepository {
-  final SelectOutletService _outletService;
+  final AuthOutletService _outletService;
   final TokenService _tokenService;
   final SessionManager _session;
 
@@ -56,11 +56,19 @@ class AuthOutletRepositoryImpl extends AuthOutletRepository {
       final response = await _tokenService.loginLongAuthKey(
         outletAuthKey: outlet.posAuthKey,
       );
+
+      await _session.setupOutletLogin(
+        accessToken: response.accessToken,
+        refreshToken: response.refreshToken,
+        haveLunaone: response.haveLunaone,
+        lunaoneToken: response.tokenLunaone,
+        lunaoneRefreshToken: response.refreshTokenLunaone,
+        selectedOutlet: outlet,
+      );
+
+      return right(response);
     } catch (error, stackTrace) {
       return left(NetworkFailure.error(error, stackTrace: stackTrace));
     }
-
-    // TODO: implement loginOutlet
-    throw UnimplementedError();
   }
 }

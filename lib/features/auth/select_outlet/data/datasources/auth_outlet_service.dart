@@ -4,14 +4,14 @@ import 'package:pos/core/network/api_endpoints.dart';
 import 'package:pos/features/auth/select_outlet/data/models/auth_outlet_response.dart';
 import 'package:retrofit/retrofit.dart';
 
-part 'select_outlet_service.g.dart';
+part 'auth_outlet_service.g.dart';
 
 @lazySingleton
 @RestApi()
-abstract class SelectOutletService {
+abstract class AuthOutletService {
   @factoryMethod
-  factory SelectOutletService(@Named('basicDio') Dio dio) {
-    return _SelectOutletService(dio, baseUrl: ApiEndpoints.baseUrlPos);
+  factory AuthOutletService(@Named('basicDio') Dio dio) {
+    return _AuthOutletService(dio, baseUrl: ApiEndpoints.baseUrlPos);
   }
 
   @GET('/outlet')

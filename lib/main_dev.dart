@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:pos/app.dart';
@@ -9,6 +11,14 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: 'envs/dev.env');
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  if (kDebugMode) {
+    await useEmulator();
+  }
   await configureDependencies(Env.dev);
   runApp(const LunaposApp());
+}
+
+Future<void> useEmulator() async {
+  final hostUrl = 'localhost';
+  FirebaseFirestore.instance.useFirestoreEmulator(hostUrl, 8080);
 }

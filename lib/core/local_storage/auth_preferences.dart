@@ -8,6 +8,7 @@ final class _Key {
 
   static const accessToken = 'auth_access_token';
   static const refreshToken = 'auth_refresh_token';
+  static const haveLunaone = 'auth_have_lunaone';
   static const lunaoneAccessToken = 'auth_lunaone_access_token';
   static const lunaoneRefreshToken = 'auth_lunaone_refresh_token';
 }
@@ -28,11 +29,15 @@ class AuthPreferences {
   Future<void> saveOutletToken({
     required String accessToken,
     required String refreshToken,
+    required bool haveLunaone,
     required String? lunaoneToken,
     required String? lunaoneRefreshToken,
   }) async {
     await _prefs.setString(_Key.accessToken, accessToken);
     await _prefs.setString(_Key.refreshToken, refreshToken);
+
+    await _prefs.setBool(_Key.haveLunaone, haveLunaone);
+
     if (lunaoneToken != null) {
       await _prefs.setString(_Key.lunaoneAccessToken, lunaoneToken);
     }
@@ -63,6 +68,8 @@ class AuthPreferences {
   Future<String?> accesToken() => _prefs.getString(_Key.accessToken);
 
   Future<String?> refreshToken() => _prefs.getString(_Key.refreshToken);
+
+  Future<bool?> haveLunaone() => _prefs.getBool(_Key.haveLunaone);
 
   Future<String?> lunaoneAccessToken() =>
       _prefs.getString(_Key.lunaoneAccessToken);

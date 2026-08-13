@@ -1,28 +1,65 @@
 import 'package:injectable/injectable.dart';
-import 'package:pos/core/database/app_database.dart';
+import 'package:pos/core/database/master_database.dart';
+import 'package:pos/core/database/pos_database.dart';
+import 'package:pos/core/database/system_database.dart';
+import 'package:pos/core/local_storage/outlet_preferences.dart';
+import 'package:pos/shared/domain/entities/failure.dart';
+import 'package:pos/shared/utilities/log_util.dart';
 
 @singleton
 class AppDatabaseManager {
-  AppDatabase? _currentDb;
+  final ActiveOutletPreferences _outletSession;
 
-  AppDatabase get database {
-    if (_currentDb == null) throw Exception('Database not opened yet.');
-    return _currentDb!;
+  AppDatabaseManager(this._outletSession);
+
+  SystemDatabase? _systemDb;
+  MasterDatabase? _masterDb;
+  PosDatabase? _posDb;
+
+  SystemDatabase get systemDb {
+    return _systemDb ??= SystemDatabase();
   }
 
-  Future<bool> openDatabase({required String tenantId, required String outletId}) async {
+  MasterDatabase get masterDb {
+    return _masterDb ??= MasterDatabase();
+  }
+
+  Future<PosDatabase?> get posDb async {
+    if (_posDb != null) {
+      return _posDb!;
+    }
+    if (!await _outletSession.hasActiveOutlet()) {
+      return null;
+    }
+
+    final tenantId = await _outletSession.companyId();
+    final outletId = await _outletSession.outletId();
+
+    if (tenantId == null || outletId == null) {
+      throw ServerFailure('Cannot find active outlet.');
+    }
+
+    await openPosDatabase(tenantId: tenantId, outletId: outletId);
+    return _posDb;
+  }
+
+  Future<bool> openPosDatabase({
+    required int tenantId,
+    required int outletId,
+  }) async {
     try {
-      await _currentDb?.close();
+      await _posDb?.close();
       final dbName = '${tenantId}_$outletId';
-      _currentDb = AppDatabase(dbName);
+      _posDb = PosDatabase(dbName);
       return true;
-    } catch (e) {
+    } catch (error, stackTrace) {
+      LogUtil.e(error.toString(), error: error, stackTrace: stackTrace);
       return false;
     }
   }
 
   Future<void> close() async {
-    await _currentDb?.close();
-    _currentDb = null;
+    await _posDb?.close();
+    _posDb = null;
   }
 }

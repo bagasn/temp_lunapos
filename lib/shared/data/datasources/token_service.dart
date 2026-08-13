@@ -16,6 +16,24 @@ abstract class TokenService {
 
   @POST('/token')
   @FormUrlEncoded()
+  Future<TokenResponse> loginWithPassword({
+    @Field('grant_type') String grantType = 'password',
+    @Field('client_id') String clientId = 'luna-main-web',
+    @Field('username') required String username,
+    @Field('password') required String password,
+  });
+
+  @POST('/token')
+  @FormUrlEncoded()
+  Future<TokenResponse> refreshToken({
+    @Field('grant_type') String grantType = 'refresh_token',
+    @Field('client_id') String clientId = 'luna-main-web',
+    @Field('refresh_token') required String refreshToken,
+    @Field('company_id') required String companyId,
+  });
+
+  @POST('/token')
+  @FormUrlEncoded()
   Future<TokenResponse> loginLongAuthKey({
     @Field('grant_type') String grantType = 'password',
     @Field('client_id') String clientId = 'luna-main-mobile',
