@@ -99,7 +99,7 @@ class AuthOutletBloc extends Bloc<AuthOutletEvent, AuthOutletState> {
         emit(AuthOutletFailure(error));
       },
       (data) async {
-        final isOpened = await _databaseManager.openPosDatabase(
+        final isOpened = await _databaseManager.openMainDatabase(
           tenantId: event.outlet.companyId,
           outletId: event.outlet.outletId,
         );

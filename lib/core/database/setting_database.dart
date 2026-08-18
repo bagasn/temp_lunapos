@@ -5,13 +5,13 @@ import 'package:pos/core/database/tables/system/display.dart';
 import 'package:pos/core/database/tables/system/outlet.dart';
 import 'package:pos/core/database/tables/system/system_setting.dart';
 
-part 'system_database.g.dart';
+part 'setting_database.g.dart';
 
 @DriftDatabase(
   tables: [TableSystemSetting, TableAccount, TableOutlet, TableDisplay],
 )
-class SystemDatabase extends _$SystemDatabase {
-  SystemDatabase() : super(connectDatabase('db_system'));
+class SettingDatabase extends _$SettingDatabase {
+  SettingDatabase() : super(connectDatabase('db_system'));
 
   @override
   int get schemaVersion => 1;

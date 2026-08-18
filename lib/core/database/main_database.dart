@@ -60,7 +60,7 @@ import 'package:pos/core/database/tables/pos/tax.dart';
 import 'package:pos/core/database/tables/pos/transaction_log.dart';
 import 'package:pos/core/database/tables/pos/user.dart';
 
-part 'pos_database.g.dart';
+part 'main_database.g.dart';
 
 @DriftDatabase(
   tables: [
@@ -124,8 +124,8 @@ part 'pos_database.g.dart';
     TableUser,
   ],
 )
-class PosDatabase extends _$PosDatabase {
-  PosDatabase(String dbName) : super(connectDatabase(dbName));
+class MainDatabase extends _$MainDatabase {
+  MainDatabase(String dbName) : super(connectDatabase(dbName));
 
   @override
   int get schemaVersion => 1;

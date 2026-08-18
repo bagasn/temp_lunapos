@@ -1,9 +1,7 @@
-import 'package:equatable/equatable.dart';
+import 'package:pos/shared/domain/entities/failure.dart';
 
-sealed class SyncState extends Equatable {
+sealed class SyncState {
   const SyncState();
-  @override
-  List<Object?> get props => [];
 }
 
 final class SyncInitial extends SyncState {
@@ -11,7 +9,8 @@ final class SyncInitial extends SyncState {
 }
 
 final class SyncInProgress extends SyncState {
-  const SyncInProgress();
+  final bool isSilent;
+  const SyncInProgress({this.isSilent = false});
 }
 
 final class SyncCompleted extends SyncState {
@@ -19,8 +18,7 @@ final class SyncCompleted extends SyncState {
 }
 
 final class SyncFailed extends SyncState {
-  final String message;
-  const SyncFailed(this.message);
-  @override
-  List<Object?> get props => [message];
+  final Failure error;
+
+  SyncFailed(this.error);
 }

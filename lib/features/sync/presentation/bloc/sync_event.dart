@@ -1,14 +1,10 @@
-import 'package:equatable/equatable.dart';
-
-sealed class SyncEvent extends Equatable {
+sealed class SyncEvent {
   const SyncEvent();
-  @override
-  List<Object?> get props => [];
 }
+
+final class InitialDataStarted extends SyncEvent {}
 
 final class SyncStarted extends SyncEvent {
   final bool force;
   const SyncStarted({this.force = false});
-  @override
-  List<Object?> get props => [force];
 }

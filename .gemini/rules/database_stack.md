@@ -12,14 +12,14 @@ The local database for this Flutter project is **Drift**. Firestore is still ret
 When creating the database connection, always use a multi-platform structure with conditional exports.
 
 **1. Shared Interface (`connection.dart`)**
-\`\`\`dart
+```dart
 export 'connection_unsupported.dart'
   if (dart.library.ffi) 'connection_native.dart'
   if (dart.library.html) 'connection_web.dart';
-\`\`\`
+```
 
 **2. Web Implementation (`connection_web.dart`)**
-\`\`\`dart
+```dart
 import 'package:drift/wasm.dart';
 import 'package:drift/drift.dart';
 
@@ -32,15 +32,15 @@ DatabaseConnection connectDatabase(String dbName) {
     );
 
     if (result.missingFeatures.isNotEmpty) {
-      print('Using \${result.chosenImplementation} due to missing browser features: \${result.missingFeatures}');
+      print('Using ${result.chosenImplementation} due to missing browser features: ${result.missingFeatures}');
     }
     return result.resolvedExecutor;
   }));
 }
-\`\`\`
+```
 
 **3. Native Implementation (`connection_native.dart`)**
-\`\`\`dart
+```dart
 import 'dart:io';
 import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
@@ -52,7 +52,7 @@ import 'package:sqlite3_flutter_libs/sqlite3_flutter_libs.dart';
 DatabaseConnection connectDatabase(String dbName) {
   return DatabaseConnection.delayed(Future(() async {
     final dbFolder = await getApplicationDocumentsDirectory();
-    final file = File(p.join(dbFolder.path, '\$dbName.sqlite'));
+    final file = File(p.join(dbFolder.path, '$dbName.sqlite'));
     
     if (Platform.isAndroid) {
       await applyWorkaroundToOpenSqlite3OnOldAndroidVersions();
@@ -64,4 +64,23 @@ DatabaseConnection connectDatabase(String dbName) {
     return NativeDatabase.createInBackground(file);
   }));
 }
-\`\`\`
+```
+
+## Database Architecture & App Database Manager
+
+The application manages connections for three different local databases through `AppDatabaseManager` (`lib/core/database/app_database_manager.dart`). When designing or debugging schemas for these databases, you must refer to their corresponding files in the legacy `MiddleBackend` project (`/Users/jhonhell/Workspace/LunaProject/LunaPOS/luna-middle-backend-api`).
+
+### 1. SettingDatabase
+- **Purpose**: Stores User/Tenant data when the user logs in.
+- **Reference**: `src/shared/database/setting-db-context.ts` in MiddleBackend.
+
+### 2. MasterDatabase
+- **Purpose**: A static database sourced from the application's assets. It is used to store static data to help application functionality.
+- **Reference**: `src/shared/database/master-db-context.ts` in MiddleBackend.
+
+### 3. MainDatabase
+- **Purpose**: The primary database that stores data for Point-of-Sales needs.
+- **Usage Constraints**:
+  - It can only be used after the User/Tenant has completed the outlet login (2-step login process: normal username/password login -> select outlet).
+  - This is a multi-database system. The connection to `MainDatabase` is done manually and depends on the outlet chosen by the user (a user can have more than one outlet).
+- **Reference**: `src/shared/database/main-db-context.ts` in MiddleBackend.
