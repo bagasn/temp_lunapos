@@ -1,6 +1,6 @@
 import 'package:drift/drift.dart';
 
-@DataClassName('Bank')
+@DataClassName('banks')
 class TableBank extends Table {
   TextColumn get id => text()();
   TextColumn get bankName => text()();

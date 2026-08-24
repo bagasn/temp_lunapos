@@ -4,14 +4,20 @@ import 'package:pos/features/sync/domain/repositories/sync_repository.dart';
 import 'package:pos/shared/domain/entities/failure.dart';
 import 'package:pos/shared/domain/usecases/usecase.dart';
 
+class InitialDataParams {
+  final String databaseName;
+
+  InitialDataParams({required this.databaseName});
+}
+
 @injectable
-class StartInitialData extends UseCase<bool, NoParams> {
+class StartInitialData extends UseCase<bool, InitialDataParams> {
   final SyncRepository _repository;
 
   StartInitialData(this._repository);
 
   @override
-  Future<Either<Failure, bool>> call(NoParams params) {
+  Future<Either<Failure, bool>> call(InitialDataParams params) {
     return _repository.getInitialData();
   }
 }

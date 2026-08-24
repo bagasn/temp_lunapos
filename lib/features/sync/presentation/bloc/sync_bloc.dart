@@ -4,7 +4,6 @@ import 'package:pos/features/sync/domain/repositories/sync_repository.dart';
 import 'package:pos/features/sync/presentation/bloc/sync_event.dart';
 import 'package:pos/features/sync/presentation/bloc/sync_state.dart';
 import 'package:pos/shared/domain/entities/failure.dart';
-import 'package:pos/shared/utilities/log_util.dart';
 
 enum InitialDataType {
   dataMain, // Initial Data
@@ -28,14 +27,15 @@ class SyncBloc extends Bloc<SyncEvent, SyncState> {
     final mainDataJob = _repository.getInitialData();
     final productJob = _repository.getInitialDataProduct();
     final promoJob = _repository.getInitialDataPromo();
-    try {
-      Future.wait([mainDataJob, productJob, promoJob]);
-    } catch (error, stackTrace) {
-      LogUtil.e(error.toString(), stackTrace: stackTrace);
-    }
+
+    final (mainResult, productResult, promoResult) = await (
+      mainDataJob,
+      productJob,
+      promoJob,
+    ).wait;
 
     Failure? syncFailure;
-    (await mainDataJob).fold(
+    mainResult.fold(
       (failure) {
         syncFailure = failure;
         _initialDataConfig[InitialDataType.dataMain] = false;
@@ -44,7 +44,7 @@ class SyncBloc extends Bloc<SyncEvent, SyncState> {
         _initialDataConfig[InitialDataType.dataMain] = true;
       },
     );
-    (await mainDataJob).fold(
+    productResult.fold(
       (failure) {
         if (syncFailure != null) {
           syncFailure = failure;
@@ -55,7 +55,7 @@ class SyncBloc extends Bloc<SyncEvent, SyncState> {
         _initialDataConfig[InitialDataType.dataProduct] = true;
       },
     );
-    (await mainDataJob).fold(
+    promoResult.fold(
       (failure) {
         if (syncFailure != null) {
           syncFailure = failure;

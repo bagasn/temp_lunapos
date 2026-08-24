@@ -1,9 +1,9 @@
 import 'package:drift/drift.dart';
 import 'package:pos/core/database/connection/connection.dart';
-import 'package:pos/core/database/tables/system/account.dart';
-import 'package:pos/core/database/tables/system/display.dart';
-import 'package:pos/core/database/tables/system/outlet.dart';
-import 'package:pos/core/database/tables/system/system_setting.dart';
+import 'package:pos/core/database/tables/setting/account.dart';
+import 'package:pos/core/database/tables/setting/display.dart';
+import 'package:pos/core/database/tables/setting/outlet.dart';
+import 'package:pos/core/database/tables/setting/system_setting.dart';
 
 part 'setting_database.g.dart';
 

@@ -1,6 +1,6 @@
 import 'package:drift/drift.dart';
 
-@DataClassName('Province')
+@DataClassName('provinces')
 class TableProvince extends Table {
   RealColumn get id => real()();
   TextColumn get name => text()();
