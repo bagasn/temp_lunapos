@@ -2,6 +2,9 @@ import 'package:drift/drift.dart';
 
 @DataClassName('categories')
 class TableCategory extends Table {
+  @override
+  String get tableName => 'categories';
+
   TextColumn get id => text()();
   TextColumn get name => text()();
   RealColumn get sortOrder => real()();

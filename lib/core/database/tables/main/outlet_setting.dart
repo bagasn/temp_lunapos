@@ -2,6 +2,9 @@ import 'package:drift/drift.dart';
 
 @DataClassName('outletSettings')
 class TableOutletSetting extends Table {
+  @override
+  String get tableName => 'outletSettings';
+
   TextColumn get defaultSalesTaxId => text().nullable()();
   RealColumn get id => real()();
   TextColumn get lastLoginUser => text()();

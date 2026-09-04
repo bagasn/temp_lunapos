@@ -19,7 +19,7 @@ DatabaseConnection connectDatabase(String dbName, {bool fromAssets = false}) {
       );
 
       if (result.missingFeatures.isNotEmpty) {
-        LogUtil.e(
+        LogUtil.w(
           'Using ${result.chosenImplementation} due to missing browser features: ${result.missingFeatures}',
         );
       }

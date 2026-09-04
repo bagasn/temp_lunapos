@@ -94,6 +94,7 @@ flutter:
     - assets/color/
     - assets/images/
     - assets/icons/
+    - assets/databases/
 
   fonts:
     - family: Inter

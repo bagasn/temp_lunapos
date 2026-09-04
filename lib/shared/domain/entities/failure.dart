@@ -13,7 +13,7 @@ abstract class Failure {
   @override
   String toString() {
     final className = runtimeType.toString();
-    return '$className(message: $message)';
+    return '$className: $message';
   }
 
   String get errorMessage => message;

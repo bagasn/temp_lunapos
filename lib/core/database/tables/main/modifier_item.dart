@@ -2,6 +2,9 @@ import 'package:drift/drift.dart';
 
 @DataClassName('modifierItems')
 class TableModifierItem extends Table {
+  @override
+  String get tableName => 'modifierItems';
+
   TextColumn get id => text()();
   TextColumn get modifierId => text()();
   TextColumn get name => text()();

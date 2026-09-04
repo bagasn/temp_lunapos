@@ -5,9 +5,10 @@ import 'package:pos/shared/domain/entities/failure.dart';
 import 'package:pos/shared/domain/usecases/usecase.dart';
 
 class InitialDataParams {
-  final String databaseName;
+  final int companyId;
+  final int outletId;
 
-  InitialDataParams({required this.databaseName});
+  InitialDataParams({required this.companyId, required this.outletId});
 }
 
 @injectable
@@ -18,7 +19,8 @@ class StartInitialData extends UseCase<bool, InitialDataParams> {
 
   @override
   Future<Either<Failure, bool>> call(InitialDataParams params) {
-    return _repository.getInitialData();
+    // return _repository.getInitialData();
+    throw UnimplementedError();
   }
 }
 

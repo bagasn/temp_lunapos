@@ -2,6 +2,9 @@ import 'package:drift/drift.dart';
 
 @DataClassName('printerAreas')
 class TablePrinterArea extends Table {
+  @override
+  String get tableName => 'printerAreas';
+
   TextColumn get id => text()();
   TextColumn get name => text()();
   RealColumn get sortOrder => real()();

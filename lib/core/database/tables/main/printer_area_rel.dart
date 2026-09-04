@@ -2,6 +2,9 @@ import 'package:drift/drift.dart';
 
 @DataClassName('printerAreaRels')
 class TablePrinterAreaRel extends Table {
+  @override
+  String get tableName => 'printerAreaRels';
+
   TextColumn get productId => text()();
   TextColumn get printerAreaId => text()();
   RealColumn get sortOrder => real()();

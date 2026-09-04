@@ -2,6 +2,9 @@ import 'package:drift/drift.dart';
 
 @DataClassName('promoToPaymentMethodRels')
 class TablePromoToPaymentMethodRel extends Table {
+  @override
+  String get tableName => 'promoToPaymentMethodRels';
+
   TextColumn get id => text()();
   TextColumn get promoId => text()();
   TextColumn get paymentMethodId => text()();

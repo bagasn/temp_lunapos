@@ -2,6 +2,9 @@ import 'package:drift/drift.dart';
 
 @DataClassName('accounts')
 class TableAccount extends Table {
+  @override
+  String? get tableName => 'accounts';
+
   TextColumn get id => text()();
   TextColumn get systemSetting => text()();
   TextColumn get companyId => text()();

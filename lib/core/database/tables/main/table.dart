@@ -2,6 +2,9 @@ import 'package:drift/drift.dart';
 
 @DataClassName('tables')
 class TableTable extends Table {
+  @override
+  String get tableName => 'tables';
+
   TextColumn get id => text()();
   TextColumn get name => text()();
   RealColumn get absisStartingGrid => real()();

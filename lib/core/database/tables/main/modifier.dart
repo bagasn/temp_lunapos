@@ -2,6 +2,9 @@ import 'package:drift/drift.dart';
 
 @DataClassName('modifiers')
 class TableModifier extends Table {
+  @override
+  String get tableName => 'modifiers';
+
   TextColumn get id => text()();
   TextColumn get name => text()();
   BoolColumn get required => boolean()();

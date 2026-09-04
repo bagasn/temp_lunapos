@@ -2,6 +2,9 @@ import 'package:drift/drift.dart';
 
 @DataClassName('areas')
 class TableArea extends Table {
+  @override
+  String get tableName => 'areas';
+
   TextColumn get id => text()();
   TextColumn get tables => text()();
   TextColumn get name => text()();

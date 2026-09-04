@@ -10,10 +10,10 @@ sealed class AuthOutletEvent extends Equatable {
 final class AuthOutletFetchStarted extends AuthOutletEvent {}
 
 final class AuthOutletsLoaded extends AuthOutletEvent {
-  final List<AuthOutletEntity> outlets;
-  const AuthOutletsLoaded(this.outlets);
+  const AuthOutletsLoaded();
+
   @override
-  List<Object?> get props => [outlets];
+  List<Object?> get props => [];
 }
 
 final class AuthOutletSearchChanged extends AuthOutletEvent {

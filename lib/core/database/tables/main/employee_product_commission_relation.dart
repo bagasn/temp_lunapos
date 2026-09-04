@@ -2,6 +2,9 @@ import 'package:drift/drift.dart';
 
 @DataClassName('employeeToProductCommissionRels')
 class TableEmployeeToProductCommissionRelation extends Table {
+  @override
+  String get tableName => 'employeeToProductCommissionRels';
+
   TextColumn get id => text()();
   TextColumn get productId => text()();
   TextColumn get employeeId => text()();

@@ -2,6 +2,9 @@ import 'package:drift/drift.dart';
 
 @DataClassName('orderPayments')
 class TableOrderPayment extends Table {
+  @override
+  String get tableName => 'orderPayments';
+
   TextColumn get orderId => text()();
   TextColumn get paymentMethodId => text()();
   TextColumn get paymentAccountId => text()();

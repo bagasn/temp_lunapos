@@ -3,7 +3,7 @@ import 'package:drift/drift.dart';
 @DataClassName('TableManagement')
 class TableTableManagement extends Table {
   @override
-  String get tableName => 'tableManagements';
+  String get tableName => 'TableManagement';
 
   TextColumn get id => text()();
   TextColumn get tableId => text()();

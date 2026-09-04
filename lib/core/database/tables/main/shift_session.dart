@@ -2,6 +2,9 @@ import 'package:drift/drift.dart';
 
 @DataClassName('shiftSessions')
 class TableShiftSession extends Table {
+  @override
+  String get tableName => 'shiftSessions';
+
   TextColumn get id => text()();
   TextColumn get userId => text()();
   DateTimeColumn get shiftOpeningDate => dateTime()();

@@ -2,6 +2,9 @@ import 'package:drift/drift.dart';
 
 @DataClassName('qrisBankAcquirers')
 class TableQrisBankAcquirer extends Table {
+  @override
+  String get tableName => 'qrisBankAcquirers';
+
   TextColumn get id => text()();
   TextColumn get id_transaction_pos => text()();
   DateTimeColumn get createdDateUtc => dateTime()();

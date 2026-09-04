@@ -2,6 +2,9 @@ import 'package:drift/drift.dart';
 
 @DataClassName('orderLineModifiers')
 class TableOrderLineModifier extends Table {
+  @override
+  String get tableName => 'orderLineModifiers';
+
   TextColumn get id => text()();
   TextColumn get order => text()();
   TextColumn get orderId => text()();

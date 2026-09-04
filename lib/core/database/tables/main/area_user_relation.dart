@@ -2,6 +2,9 @@ import 'package:drift/drift.dart';
 
 @DataClassName('areaToUserRels')
 class TableAreaToUserRel extends Table {
+  @override
+  String get tableName => 'areaToUserRels';
+
   TextColumn get posAreaId => text()();
   TextColumn get userId => text()();
   RealColumn get sortOrder => real()();

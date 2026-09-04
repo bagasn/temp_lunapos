@@ -1,5 +1,8 @@
+import 'package:drift/drift.dart';
+import 'package:drift/extensions/native.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:pos/core/database/setting_database.dart';
 import 'package:pos/core/local_storage/session_manager.dart';
 import 'package:pos/features/auth/select_outlet/domain/entities/auth_outlet_entity.dart';
 import 'package:pos/features/auth/select_outlet/domain/usecases/auth_outlet_usecase.dart';
@@ -16,7 +19,6 @@ class AuthOutletBloc extends Bloc<AuthOutletEvent, AuthOutletState> {
   final OutletLoginUseCase _outletLoginUseCase;
 
   String _searchKeyword = '';
-  List<AuthOutletEntity> _allOutlets = [];
 
   AuthOutletBloc(
     this._sessionManager,
@@ -30,6 +32,7 @@ class AuthOutletBloc extends Bloc<AuthOutletEvent, AuthOutletState> {
     on<AuthOutletSelected>(_onOutletSelected);
 
     add(AuthOutletFetchStarted());
+    _databaseManager.masterDb;
   }
 
   void _onFetch(AuthOutletFetchStarted event, Emitter emit) async {
@@ -46,35 +49,69 @@ class AuthOutletBloc extends Bloc<AuthOutletEvent, AuthOutletState> {
       (failure) {
         emit(AuthOutletFailure(failure));
       },
-      (data) {
-        add(AuthOutletsLoaded(data));
+      (data) async {
+        final settingDb = _databaseManager.settingDb;
+        final createDate = DateTime.now();
+        final newInserts = <TableOutletCompanion>[];
+
+        for (int i = 0; i < data.length; i++) {
+          final outlet = data[i];
+          newInserts.add(
+            TableOutletCompanion.insert(
+              outletId: Value(outlet.outletId),
+              tenantId: outlet.companyId,
+              companyName: outlet.companyName,
+              outletName: outlet.outletName,
+              posAuthKey: outlet.posAuthKey,
+              outletPictureUrl: Value(outlet.outletPictureUrl),
+              subscriptionDueDate: Value(outlet.subscriptionDueDate),
+              createdAt: Value(createDate),
+            ),
+          );
+        }
+        await settingDb.tableOutlet.insertAll(
+          newInserts,
+          mode: InsertMode.insertOrReplace,
+        );
+
+        add(AuthOutletsLoaded());
       },
     );
   }
 
-  void _onOutletsLoaded(
-    AuthOutletsLoaded event,
-    Emitter<AuthOutletState> emit,
-  ) {
-    _allOutlets = event.outlets;
+  void _onOutletsLoaded(AuthOutletsLoaded event, Emitter emit) async {
+    emit(AuthOutletFetching());
 
-    List<AuthOutletEntity> filteredOutlets;
-    if (_searchKeyword.isEmpty) {
-      filteredOutlets = _allOutlets;
-    } else {
-      filteredOutlets = _allOutlets.where((outlet) {
-        final keyword = _searchKeyword.toLowerCase();
-        if (outlet.outletName.toLowerCase().contains(keyword)) {
-          return true;
-        }
-        if (outlet.companyName.toLowerCase().contains(keyword)) {
-          return true;
-        }
-        return false;
-      }).toList();
+    try {
+      final stQuery = _databaseManager.settingDb.tableOutlet.select()
+        ..where((rowItem) {
+          final keyword = _searchKeyword.toLowerCase();
+          return Expression.or([
+            rowItem.outletName.containsCase(keyword),
+            rowItem.companyName.containsCase(keyword),
+          ]);
+        });
+
+      final result = await stQuery.get();
+
+      final outlets = result
+          .map(
+            (element) => AuthOutletEntity(
+              outletId: element.outletId,
+              outletName: element.outletName,
+              companyId: element.tenantId,
+              companyName: element.companyName,
+              posAuthKey: element.posAuthKey,
+              outletPictureUrl: element.outletPictureUrl,
+              subscriptionDueDate: element.subscriptionDueDate,
+            ),
+          )
+          .toList();
+
+      emit(AuthOutletDataState(outlets: outlets));
+    } catch (e) {
+      emit(AuthOutletFailure(DatabaseFailure(e.toString())));
     }
-
-    emit(AuthOutletDataState(outlets: filteredOutlets));
   }
 
   void _onSearchChanged(
@@ -82,10 +119,7 @@ class AuthOutletBloc extends Bloc<AuthOutletEvent, AuthOutletState> {
     Emitter<AuthOutletState> emit,
   ) {
     _searchKeyword = event.keyword.toLowerCase().trim();
-
-    emit(AuthOutletFetching());
-
-    add(AuthOutletsLoaded(_allOutlets));
+    add(AuthOutletsLoaded());
   }
 
   Future<void> _onOutletSelected(
@@ -99,16 +133,29 @@ class AuthOutletBloc extends Bloc<AuthOutletEvent, AuthOutletState> {
         emit(AuthOutletFailure(error));
       },
       (data) async {
-        final isOpened = await _databaseManager.openMainDatabase(
-          tenantId: event.outlet.companyId,
-          outletId: event.outlet.outletId,
+        await _sessionManager.auth.saveOutletToken(
+          accessToken: data.accessToken,
+          refreshToken: data.refreshToken,
+          haveLunaone: data.haveLunaone,
+          lunaoneToken: data.tokenLunaone,
+          lunaoneRefreshToken: data.refreshTokenLunaone,
         );
 
-        if (isOpened) {
-        } else {}
+        try {
+          await _databaseManager.openMainDatabase(
+            tenantId: event.outlet.companyId,
+            outletId: event.outlet.outletId,
+          );
+
+          _startFetchInitialData(outlet: event.outlet);
+        } on DatabaseFailure catch (error) {
+          emit(AuthOutletFailure(error));
+        } catch (error) {
+          emit(AuthOutletFailure(NetworkFailure.error(error)));
+        }
       },
     );
   }
 
-  void _startFetchInitialData() async {}
+  void _startFetchInitialData({required AuthOutletEntity outlet}) async {}
 }

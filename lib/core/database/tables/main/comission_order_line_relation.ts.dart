@@ -2,6 +2,9 @@ import 'package:drift/drift.dart';
 
 @DataClassName('commissionToOrderLineRels')
 class TableCommissionToOrderLine extends Table {
+  @override
+  String get tableName => 'commissionToOrderLineRels';
+
   TextColumn get id => text()();
   TextColumn get orderId => text()();
   TextColumn get orderLineId => text()();

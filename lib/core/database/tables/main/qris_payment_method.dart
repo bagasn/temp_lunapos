@@ -2,6 +2,9 @@ import 'package:drift/drift.dart';
 
 @DataClassName('qrisPaymentMethods')
 class TableQrisPaymentMethod extends Table {
+  @override
+  String get tableName => 'qrisPaymentMethods';
+
   TextColumn get id => text()();
   TextColumn get id_transaction_pos => text()();
   TextColumn get createDateUtc => text()();

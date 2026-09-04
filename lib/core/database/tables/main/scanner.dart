@@ -2,6 +2,9 @@ import 'package:drift/drift.dart';
 
 @DataClassName('scanners')
 class TableScanner extends Table {
+  @override
+  String get tableName => 'scanners';
+
   TextColumn get id => text()();
   TextColumn get deviceId => text()();
   TextColumn get name => text()();

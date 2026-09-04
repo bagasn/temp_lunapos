@@ -16,7 +16,11 @@ class AppDatabaseManager {
   MasterDatabase? _masterDb;
   MainDatabase? _mainDb;
 
-  SettingDatabase get systemDb {
+  String? _currentDbName;
+
+  String? get currentDbName => _currentDbName;
+
+  SettingDatabase get settingDb {
     return _settingDb ??= SettingDatabase();
   }
 
@@ -36,25 +40,33 @@ class AppDatabaseManager {
     final outletId = await _outletSession.outletId();
 
     if (tenantId == null || outletId == null) {
-      throw ServerFailure('Cannot find active outlet.');
+      throw CacheFailure('Cannot find active outlet.');
     }
 
-    await openMainDatabase(tenantId: tenantId, outletId: outletId);
+    try {
+      await openMainDatabase(tenantId: tenantId, outletId: outletId);
+    } catch (_) {}
+
     return _mainDb;
   }
 
-  Future<bool> openMainDatabase({
+  Future<void> openMainDatabase({
     required int tenantId,
     required int outletId,
   }) async {
     try {
-      await _mainDb?.close();
       final dbName = '${tenantId}_$outletId';
+
+      await _mainDb?.close();
+      LogUtil.i('Local database closed (db_name: $_currentDbName)');
+
       _mainDb = MainDatabase(dbName);
-      return true;
+      LogUtil.i('New database connected with name = "$dbName"');
+
+      _currentDbName = dbName;
     } catch (error, stackTrace) {
       LogUtil.e(error.toString(), error: error, stackTrace: stackTrace);
-      return false;
+      throw DatabaseFailure(error.toString());
     }
   }
 

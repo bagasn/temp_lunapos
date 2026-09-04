@@ -2,6 +2,9 @@ import 'package:drift/drift.dart';
 
 @DataClassName('promoProductTerms')
 class TablePromoProductTerm extends Table {
+  @override
+  String get tableName => 'promoProductTerms';
+
   TextColumn get id => text()();
   TextColumn get promoId => text()();
   TextColumn get productId => text()();
