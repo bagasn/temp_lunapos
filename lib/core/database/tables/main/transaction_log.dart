@@ -6,16 +6,16 @@ class TableTransactionLog extends Table {
   String get tableName => 'transactionLogs';
 
   TextColumn get id => text()();
-  TextColumn get userId => text()();
-  TextColumn get userName => text()();
-  TextColumn get orderId => text()();
-  TextColumn get orderNumber => text()();
-  DateTimeColumn get date => dateTime()();
+  TextColumn get userId => text().nullable()();
+  TextColumn get userName => text().nullable()();
+  TextColumn get orderId => text().nullable()();
+  TextColumn get orderNumber => text().nullable()();
+  DateTimeColumn get date => dateTime().nullable()();
   DateTimeColumn get dateTimeField => dateTime().named('dateTime')();
-  TextColumn get description => text()();
-  TextColumn get data1 => text()();
-  TextColumn get data2 => text()();
-  TextColumn get data3 => text()();
+  TextColumn get description => text().nullable()();
+  TextColumn get data1 => text().nullable()();
+  TextColumn get data2 => text().nullable()();
+  TextColumn get data3 => text().nullable()();
 
   // Base fields
   DateTimeColumn get createdAt => dateTime().nullable()();

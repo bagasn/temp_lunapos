@@ -7,7 +7,7 @@ class TableAreaToUserRel extends Table {
 
   TextColumn get posAreaId => text()();
   TextColumn get userId => text()();
-  RealColumn get sortOrder => real()();
+  IntColumn get sortOrder => integer().nullable()();
 
   // Base fields
   DateTimeColumn get createdAt => dateTime().nullable()();

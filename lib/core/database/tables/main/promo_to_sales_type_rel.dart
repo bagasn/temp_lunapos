@@ -8,8 +8,8 @@ class TablePromoToSalesTypeRel extends Table {
   TextColumn get id => text()();
   TextColumn get promoId => text()();
   TextColumn get salesTypeId => text()();
-  RealColumn get sortOrder => real()();
-  BoolColumn get deleted => boolean()();
+  IntColumn get sortOrder => integer().nullable()();
+  BoolColumn get deleted => boolean().withDefault(const Constant(false))();
 
   // Base fields
   DateTimeColumn get createdAt => dateTime().nullable()();

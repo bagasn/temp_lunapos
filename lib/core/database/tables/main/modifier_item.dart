@@ -7,13 +7,13 @@ class TableModifierItem extends Table {
 
   TextColumn get id => text()();
   TextColumn get modifierId => text()();
-  TextColumn get name => text()();
-  TextColumn get productId => text()();
-  TextColumn get productVariantId => text()();
-  BoolColumn get useCustomPrice => boolean()();
-  RealColumn get price => real()();
-  RealColumn get sortOrder => real()();
-  BoolColumn get deleted => boolean()();
+  TextColumn get name => text().nullable()();
+  TextColumn get productId => text().nullable()();
+  TextColumn get productVariantId => text().nullable()();
+  BoolColumn get useCustomPrice => boolean().nullable()();
+  RealColumn get price => real().nullable()();
+  IntColumn get sortOrder => integer().nullable()();
+  BoolColumn get deleted => boolean().withDefault(const Constant(false))();
   TextColumn get modifier => text()();
   TextColumn get product => text()();
   TextColumn get productVariant => text()();

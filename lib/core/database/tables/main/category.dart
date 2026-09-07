@@ -6,21 +6,21 @@ class TableCategory extends Table {
   String get tableName => 'categories';
 
   TextColumn get id => text()();
-  TextColumn get name => text()();
-  RealColumn get sortOrder => real()();
-  BoolColumn get deleted => boolean()();
-  BoolColumn get isCustom => boolean()();
-  DateTimeColumn get startDate => dateTime()();
-  DateTimeColumn get startTime => dateTime()();
-  DateTimeColumn get endDate => dateTime()();
-  DateTimeColumn get endTime => dateTime()();
-  BoolColumn get monday => boolean()();
-  BoolColumn get tuesday => boolean()();
-  BoolColumn get wednesday => boolean()();
-  BoolColumn get thursday => boolean()();
-  BoolColumn get friday => boolean()();
-  BoolColumn get saturday => boolean()();
-  BoolColumn get sunday => boolean()();
+  TextColumn get name => text().nullable()();
+  IntColumn get sortOrder => integer().nullable()();
+  BoolColumn get deleted => boolean().withDefault(const Constant(false))();
+  BoolColumn get isCustom => boolean().withDefault(const Constant(false))();
+  DateTimeColumn get startDate => dateTime().nullable()();
+  TextColumn get startTime => text().nullable()();
+  DateTimeColumn get endDate => dateTime().nullable()();
+  TextColumn get endTime => text().nullable()();
+  BoolColumn get monday => boolean().withDefault(const Constant(false))();
+  BoolColumn get tuesday => boolean().withDefault(const Constant(false))();
+  BoolColumn get wednesday => boolean().withDefault(const Constant(false))();
+  BoolColumn get thursday => boolean().withDefault(const Constant(false))();
+  BoolColumn get friday => boolean().withDefault(const Constant(false))();
+  BoolColumn get saturday => boolean().withDefault(const Constant(false))();
+  BoolColumn get sunday => boolean().withDefault(const Constant(false))();
   TextColumn get products => text()();
 
   // Base fields

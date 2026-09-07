@@ -8,10 +8,10 @@ class TablePriceLevelPriceList extends Table {
   TextColumn get productId => text()();
   TextColumn get productVariantId => text()();
   TextColumn get priceLevelId => text()();
-  TextColumn get priceLevelName => text()();
-  RealColumn get price => real()();
-  BoolColumn get isMaster => boolean()();
-  BoolColumn get deleted => boolean()();
+  TextColumn get priceLevelName => text().nullable()();
+  RealColumn get price => real().nullable()();
+  BoolColumn get isMaster => boolean().nullable()();
+  BoolColumn get deleted => boolean().withDefault(const Constant(false))();
 
   // Base fields
   DateTimeColumn get createdAt => dateTime().nullable()();

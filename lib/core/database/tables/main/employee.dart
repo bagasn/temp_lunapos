@@ -6,7 +6,7 @@ class TableEmployee extends Table {
   String get tableName => 'employees';
 
   TextColumn get id => text()();
-  TextColumn get name => text()();
+  TextColumn get name => text().nullable()();
 
   // Base fields
   DateTimeColumn get createdAt => dateTime().nullable()();

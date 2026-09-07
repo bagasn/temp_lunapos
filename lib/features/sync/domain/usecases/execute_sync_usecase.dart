@@ -1,26 +1,27 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
+import 'package:pos/features/sync/domain/models/sync_entity.dart';
 import 'package:pos/features/sync/domain/repositories/sync_repository.dart';
 import 'package:pos/shared/domain/entities/failure.dart';
 import 'package:pos/shared/domain/usecases/usecase.dart';
 
-class InitialDataParams {
-  final int companyId;
-  final int outletId;
-
-  InitialDataParams({required this.companyId, required this.outletId});
-}
-
 @injectable
-class StartInitialData extends UseCase<bool, InitialDataParams> {
+class StartInitialData extends UseCase<SyncEntity, NoParams> {
   final SyncRepository _repository;
 
   StartInitialData(this._repository);
 
   @override
-  Future<Either<Failure, bool>> call(InitialDataParams params) {
-    // return _repository.getInitialData();
-    throw UnimplementedError();
+  Future<Either<Failure, SyncEntity>> call(NoParams params) {
+    return _repository.getInitialData(
+      SyncEntity(
+        outletId: 1,
+        companyId: 1,
+        outletSynced: false,
+        productSynced: false,
+        promoSynced: false,
+      ),
+    );
   }
 }
 

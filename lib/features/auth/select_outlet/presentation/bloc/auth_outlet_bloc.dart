@@ -9,6 +9,8 @@ import 'package:pos/features/auth/select_outlet/domain/usecases/auth_outlet_usec
 import 'package:pos/features/auth/select_outlet/presentation/bloc/auth_outlet_event.dart';
 import 'package:pos/features/auth/select_outlet/presentation/bloc/auth_outlet_state.dart';
 import 'package:pos/core/database/app_database_manager.dart';
+import 'package:pos/features/sync/domain/models/sync_entity.dart';
+import 'package:pos/features/sync/domain/repositories/sync_repository.dart';
 import 'package:pos/shared/domain/entities/failure.dart';
 
 @injectable
@@ -17,6 +19,7 @@ class AuthOutletBloc extends Bloc<AuthOutletEvent, AuthOutletState> {
   final AppDatabaseManager _databaseManager;
   final GetAuthOutletUsecase _getOutletUseCase;
   final OutletLoginUseCase _outletLoginUseCase;
+  final SyncRepository _syncRepo;
 
   String _searchKeyword = '';
 
@@ -25,6 +28,7 @@ class AuthOutletBloc extends Bloc<AuthOutletEvent, AuthOutletState> {
     this._databaseManager,
     this._getOutletUseCase,
     this._outletLoginUseCase,
+    this._syncRepo,
   ) : super(const AuthOutletInitial()) {
     on<AuthOutletFetchStarted>(_onFetch);
     on<AuthOutletsLoaded>(_onOutletsLoaded);
@@ -147,7 +151,8 @@ class AuthOutletBloc extends Bloc<AuthOutletEvent, AuthOutletState> {
             outletId: event.outlet.outletId,
           );
 
-          _startFetchInitialData(outlet: event.outlet);
+          await _startFetchInitialData(outlet: event.outlet);
+          add(AuthOutletsLoaded());
         } on DatabaseFailure catch (error) {
           emit(AuthOutletFailure(error));
         } catch (error) {
@@ -157,5 +162,21 @@ class AuthOutletBloc extends Bloc<AuthOutletEvent, AuthOutletState> {
     );
   }
 
-  void _startFetchInitialData({required AuthOutletEntity outlet}) async {}
+  Future<void> _startFetchInitialData({
+    required AuthOutletEntity outlet,
+  }) async {
+    final result = await _syncRepo.getInitialData(
+      SyncEntity(
+        outletId: outlet.outletId,
+        companyId: outlet.companyId,
+        outletSynced: false,
+        productSynced: false,
+        promoSynced: false,
+      ),
+    );
+
+    if (result.isLeft()) {
+      throw DatabaseFailure('Fucking Error');
+    }
+  }
 }

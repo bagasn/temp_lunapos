@@ -1,0 +1,1918 @@
+{
+  "address": {
+    "id": {
+      "allowNull": false,
+      "primaryKey": true,
+      "type": "UUID"
+    },
+    "customerId": {
+      "allowNull": false,
+      "foreignKey": true,
+      "type": "UUID"
+    },
+    "label": "STRING",
+    "address": "STRING",
+    "street": "STRING",
+    "villageId": "INTEGER",
+    "village": "STRING",
+    "districtId": "INTEGER",
+    "district": "STRING",
+    "cityId": "INTEGER",
+    "city": "STRING",
+    "provinceId": "INTEGER",
+    "province": "STRING",
+    "countryId": "STRING",
+    "countryName": "STRING",
+    "postalCode": "STRING",
+    "recipientName": "STRING",
+    "recipientPhone": "STRING",
+    "source": "STRING"
+  },
+  "areaToUserRel": {
+    "posAreaId": {
+      "allowNull": false,
+      "primaryKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "userId": {
+      "allowNull": false,
+      "primaryKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "sortOrder": "INTEGER"
+  },
+  "area": {
+    "id": {
+      "allowNull": false,
+      "primaryKey": true,
+      "type": "UUID"
+    },
+    "name": "STRING",
+    "absisMaximumGrid": "INTEGER",
+    "ordinatMaximumGrid": "INTEGER",
+    "sortOrder": "INTEGER",
+    "deleted": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    },
+    "availableForAllPosUsers": "BOOLEAN"
+  },
+  "category": {
+    "id": {
+      "allowNull": false,
+      "primaryKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "name": "STRING",
+    "sortOrder": "INTEGER",
+    "deleted": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    },
+    "isCustom": {
+      "type": "BOOLEAN",
+      "allowNull": false,
+      "defaultValue": false
+    },
+    "startDate": "DATE",
+    "startTime": "TIME",
+    "endDate": "DATE",
+    "endTime": "TIME",
+    "monday": {
+      "type": "BOOLEAN",
+      "allowNull": false,
+      "defaultValue": false
+    },
+    "tuesday": {
+      "type": "BOOLEAN",
+      "allowNull": false,
+      "defaultValue": false
+    },
+    "wednesday": {
+      "type": "BOOLEAN",
+      "allowNull": false,
+      "defaultValue": false
+    },
+    "thursday": {
+      "type": "BOOLEAN",
+      "allowNull": false,
+      "defaultValue": false
+    },
+    "friday": {
+      "type": "BOOLEAN",
+      "allowNull": false,
+      "defaultValue": false
+    },
+    "saturday": {
+      "type": "BOOLEAN",
+      "allowNull": false,
+      "defaultValue": false
+    },
+    "sunday": {
+      "type": "BOOLEAN",
+      "allowNull": false,
+      "defaultValue": false
+    }
+  },
+  "commissionToOrderLineRel": {
+    "id": {
+      "allowNull": false,
+      "primaryKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "orderId": {
+      "allowNull": false,
+      "foreignKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "orderLineId": {
+      "allowNull": false,
+      "foreignKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "employeeId": {
+      "allowNull": false,
+      "foreignKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "employeeName": "STRING"
+  },
+  "couponOrder": {
+    "id": {
+      "allowNull": false,
+      "primaryKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "orderId": {
+      "allowNull": false,
+      "foreignKey": true,
+      "type": "UUID"
+    },
+    "couponId": {
+      "allowNull": false,
+      "type": "UUID"
+    },
+    "couponCode": "STRING",
+    "couponName": "STRING",
+    "giftType": "STRING",
+    "discountType": "STRING",
+    "discountPercent": "DECIMAL",
+    "discountAmount": "DECIMAL",
+    "products": "STRING",
+    "savedByUserId": "STRING"
+  },
+  "customer": {
+    "id": {
+      "allowNull": false,
+      "primaryKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "firstName": "STRING",
+    "lastName": "STRING",
+    "displayName": "STRING",
+    "company": "STRING",
+    "phone": {
+      "type": "STRING"
+    },
+    "email": {
+      "type": "STRING",
+      "allowNull": true
+    },
+    "gender": "STRING",
+    "dateOfBirth": "DATEONLY",
+    "address": "STRING",
+    "addressStreet1": "STRING",
+    "addressCity": "STRING",
+    "addressStateProvince": "STRING",
+    "addressCountryId": "STRING",
+    "addressCountryName": "STRING",
+    "addressPostalCode": "STRING",
+    "bankAccountId": "UUID",
+    "bankId": "UUID",
+    "bankName": "STRING",
+    "bankAccountName": "STRING",
+    "bankAccountNumber": "STRING",
+    "isSync": "BOOLEAN",
+    "syncDate": "DATE",
+    "createdByUserId": "STRING",
+    "createdDateTime": "DATE",
+    "lastUpdatedByUserId": "STRING",
+    "lastUpdateDateTime": "DATE",
+    "note": "STRING",
+    "deleted": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    },
+    "username": "STRING",
+    "pricingCategoryId": {
+      "allowNull": true,
+      "foreignKey": true,
+      "type": "UUID"
+    }
+  },
+  "deliveryAddress": {
+    "id": {
+      "allowNull": false,
+      "primaryKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "deliveryId": {
+      "allowNull": false,
+      "foreignKey": true,
+      "type": "UUID"
+    },
+    "label": "STRING",
+    "name": "STRING",
+    "phoneNumber": "STRING",
+    "pinPoint": "BOOLEAN",
+    "longitude": "STRING",
+    "latitude": "STRING",
+    "address": "STRING",
+    "provinceId": "INTEGER",
+    "provinceName": "STRING",
+    "cityId": "INTEGER",
+    "cityName": "STRING",
+    "districtId": "INTEGER",
+    "districtName": "STRING",
+    "villageId": "INTEGER",
+    "villageName": "STRING",
+    "postalCode": "STRING",
+    "notes": "STRING",
+    "isMainAddress": "BOOLEAN"
+  },
+  "delivery": {
+    "id": {
+      "allowNull": false,
+      "primaryKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "orderId": "STRING",
+    "awbNumber": "STRING",
+    "logisticName": "STRING",
+    "serviceType": "STRING",
+    "qty": "INTEGER",
+    "isUseInsurance": {
+      "defaultValue": false,
+      "type": "BOOLEAN"
+    },
+    "insurancePrice": "DECIMAL",
+    "shipmentPrice": "DECIMAL",
+    "isPickup": {
+      "defaultValue": false,
+      "type": "BOOLEAN"
+    },
+    "isCod": {
+      "defaultValue": false,
+      "type": "BOOLEAN"
+    },
+    "codPrice": "DECIMAL",
+    "shippingNote": "STRING",
+    "rateCode": "STRING",
+    "packageQty": "INTEGER",
+    "packagePrice": "DECIMAL",
+    "packageDescription": "STRING",
+    "packageDimensions": "STRING",
+    "packageWeight": "DECIMAL"
+  },
+  "discount": {
+    "id": {
+      "allowNull": false,
+      "primaryKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "name": "STRING",
+    "discountMode": "STRING",
+    "discountValue": "DECIMAL",
+    "minimumPurchaseAmount": "DECIMAL",
+    "maximumDiscountAmount": "DECIMAL",
+    "deleted": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    }
+  },
+  "employeeToProductCommissionRel": {
+    "id": {
+      "allowNull": false,
+      "primaryKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "productId": {
+      "allowNull": false,
+      "foreignKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "employeeId": {
+      "allowNull": false,
+      "foreignKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    }
+  },
+  "employee": {
+    "id": {
+      "allowNull": false,
+      "primaryKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "name": "STRING"
+  },
+  "linkedOrder": {
+    "orderId": {
+      "allowNull": false,
+      "primaryKey": true,
+      "type": "UUID"
+    },
+    "qrDuration": "INTEGER",
+    "categoryIds": "STRING",
+    "orderDate": "DATEONLY",
+    "orderTime": "DATE",
+    "status": {
+      "type": "INTEGER",
+      "defaultValue": 0
+    }
+  },
+  "modifierItem": {
+    "id": {
+      "allowNull": false,
+      "primaryKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "modifierId": {
+      "allowNull": false,
+      "primaryKey": true,
+      "foreignKey": true,
+      "type": "UUID"
+    },
+    "name": "STRING",
+    "productId": "UUID",
+    "productVariantId": "UUID",
+    "useCustomPrice": "BOOLEAN",
+    "price": "DECIMAL",
+    "sortOrder": "INTEGER",
+    "deleted": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    }
+  },
+  "modifier": {
+    "id": {
+      "allowNull": false,
+      "primaryKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "name": "STRING",
+    "required": "BOOLEAN",
+    "allowMultiple": "BOOLEAN",
+    "maximumAllowed": "INTEGER",
+    "haveMaximumItemAllowed": "BOOLEAN",
+    "maximumItemAllowed": "INTEGER",
+    "deleted": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    }
+  },
+  "orderLineModifier": {
+    "id": {
+      "allowNull": false,
+      "primaryKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "orderId": {
+      "primaryKey": true,
+      "foreignKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "orderLineId": {
+      "primaryKey": true,
+      "foreignKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "modifierId": "UUID",
+    "modifierItemId": "UUID",
+    "modifierItemName": "STRING",
+    "modifierItemProductId": "UUID",
+    "modifierItemProductVariantId": "UUID",
+    "description": "STRING",
+    "qty": "DECIMAL",
+    "price": "DECIMAL",
+    "sortOrder": "INTEGER"
+  },
+  "orderLine": {
+    "id": {
+      "allowNull": false,
+      "primaryKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "orderId": {
+      "allowNull": false,
+      "primaryKey": true,
+      "foreignKey": true,
+      "type": "UUID"
+    },
+    "productId": {
+      "allowNull": true,
+      "foreignKey": true,
+      "type": "UUID"
+    },
+    "productVariantId": {
+      "allowNull": true,
+      "foreignKey": true,
+      "type": "UUID"
+    },
+    "promoId": {
+      "allowNull": true,
+      "foreignKey": true,
+      "type": "UUID"
+    },
+    "priceTierId": {
+      "allowNull": true,
+      "foreignKey": true,
+      "type": "UUID"
+    },
+    "promoName": "STRING",
+    "promoDiscountPercent": "DECIMAL",
+    "promoDiscountAmount": "DECIMAL",
+    "description": "STRING",
+    "qty": "DECIMAL",
+    "unitPrice": "DECIMAL",
+    "modifierPrice": "DECIMAL",
+    "isDiscountDisabled": "BOOLEAN",
+    "discountId": "UUID",
+    "discountPercent": "DECIMAL",
+    "discountAmount": "DECIMAL",
+    "totalBeforeDiscount": "DECIMAL",
+    "totalDiscountAmount": "DECIMAL",
+    "total": "DECIMAL",
+    "serviceCharged": "BOOLEAN",
+    "taxed": "BOOLEAN",
+    "taxId": "UUID",
+    "notes": "STRING",
+    "customItemData": "STRING",
+    "sortOrder": "INTEGER",
+    "createdByUserId": "UUID",
+    "createdDateTime": "DATE",
+    "lastUpdateByUserId": "UUID",
+    "lastUpdateDateTime": "DATE",
+    "cancelledByUserId": "UUID",
+    "cancellationDateTime": "DATE",
+    "cancelled": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    },
+    "cancellationReason": "STRING",
+    "lineType": {
+      "defaultValue": "item",
+      "type": "STRING",
+      "allowNull": false
+    },
+    "itemType": {
+      "defaultValue": "item",
+      "type": "STRING",
+      "allowNull": false
+    },
+    "isPromoReward": {
+      "defaultValue": false,
+      "type": "BOOLEAN"
+    },
+    "relatedTo": "STRING",
+    "thirdPartySync": "BOOLEAN",
+    "haveCommission": "BOOLEAN"
+  },
+  "orderLog": {
+    "id": {
+      "allowNull": false,
+      "primaryKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "transactionId": "UUID",
+    "transactionNumber": "STRING",
+    "transactionDate": "DATE",
+    "receiptNumber": "STRING",
+    "customerId": "UUID",
+    "customerName": "STRING",
+    "salesTypeId": "UUID",
+    "tableId": "UUID",
+    "numberOfPax": "INTEGER",
+    "productId": "UUID",
+    "productVariantId": "UUID",
+    "description": "STRING",
+    "qty": "DECIMAL",
+    "unitPrice": "INTEGER",
+    "totalLine": "INTEGER",
+    "totalOrder": "INTEGER",
+    "createdByUserId": "UUID",
+    "createdDate": "DATE",
+    "cancelledByUserId": "UUID",
+    "cancellationDate": "DATE",
+    "cancellationReason": "STRING",
+    "isSync": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    }
+  },
+  "orderMerged": {
+    "orderId": {
+      "allowNull": false,
+      "primaryKey": true,
+      "type": "UUID"
+    },
+    "orderMergedIds": {
+      "allowNull": false,
+      "primaryKey": true,
+      "type": "UUID"
+    }
+  },
+  "orderPayment": {
+    "id": {
+      "primaryKey": true,
+      "foreignKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "orderId": "UUIDV4",
+    "paymentMethodId": "UUID",
+    "paymentAccountId": "UUID",
+    "paymentAmount": "DECIMAL",
+    "cardNumber": "STRING",
+    "cardHolder": "STRING",
+    "referenceNumber": "STRING",
+    "partnerId": "STRING",
+    "partnerPaymentMethodId": "STRING",
+    "partnerPaymentMethodName": "STRING",
+    "partnerTransactionId": "STRING",
+    "otherPartyId": "STRING",
+    "depositId": "STRING",
+    "depositNumber": "STRING",
+    "sortOrder": "INTEGER"
+  },
+  "orderTax": {
+    "orderId": {
+      "allowNull": false,
+      "primaryKey": true,
+      "foreignKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "taxId": {
+      "allowNull": false,
+      "primaryKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "taxRate": "DECIMAL",
+    "baseAmount": "DECIMAL",
+    "taxAmount": "DECIMAL"
+  },
+  "order": {
+    "id": {
+      "allowNull": false,
+      "primaryKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "orderNumber": "STRING",
+    "orderName": "STRING",
+    "orderDate": "DATEONLY",
+    "orderDateTime": "DATE",
+    "receiptNumber": "STRING",
+    "customerId": {
+      "foreignKey": true,
+      "type": "UUID"
+    },
+    "customerName": "STRING",
+    "customerEmail": "STRING",
+    "customerPhone": "STRING",
+    "salesTypeId": "UUID",
+    "promoSalesTypeId": "UUID",
+    "tableId": "UUID",
+    "numberOfPax": "INTEGER",
+    "taxInclusive": "BOOLEAN",
+    "lineCount": "INTEGER",
+    "lineTotalQty": "DECIMAL",
+    "lineTotalDiscountAmount": {
+      "type": "DECIMAL",
+      "defaultValue": 0
+    },
+    "subTotal": "DECIMAL",
+    "discountId": "UUID",
+    "discountPercent": "DECIMAL",
+    "discountAmount": "DECIMAL",
+    "discountLoyaltyId": "UUID",
+    "discountLoyaltyName": "STRING",
+    "discountLoyaltyPercent": "DECIMAL",
+    "discountLoyaltyAmount": "DECIMAL",
+    "discountLoyaltyDescription": "STRING",
+    "membershipProgramId": "UUID",
+    "membershipLevelId": "UUID",
+    "membershipDiscountId": "UUID",
+    "membershipDiscountPercent": "DECIMAL",
+    "membershipDiscountAmount": "DECIMAL",
+    "serviceCharged": "BOOLEAN",
+    "serviceChargeRate": "DECIMAL",
+    "serviceChargeAmount": "DECIMAL",
+    "serviceChargeTaxId": "UUID",
+    "serviceChargeTaxRate": "DECIMAL",
+    "taxed": "BOOLEAN",
+    "taxAmount": "DECIMAL",
+    "adjustmentAmount": "DECIMAL",
+    "total": "DECIMAL",
+    "tenderAmount": "DECIMAL",
+    "changeAmount": "DECIMAL",
+    "qponVoucher": "DECIMAL",
+    "qponCoupon": "DECIMAL",
+    "status": "STRING",
+    "createdByUserId": "UUID",
+    "createdDateTime": "DATE",
+    "lastUpdateByUserId": "UUID",
+    "lastUpdateDateTime": "DATE",
+    "paidByUserId": "UUID",
+    "paymentDate": "DATEONLY",
+    "paymentDateTime": "DATE",
+    "cancelledByUserId": "UUID",
+    "cancellationDate": "DATEONLY",
+    "cancellationDateTime": "DATE",
+    "cancellationReason": "STRING",
+    "closingDate": "DATEONLY",
+    "closingDateTime": "DATE",
+    "rowVersion": "UUID",
+    "isSync": "BOOLEAN",
+    "syncDate": "DATE",
+    "type": "INTEGER",
+    "service": "INTEGER",
+    "isInvalid": "BOOLEAN",
+    "isTokolunaOrder": {
+      "defaultValue": false,
+      "type": "BOOLEAN"
+    },
+    "printBillCount": {
+      "defaultValue": 0,
+      "type": "INTEGER"
+    },
+    "afterClose": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    },
+    "queueNumber": "INTEGER",
+    "shiftSessionId": "STRING"
+  },
+  "outletSetting": {
+    "id": {
+      "allowNull": false,
+      "primaryKey": true,
+      "type": "INTEGER"
+    },
+    "address": "STRING",
+    "pinPoint": "STRING",
+    "autoPrint": "BOOLEAN",
+    "printCaptainOrder": "BOOLEAN",
+    "copyCaptainOrder": "BOOLEAN",
+    "isSuspended": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    },
+    "subscriptionDueDateUtc": "DATE",
+    "qtyCaptainOrder": {
+      "type": "INTEGER",
+      "defaultValue": 1
+    },
+    "copyReceipt": "BOOLEAN",
+    "qtyReceipt": {
+      "type": "INTEGER",
+      "defaultValue": 1
+    },
+    "autoLockScreen": {
+      "type": "BOOLEAN",
+      "defaultValue": true
+    },
+    "defaultSalesTaxId": {
+      "type": "STRING",
+      "allowNull": true
+    },
+    "email": "STRING",
+    "facebook": "STRING",
+    "fax": "STRING",
+    "instagram": "STRING",
+    "lastLoginUseId": "UUID",
+    "lastOrderNumber": "INTEGER",
+    "lastOrderNumberDate": "DATE",
+    "lastSyncTime": "DATE",
+    "name": "STRING",
+    "phone": "STRING",
+    "serviceCharged": "BOOLEAN",
+    "serviceChargeRate": "DECIMAL",
+    "serviceChargeTaxId": "UUID",
+    "serviceChargeTaxRate": "DECIMAL",
+    "serviceChargeBeforeDiscount": "BOOLEAN",
+    "taxed": "BOOLEAN",
+    "taxInclusive": "BOOLEAN",
+    "taxOnSales": "BOOLEAN",
+    "taxOnDiscount": {
+      "type": "BOOLEAN",
+      "allowNull": false,
+      "defaultValue": false
+    },
+    "twitter": "STRING",
+    "website": "STRING",
+    "billNotes": "STRING",
+    "closingTime": "STRING",
+    "requiredOrderName": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    },
+    "requiredShift": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    },
+    "allowCustomPriceOrDiscount": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    },
+    "pictureUrl": "STRING",
+    "pictureLocal": "STRING",
+    "lastQueueNumber": "INTEGER",
+    "lastQueueNumberDate": {
+      "type": "DATE",
+      "allowNull": true
+    },
+    "maxQueueNumber": {
+      "type": "INTEGER",
+      "defaultValue": 50
+    },
+    "useQueue": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    },
+    "hideFinalCashEndShift": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    },
+    "useDefaultItemNotes": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    },
+    "defaultItemNotes": "STRING",
+    "outletPictureUrl": "STRING",
+    "outletPictureLocal": "STRING",
+    "printerAreaSetting": {
+      "type": "STRING",
+      "defaultValue": "combined"
+    },
+    "isSyncOpenOrder": "BOOLEAN",
+    "isCanSaveOrder": {
+      "type": "BOOLEAN",
+      "defaultValue": true
+    },
+    "isCanPaymentCash": {
+      "type": "BOOLEAN",
+      "defaultValue": true
+    },
+    "isSppMode": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    },
+    "requiredTable": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    },
+    "cleanEndShift": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    },
+    "useRounding": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    },
+    "roundingType": {
+      "type": "INTEGER",
+      "defaultValue": 0
+    },
+    "roundingBase": {
+      "type": "INTEGER",
+      "defaultValue": 500
+    },
+    "defaultWarehouseId": "STRING",
+    "enableStockPreview": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    }
+  },
+  "paymentMethod": {
+    "paymentMethodId": {
+      "allowNull": false,
+      "primaryKey": true,
+      "type": "UUID"
+    },
+    "paymentMethodType": "STRING",
+    "paymentMethodName": "STRING",
+    "paymentAccountId": "UUID",
+    "isDefaultCash": "BOOLEAN",
+    "sortOrder": "INTEGER",
+    "deleted": "BOOLEAN"
+  },
+  "priceLevelPricelist": {
+    "productId": {
+      "allowNull": false,
+      "primaryKey": true,
+      "foreignKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "productVariantId": {
+      "allowNull": false,
+      "primaryKey": true,
+      "foreignKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "priceLevelId": {
+      "allowNull": false,
+      "primaryKey": true,
+      "foreignKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "priceLevelName": "STRING",
+    "price": "DECIMAL",
+    "isMaster": "BOOLEAN",
+    "deleted": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    }
+  },
+  "priceLevel": {
+    "id": {
+      "allowNull": false,
+      "primaryKey": true,
+      "type": "UUID"
+    },
+    "name": "STRING",
+    "isMaster": "BOOLEAN"
+  },
+  "priceTierOrderLine": {
+    "priceTierId": {
+      "allowNull": false,
+      "foreignKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "orderId": {
+      "allowNull": false,
+      "foreignKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "orderLineId": {
+      "allowNull": false,
+      "foreignKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "productId": {
+      "allowNull": false,
+      "foreignKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "id": {
+      "allowNull": false,
+      "primaryKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "priceTierName": "STRING",
+    "minimumQty": "DECIMAL",
+    "price": "DECIMAL",
+    "originalPrice": "DECIMAL",
+    "sortOrder": "INTEGER",
+    "createDateUtc": "DATE"
+  },
+  "priceTier": {
+    "id": {
+      "allowNull": false,
+      "primaryKey": true,
+      "type": "UUID"
+    },
+    "productId": {
+      "allowNull": true,
+      "foreignKey": true,
+      "type": "UUID"
+    },
+    "name": "STRING",
+    "minimumQty": "DECIMAL",
+    "price": "DECIMAL",
+    "sortOrder": "INTEGER",
+    "deleted": "BOOLEAN"
+  },
+  "pricelist": {
+    "productId": {
+      "allowNull": false,
+      "primaryKey": true,
+      "foreignKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "productVariantId": {
+      "allowNull": false,
+      "primaryKey": true,
+      "foreignKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "salesTypeId": {
+      "allowNull": false,
+      "primaryKey": true,
+      "foreignKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "salesTypeName": "STRING",
+    "description": "STRING",
+    "price": "DECIMAL",
+    "isMaster": "BOOLEAN",
+    "deleted": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    }
+  },
+  "printerArea": {
+    "id": {
+      "allowNull": false,
+      "primaryKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "name": "STRING",
+    "sortOrder": "INTEGER"
+  },
+  "printer": {
+    "id": {
+      "allowNull": false,
+      "primaryKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "deviceId": "STRING",
+    "printerAreaId": "STRING",
+    "printerType": "STRING",
+    "printerModule": "STRING",
+    "printerConfig": "STRING"
+  },
+  "printoutTemplate": {
+    "id": {
+      "allowNull": false,
+      "primaryKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "name": "STRING",
+    "showLogo": {
+      "type": "BOOLEAN",
+      "defaultValue": true
+    },
+    "showOrderNumber": {
+      "type": "BOOLEAN",
+      "defaultValue": true
+    },
+    "showDate": {
+      "type": "BOOLEAN",
+      "defaultValue": true
+    },
+    "showAddress": {
+      "type": "BOOLEAN",
+      "defaultValue": true
+    },
+    "showCashierAndUser": {
+      "type": "BOOLEAN",
+      "defaultValue": true
+    },
+    "showAdjustment": {
+      "type": "BOOLEAN",
+      "defaultValue": true
+    },
+    "showTax": {
+      "type": "BOOLEAN",
+      "defaultValue": true
+    },
+    "showServiceCharge": {
+      "type": "BOOLEAN",
+      "defaultValue": true
+    },
+    "sortOrder": "INTEGER",
+    "showUnitPriceProduct": {
+      "type": "BOOLEAN",
+      "defaultValue": true
+    },
+    "showUnitPriceModifier": {
+      "type": "BOOLEAN",
+      "defaultValue": true
+    }
+  },
+  "productCategoryRelation": {
+    "productId": {
+      "allowNull": false,
+      "primaryKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "categoryId": {
+      "allowNull": false,
+      "primaryKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "deleted": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    }
+  },
+  "productModifierRelation": {
+    "productId": {
+      "allowNull": false,
+      "primaryKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "modifierId": {
+      "allowNull": false,
+      "primaryKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "sortOrder": "INTEGER",
+    "deleted": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    }
+  },
+  "printerAreaRel": {
+    "productId": {
+      "allowNull": false,
+      "primaryKey": true,
+      "type": "UUID"
+    },
+    "printerAreaId": {
+      "allowNull": false,
+      "primaryKey": true,
+      "type": "UUID"
+    },
+    "printerItemAreaId": {
+      "allowNull": true,
+      "type": "UUID"
+    },
+    "deleted": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    }
+  },
+  "productToUserRel": {
+    "productId": {
+      "allowNull": false,
+      "primaryKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "userId": {
+      "allowNull": false,
+      "primaryKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    }
+  },
+  "productVariant": {
+    "id": {
+      "allowNull": false,
+      "primaryKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "productId": {
+      "primaryKey": true,
+      "foreignKey": true,
+      "type": "UUID"
+    },
+    "sku": "STRING",
+    "name": "STRING",
+    "variantName": "STRING",
+    "unitPrice": "DECIMAL",
+    "isMaster": "BOOLEAN",
+    "attribute1Value": "STRING",
+    "attribute2Value": "STRING",
+    "attribute3Value": "STRING",
+    "sortOrder": "INTEGER",
+    "deleted": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    }
+  },
+  "product": {
+    "id": {
+      "allowNull": false,
+      "primaryKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "sku": "STRING",
+    "name": "STRING",
+    "detailDescription": "STRING",
+    "serviceCharged": "BOOLEAN",
+    "salesTaxId": "UUID",
+    "isDiscountDisabled": "BOOLEAN",
+    "unitPrice": "DECIMAL",
+    "uom": "STRING",
+    "modifierCount": "INTEGER",
+    "hasVariants": "BOOLEAN",
+    "variantCount": "INTEGER",
+    "variantAttribute1": "STRING",
+    "variantAttribute2": "STRING",
+    "variantAttribute3": "STRING",
+    "masterVariantId": "UUID",
+    "pictureUrl": "STRING",
+    "pictureLocal": "STRING",
+    "printerAreaId": "UUID",
+    "printerItemAreaId": "UUID",
+    "isFavorite": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    },
+    "isOutOfStock": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    },
+    "isPrintLabel": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    },
+    "deleted": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    },
+    "availableForAllPosUsers": "BOOLEAN"
+  },
+  "promoCombined": {
+    "id": {
+      "allowNull": false,
+      "primaryKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "tenantId": "INTEGER",
+    "promoId": {
+      "type": "UUID",
+      "foreignKey": true,
+      "allowNull": false
+    },
+    "promoCombinedId": {
+      "type": "UUID",
+      "foreignKey": true,
+      "allowNull": false
+    },
+    "sortOrder": "INTEGER",
+    "deleted": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    }
+  },
+  "promoExtension": {
+    "id": {
+      "allowNull": false,
+      "primaryKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "promoId": {
+      "allowNull": false,
+      "foreignKey": true,
+      "minimumPurchaseAmount": "INTEGER",
+      "maximumDiscountAmount": "INTEGER",
+      "type": "UUID"
+    },
+    "operatorTerm": "STRING",
+    "operatorReward": "STRING",
+    "termVariantLength": "INTEGER",
+    "discountType": "INTEGER",
+    "discountPercentage": "DECIMAL",
+    "discountAmount": "DECIMAL",
+    "maxDiscountAmount": "DECIMAL",
+    "sortOrder": "INTEGER",
+    "deleted": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    }
+  },
+  "promoItemReward": {
+    "id": {
+      "allowNull": false,
+      "primaryKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "tenantId": "INTEGER",
+    "promoId": {
+      "allowNull": false,
+      "foreignKey": true,
+      "type": "UUID"
+    },
+    "promoItemId": {
+      "allowNull": false,
+      "foreignKey": true,
+      "type": "UUID"
+    },
+    "productId": "UUID",
+    "sortOrder": "INTEGER",
+    "deleted": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    }
+  },
+  "promoItemTerm": {
+    "id": {
+      "allowNull": false,
+      "primaryKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "tenantId": "INTEGER",
+    "promoId": {
+      "allowNull": false,
+      "foreignKey": true,
+      "type": "UUID"
+    },
+    "promoItemId": {
+      "allowNull": false,
+      "foreignKey": true,
+      "type": "UUID"
+    },
+    "productId": "UUID",
+    "categoryProductId": "UUID",
+    "qty": "DECIMAL",
+    "sortOrder": "INTEGER",
+    "deleted": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    }
+  },
+  "promoItemVariantReward": {
+    "id": {
+      "allowNull": false,
+      "primaryKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "tenantId": "INTEGER",
+    "promoItemRewardId": {
+      "allowNull": false,
+      "foreignKey": true,
+      "type": "UUID"
+    },
+    "productId": "UUID",
+    "productVariantId": "UUID",
+    "qty": "DECIMAL",
+    "sortOrder": "INTEGER",
+    "deleted": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    }
+  },
+  "promoItemVariantTerm": {
+    "id": {
+      "allowNull": false,
+      "primaryKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "tenantId": "INTEGER",
+    "promoItemTermId": "UUID",
+    "productId": "UUID",
+    "productVariantId": "UUID",
+    "qty": "DECIMAL",
+    "sortOrder": "INTEGER",
+    "deleted": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    }
+  },
+  "promoItem": {
+    "id": {
+      "allowNull": false,
+      "primaryKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "tenantId": "INTEGER",
+    "promoId": {
+      "allowNull": false,
+      "foreignKey": true,
+      "type": "UUID"
+    },
+    "termType": "INTEGER",
+    "rewardType": "INTEGER",
+    "minimumPurchaseAmount": "INTEGER",
+    "maximumDiscountAmount": "INTEGER",
+    "discountMode": "BOOLEAN",
+    "discountValue": "INTEGER",
+    "operatorTerm": "STRING",
+    "operatorReward": "STRING",
+    "sortOrder": "INTEGER",
+    "deleted": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    }
+  },
+  "promoOrderLine": {
+    "orderLineId": {
+      "allowNull": false,
+      "foreignKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "promoId": {
+      "allowNull": false,
+      "foreignKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "orderId": {
+      "allowNull": false,
+      "foreignKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "id": {
+      "allowNull": false,
+      "primaryKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "promoName": "STRING",
+    "termType": "INTEGER",
+    "rewardType": "INTEGER",
+    "discountMode": "INTEGER",
+    "discountValue": "DECIMAL",
+    "productIdReward": "UUID",
+    "productName": "STRING",
+    "productVariantIdReward": "UUID",
+    "description": "STRING",
+    "qty": "DECIMAL",
+    "totalPromoAmount": "DECIMAL",
+    "relatedToVariant": "STRING",
+    "createDateUtc": "DATE"
+  },
+  "promoOrder": {
+    "promoId": {
+      "allowNull": false,
+      "foreignKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "orderId": {
+      "allowNull": false,
+      "foreignKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "id": {
+      "allowNull": false,
+      "primaryKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "promoName": "STRING",
+    "promoType": "INTEGER",
+    "qty": "INTEGER",
+    "totalPromoAmountLines": "INTEGER",
+    "createDateUtc": "DATE"
+  },
+  "promoProductReward": {
+    "id": {
+      "allowNull": false,
+      "primaryKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "promoId": {
+      "allowNull": false,
+      "foreignKey": true,
+      "type": "UUID"
+    },
+    "productId": "UUID",
+    "allVariants": "BOOLEAN",
+    "sortOrder": "INTEGER",
+    "deleted": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    }
+  },
+  "promoProductTerm": {
+    "id": {
+      "allowNull": false,
+      "primaryKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "promoId": {
+      "allowNull": false,
+      "foreignKey": true,
+      "type": "UUID"
+    },
+    "productId": "UUID",
+    "allVariants": "BOOLEAN",
+    "sortOrder": "INTEGER",
+    "deleted": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    }
+  },
+  "promoProductVariantReward": {
+    "id": {
+      "allowNull": false,
+      "primaryKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "promoId": {
+      "allowNull": false,
+      "foreignKey": true,
+      "type": "UUID"
+    },
+    "promoProductRewardId": "UUID",
+    "productId": "UUID",
+    "productVariantId": "UUID",
+    "qty": "INTEGER",
+    "sortOrder": "INTEGER",
+    "deleted": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    }
+  },
+  "promoProductVariantTerm": {
+    "id": {
+      "allowNull": false,
+      "primaryKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "promoId": {
+      "allowNull": false,
+      "foreignKey": true,
+      "type": "UUID"
+    },
+    "promoProductTermId": "UUID",
+    "productId": "UUID",
+    "productVariantId": "UUID",
+    "qty": "INTEGER",
+    "sortOrder": "INTEGER",
+    "deleted": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    }
+  },
+  "promoToPaymentMethodRel": {
+    "id": {
+      "allowNull": false,
+      "primaryKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "promoId": {
+      "allowNull": false,
+      "foreignKey": true,
+      "type": "UUID"
+    },
+    "paymentMethodId": "UUID",
+    "sortOrder": "INTEGER",
+    "deleted": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    }
+  },
+  "promoToSalesTypeRel": {
+    "id": {
+      "allowNull": false,
+      "primaryKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "promoId": {
+      "allowNull": false,
+      "foreignKey": true,
+      "type": "UUID"
+    },
+    "salesTypeId": {
+      "allowNull": false,
+      "foreignKey": true,
+      "type": "UUID"
+    },
+    "sortOrder": "INTEGER",
+    "deleted": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    }
+  },
+  "promo": {
+    "id": {
+      "allowNull": false,
+      "primaryKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "name": "STRING",
+    "type": "INTEGER",
+    "appliesMultiple": "BOOLEAN",
+    "canBeCombined": "BOOLEAN",
+    "startDateTime": "DATE",
+    "endDateTime": "DATE",
+    "startDate": "DATEONLY",
+    "endDate": "DATEONLY",
+    "useTimespan": "BOOLEAN",
+    "startTime": "TIME",
+    "endTime": "TIME",
+    "monday": "BOOLEAN",
+    "tuesday": "BOOLEAN",
+    "wednesday": "BOOLEAN",
+    "thursday": "BOOLEAN",
+    "friday": "BOOLEAN",
+    "saturday": "BOOLEAN",
+    "sunday": "BOOLEAN",
+    "allSalesType": "BOOLEAN",
+    "allPaymentMethod": "BOOLEAN",
+    "inactive": "BOOLEAN",
+    "deleted": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    },
+    "promoType": "INTEGER",
+    "isMultiple": "BOOLEAN",
+    "promoActivate": "BOOLEAN",
+    "startDateString": "STRING",
+    "endDateString": "STRING",
+    "useTime": "BOOLEAN",
+    "isFullDay": "BOOLEAN",
+    "allOutlets": "BOOLEAN",
+    "allPayment": "BOOLEAN",
+    "itsCombined": "BOOLEAN",
+    "allPromoCombined": "BOOLEAN"
+  },
+  "qponOrder": {
+    "id": {
+      "allowNull": false,
+      "primaryKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "orderId": {
+      "allowNull": false,
+      "foreignKey": true,
+      "type": "UUID"
+    },
+    "couponId": "STRING",
+    "couponType": "STRING",
+    "couponAmount": "DECIMAL",
+    "minimumAmountLimit": "DECIMAL"
+  },
+  "qrisBankAcquirer": {
+    "id": {
+      "allowNull": false,
+      "type": "UUID"
+    },
+    "id_transaction_pos": {
+      "allowNull": false,
+      "primaryKey": true,
+      "type": "UUID"
+    },
+    "createDateUtc": "DATE",
+    "updatedDateUtc": "DATE",
+    "name": "STRING",
+    "searchKey": "STRING",
+    "setllementBankName": "STRING",
+    "settlementBankAccountNumber": "STRING",
+    "createUserId": "STRING",
+    "updateUserId": "STRING"
+  },
+  "qrisHistory": {
+    "id": {
+      "allowNull": false,
+      "primaryKey": true,
+      "type": "UUID"
+    },
+    "tenantId": "INTEGER",
+    "outletId": "INTEGER",
+    "orderId": "STRING",
+    "createDateUtc": "DATE",
+    "updatedDateUtc": "DATE",
+    "transactionNumber": "STRING",
+    "description": "STRING",
+    "transactionAmount": "INTEGER",
+    "mdrRate": "INTEGER",
+    "mdrAmount": "INTEGER",
+    "transactionTotal": "INTEGER",
+    "refundAmount": "INTEGER",
+    "transactionDate": "STRING",
+    "transactionTime": "STRING",
+    "transactionDateUtc": "DATE",
+    "paymentDate": "STRING",
+    "paymentTime": "STRING",
+    "paymentDateUtc": "DATE",
+    "paymentMethodId": "STRING",
+    "subPaymentMethod": "STRING",
+    "bankAcquirerId": "STRING",
+    "internalTransactionId": "STRING",
+    "bankTransactionId": "STRING",
+    "bankReferenceNumber": "STRING",
+    "bankQrCode": "STRING",
+    "bankApprovalDate": "STRING",
+    "isClientTransactionType": "BOOLEAN",
+    "clientTransactionType": "STRING",
+    "clientTransactionId": "STRING",
+    "createUserId": "STRING",
+    "createUserDeviceId": "STRING",
+    "statusQris": "INTEGER",
+    "isSync": {
+      "defaultValue": false,
+      "type": "BOOLEAN"
+    },
+    "syncDate": "DATE"
+  },
+  "qrisPaymentMethod": {
+    "id": {
+      "allowNull": false,
+      "type": "UUID"
+    },
+    "id_transaction_pos": {
+      "allowNull": false,
+      "primaryKey": true,
+      "type": "UUID"
+    },
+    "createDateUtc": "DATE",
+    "updateDateUtc": "DATE",
+    "name": "STRING",
+    "searchKey": "STRING",
+    "createUserId": "STRING",
+    "updateUserId": "STRING"
+  },
+  "salesType": {
+    "id": {
+      "allowNull": false,
+      "primaryKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "name": "STRING",
+    "serviceCharged": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    },
+    "taxed": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    },
+    "isMaster": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    },
+    "deleted": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    },
+    "priceLevelId": "UUID",
+    "salesTypeId": "STRING"
+  },
+  "scanner": {
+    "id": {
+      "allowNull": false,
+      "primaryKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "deviceId": "STRING",
+    "name": {
+      "allowNull": true,
+      "type": "STRING"
+    },
+    "address": "STRING",
+    "class": {
+      "allowNull": true,
+      "type": "DECIMAL"
+    },
+    "isEnabled": {
+      "defaultValue": false,
+      "type": "BOOLEAN"
+    }
+  },
+  "shiftSession": {
+    "id": {
+      "allowNull": false,
+      "primaryKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "userId": {
+      "allowNull": false,
+      "type": "UUID"
+    },
+    "shiftOpeningDate": "DATE",
+    "shiftClosingDate": "DATE",
+    "cashOnOpening": {
+      "type": "DECIMAL",
+      "defaultValue": 0
+    },
+    "cashOnClosing": {
+      "type": "DECIMAL",
+      "defaultValue": 0
+    },
+    "paymentCashTotal": {
+      "type": "DECIMAL",
+      "defaultValue": 0
+    },
+    "balance": {
+      "type": "DECIMAL",
+      "defaultValue": 0
+    },
+    "difference": {
+      "type": "DECIMAL",
+      "defaultValue": 0
+    },
+    "otherPaymentTotal": {
+      "type": "DECIMAL",
+      "defaultValue": 0
+    },
+    "totalTransaction": {
+      "type": "INTEGER",
+      "defaultValue": 0
+    },
+    "note": "STRING",
+    "totalExpenses": "DECIMAL",
+    "totalDeposits": "DECIMAL",
+    "isSync": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    }
+  },
+  "tableManagement": {
+    "id": {
+      "AllowNull": false,
+      "primaryKey": true,
+      "type": "UUID"
+    },
+    "tableId": "UUID",
+    "orderId": "UUID",
+    "capacity": "INTEGER",
+    "startedAt": "INTEGER",
+    "endedAt": "INTEGER",
+    "notifAt": "INTEGER",
+    "warningAt": "INTEGER",
+    "sessionDate": "DATEONLY",
+    "duration": "INTEGER",
+    "isActive": {
+      "type": "BOOLEAN",
+      "defaultValue": true
+    },
+    "notified": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    },
+    "notifiedScheduled": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    },
+    "finalNotified": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    },
+    "finalNotifiedScheduled": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    }
+  },
+  "table": {
+    "id": {
+      "allowNull": false,
+      "primaryKey": true,
+      "type": "UUID"
+    },
+    "name": "STRING",
+    "areaId": "STRING",
+    "inUsed": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    },
+    "absisStartingGrid": "INTEGER",
+    "ordinatStartingGrid": "INTEGER",
+    "absisAmountOfGrid": "INTEGER",
+    "ordinatAmountOfGrid": "INTEGER",
+    "tableType": {
+      "type": "STRING",
+      "defaultValue": "square"
+    },
+    "hasMaxOrderDuration": "BOOLEAN",
+    "maxOrderDurationMinutes": "INTEGER",
+    "hasMinOrderAmount": "BOOLEAN",
+    "minOrderAmount": "DECIMAL",
+    "minOrderAmountType": "INTEGER",
+    "deleted": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    }
+  },
+  "tax": {
+    "id": {
+      "allowNull": false,
+      "primaryKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "code": "STRING",
+    "name": "STRING",
+    "rate": "DECIMAL",
+    "deleted": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    }
+  },
+  "transactionLog": {
+    "id": {
+      "allowNull": false,
+      "primaryKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "userId": "UUID",
+    "userName": "STRING",
+    "orderId": {
+      "allowNull": true,
+      "type": "UUID"
+    },
+    "orderNumber": {
+      "allowNull": true,
+      "type": "STRING"
+    },
+    "date": "DATEONLY",
+    "dateTime": "DATE",
+    "description": "STRING",
+    "data1": {
+      "allowNull": true,
+      "type": "STRING"
+    },
+    "data2": {
+      "allowNull": true,
+      "type": "STRING"
+    },
+    "data3": {
+      "allowNull": true,
+      "type": "STRING"
+    }
+  },
+  "user": {
+    "id": {
+      "allowNull": false,
+      "primaryKey": true,
+      "defaultValue": "UUIDV4",
+      "type": "UUID"
+    },
+    "firstName": "STRING",
+    "lastName": "STRING",
+    "fullName": "STRING",
+    "pinNumber": "STRING",
+    "pictureUrl": "STRING",
+    "pictureLocal": "STRING",
+    "permissionPay": "BOOLEAN",
+    "permissionEdit": "BOOLEAN",
+    "permissionVoidOrder": "BOOLEAN",
+    "permissionVoidItem": "BOOLEAN",
+    "permissionDiscount": "BOOLEAN",
+    "permissionReport": "BOOLEAN",
+    "permissionCustomPrice": "BOOLEAN",
+    "permissionCustomItem": {
+      "type": "BOOLEAN",
+      "defaultValue": true
+    },
+    "permissionAdmin": "BOOLEAN",
+    "deleted": {
+      "type": "BOOLEAN",
+      "defaultValue": false
+    },
+    "permissionPrintBill": "BOOLEAN",
+    "permissionSeeAllUserTransactions": "BOOLEAN"
+  }
+}

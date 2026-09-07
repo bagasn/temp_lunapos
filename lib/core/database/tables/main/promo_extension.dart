@@ -7,15 +7,15 @@ class TablePromoExtension extends Table {
 
   TextColumn get id => text()();
   TextColumn get promoId => text()();
-  TextColumn get operatorTerm => text()();
-  TextColumn get operatorReward => text()();
-  RealColumn get termVariantLength => real()();
-  RealColumn get discountType => real()();
-  BoolColumn get discountPercentage => boolean()();
-  BoolColumn get discountAmount => boolean()();
-  BoolColumn get maxDiscountAmount => boolean()();
-  BoolColumn get sortOrder => boolean()();
-  BoolColumn get deleted => boolean()();
+  TextColumn get operatorTerm => text().nullable()();
+  TextColumn get operatorReward => text().nullable()();
+  IntColumn get termVariantLength => integer().nullable()();
+  IntColumn get discountType => integer().nullable()();
+  RealColumn get discountPercentage => real().nullable()();
+  RealColumn get discountAmount => real().nullable()();
+  RealColumn get maxDiscountAmount => real().nullable()();
+  IntColumn get sortOrder => integer().nullable()();
+  BoolColumn get deleted => boolean().withDefault(const Constant(false))();
 
   // Base fields
   DateTimeColumn get createdAt => dateTime().nullable()();

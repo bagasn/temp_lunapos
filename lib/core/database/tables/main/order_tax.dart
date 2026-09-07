@@ -8,9 +8,9 @@ class TableOrderTax extends Table {
   TextColumn get order => text()();
   TextColumn get orderId => text()();
   TextColumn get taxId => text()();
-  RealColumn get taxRate => real()();
-  RealColumn get baseAmount => real()();
-  RealColumn get taxAmount => real()();
+  RealColumn get taxRate => real().nullable()();
+  RealColumn get baseAmount => real().nullable()();
+  RealColumn get taxAmount => real().nullable()();
 
   // Base fields
   DateTimeColumn get createdAt => dateTime().nullable()();

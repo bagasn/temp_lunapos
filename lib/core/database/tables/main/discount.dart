@@ -6,10 +6,10 @@ class TableDiscount extends Table {
   String get tableName => 'discounts';
 
   TextColumn get id => text()();
-  TextColumn get name => text()();
-  TextColumn get discountMode => text()();
-  RealColumn get discountValue => real()();
-  BoolColumn get deleted => boolean()();
+  TextColumn get name => text().nullable()();
+  TextColumn get discountMode => text().nullable()();
+  RealColumn get discountValue => real().nullable()();
+  BoolColumn get deleted => boolean().withDefault(const Constant(false))();
 
   // Base fields
   DateTimeColumn get createdAt => dateTime().nullable()();

@@ -6,19 +6,19 @@ class TableTableManagement extends Table {
   String get tableName => 'TableManagement';
 
   TextColumn get id => text()();
-  TextColumn get tableId => text()();
-  TextColumn get orderId => text()();
-  RealColumn get capacity => real()();
-  TextColumn get sessionDate => text()();
-  RealColumn get startedAt => real()();
-  RealColumn get endedAt => real()();
-  RealColumn get notifAt => real()();
-  BoolColumn get notified => boolean()();
-  BoolColumn get notifiedScheduled => boolean()();
-  RealColumn get warningAt => real()();
-  BoolColumn get finalNotified => boolean()();
-  BoolColumn get finalNotifiedScheduled => boolean()();
-  RealColumn get duration => real()();
+  TextColumn get tableId => text().nullable()();
+  TextColumn get orderId => text().nullable()();
+  IntColumn get capacity => integer().nullable()();
+  DateTimeColumn get sessionDate => dateTime().nullable()();
+  IntColumn get startedAt => integer().nullable()();
+  IntColumn get endedAt => integer().nullable()();
+  IntColumn get notifAt => integer().nullable()();
+  BoolColumn get notified => boolean().withDefault(const Constant(false))();
+  BoolColumn get notifiedScheduled => boolean().withDefault(const Constant(false))();
+  IntColumn get warningAt => integer().nullable()();
+  BoolColumn get finalNotified => boolean().withDefault(const Constant(false))();
+  BoolColumn get finalNotifiedScheduled => boolean().withDefault(const Constant(false))();
+  IntColumn get duration => integer().nullable()();
   TextColumn get table => text()();
 
   // Base fields

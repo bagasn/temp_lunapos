@@ -5,21 +5,21 @@ class TableOrderPayment extends Table {
   @override
   String get tableName => 'orderPayments';
 
-  TextColumn get orderId => text()();
-  TextColumn get paymentMethodId => text()();
-  TextColumn get paymentAccountId => text()();
-  RealColumn get paymentAmount => real()();
-  TextColumn get cardNumber => text()();
-  TextColumn get cardHolder => text()();
-  TextColumn get referenceNumber => text()();
-  TextColumn get partnerId => text()();
-  TextColumn get partnerPaymentMethodId => text()();
-  TextColumn get partnerPaymentMethodName => text()();
-  TextColumn get partnerTransactionId => text()();
-  TextColumn get otherPartyId => text()();
-  TextColumn get depositId => text()();
-  TextColumn get depositNumber => text()();
-  RealColumn get sortOrder => real()();
+  TextColumn get orderId => text().nullable()();
+  TextColumn get paymentMethodId => text().nullable()();
+  TextColumn get paymentAccountId => text().nullable()();
+  RealColumn get paymentAmount => real().nullable()();
+  TextColumn get cardNumber => text().nullable()();
+  TextColumn get cardHolder => text().nullable()();
+  TextColumn get referenceNumber => text().nullable()();
+  TextColumn get partnerId => text().nullable()();
+  TextColumn get partnerPaymentMethodId => text().nullable()();
+  TextColumn get partnerPaymentMethodName => text().nullable()();
+  TextColumn get partnerTransactionId => text().nullable()();
+  TextColumn get otherPartyId => text().nullable()();
+  TextColumn get depositId => text().nullable()();
+  TextColumn get depositNumber => text().nullable()();
+  IntColumn get sortOrder => integer().nullable()();
   TextColumn get order => text()();
   TextColumn get paymentMethod => text()();
 

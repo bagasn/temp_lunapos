@@ -7,12 +7,12 @@ class TableQrisPaymentMethod extends Table {
 
   TextColumn get id => text()();
   TextColumn get id_transaction_pos => text()();
-  TextColumn get createDateUtc => text()();
+  DateTimeColumn get createDateUtc => dateTime().nullable()();
   TextColumn get updatedDateUtc => text()();
-  TextColumn get name => text()();
-  TextColumn get searchKey => text()();
-  TextColumn get createUserId => text()();
-  TextColumn get updateUserId => text()();
+  TextColumn get name => text().nullable()();
+  TextColumn get searchKey => text().nullable()();
+  TextColumn get createUserId => text().nullable()();
+  TextColumn get updateUserId => text().nullable()();
 
   // Base fields
   DateTimeColumn get createdAt => dateTime().nullable()();

@@ -6,17 +6,17 @@ class TablePrintoutTemplate extends Table {
   String get tableName => 'printoutTemplates';
 
   TextColumn get id => text()();
-  TextColumn get name => text()();
-  BoolColumn get showLogo => boolean()();
-  BoolColumn get showOrderNumber => boolean()();
-  BoolColumn get showDate => boolean()();
-  BoolColumn get showAddress => boolean()();
-  BoolColumn get showAdjustment => boolean()();
-  BoolColumn get showTax => boolean()();
-  BoolColumn get showServiceCharge => boolean()();
-  BoolColumn get showUnitPriceProduct => boolean()();
-  BoolColumn get showUnitPriceModifier => boolean()();
-  RealColumn get sortOrder => real()();
+  TextColumn get name => text().nullable()();
+  BoolColumn get showLogo => boolean().withDefault(const Constant(true))();
+  BoolColumn get showOrderNumber => boolean().withDefault(const Constant(true))();
+  BoolColumn get showDate => boolean().withDefault(const Constant(true))();
+  BoolColumn get showAddress => boolean().withDefault(const Constant(true))();
+  BoolColumn get showAdjustment => boolean().withDefault(const Constant(true))();
+  BoolColumn get showTax => boolean().withDefault(const Constant(true))();
+  BoolColumn get showServiceCharge => boolean().withDefault(const Constant(true))();
+  BoolColumn get showUnitPriceProduct => boolean().withDefault(const Constant(true))();
+  BoolColumn get showUnitPriceModifier => boolean().withDefault(const Constant(true))();
+  IntColumn get sortOrder => integer().nullable()();
 
   // Base fields
   DateTimeColumn get createdAt => dateTime().nullable()();

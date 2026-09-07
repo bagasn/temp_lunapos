@@ -8,16 +8,16 @@ class TableProductVariant extends Table {
   TextColumn get id => text()();
   TextColumn get product => text()();
   TextColumn get productId => text()();
-  TextColumn get sku => text()();
-  TextColumn get name => text()();
-  TextColumn get variantName => text()();
-  RealColumn get unitPrice => real()();
-  BoolColumn get isMaster => boolean()();
-  TextColumn get attribute1Value => text()();
-  TextColumn get attribute2Value => text()();
-  TextColumn get attribute3Value => text()();
-  RealColumn get sortOrder => real()();
-  BoolColumn get deleted => boolean()();
+  TextColumn get sku => text().nullable()();
+  TextColumn get name => text().nullable()();
+  TextColumn get variantName => text().nullable()();
+  RealColumn get unitPrice => real().nullable()();
+  BoolColumn get isMaster => boolean().nullable()();
+  TextColumn get attribute1Value => text().nullable()();
+  TextColumn get attribute2Value => text().nullable()();
+  TextColumn get attribute3Value => text().nullable()();
+  IntColumn get sortOrder => integer().nullable()();
+  BoolColumn get deleted => boolean().withDefault(const Constant(false))();
   TextColumn get prices => text()();
 
   // Base fields

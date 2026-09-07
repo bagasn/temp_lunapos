@@ -6,11 +6,11 @@ class TableLinkedOrder extends Table {
   String get tableName => 'linkedOrders';
 
   TextColumn get orderId => text()();
-  RealColumn get qrDuration => real()();
-  TextColumn get categoryIds => text()();
-  DateTimeColumn get orderDate => dateTime()();
-  DateTimeColumn get orderTime => dateTime()();
-  RealColumn get status => real()();
+  IntColumn get qrDuration => integer().nullable()();
+  TextColumn get categoryIds => text().nullable()();
+  DateTimeColumn get orderDate => dateTime().nullable()();
+  DateTimeColumn get orderTime => dateTime().nullable()();
+  IntColumn get status => integer().withDefault(const Constant(0))();
 
   // Base fields
   DateTimeColumn get createdAt => dateTime().nullable()();

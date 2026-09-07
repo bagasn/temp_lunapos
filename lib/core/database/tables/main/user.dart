@@ -6,24 +6,24 @@ class TableUser extends Table {
   String get tableName => 'users';
 
   TextColumn get id => text()();
-  TextColumn get firstName => text()();
-  TextColumn get lastName => text()();
-  TextColumn get fullName => text()();
-  TextColumn get pinNumber => text()();
-  TextColumn get pictureUrl => text()();
-  TextColumn get pictureLocal => text()();
-  BoolColumn get deleted => boolean()();
-  BoolColumn get permissionPay => boolean()();
-  BoolColumn get permissionEdit => boolean()();
-  BoolColumn get permissionVoidOrder => boolean()();
-  BoolColumn get permissionVoidItem => boolean()();
-  BoolColumn get permissionDiscount => boolean()();
-  BoolColumn get permissionReport => boolean()();
-  BoolColumn get permissionCustomPrice => boolean()();
-  BoolColumn get permissionCustomItem => boolean()();
-  BoolColumn get permissionAdmin => boolean()();
-  BoolColumn get permissionPrintBill => boolean()();
-  BoolColumn get permissionSeeAllUserTransactions => boolean()();
+  TextColumn get firstName => text().nullable()();
+  TextColumn get lastName => text().nullable()();
+  TextColumn get fullName => text().nullable()();
+  TextColumn get pinNumber => text().nullable()();
+  TextColumn get pictureUrl => text().nullable()();
+  TextColumn get pictureLocal => text().nullable()();
+  BoolColumn get deleted => boolean().withDefault(const Constant(false))();
+  BoolColumn get permissionPay => boolean().nullable()();
+  BoolColumn get permissionEdit => boolean().nullable()();
+  BoolColumn get permissionVoidOrder => boolean().nullable()();
+  BoolColumn get permissionVoidItem => boolean().nullable()();
+  BoolColumn get permissionDiscount => boolean().nullable()();
+  BoolColumn get permissionReport => boolean().nullable()();
+  BoolColumn get permissionCustomPrice => boolean().nullable()();
+  BoolColumn get permissionCustomItem => boolean().withDefault(const Constant(true))();
+  BoolColumn get permissionAdmin => boolean().nullable()();
+  BoolColumn get permissionPrintBill => boolean().nullable()();
+  BoolColumn get permissionSeeAllUserTransactions => boolean().nullable()();
 
   // Base fields
   DateTimeColumn get createdAt => dateTime().nullable()();

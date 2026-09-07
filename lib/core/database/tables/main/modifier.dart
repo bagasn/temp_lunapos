@@ -6,14 +6,14 @@ class TableModifier extends Table {
   String get tableName => 'modifiers';
 
   TextColumn get id => text()();
-  TextColumn get name => text()();
-  BoolColumn get required => boolean()();
-  BoolColumn get allowMultiple => boolean()();
-  RealColumn get maximumAllowed => real()();
-  BoolColumn get haveMaximumItemAllowed => boolean()();
-  RealColumn get maximumItemAllowed => real()();
+  TextColumn get name => text().nullable()();
+  BoolColumn get required => boolean().nullable()();
+  BoolColumn get allowMultiple => boolean().nullable()();
+  IntColumn get maximumAllowed => integer().nullable()();
+  BoolColumn get haveMaximumItemAllowed => boolean().nullable()();
+  IntColumn get maximumItemAllowed => integer().nullable()();
   RealColumn get sortOrder => real()();
-  BoolColumn get deleted => boolean()();
+  BoolColumn get deleted => boolean().withDefault(const Constant(false))();
   TextColumn get items => text()();
   TextColumn get products => text()();
 

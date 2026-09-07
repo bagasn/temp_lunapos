@@ -11,17 +11,17 @@ class TableOrderLineModifier extends Table {
   TextColumn get orderLine => text()();
   TextColumn get orderLineId => text()();
   TextColumn get modifier => text()();
-  TextColumn get modifierId => text()();
+  TextColumn get modifierId => text().nullable()();
   TextColumn get modifierItem => text()();
-  TextColumn get modifierItemId => text()();
-  TextColumn get modifierItemName => text()();
+  TextColumn get modifierItemId => text().nullable()();
+  TextColumn get modifierItemName => text().nullable()();
   TextColumn get product => text()();
-  TextColumn get modifierItemProductId => text()();
+  TextColumn get modifierItemProductId => text().nullable()();
   TextColumn get productVariant => text()();
-  TextColumn get modifierItemProductVariantId => text()();
-  TextColumn get description => text()();
-  RealColumn get qty => real()();
-  RealColumn get price => real()();
+  TextColumn get modifierItemProductVariantId => text().nullable()();
+  TextColumn get description => text().nullable()();
+  RealColumn get qty => real().nullable()();
+  RealColumn get price => real().nullable()();
 
   // Base fields
   DateTimeColumn get createdAt => dateTime().nullable()();

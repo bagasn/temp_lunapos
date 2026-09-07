@@ -9,7 +9,7 @@ class TableCommissionToOrderLine extends Table {
   TextColumn get orderId => text()();
   TextColumn get orderLineId => text()();
   TextColumn get employeeId => text()();
-  TextColumn get employeeName => text()();
+  TextColumn get employeeName => text().nullable()();
 
   // Base fields
   DateTimeColumn get createdAt => dateTime().nullable()();

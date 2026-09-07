@@ -110,16 +110,16 @@ class PromoExtension {
   final String promoId;
   final int termType;
   final int rewardType;
-  final double minimumPurchaseAmount;
-  final double maxDiscountAmount;
+  final num minimumPurchaseAmount; // int or double from server
+  final num maxDiscountAmount; // int or double from server
   final int discountType;
-  final double discountValue;
+  final num discountValue; // int or double from server
   final String operatorTerm;
   final String operatorReward;
   final int sortOrder;
   final int termVariantLength;
-  final double discountPercentage;
-  final double discountAmount;
+  final num discountPercentage; // int or double from server
+  final num discountAmount; // int or double from server
 
   PromoExtension({
     required this.id,
@@ -241,7 +241,7 @@ class PromoProductTerm {
   final String promoItemId;
   final String productId;
   final String categoryProductId;
-  final int sortOrder;
+  final int? sortOrder;
   final bool allVariants;
 
   PromoProductTerm({

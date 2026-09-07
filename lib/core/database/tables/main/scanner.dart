@@ -6,11 +6,11 @@ class TableScanner extends Table {
   String get tableName => 'scanners';
 
   TextColumn get id => text()();
-  TextColumn get deviceId => text()();
-  TextColumn get name => text()();
-  TextColumn get address => text()();
+  TextColumn get deviceId => text().nullable()();
+  TextColumn get name => text().nullable()();
+  TextColumn get address => text().nullable()();
   RealColumn get classField => real().named('class')();
-  BoolColumn get isEnabled => boolean()();
+  BoolColumn get isEnabled => boolean().withDefault(const Constant(false))();
 
   // Base fields
   DateTimeColumn get createdAt => dateTime().nullable()();

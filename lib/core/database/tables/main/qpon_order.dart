@@ -7,10 +7,10 @@ class TableQponOrder extends Table {
 
   TextColumn get id => text()();
   TextColumn get orderId => text()();
-  TextColumn get couponId => text()();
-  TextColumn get couponType => text()();
-  RealColumn get couponAmount => real()();
-  RealColumn get minimumAmountLimit => real()();
+  TextColumn get couponId => text().nullable()();
+  TextColumn get couponType => text().nullable()();
+  RealColumn get couponAmount => real().nullable()();
+  RealColumn get minimumAmountLimit => real().nullable()();
 
   // Base fields
   DateTimeColumn get createdAt => dateTime().nullable()();

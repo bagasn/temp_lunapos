@@ -7,11 +7,11 @@ class TablePromoOrder extends Table {
 
   TextColumn get promoId => text()();
   TextColumn get orderId => text()();
-  TextColumn get promoName => text()();
-  RealColumn get promoType => real()();
-  RealColumn get totalPromoAmountLines => real()();
-  RealColumn get qty => real()();
-  DateTimeColumn get createDateUtc => dateTime()();
+  TextColumn get promoName => text().nullable()();
+  IntColumn get promoType => integer().nullable()();
+  IntColumn get totalPromoAmountLines => integer().nullable()();
+  IntColumn get qty => integer().nullable()();
+  DateTimeColumn get createDateUtc => dateTime().nullable()();
 
   // Base fields
   DateTimeColumn get createdAt => dateTime().nullable()();

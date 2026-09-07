@@ -6,21 +6,21 @@ class TableTable extends Table {
   String get tableName => 'tables';
 
   TextColumn get id => text()();
-  TextColumn get name => text()();
-  RealColumn get absisStartingGrid => real()();
-  RealColumn get ordinatStartingGrid => real()();
-  RealColumn get absisAmountOfGrid => real()();
-  RealColumn get ordinatAmountOfGrid => real()();
+  TextColumn get name => text().nullable()();
+  IntColumn get absisStartingGrid => integer().nullable()();
+  IntColumn get ordinatStartingGrid => integer().nullable()();
+  IntColumn get absisAmountOfGrid => integer().nullable()();
+  IntColumn get ordinatAmountOfGrid => integer().nullable()();
   TextColumn get area => text()();
-  TextColumn get areaId => text()();
-  TextColumn get tableType => text()();
-  BoolColumn get hasMaxOrderDuration => boolean()();
-  RealColumn get maxOrderDurationMinutes => real()();
-  BoolColumn get hasMinOrderAmount => boolean()();
-  RealColumn get minOrderAmount => real()();
-  RealColumn get minOrderAmountType => real()();
-  BoolColumn get inUsed => boolean()();
-  BoolColumn get deleted => boolean()();
+  TextColumn get areaId => text().nullable()();
+  TextColumn get tableType => text().withDefault(const Constant('square'))();
+  BoolColumn get hasMaxOrderDuration => boolean().nullable()();
+  IntColumn get maxOrderDurationMinutes => integer().nullable()();
+  BoolColumn get hasMinOrderAmount => boolean().nullable()();
+  RealColumn get minOrderAmount => real().nullable()();
+  IntColumn get minOrderAmountType => integer().nullable()();
+  BoolColumn get inUsed => boolean().withDefault(const Constant(false))();
+  BoolColumn get deleted => boolean().withDefault(const Constant(false))();
   TextColumn get order => text()();
   TextColumn get session => text()();
 

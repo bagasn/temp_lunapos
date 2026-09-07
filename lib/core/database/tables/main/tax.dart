@@ -6,10 +6,10 @@ class TableTax extends Table {
   String get tableName => 'taxes';
 
   TextColumn get id => text()();
-  TextColumn get code => text()();
-  TextColumn get name => text()();
-  RealColumn get rate => real()();
-  BoolColumn get deleted => boolean()();
+  TextColumn get code => text().nullable()();
+  TextColumn get name => text().nullable()();
+  RealColumn get rate => real().nullable()();
+  BoolColumn get deleted => boolean().withDefault(const Constant(false))();
   TextColumn get products => text()();
 
   // Base fields

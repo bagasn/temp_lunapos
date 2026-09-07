@@ -6,8 +6,8 @@ class TablePrinterArea extends Table {
   String get tableName => 'printerAreas';
 
   TextColumn get id => text()();
-  TextColumn get name => text()();
-  RealColumn get sortOrder => real()();
+  TextColumn get name => text().nullable()();
+  IntColumn get sortOrder => integer().nullable()();
   TextColumn get products => text()();
   TextColumn get printers => text()();
 

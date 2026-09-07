@@ -7,8 +7,8 @@ class TableProductModifierRelation extends Table {
 
   TextColumn get productId => text()();
   TextColumn get modifierId => text()();
-  RealColumn get sortOrder => real()();
-  BoolColumn get deleted => boolean()();
+  IntColumn get sortOrder => integer().nullable()();
+  BoolColumn get deleted => boolean().withDefault(const Constant(false))();
   TextColumn get product => text()();
   TextColumn get modifier => text()();
 

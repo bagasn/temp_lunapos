@@ -8,13 +8,13 @@ class TableQrisBankAcquirer extends Table {
   TextColumn get id => text()();
   TextColumn get id_transaction_pos => text()();
   DateTimeColumn get createdDateUtc => dateTime()();
-  DateTimeColumn get updatedDateUtc => dateTime()();
-  TextColumn get name => text()();
-  TextColumn get searchKey => text()();
+  DateTimeColumn get updatedDateUtc => dateTime().nullable()();
+  TextColumn get name => text().nullable()();
+  TextColumn get searchKey => text().nullable()();
   TextColumn get settlementBankName => text()();
-  TextColumn get settlementBankAccountNumber => text()();
-  TextColumn get createUserId => text()();
-  TextColumn get updateUserId => text()();
+  TextColumn get settlementBankAccountNumber => text().nullable()();
+  TextColumn get createUserId => text().nullable()();
+  TextColumn get updateUserId => text().nullable()();
 
   // Base fields
   DateTimeColumn get createdAt => dateTime().nullable()();

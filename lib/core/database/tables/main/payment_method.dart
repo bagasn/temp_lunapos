@@ -6,12 +6,12 @@ class TablePaymentMethod extends Table {
   String get tableName => 'paymentMethods';
 
   TextColumn get paymentMethodId => text()();
-  TextColumn get paymentMethodType => text()();
-  TextColumn get paymentMethodName => text()();
-  TextColumn get paymentAccountId => text()();
-  BoolColumn get isDefaultCash => boolean()();
-  IntColumn get sortOrder => integer()();
-  BoolColumn get deleted => boolean()();
+  TextColumn get paymentMethodType => text().nullable()();
+  TextColumn get paymentMethodName => text().nullable()();
+  TextColumn get paymentAccountId => text().nullable()();
+  BoolColumn get isDefaultCash => boolean().nullable()();
+  IntColumn get sortOrder => integer().nullable()();
+  BoolColumn get deleted => boolean().nullable()();
 
   @override
   Set<Column> get primaryKey => {paymentMethodId};

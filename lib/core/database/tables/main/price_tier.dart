@@ -6,12 +6,12 @@ class TablePriceTier extends Table {
   String get tableName => 'priceTiers';
 
   TextColumn get id => text()();
-  TextColumn get productId => text()();
-  TextColumn get name => text()();
-  RealColumn get minimumQty => real()();
-  RealColumn get price => real()();
-  RealColumn get sortOrder => real()();
-  BoolColumn get deleted => boolean()();
+  TextColumn get productId => text().nullable()();
+  TextColumn get name => text().nullable()();
+  RealColumn get minimumQty => real().nullable()();
+  RealColumn get price => real().nullable()();
+  IntColumn get sortOrder => integer().nullable()();
+  BoolColumn get deleted => boolean().nullable()();
 
   // Base fields
   DateTimeColumn get createdAt => dateTime().nullable()();

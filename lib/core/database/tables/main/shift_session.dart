@@ -7,17 +7,17 @@ class TableShiftSession extends Table {
 
   TextColumn get id => text()();
   TextColumn get userId => text()();
-  DateTimeColumn get shiftOpeningDate => dateTime()();
-  DateTimeColumn get shiftClosingDate => dateTime()();
-  RealColumn get cashOnOpening => real()();
-  RealColumn get cashOnClosing => real()();
-  RealColumn get paymentCashTotal => real()();
-  RealColumn get otherPaymentTotal => real()();
-  RealColumn get balance => real()();
-  RealColumn get difference => real()();
-  RealColumn get totalTransaction => real()();
+  DateTimeColumn get shiftOpeningDate => dateTime().nullable()();
+  DateTimeColumn get shiftClosingDate => dateTime().nullable()();
+  RealColumn get cashOnOpening => real().withDefault(const Constant(0))();
+  RealColumn get cashOnClosing => real().withDefault(const Constant(0))();
+  RealColumn get paymentCashTotal => real().withDefault(const Constant(0))();
+  RealColumn get otherPaymentTotal => real().withDefault(const Constant(0))();
+  RealColumn get balance => real().withDefault(const Constant(0))();
+  RealColumn get difference => real().withDefault(const Constant(0))();
+  IntColumn get totalTransaction => integer().withDefault(const Constant(0))();
   RealColumn get spendMoney => real()();
-  BoolColumn get isSync => boolean()();
+  BoolColumn get isSync => boolean().withDefault(const Constant(false))();
 
   // Base fields
   DateTimeColumn get createdAt => dateTime().nullable()();

@@ -47,10 +47,10 @@ class Product {
   final String id;
   final String sku;
   final String name;
-  final String detailDescription;
+  final String? detailDescription; // null in most products
   final bool serviceCharged;
-  final String salesTaxId;
-  final double unitPrice;
+  final String? salesTaxId; // null in rare cases
+  final double unitPrice; // int or double from server
   final String uom;
   final int modifierCount;
   final bool hasVariants;
@@ -69,9 +69,9 @@ class Product {
     required this.id,
     required this.sku,
     required this.name,
-    required this.detailDescription,
+    this.detailDescription,
     required this.serviceCharged,
-    required this.salesTaxId,
+    this.salesTaxId,
     required this.unitPrice,
     required this.uom,
     required this.modifierCount,
@@ -96,12 +96,12 @@ class Product {
 
 @JsonSerializable()
 class ProductDimension {
-  final num? weight; // null or 0 in real data
-  final num? height; // null or 0 in real data
-  final num? width; // null or 0 in real data
-  final num? length; // null or 0 in real data
-  final num? sizeUom; // null or 0 in real data
-  final num? weightUom; // null or 0 in real data
+  final double? weight; // null or 0 in real data
+  final double? height; // null or 0 in real data
+  final double? width; // null or 0 in real data
+  final double? length; // null or 0 in real data
+  final double? sizeUom; // null or 0 in real data
+  final double? weightUom; // null or 0 in real data
 
   ProductDimension({
     this.weight,
@@ -128,7 +128,7 @@ class Variant {
   final String? attribute1Value; // null when product has no variants
   final String? attribute2Value; // null when only 1 variant attribute
   final String? attribute3Value; // null when less than 3 variant attributes
-  final double unitPrice;
+  final double unitPrice; // int or double from server
   final int sortOrder;
   final bool isMaster;
   final bool deleted;
@@ -265,7 +265,8 @@ class ModifierItem {
   final String? productId; // null when useCustomPrice = true
   final String? productVariantId; // null when useCustomPrice = true
   final bool useCustomPrice;
-  final double? price; // null when useCustomPrice = false (uses product price)
+  final double?
+  price; // int or double from server; null when useCustomPrice = false
   final int sortOrder;
 
   ModifierItem({
@@ -311,7 +312,7 @@ class PriceList {
   final String productVariantId;
   final String salesTypeId;
   final String salesTypeName;
-  final double price;
+  final double price; // int or double from server
   final bool isMaster;
   final bool deleted;
 
@@ -337,7 +338,7 @@ class PriceLevelItem {
   final String productVariantId;
   final String priceLevelId;
   final String priceLevelName;
-  final double price;
+  final double price; // int or double from server
   final bool isMaster;
   final bool deleted;
 
@@ -413,8 +414,8 @@ class ProductTieredPrice {
   final String id;
   final String productId;
   final String name;
-  final num minimumQty;
-  final double price;
+  final double minimumQty;
+  final double price; // int or double from server
   final int sortOrder;
 
   ProductTieredPrice({

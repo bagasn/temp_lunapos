@@ -8,14 +8,14 @@ class TableCouponOrder extends Table {
   TextColumn get id => text()();
   TextColumn get orderId => text()();
   TextColumn get couponId => text()();
-  TextColumn get couponCode => text()();
-  TextColumn get couponName => text()();
-  TextColumn get giftType => text()();
-  TextColumn get discountType => text()();
-  RealColumn get discountPercent => real()();
-  RealColumn get discountAmount => real()();
-  TextColumn get products => text()();
-  TextColumn get savedByUserId => text()();
+  TextColumn get couponCode => text().nullable()();
+  TextColumn get couponName => text().nullable()();
+  TextColumn get giftType => text().nullable()();
+  TextColumn get discountType => text().nullable()();
+  RealColumn get discountPercent => real().nullable()();
+  RealColumn get discountAmount => real().nullable()();
+  TextColumn get products => text().nullable()();
+  TextColumn get savedByUserId => text().nullable()();
 
   // Base fields
   DateTimeColumn get createdAt => dateTime().nullable()();

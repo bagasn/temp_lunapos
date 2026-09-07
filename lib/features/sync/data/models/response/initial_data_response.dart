@@ -56,9 +56,9 @@ class OutletSetting {
   final String defaultSalesTaxId;
   final OutletAddress outletAddress;
   final bool serviceCharged;
-  final double serviceChargeRate;
+  final num serviceChargeRate; // int or double from server
   final String? serviceChargeTaxId; // null when serviceCharged = false
-  final double? serviceChargeTaxRate; // null when serviceCharged = false
+  final num? serviceChargeTaxRate; // int or double from server; null when serviceCharged = false
   final bool serviceChargeBeforeDiscount;
   final bool taxed;
   final OutletPicture outletPicture;
@@ -236,7 +236,7 @@ class Tax {
   final String id;
   final String code;
   final String name;
-  final double rate;
+  final num rate; // int or double from server
   final bool deleted;
 
   Tax({
@@ -467,9 +467,9 @@ class Discount {
   final String name;
   final String? description; // null in real data
   final String discountMode;
-  final double discountValue;
-  final double? minimumPurchaseAmount; // null when no minimum
-  final double? maximumDiscountAmount; // null when no maximum
+  final num discountValue; // int or double from server
+  final num? minimumPurchaseAmount; // null when no minimum
+  final num? maximumDiscountAmount; // null when no maximum
 
   Discount({
     required this.id,

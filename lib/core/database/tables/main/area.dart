@@ -7,12 +7,12 @@ class TableArea extends Table {
 
   TextColumn get id => text()();
   TextColumn get tables => text()();
-  TextColumn get name => text()();
-  RealColumn get absisMaximumGrid => real().nullable()();
-  RealColumn get ordinatMaximumGrid => real().nullable()();
-  RealColumn get sortOrder => real()();
-  BoolColumn get deleted => boolean()();
-  BoolColumn get availableForAllPosUsers => boolean()();
+  TextColumn get name => text().nullable()();
+  IntColumn get absisMaximumGrid => integer().nullable()();
+  IntColumn get ordinatMaximumGrid => integer().nullable()();
+  IntColumn get sortOrder => integer().nullable()();
+  BoolColumn get deleted => boolean().withDefault(const Constant(false))();
+  BoolColumn get availableForAllPosUsers => boolean().nullable()();
 
   // Base fields
   DateTimeColumn get createdAt => dateTime().nullable()();

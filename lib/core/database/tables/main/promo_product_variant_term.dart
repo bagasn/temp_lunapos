@@ -7,12 +7,12 @@ class TablePromoProductVariantTerm extends Table {
 
   TextColumn get id => text()();
   TextColumn get promoId => text()();
-  TextColumn get promoProductTermId => text()();
-  TextColumn get productId => text()();
-  TextColumn get productVariantId => text()();
-  RealColumn get qty => real()();
-  RealColumn get sortOrder => real()();
-  BoolColumn get deleted => boolean()();
+  TextColumn get promoProductTermId => text().nullable()();
+  TextColumn get productId => text().nullable()();
+  TextColumn get productVariantId => text().nullable()();
+  IntColumn get qty => integer().nullable()();
+  IntColumn get sortOrder => integer().nullable()();
+  BoolColumn get deleted => boolean().withDefault(const Constant(false))();
 
   // Base fields
   DateTimeColumn get createdAt => dateTime().nullable()();

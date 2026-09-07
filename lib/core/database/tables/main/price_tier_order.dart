@@ -10,12 +10,12 @@ class TablePriceTierOrderLine extends Table {
   TextColumn get orderLineId => text()();
   TextColumn get productId => text()();
   TextColumn get id => text()();
-  TextColumn get priceTierName => text()();
-  RealColumn get minimumQty => real()();
-  RealColumn get price => real()();
+  TextColumn get priceTierName => text().nullable()();
+  RealColumn get minimumQty => real().nullable()();
+  RealColumn get price => real().nullable()();
   RealColumn get originalPrice => real().nullable()();
   IntColumn get sortOrder => integer().nullable()();
-  DateTimeColumn get createDateUtc => dateTime()();
+  DateTimeColumn get createDateUtc => dateTime().nullable()();
 
   // Base fields
   DateTimeColumn get createdAt => dateTime().nullable()();

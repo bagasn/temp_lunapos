@@ -6,24 +6,24 @@ class TableDelivery extends Table {
   String get tableName => 'deliveries';
 
   TextColumn get id => text()();
-  TextColumn get orderId => text()();
-  TextColumn get awbNumber => text()();
-  TextColumn get logisticName => text()();
-  TextColumn get serviceType => text()();
-  RealColumn get qty => real()();
-  BoolColumn get isUseInsurance => boolean()();
-  RealColumn get insurancePrice => real()();
-  RealColumn get shipmentPrice => real()();
-  BoolColumn get isPickup => boolean()();
-  BoolColumn get isCod => boolean()();
-  RealColumn get codPrice => real()();
-  TextColumn get shippingNote => text()();
-  TextColumn get rateCode => text()();
-  RealColumn get packageQty => real()();
-  RealColumn get packagePrice => real()();
-  TextColumn get packageDescription => text()();
-  TextColumn get packageDimensions => text()();
-  RealColumn get packageWeight => real()();
+  TextColumn get orderId => text().nullable()();
+  TextColumn get awbNumber => text().nullable()();
+  TextColumn get logisticName => text().nullable()();
+  TextColumn get serviceType => text().nullable()();
+  IntColumn get qty => integer().nullable()();
+  BoolColumn get isUseInsurance => boolean().withDefault(const Constant(false))();
+  RealColumn get insurancePrice => real().nullable()();
+  RealColumn get shipmentPrice => real().nullable()();
+  BoolColumn get isPickup => boolean().withDefault(const Constant(false))();
+  BoolColumn get isCod => boolean().withDefault(const Constant(false))();
+  RealColumn get codPrice => real().nullable()();
+  TextColumn get shippingNote => text().nullable()();
+  TextColumn get rateCode => text().nullable()();
+  IntColumn get packageQty => integer().nullable()();
+  RealColumn get packagePrice => real().nullable()();
+  TextColumn get packageDescription => text().nullable()();
+  TextColumn get packageDimensions => text().nullable()();
+  RealColumn get packageWeight => real().nullable()();
   TextColumn get deliveryAddress => text()();
 
   // Base fields

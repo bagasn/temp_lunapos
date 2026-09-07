@@ -6,8 +6,8 @@ class TablePriceLevel extends Table {
   String get tableName => 'priceLevels';
 
   TextColumn get id => text()();
-  TextColumn get name => text()();
-  BoolColumn get isMaster => boolean()();
+  TextColumn get name => text().nullable()();
+  BoolColumn get isMaster => boolean().nullable()();
 
   // Base fields
   DateTimeColumn get createdAt => dateTime().nullable()();

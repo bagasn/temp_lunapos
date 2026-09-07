@@ -7,9 +7,9 @@ class TablePromoToPaymentMethodRel extends Table {
 
   TextColumn get id => text()();
   TextColumn get promoId => text()();
-  TextColumn get paymentMethodId => text()();
-  RealColumn get sortOrder => real()();
-  BoolColumn get deleted => boolean()();
+  TextColumn get paymentMethodId => text().nullable()();
+  IntColumn get sortOrder => integer().nullable()();
+  BoolColumn get deleted => boolean().withDefault(const Constant(false))();
 
   // Base fields
   DateTimeColumn get createdAt => dateTime().nullable()();

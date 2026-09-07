@@ -1,0 +1,2139 @@
+### [MODIFY] address.dart
+  - `label`: 
+    - Current: `TextColumn get label => text()();`
+    - Target:  `TextColumn get label => text().nullable()();`
+  - `address`: 
+    - Current: `TextColumn get address => text()();`
+    - Target:  `TextColumn get address => text().nullable()();`
+  - `street`: 
+    - Current: `TextColumn get street => text()();`
+    - Target:  `TextColumn get street => text().nullable()();`
+  - `villageId`: 
+    - Current: `RealColumn get villageId => real()();`
+    - Target:  `IntegerColumn get villageId => integer().nullable()();`
+  - `village`: 
+    - Current: `TextColumn get village => text()();`
+    - Target:  `TextColumn get village => text().nullable()();`
+  - `districtId`: 
+    - Current: `RealColumn get districtId => real()();`
+    - Target:  `IntegerColumn get districtId => integer().nullable()();`
+  - `district`: 
+    - Current: `TextColumn get district => text()();`
+    - Target:  `TextColumn get district => text().nullable()();`
+  - `cityId`: 
+    - Current: `RealColumn get cityId => real()();`
+    - Target:  `IntegerColumn get cityId => integer().nullable()();`
+  - `city`: 
+    - Current: `TextColumn get city => text()();`
+    - Target:  `TextColumn get city => text().nullable()();`
+  - `provinceId`: 
+    - Current: `RealColumn get provinceId => real()();`
+    - Target:  `IntegerColumn get provinceId => integer().nullable()();`
+  - `province`: 
+    - Current: `TextColumn get province => text()();`
+    - Target:  `TextColumn get province => text().nullable()();`
+  - `countryId`: 
+    - Current: `TextColumn get countryId => text()();`
+    - Target:  `TextColumn get countryId => text().nullable()();`
+  - `countryName`: 
+    - Current: `TextColumn get countryName => text()();`
+    - Target:  `TextColumn get countryName => text().nullable()();`
+  - `postalCode`: 
+    - Current: `TextColumn get postalCode => text()();`
+    - Target:  `TextColumn get postalCode => text().nullable()();`
+  - `recipientName`: 
+    - Current: `TextColumn get recipientName => text()();`
+    - Target:  `TextColumn get recipientName => text().nullable()();`
+  - `recipientPhone`: 
+    - Current: `TextColumn get recipientPhone => text()();`
+    - Target:  `TextColumn get recipientPhone => text().nullable()();`
+  - `source`: 
+    - Current: `TextColumn get source => text()();`
+    - Target:  `TextColumn get source => text().nullable()();`
+
+### [MODIFY] area.dart
+  - `name`: 
+    - Current: `TextColumn get name => text()();`
+    - Target:  `TextColumn get name => text().nullable()();`
+  - `absisMaximumGrid`: 
+    - Current: `RealColumn get absisMaximumGrid => real().nullable()();`
+    - Target:  `IntegerColumn get absisMaximumGrid => integer().nullable()();`
+  - `ordinatMaximumGrid`: 
+    - Current: `RealColumn get ordinatMaximumGrid => real().nullable()();`
+    - Target:  `IntegerColumn get ordinatMaximumGrid => integer().nullable()();`
+  - `sortOrder`: 
+    - Current: `RealColumn get sortOrder => real()();`
+    - Target:  `IntegerColumn get sortOrder => integer().nullable()();`
+  - `deleted`: 
+    - Current: `BoolColumn get deleted => boolean()();`
+    - Target:  `BooleanColumn get deleted => boolean().withDefault(const Constant(false)).nullable()();`
+  - `availableForAllPosUsers`: 
+    - Current: `BoolColumn get availableForAllPosUsers => boolean()();`
+    - Target:  `BooleanColumn get availableForAllPosUsers => boolean().nullable()();`
+
+### [MODIFY] area_user_relation.dart
+  - `posAreaId`: 
+    - Current: `TextColumn get posAreaId => text()();`
+    - Target:  `TextColumn get posAreaId => text() => const Uuid().v4())();`
+  - `userId`: 
+    - Current: `TextColumn get userId => text()();`
+    - Target:  `TextColumn get userId => text() => const Uuid().v4())();`
+  - `sortOrder`: 
+    - Current: `RealColumn get sortOrder => real()();`
+    - Target:  `IntegerColumn get sortOrder => integer().nullable()();`
+
+### [MODIFY] category.dart
+  - `id`: 
+    - Current: `TextColumn get id => text()();`
+    - Target:  `TextColumn get id => text() => const Uuid().v4())();`
+  - `name`: 
+    - Current: `TextColumn get name => text()();`
+    - Target:  `TextColumn get name => text().nullable()();`
+  - `sortOrder`: 
+    - Current: `RealColumn get sortOrder => real()();`
+    - Target:  `IntegerColumn get sortOrder => integer().nullable()();`
+  - `deleted`: 
+    - Current: `BoolColumn get deleted => boolean()();`
+    - Target:  `BooleanColumn get deleted => boolean().withDefault(const Constant(false)).nullable()();`
+  - `isCustom`: 
+    - Current: `BoolColumn get isCustom => boolean()();`
+    - Target:  `BooleanColumn get isCustom => boolean().withDefault(const Constant(false))();`
+  - `startDate`: 
+    - Current: `DateTimeColumn get startDate => dateTime()();`
+    - Target:  `DateTimeColumn get startDate => dateTime().nullable()();`
+  - `startTime`: 
+    - Current: `DateTimeColumn get startTime => dateTime()();`
+    - Target:  `TextColumn get startTime => text().nullable()();`
+  - `endDate`: 
+    - Current: `DateTimeColumn get endDate => dateTime()();`
+    - Target:  `DateTimeColumn get endDate => dateTime().nullable()();`
+  - `endTime`: 
+    - Current: `DateTimeColumn get endTime => dateTime()();`
+    - Target:  `TextColumn get endTime => text().nullable()();`
+  - `monday`: 
+    - Current: `BoolColumn get monday => boolean()();`
+    - Target:  `BooleanColumn get monday => boolean().withDefault(const Constant(false))();`
+  - `tuesday`: 
+    - Current: `BoolColumn get tuesday => boolean()();`
+    - Target:  `BooleanColumn get tuesday => boolean().withDefault(const Constant(false))();`
+  - `wednesday`: 
+    - Current: `BoolColumn get wednesday => boolean()();`
+    - Target:  `BooleanColumn get wednesday => boolean().withDefault(const Constant(false))();`
+  - `thursday`: 
+    - Current: `BoolColumn get thursday => boolean()();`
+    - Target:  `BooleanColumn get thursday => boolean().withDefault(const Constant(false))();`
+  - `friday`: 
+    - Current: `BoolColumn get friday => boolean()();`
+    - Target:  `BooleanColumn get friday => boolean().withDefault(const Constant(false))();`
+  - `saturday`: 
+    - Current: `BoolColumn get saturday => boolean()();`
+    - Target:  `BooleanColumn get saturday => boolean().withDefault(const Constant(false))();`
+  - `sunday`: 
+    - Current: `BoolColumn get sunday => boolean()();`
+    - Target:  `BooleanColumn get sunday => boolean().withDefault(const Constant(false))();`
+
+### [MODIFY] comission_order_line_relation.ts.dart
+  - `id`: 
+    - Current: `TextColumn get id => text()();`
+    - Target:  `TextColumn get id => text() => const Uuid().v4())();`
+  - `orderId`: 
+    - Current: `TextColumn get orderId => text()();`
+    - Target:  `TextColumn get orderId => text() => const Uuid().v4())();`
+  - `orderLineId`: 
+    - Current: `TextColumn get orderLineId => text()();`
+    - Target:  `TextColumn get orderLineId => text() => const Uuid().v4())();`
+  - `employeeId`: 
+    - Current: `TextColumn get employeeId => text()();`
+    - Target:  `TextColumn get employeeId => text() => const Uuid().v4())();`
+  - `employeeName`: 
+    - Current: `TextColumn get employeeName => text()();`
+    - Target:  `TextColumn get employeeName => text().nullable()();`
+
+### [MODIFY] coupon_order.dart
+  - `id`: 
+    - Current: `TextColumn get id => text()();`
+    - Target:  `TextColumn get id => text() => const Uuid().v4())();`
+  - `couponCode`: 
+    - Current: `TextColumn get couponCode => text()();`
+    - Target:  `TextColumn get couponCode => text().nullable()();`
+  - `couponName`: 
+    - Current: `TextColumn get couponName => text()();`
+    - Target:  `TextColumn get couponName => text().nullable()();`
+  - `giftType`: 
+    - Current: `TextColumn get giftType => text()();`
+    - Target:  `TextColumn get giftType => text().nullable()();`
+  - `discountType`: 
+    - Current: `TextColumn get discountType => text()();`
+    - Target:  `TextColumn get discountType => text().nullable()();`
+  - `discountPercent`: 
+    - Current: `RealColumn get discountPercent => real()();`
+    - Target:  `RealColumn get discountPercent => real().nullable()();`
+  - `discountAmount`: 
+    - Current: `RealColumn get discountAmount => real()();`
+    - Target:  `RealColumn get discountAmount => real().nullable()();`
+  - `products`: 
+    - Current: `TextColumn get products => text()();`
+    - Target:  `TextColumn get products => text().nullable()();`
+  - `savedByUserId`: 
+    - Current: `TextColumn get savedByUserId => text()();`
+    - Target:  `TextColumn get savedByUserId => text().nullable()();`
+
+### [MODIFY] customer.dart
+  - `id`: 
+    - Current: `TextColumn get id => text()();`
+    - Target:  `TextColumn get id => text() => const Uuid().v4())();`
+  - `username`: 
+    - Current: `TextColumn get username => text()();`
+    - Target:  `TextColumn get username => text().nullable()();`
+  - `displayName`: 
+    - Current: `TextColumn get displayName => text()();`
+    - Target:  `TextColumn get displayName => text().nullable()();`
+  - `firstName`: 
+    - Current: `TextColumn get firstName => text()();`
+    - Target:  `TextColumn get firstName => text().nullable()();`
+  - `lastName`: 
+    - Current: `TextColumn get lastName => text()();`
+    - Target:  `TextColumn get lastName => text().nullable()();`
+  - `company`: 
+    - Current: `TextColumn get company => text()();`
+    - Target:  `TextColumn get company => text().nullable()();`
+  - `phone`: 
+    - Current: `TextColumn get phone => text()();`
+    - Target:  `TextColumn get phone => text().nullable()();`
+  - `email`: 
+    - Current: `TextColumn get email => text()();`
+    - Target:  `TextColumn get email => text().nullable()();`
+  - `gender`: 
+    - Current: `TextColumn get gender => text()();`
+    - Target:  `TextColumn get gender => text().nullable()();`
+  - `dateOfBirth`: 
+    - Current: `DateTimeColumn get dateOfBirth => dateTime()();`
+    - Target:  `DateTimeColumn get dateOfBirth => dateTime().nullable()();`
+  - `address`: 
+    - Current: `TextColumn get address => text()();`
+    - Target:  `TextColumn get address => text().nullable()();`
+  - `addressStreet1`: 
+    - Current: `TextColumn get addressStreet1 => text()();`
+    - Target:  `TextColumn get addressStreet1 => text().nullable()();`
+  - `addressCity`: 
+    - Current: `TextColumn get addressCity => text()();`
+    - Target:  `TextColumn get addressCity => text().nullable()();`
+  - `addressStateProvince`: 
+    - Current: `TextColumn get addressStateProvince => text()();`
+    - Target:  `TextColumn get addressStateProvince => text().nullable()();`
+  - `addressCountryId`: 
+    - Current: `TextColumn get addressCountryId => text()();`
+    - Target:  `TextColumn get addressCountryId => text().nullable()();`
+  - `addressCountryName`: 
+    - Current: `TextColumn get addressCountryName => text()();`
+    - Target:  `TextColumn get addressCountryName => text().nullable()();`
+  - `addressPostalCode`: 
+    - Current: `TextColumn get addressPostalCode => text()();`
+    - Target:  `TextColumn get addressPostalCode => text().nullable()();`
+  - `bankAccountId`: 
+    - Current: `TextColumn get bankAccountId => text()();`
+    - Target:  `TextColumn get bankAccountId => text().nullable()();`
+  - `bankId`: 
+    - Current: `TextColumn get bankId => text()();`
+    - Target:  `TextColumn get bankId => text().nullable()();`
+  - `bankName`: 
+    - Current: `TextColumn get bankName => text()();`
+    - Target:  `TextColumn get bankName => text().nullable()();`
+  - `bankAccountName`: 
+    - Current: `TextColumn get bankAccountName => text()();`
+    - Target:  `TextColumn get bankAccountName => text().nullable()();`
+  - `bankAccountNumber`: 
+    - Current: `TextColumn get bankAccountNumber => text()();`
+    - Target:  `TextColumn get bankAccountNumber => text().nullable()();`
+  - `pricingCategoryId`: 
+    - Current: `TextColumn get pricingCategoryId => text()();`
+    - Target:  `TextColumn get pricingCategoryId => text().nullable()();`
+  - `isSync`: 
+    - Current: `BoolColumn get isSync => boolean()();`
+    - Target:  `BooleanColumn get isSync => boolean().nullable()();`
+  - `syncDate`: 
+    - Current: `DateTimeColumn get syncDate => dateTime()();`
+    - Target:  `DateTimeColumn get syncDate => dateTime().nullable()();`
+  - `createdByUserId`: 
+    - Current: `TextColumn get createdByUserId => text()();`
+    - Target:  `TextColumn get createdByUserId => text().nullable()();`
+  - `createdDateTime`: 
+    - Current: `DateTimeColumn get createdDateTime => dateTime()();`
+    - Target:  `DateTimeColumn get createdDateTime => dateTime().nullable()();`
+  - `lastUpdatedByUserId`: 
+    - Current: `TextColumn get lastUpdatedByUserId => text()();`
+    - Target:  `TextColumn get lastUpdatedByUserId => text().nullable()();`
+  - `lastUpdateDateTime`: 
+    - Current: `DateTimeColumn get lastUpdateDateTime => dateTime()();`
+    - Target:  `DateTimeColumn get lastUpdateDateTime => dateTime().nullable()();`
+  - `deleted`: 
+    - Current: `BoolColumn get deleted => boolean()();`
+    - Target:  `BooleanColumn get deleted => boolean().withDefault(const Constant(false)).nullable()();`
+
+### [MODIFY] delivery.dart
+  - `id`: 
+    - Current: `TextColumn get id => text()();`
+    - Target:  `TextColumn get id => text() => const Uuid().v4())();`
+  - `orderId`: 
+    - Current: `TextColumn get orderId => text()();`
+    - Target:  `TextColumn get orderId => text().nullable()();`
+  - `awbNumber`: 
+    - Current: `TextColumn get awbNumber => text()();`
+    - Target:  `TextColumn get awbNumber => text().nullable()();`
+  - `logisticName`: 
+    - Current: `TextColumn get logisticName => text()();`
+    - Target:  `TextColumn get logisticName => text().nullable()();`
+  - `serviceType`: 
+    - Current: `TextColumn get serviceType => text()();`
+    - Target:  `TextColumn get serviceType => text().nullable()();`
+  - `qty`: 
+    - Current: `RealColumn get qty => real()();`
+    - Target:  `IntegerColumn get qty => integer().nullable()();`
+  - `isUseInsurance`: 
+    - Current: `BoolColumn get isUseInsurance => boolean()();`
+    - Target:  `BooleanColumn get isUseInsurance => boolean().withDefault(const Constant(false)).nullable()();`
+  - `insurancePrice`: 
+    - Current: `RealColumn get insurancePrice => real()();`
+    - Target:  `RealColumn get insurancePrice => real().nullable()();`
+  - `shipmentPrice`: 
+    - Current: `RealColumn get shipmentPrice => real()();`
+    - Target:  `RealColumn get shipmentPrice => real().nullable()();`
+  - `isPickup`: 
+    - Current: `BoolColumn get isPickup => boolean()();`
+    - Target:  `BooleanColumn get isPickup => boolean().withDefault(const Constant(false)).nullable()();`
+  - `isCod`: 
+    - Current: `BoolColumn get isCod => boolean()();`
+    - Target:  `BooleanColumn get isCod => boolean().withDefault(const Constant(false)).nullable()();`
+  - `codPrice`: 
+    - Current: `RealColumn get codPrice => real()();`
+    - Target:  `RealColumn get codPrice => real().nullable()();`
+  - `shippingNote`: 
+    - Current: `TextColumn get shippingNote => text()();`
+    - Target:  `TextColumn get shippingNote => text().nullable()();`
+  - `rateCode`: 
+    - Current: `TextColumn get rateCode => text()();`
+    - Target:  `TextColumn get rateCode => text().nullable()();`
+  - `packageQty`: 
+    - Current: `RealColumn get packageQty => real()();`
+    - Target:  `IntegerColumn get packageQty => integer().nullable()();`
+  - `packagePrice`: 
+    - Current: `RealColumn get packagePrice => real()();`
+    - Target:  `RealColumn get packagePrice => real().nullable()();`
+  - `packageDescription`: 
+    - Current: `TextColumn get packageDescription => text()();`
+    - Target:  `TextColumn get packageDescription => text().nullable()();`
+  - `packageDimensions`: 
+    - Current: `TextColumn get packageDimensions => text()();`
+    - Target:  `TextColumn get packageDimensions => text().nullable()();`
+  - `packageWeight`: 
+    - Current: `RealColumn get packageWeight => real()();`
+    - Target:  `RealColumn get packageWeight => real().nullable()();`
+
+### [MODIFY] delivery_address.dart
+  - `id`: 
+    - Current: `TextColumn get id => text()();`
+    - Target:  `TextColumn get id => text() => const Uuid().v4())();`
+  - `label`: 
+    - Current: `TextColumn get label => text()();`
+    - Target:  `TextColumn get label => text().nullable()();`
+  - `name`: 
+    - Current: `TextColumn get name => text()();`
+    - Target:  `TextColumn get name => text().nullable()();`
+  - `phoneNumber`: 
+    - Current: `TextColumn get phoneNumber => text()();`
+    - Target:  `TextColumn get phoneNumber => text().nullable()();`
+  - `pinPoint`: 
+    - Current: `BoolColumn get pinPoint => boolean()();`
+    - Target:  `BooleanColumn get pinPoint => boolean().nullable()();`
+  - `longitude`: 
+    - Current: `TextColumn get longitude => text()();`
+    - Target:  `TextColumn get longitude => text().nullable()();`
+  - `latitude`: 
+    - Current: `TextColumn get latitude => text()();`
+    - Target:  `TextColumn get latitude => text().nullable()();`
+  - `address`: 
+    - Current: `TextColumn get address => text()();`
+    - Target:  `TextColumn get address => text().nullable()();`
+  - `provinceId`: 
+    - Current: `RealColumn get provinceId => real()();`
+    - Target:  `IntegerColumn get provinceId => integer().nullable()();`
+  - `provinceName`: 
+    - Current: `TextColumn get provinceName => text()();`
+    - Target:  `TextColumn get provinceName => text().nullable()();`
+  - `cityId`: 
+    - Current: `RealColumn get cityId => real()();`
+    - Target:  `IntegerColumn get cityId => integer().nullable()();`
+  - `cityName`: 
+    - Current: `TextColumn get cityName => text()();`
+    - Target:  `TextColumn get cityName => text().nullable()();`
+  - `districtId`: 
+    - Current: `RealColumn get districtId => real()();`
+    - Target:  `IntegerColumn get districtId => integer().nullable()();`
+  - `districtName`: 
+    - Current: `TextColumn get districtName => text()();`
+    - Target:  `TextColumn get districtName => text().nullable()();`
+  - `villageId`: 
+    - Current: `RealColumn get villageId => real()();`
+    - Target:  `IntegerColumn get villageId => integer().nullable()();`
+  - `villageName`: 
+    - Current: `TextColumn get villageName => text()();`
+    - Target:  `TextColumn get villageName => text().nullable()();`
+  - `postalCode`: 
+    - Current: `TextColumn get postalCode => text()();`
+    - Target:  `TextColumn get postalCode => text().nullable()();`
+  - `notes`: 
+    - Current: `TextColumn get notes => text()();`
+    - Target:  `TextColumn get notes => text().nullable()();`
+  - `isMainAddress`: 
+    - Current: `BoolColumn get isMainAddress => boolean()();`
+    - Target:  `BooleanColumn get isMainAddress => boolean().nullable()();`
+
+### [MODIFY] discount.dart
+  - `id`: 
+    - Current: `TextColumn get id => text()();`
+    - Target:  `TextColumn get id => text() => const Uuid().v4())();`
+  - `name`: 
+    - Current: `TextColumn get name => text()();`
+    - Target:  `TextColumn get name => text().nullable()();`
+  - `discountMode`: 
+    - Current: `TextColumn get discountMode => text()();`
+    - Target:  `TextColumn get discountMode => text().nullable()();`
+  - `discountValue`: 
+    - Current: `RealColumn get discountValue => real()();`
+    - Target:  `RealColumn get discountValue => real().nullable()();`
+  - `deleted`: 
+    - Current: `BoolColumn get deleted => boolean()();`
+    - Target:  `BooleanColumn get deleted => boolean().withDefault(const Constant(false)).nullable()();`
+
+### [MODIFY] employee.dart
+  - `id`: 
+    - Current: `TextColumn get id => text()();`
+    - Target:  `TextColumn get id => text() => const Uuid().v4())();`
+  - `name`: 
+    - Current: `TextColumn get name => text()();`
+    - Target:  `TextColumn get name => text().nullable()();`
+
+### [MODIFY] employee_product_commission_relation.dart
+  - `id`: 
+    - Current: `TextColumn get id => text()();`
+    - Target:  `TextColumn get id => text() => const Uuid().v4())();`
+  - `productId`: 
+    - Current: `TextColumn get productId => text()();`
+    - Target:  `TextColumn get productId => text() => const Uuid().v4())();`
+  - `employeeId`: 
+    - Current: `TextColumn get employeeId => text()();`
+    - Target:  `TextColumn get employeeId => text() => const Uuid().v4())();`
+
+### [MODIFY] linked_order.dart
+  - `qrDuration`: 
+    - Current: `RealColumn get qrDuration => real()();`
+    - Target:  `IntegerColumn get qrDuration => integer().nullable()();`
+  - `categoryIds`: 
+    - Current: `TextColumn get categoryIds => text()();`
+    - Target:  `TextColumn get categoryIds => text().nullable()();`
+  - `orderDate`: 
+    - Current: `DateTimeColumn get orderDate => dateTime()();`
+    - Target:  `DateTimeColumn get orderDate => dateTime().nullable()();`
+  - `orderTime`: 
+    - Current: `DateTimeColumn get orderTime => dateTime()();`
+    - Target:  `DateTimeColumn get orderTime => dateTime().nullable()();`
+  - `status`: 
+    - Current: `RealColumn get status => real()();`
+    - Target:  `IntegerColumn get status => integer().withDefault(const Constant(0)).nullable()();`
+
+### [MODIFY] modifier.dart
+  - `id`: 
+    - Current: `TextColumn get id => text()();`
+    - Target:  `TextColumn get id => text() => const Uuid().v4())();`
+  - `name`: 
+    - Current: `TextColumn get name => text()();`
+    - Target:  `TextColumn get name => text().nullable()();`
+  - `required`: 
+    - Current: `BoolColumn get required => boolean()();`
+    - Target:  `BooleanColumn get required => boolean().nullable()();`
+  - `allowMultiple`: 
+    - Current: `BoolColumn get allowMultiple => boolean()();`
+    - Target:  `BooleanColumn get allowMultiple => boolean().nullable()();`
+  - `maximumAllowed`: 
+    - Current: `RealColumn get maximumAllowed => real()();`
+    - Target:  `IntegerColumn get maximumAllowed => integer().nullable()();`
+  - `haveMaximumItemAllowed`: 
+    - Current: `BoolColumn get haveMaximumItemAllowed => boolean()();`
+    - Target:  `BooleanColumn get haveMaximumItemAllowed => boolean().nullable()();`
+  - `maximumItemAllowed`: 
+    - Current: `RealColumn get maximumItemAllowed => real()();`
+    - Target:  `IntegerColumn get maximumItemAllowed => integer().nullable()();`
+  - `deleted`: 
+    - Current: `BoolColumn get deleted => boolean()();`
+    - Target:  `BooleanColumn get deleted => boolean().withDefault(const Constant(false)).nullable()();`
+
+### [MODIFY] modifier_item.dart
+  - `id`: 
+    - Current: `TextColumn get id => text()();`
+    - Target:  `TextColumn get id => text() => const Uuid().v4())();`
+  - `name`: 
+    - Current: `TextColumn get name => text()();`
+    - Target:  `TextColumn get name => text().nullable()();`
+  - `productId`: 
+    - Current: `TextColumn get productId => text()();`
+    - Target:  `TextColumn get productId => text().nullable()();`
+  - `productVariantId`: 
+    - Current: `TextColumn get productVariantId => text()();`
+    - Target:  `TextColumn get productVariantId => text().nullable()();`
+  - `useCustomPrice`: 
+    - Current: `BoolColumn get useCustomPrice => boolean()();`
+    - Target:  `BooleanColumn get useCustomPrice => boolean().nullable()();`
+  - `price`: 
+    - Current: `RealColumn get price => real()();`
+    - Target:  `RealColumn get price => real().nullable()();`
+  - `sortOrder`: 
+    - Current: `RealColumn get sortOrder => real()();`
+    - Target:  `IntegerColumn get sortOrder => integer().nullable()();`
+  - `deleted`: 
+    - Current: `BoolColumn get deleted => boolean()();`
+    - Target:  `BooleanColumn get deleted => boolean().withDefault(const Constant(false)).nullable()();`
+
+### [MODIFY] order.dart
+  - `id`: 
+    - Current: `TextColumn get id => text()();`
+    - Target:  `TextColumn get id => text() => const Uuid().v4())();`
+  - `orderNumber`: 
+    - Current: `TextColumn get orderNumber => text()();`
+    - Target:  `TextColumn get orderNumber => text().nullable()();`
+  - `orderName`: 
+    - Current: `TextColumn get orderName => text()();`
+    - Target:  `TextColumn get orderName => text().nullable()();`
+  - `orderDate`: 
+    - Current: `DateTimeColumn get orderDate => dateTime()();`
+    - Target:  `DateTimeColumn get orderDate => dateTime().nullable()();`
+  - `orderDateTime`: 
+    - Current: `DateTimeColumn get orderDateTime => dateTime()();`
+    - Target:  `DateTimeColumn get orderDateTime => dateTime().nullable()();`
+  - `receiptNumber`: 
+    - Current: `TextColumn get receiptNumber => text()();`
+    - Target:  `TextColumn get receiptNumber => text().nullable()();`
+  - `customerId`: 
+    - Current: `TextColumn get customerId => text()();`
+    - Target:  `TextColumn get customerId => text().nullable()();`
+  - `customerName`: 
+    - Current: `TextColumn get customerName => text()();`
+    - Target:  `TextColumn get customerName => text().nullable()();`
+  - `customerEmail`: 
+    - Current: `TextColumn get customerEmail => text()();`
+    - Target:  `TextColumn get customerEmail => text().nullable()();`
+  - `customerPhone`: 
+    - Current: `TextColumn get customerPhone => text()();`
+    - Target:  `TextColumn get customerPhone => text().nullable()();`
+  - `salesTypeId`: 
+    - Current: `TextColumn get salesTypeId => text()();`
+    - Target:  `TextColumn get salesTypeId => text().nullable()();`
+  - `promoSalesTypeId`: 
+    - Current: `TextColumn get promoSalesTypeId => text()();`
+    - Target:  `TextColumn get promoSalesTypeId => text().nullable()();`
+  - `tableId`: 
+    - Current: `TextColumn get tableId => text()();`
+    - Target:  `TextColumn get tableId => text().nullable()();`
+  - `numberOfPax`: 
+    - Current: `RealColumn get numberOfPax => real()();`
+    - Target:  `IntegerColumn get numberOfPax => integer().nullable()();`
+  - `taxInclusive`: 
+    - Current: `BoolColumn get taxInclusive => boolean()();`
+    - Target:  `BooleanColumn get taxInclusive => boolean().nullable()();`
+  - `lineCount`: 
+    - Current: `RealColumn get lineCount => real()();`
+    - Target:  `IntegerColumn get lineCount => integer().nullable()();`
+  - `lineTotalQty`: 
+    - Current: `RealColumn get lineTotalQty => real()();`
+    - Target:  `RealColumn get lineTotalQty => real().nullable()();`
+  - `lineTotalDiscountAmount`: 
+    - Current: `RealColumn get lineTotalDiscountAmount => real()();`
+    - Target:  `RealColumn get lineTotalDiscountAmount => real().withDefault(const Constant(0)).nullable()();`
+  - `subTotal`: 
+    - Current: `RealColumn get subTotal => real()();`
+    - Target:  `RealColumn get subTotal => real().nullable()();`
+  - `discountId`: 
+    - Current: `TextColumn get discountId => text()();`
+    - Target:  `TextColumn get discountId => text().nullable()();`
+  - `discountPercent`: 
+    - Current: `RealColumn get discountPercent => real()();`
+    - Target:  `RealColumn get discountPercent => real().nullable()();`
+  - `discountAmount`: 
+    - Current: `RealColumn get discountAmount => real()();`
+    - Target:  `RealColumn get discountAmount => real().nullable()();`
+  - `discountLoyaltyId`: 
+    - Current: `TextColumn get discountLoyaltyId => text()();`
+    - Target:  `TextColumn get discountLoyaltyId => text().nullable()();`
+  - `discountLoyaltyName`: 
+    - Current: `TextColumn get discountLoyaltyName => text()();`
+    - Target:  `TextColumn get discountLoyaltyName => text().nullable()();`
+  - `discountLoyaltyPercent`: 
+    - Current: `RealColumn get discountLoyaltyPercent => real()();`
+    - Target:  `RealColumn get discountLoyaltyPercent => real().nullable()();`
+  - `discountLoyaltyAmount`: 
+    - Current: `RealColumn get discountLoyaltyAmount => real()();`
+    - Target:  `RealColumn get discountLoyaltyAmount => real().nullable()();`
+  - `discountLoyaltyDescription`: 
+    - Current: `TextColumn get discountLoyaltyDescription => text()();`
+    - Target:  `TextColumn get discountLoyaltyDescription => text().nullable()();`
+  - `membershipProgramId`: 
+    - Current: `TextColumn get membershipProgramId => text()();`
+    - Target:  `TextColumn get membershipProgramId => text().nullable()();`
+  - `membershipLevelId`: 
+    - Current: `TextColumn get membershipLevelId => text()();`
+    - Target:  `TextColumn get membershipLevelId => text().nullable()();`
+  - `membershipDiscountId`: 
+    - Current: `TextColumn get membershipDiscountId => text()();`
+    - Target:  `TextColumn get membershipDiscountId => text().nullable()();`
+  - `membershipDiscountPercent`: 
+    - Current: `RealColumn get membershipDiscountPercent => real()();`
+    - Target:  `RealColumn get membershipDiscountPercent => real().nullable()();`
+  - `membershipDiscountAmount`: 
+    - Current: `RealColumn get membershipDiscountAmount => real()();`
+    - Target:  `RealColumn get membershipDiscountAmount => real().nullable()();`
+  - `qponCoupon`: 
+    - Current: `RealColumn get qponCoupon => real()();`
+    - Target:  `RealColumn get qponCoupon => real().nullable()();`
+  - `qponVoucher`: 
+    - Current: `RealColumn get qponVoucher => real()();`
+    - Target:  `RealColumn get qponVoucher => real().nullable()();`
+  - `serviceCharged`: 
+    - Current: `BoolColumn get serviceCharged => boolean()();`
+    - Target:  `BooleanColumn get serviceCharged => boolean().nullable()();`
+  - `serviceChargeRate`: 
+    - Current: `RealColumn get serviceChargeRate => real()();`
+    - Target:  `RealColumn get serviceChargeRate => real().nullable()();`
+  - `serviceChargeAmount`: 
+    - Current: `RealColumn get serviceChargeAmount => real()();`
+    - Target:  `RealColumn get serviceChargeAmount => real().nullable()();`
+  - `serviceChargeTaxId`: 
+    - Current: `TextColumn get serviceChargeTaxId => text()();`
+    - Target:  `TextColumn get serviceChargeTaxId => text().nullable()();`
+  - `serviceChargeTaxRate`: 
+    - Current: `RealColumn get serviceChargeTaxRate => real()();`
+    - Target:  `RealColumn get serviceChargeTaxRate => real().nullable()();`
+  - `taxed`: 
+    - Current: `BoolColumn get taxed => boolean()();`
+    - Target:  `BooleanColumn get taxed => boolean().nullable()();`
+  - `taxAmount`: 
+    - Current: `RealColumn get taxAmount => real()();`
+    - Target:  `RealColumn get taxAmount => real().nullable()();`
+  - `adjustmentAmount`: 
+    - Current: `RealColumn get adjustmentAmount => real()();`
+    - Target:  `RealColumn get adjustmentAmount => real().nullable()();`
+  - `total`: 
+    - Current: `RealColumn get total => real()();`
+    - Target:  `RealColumn get total => real().nullable()();`
+  - `tenderAmount`: 
+    - Current: `RealColumn get tenderAmount => real()();`
+    - Target:  `RealColumn get tenderAmount => real().nullable()();`
+  - `changeAmount`: 
+    - Current: `RealColumn get changeAmount => real()();`
+    - Target:  `RealColumn get changeAmount => real().nullable()();`
+  - `status`: 
+    - Current: `TextColumn get status => text()();`
+    - Target:  `TextColumn get status => text().nullable()();`
+  - `createdByUserId`: 
+    - Current: `TextColumn get createdByUserId => text()();`
+    - Target:  `TextColumn get createdByUserId => text().nullable()();`
+  - `createdDateTime`: 
+    - Current: `DateTimeColumn get createdDateTime => dateTime()();`
+    - Target:  `DateTimeColumn get createdDateTime => dateTime().nullable()();`
+  - `lastUpdateByUserId`: 
+    - Current: `TextColumn get lastUpdateByUserId => text()();`
+    - Target:  `TextColumn get lastUpdateByUserId => text().nullable()();`
+  - `lastUpdateDateTime`: 
+    - Current: `DateTimeColumn get lastUpdateDateTime => dateTime()();`
+    - Target:  `DateTimeColumn get lastUpdateDateTime => dateTime().nullable()();`
+  - `paidByUserId`: 
+    - Current: `TextColumn get paidByUserId => text()();`
+    - Target:  `TextColumn get paidByUserId => text().nullable()();`
+  - `paymentDate`: 
+    - Current: `DateTimeColumn get paymentDate => dateTime()();`
+    - Target:  `DateTimeColumn get paymentDate => dateTime().nullable()();`
+  - `paymentDateTime`: 
+    - Current: `DateTimeColumn get paymentDateTime => dateTime()();`
+    - Target:  `DateTimeColumn get paymentDateTime => dateTime().nullable()();`
+  - `cancelledByUserId`: 
+    - Current: `TextColumn get cancelledByUserId => text()();`
+    - Target:  `TextColumn get cancelledByUserId => text().nullable()();`
+  - `cancellationDate`: 
+    - Current: `DateTimeColumn get cancellationDate => dateTime()();`
+    - Target:  `DateTimeColumn get cancellationDate => dateTime().nullable()();`
+  - `cancellationDateTime`: 
+    - Current: `DateTimeColumn get cancellationDateTime => dateTime()();`
+    - Target:  `DateTimeColumn get cancellationDateTime => dateTime().nullable()();`
+  - `cancellationReason`: 
+    - Current: `TextColumn get cancellationReason => text()();`
+    - Target:  `TextColumn get cancellationReason => text().nullable()();`
+  - `closingDate`: 
+    - Current: `DateTimeColumn get closingDate => dateTime()();`
+    - Target:  `DateTimeColumn get closingDate => dateTime().nullable()();`
+  - `closingDateTime`: 
+    - Current: `DateTimeColumn get closingDateTime => dateTime()();`
+    - Target:  `DateTimeColumn get closingDateTime => dateTime().nullable()();`
+  - `rowVersion`: 
+    - Current: `TextColumn get rowVersion => text()();`
+    - Target:  `TextColumn get rowVersion => text().nullable()();`
+  - `isSync`: 
+    - Current: `BoolColumn get isSync => boolean()();`
+    - Target:  `BooleanColumn get isSync => boolean().nullable()();`
+  - `syncDate`: 
+    - Current: `DateTimeColumn get syncDate => dateTime()();`
+    - Target:  `DateTimeColumn get syncDate => dateTime().nullable()();`
+  - `isInvalid`: 
+    - Current: `BoolColumn get isInvalid => boolean()();`
+    - Target:  `BooleanColumn get isInvalid => boolean().nullable()();`
+  - `isTokolunaOrder`: 
+    - Current: `BoolColumn get isTokolunaOrder => boolean()();`
+    - Target:  `BooleanColumn get isTokolunaOrder => boolean().withDefault(const Constant(false)).nullable()();`
+  - `printBillCount`: 
+    - Current: `RealColumn get printBillCount => real()();`
+    - Target:  `IntegerColumn get printBillCount => integer().withDefault(const Constant(0)).nullable()();`
+  - `afterClose`: 
+    - Current: `BoolColumn get afterClose => boolean()();`
+    - Target:  `BooleanColumn get afterClose => boolean().withDefault(const Constant(false)).nullable()();`
+  - `queueNumber`: 
+    - Current: `RealColumn get queueNumber => real()();`
+    - Target:  `IntegerColumn get queueNumber => integer().nullable()();`
+  - `shiftSessionId`: 
+    - Current: `TextColumn get shiftSessionId => text()();`
+    - Target:  `TextColumn get shiftSessionId => text().nullable()();`
+  - `type`: 
+    - Current: `RealColumn get type => real()();`
+    - Target:  `IntegerColumn get type => integer().nullable()();`
+  - `service`: 
+    - Current: `RealColumn get service => real()();`
+    - Target:  `IntegerColumn get service => integer().nullable()();`
+
+### [MODIFY] order_line.dart
+  - `id`: 
+    - Current: `TextColumn get id => text()();`
+    - Target:  `TextColumn get id => text() => const Uuid().v4())();`
+  - `productId`: 
+    - Current: `TextColumn get productId => text()();`
+    - Target:  `TextColumn get productId => text().nullable()();`
+  - `productVariantId`: 
+    - Current: `TextColumn get productVariantId => text()();`
+    - Target:  `TextColumn get productVariantId => text().nullable()();`
+  - `description`: 
+    - Current: `TextColumn get description => text()();`
+    - Target:  `TextColumn get description => text().nullable()();`
+  - `qty`: 
+    - Current: `RealColumn get qty => real()();`
+    - Target:  `RealColumn get qty => real().nullable()();`
+  - `unitPrice`: 
+    - Current: `RealColumn get unitPrice => real()();`
+    - Target:  `RealColumn get unitPrice => real().nullable()();`
+  - `modifierPrice`: 
+    - Current: `RealColumn get modifierPrice => real()();`
+    - Target:  `RealColumn get modifierPrice => real().nullable()();`
+  - `discountId`: 
+    - Current: `TextColumn get discountId => text()();`
+    - Target:  `TextColumn get discountId => text().nullable()();`
+  - `discountPercent`: 
+    - Current: `RealColumn get discountPercent => real()();`
+    - Target:  `RealColumn get discountPercent => real().nullable()();`
+  - `discountAmount`: 
+    - Current: `RealColumn get discountAmount => real()();`
+    - Target:  `RealColumn get discountAmount => real().nullable()();`
+  - `totalBeforeDiscount`: 
+    - Current: `RealColumn get totalBeforeDiscount => real()();`
+    - Target:  `RealColumn get totalBeforeDiscount => real().nullable()();`
+  - `totalDiscountAmount`: 
+    - Current: `RealColumn get totalDiscountAmount => real()();`
+    - Target:  `RealColumn get totalDiscountAmount => real().nullable()();`
+  - `total`: 
+    - Current: `RealColumn get total => real()();`
+    - Target:  `RealColumn get total => real().nullable()();`
+  - `serviceCharged`: 
+    - Current: `BoolColumn get serviceCharged => boolean()();`
+    - Target:  `BooleanColumn get serviceCharged => boolean().nullable()();`
+  - `taxed`: 
+    - Current: `BoolColumn get taxed => boolean()();`
+    - Target:  `BooleanColumn get taxed => boolean().nullable()();`
+  - `taxId`: 
+    - Current: `TextColumn get taxId => text()();`
+    - Target:  `TextColumn get taxId => text().nullable()();`
+  - `notes`: 
+    - Current: `TextColumn get notes => text()();`
+    - Target:  `TextColumn get notes => text().nullable()();`
+  - `sortOrder`: 
+    - Current: `RealColumn get sortOrder => real()();`
+    - Target:  `IntegerColumn get sortOrder => integer().nullable()();`
+  - `createdByUserId`: 
+    - Current: `TextColumn get createdByUserId => text()();`
+    - Target:  `TextColumn get createdByUserId => text().nullable()();`
+  - `createdDateTime`: 
+    - Current: `DateTimeColumn get createdDateTime => dateTime()();`
+    - Target:  `DateTimeColumn get createdDateTime => dateTime().nullable()();`
+  - `lastUpdateByUserId`: 
+    - Current: `TextColumn get lastUpdateByUserId => text()();`
+    - Target:  `TextColumn get lastUpdateByUserId => text().nullable()();`
+  - `lastUpdateDateTime`: 
+    - Current: `DateTimeColumn get lastUpdateDateTime => dateTime()();`
+    - Target:  `DateTimeColumn get lastUpdateDateTime => dateTime().nullable()();`
+  - `cancelled`: 
+    - Current: `BoolColumn get cancelled => boolean()();`
+    - Target:  `BooleanColumn get cancelled => boolean().withDefault(const Constant(false)).nullable()();`
+  - `cancelledByUserId`: 
+    - Current: `TextColumn get cancelledByUserId => text()();`
+    - Target:  `TextColumn get cancelledByUserId => text().nullable()();`
+  - `cancellationDateTime`: 
+    - Current: `DateTimeColumn get cancellationDateTime => dateTime()();`
+    - Target:  `DateTimeColumn get cancellationDateTime => dateTime().nullable()();`
+  - `cancellationReason`: 
+    - Current: `TextColumn get cancellationReason => text()();`
+    - Target:  `TextColumn get cancellationReason => text().nullable()();`
+  - `lineType`: 
+    - Current: `TextColumn get lineType => text()();`
+    - Target:  `TextColumn get lineType => text().withDefault(const Constant('item'))();`
+  - `itemType`: 
+    - Current: `TextColumn get itemType => text()();`
+    - Target:  `TextColumn get itemType => text().withDefault(const Constant('item'))();`
+  - `promoId`: 
+    - Current: `TextColumn get promoId => text()();`
+    - Target:  `TextColumn get promoId => text().nullable()();`
+  - `promoName`: 
+    - Current: `TextColumn get promoName => text()();`
+    - Target:  `TextColumn get promoName => text().nullable()();`
+  - `promoDiscountPercent`: 
+    - Current: `RealColumn get promoDiscountPercent => real()();`
+    - Target:  `RealColumn get promoDiscountPercent => real().nullable()();`
+  - `promoDiscountAmount`: 
+    - Current: `RealColumn get promoDiscountAmount => real()();`
+    - Target:  `RealColumn get promoDiscountAmount => real().nullable()();`
+  - `isPromoReward`: 
+    - Current: `BoolColumn get isPromoReward => boolean()();`
+    - Target:  `BooleanColumn get isPromoReward => boolean().withDefault(const Constant(false)).nullable()();`
+  - `relatedTo`: 
+    - Current: `TextColumn get relatedTo => text()();`
+    - Target:  `TextColumn get relatedTo => text().nullable()();`
+  - `haveCommission`: 
+    - Current: `BoolColumn get haveCommission => boolean()();`
+    - Target:  `BooleanColumn get haveCommission => boolean().nullable()();`
+  - `priceTierId`: 
+    - Current: `TextColumn get priceTierId => text()();`
+    - Target:  `TextColumn get priceTierId => text().nullable()();`
+
+### [MODIFY] order_line_modifier.dart
+  - `id`: 
+    - Current: `TextColumn get id => text()();`
+    - Target:  `TextColumn get id => text() => const Uuid().v4())();`
+  - `orderId`: 
+    - Current: `TextColumn get orderId => text()();`
+    - Target:  `TextColumn get orderId => text() => const Uuid().v4())();`
+  - `orderLineId`: 
+    - Current: `TextColumn get orderLineId => text()();`
+    - Target:  `TextColumn get orderLineId => text() => const Uuid().v4())();`
+  - `modifierId`: 
+    - Current: `TextColumn get modifierId => text()();`
+    - Target:  `TextColumn get modifierId => text().nullable()();`
+  - `modifierItemId`: 
+    - Current: `TextColumn get modifierItemId => text()();`
+    - Target:  `TextColumn get modifierItemId => text().nullable()();`
+  - `modifierItemName`: 
+    - Current: `TextColumn get modifierItemName => text()();`
+    - Target:  `TextColumn get modifierItemName => text().nullable()();`
+  - `modifierItemProductId`: 
+    - Current: `TextColumn get modifierItemProductId => text()();`
+    - Target:  `TextColumn get modifierItemProductId => text().nullable()();`
+  - `modifierItemProductVariantId`: 
+    - Current: `TextColumn get modifierItemProductVariantId => text()();`
+    - Target:  `TextColumn get modifierItemProductVariantId => text().nullable()();`
+  - `description`: 
+    - Current: `TextColumn get description => text()();`
+    - Target:  `TextColumn get description => text().nullable()();`
+  - `qty`: 
+    - Current: `RealColumn get qty => real()();`
+    - Target:  `RealColumn get qty => real().nullable()();`
+  - `price`: 
+    - Current: `RealColumn get price => real()();`
+    - Target:  `RealColumn get price => real().nullable()();`
+
+### [MODIFY] order_log.dart
+  - `id`: 
+    - Current: `TextColumn get id => text()();`
+    - Target:  `TextColumn get id => text() => const Uuid().v4())();`
+  - `transactionId`: 
+    - Current: `TextColumn get transactionId => text()();`
+    - Target:  `TextColumn get transactionId => text().nullable()();`
+  - `transactionNumber`: 
+    - Current: `TextColumn get transactionNumber => text()();`
+    - Target:  `TextColumn get transactionNumber => text().nullable()();`
+  - `transactionDate`: 
+    - Current: `TextColumn get transactionDate => text()();`
+    - Target:  `DateTimeColumn get transactionDate => dateTime().nullable()();`
+  - `receiptNumber`: 
+    - Current: `TextColumn get receiptNumber => text()();`
+    - Target:  `TextColumn get receiptNumber => text().nullable()();`
+  - `customerId`: 
+    - Current: `TextColumn get customerId => text()();`
+    - Target:  `TextColumn get customerId => text().nullable()();`
+  - `customerName`: 
+    - Current: `TextColumn get customerName => text()();`
+    - Target:  `TextColumn get customerName => text().nullable()();`
+  - `salesTypeId`: 
+    - Current: `TextColumn get salesTypeId => text()();`
+    - Target:  `TextColumn get salesTypeId => text().nullable()();`
+  - `tableId`: 
+    - Current: `TextColumn get tableId => text()();`
+    - Target:  `TextColumn get tableId => text().nullable()();`
+  - `numberOfPax`: 
+    - Current: `RealColumn get numberOfPax => real()();`
+    - Target:  `IntegerColumn get numberOfPax => integer().nullable()();`
+  - `productId`: 
+    - Current: `TextColumn get productId => text()();`
+    - Target:  `TextColumn get productId => text().nullable()();`
+  - `productVariantId`: 
+    - Current: `TextColumn get productVariantId => text()();`
+    - Target:  `TextColumn get productVariantId => text().nullable()();`
+  - `description`: 
+    - Current: `TextColumn get description => text()();`
+    - Target:  `TextColumn get description => text().nullable()();`
+  - `qty`: 
+    - Current: `RealColumn get qty => real()();`
+    - Target:  `RealColumn get qty => real().nullable()();`
+  - `unitPrice`: 
+    - Current: `RealColumn get unitPrice => real()();`
+    - Target:  `IntegerColumn get unitPrice => integer().nullable()();`
+  - `totalLine`: 
+    - Current: `RealColumn get totalLine => real()();`
+    - Target:  `IntegerColumn get totalLine => integer().nullable()();`
+  - `totalOrder`: 
+    - Current: `RealColumn get totalOrder => real()();`
+    - Target:  `IntegerColumn get totalOrder => integer().nullable()();`
+  - `createdByUserId`: 
+    - Current: `TextColumn get createdByUserId => text()();`
+    - Target:  `TextColumn get createdByUserId => text().nullable()();`
+  - `createdDate`: 
+    - Current: `TextColumn get createdDate => text()();`
+    - Target:  `DateTimeColumn get createdDate => dateTime().nullable()();`
+  - `cancelledByUserId`: 
+    - Current: `TextColumn get cancelledByUserId => text()();`
+    - Target:  `TextColumn get cancelledByUserId => text().nullable()();`
+  - `cancellationDate`: 
+    - Current: `TextColumn get cancellationDate => text()();`
+    - Target:  `DateTimeColumn get cancellationDate => dateTime().nullable()();`
+  - `cancellationReason`: 
+    - Current: `TextColumn get cancellationReason => text()();`
+    - Target:  `TextColumn get cancellationReason => text().nullable()();`
+  - `isSync`: 
+    - Current: `BoolColumn get isSync => boolean()();`
+    - Target:  `BooleanColumn get isSync => boolean().withDefault(const Constant(false)).nullable()();`
+
+### [MODIFY] order_payment.dart
+  - `orderId`: 
+    - Current: `TextColumn get orderId => text()();`
+    - Target:  `TextColumn get orderId => text().nullable()();`
+  - `paymentMethodId`: 
+    - Current: `TextColumn get paymentMethodId => text()();`
+    - Target:  `TextColumn get paymentMethodId => text().nullable()();`
+  - `paymentAccountId`: 
+    - Current: `TextColumn get paymentAccountId => text()();`
+    - Target:  `TextColumn get paymentAccountId => text().nullable()();`
+  - `paymentAmount`: 
+    - Current: `RealColumn get paymentAmount => real()();`
+    - Target:  `RealColumn get paymentAmount => real().nullable()();`
+  - `cardNumber`: 
+    - Current: `TextColumn get cardNumber => text()();`
+    - Target:  `TextColumn get cardNumber => text().nullable()();`
+  - `cardHolder`: 
+    - Current: `TextColumn get cardHolder => text()();`
+    - Target:  `TextColumn get cardHolder => text().nullable()();`
+  - `referenceNumber`: 
+    - Current: `TextColumn get referenceNumber => text()();`
+    - Target:  `TextColumn get referenceNumber => text().nullable()();`
+  - `partnerId`: 
+    - Current: `TextColumn get partnerId => text()();`
+    - Target:  `TextColumn get partnerId => text().nullable()();`
+  - `partnerPaymentMethodId`: 
+    - Current: `TextColumn get partnerPaymentMethodId => text()();`
+    - Target:  `TextColumn get partnerPaymentMethodId => text().nullable()();`
+  - `partnerPaymentMethodName`: 
+    - Current: `TextColumn get partnerPaymentMethodName => text()();`
+    - Target:  `TextColumn get partnerPaymentMethodName => text().nullable()();`
+  - `partnerTransactionId`: 
+    - Current: `TextColumn get partnerTransactionId => text()();`
+    - Target:  `TextColumn get partnerTransactionId => text().nullable()();`
+  - `otherPartyId`: 
+    - Current: `TextColumn get otherPartyId => text()();`
+    - Target:  `TextColumn get otherPartyId => text().nullable()();`
+  - `depositId`: 
+    - Current: `TextColumn get depositId => text()();`
+    - Target:  `TextColumn get depositId => text().nullable()();`
+  - `depositNumber`: 
+    - Current: `TextColumn get depositNumber => text()();`
+    - Target:  `TextColumn get depositNumber => text().nullable()();`
+  - `sortOrder`: 
+    - Current: `RealColumn get sortOrder => real()();`
+    - Target:  `IntegerColumn get sortOrder => integer().nullable()();`
+
+### [MODIFY] order_tax.dart
+  - `orderId`: 
+    - Current: `TextColumn get orderId => text()();`
+    - Target:  `TextColumn get orderId => text() => const Uuid().v4())();`
+  - `taxId`: 
+    - Current: `TextColumn get taxId => text()();`
+    - Target:  `TextColumn get taxId => text() => const Uuid().v4())();`
+  - `taxRate`: 
+    - Current: `RealColumn get taxRate => real()();`
+    - Target:  `RealColumn get taxRate => real().nullable()();`
+  - `baseAmount`: 
+    - Current: `RealColumn get baseAmount => real()();`
+    - Target:  `RealColumn get baseAmount => real().nullable()();`
+  - `taxAmount`: 
+    - Current: `RealColumn get taxAmount => real()();`
+    - Target:  `RealColumn get taxAmount => real().nullable()();`
+
+### [MODIFY] outlet_setting.dart
+  - `id`: 
+    - Current: `RealColumn get id => real()();`
+    - Target:  `IntegerColumn get id => integer()();`
+  - `lastOrderNumber`: 
+    - Current: `RealColumn get lastOrderNumber => real()();`
+    - Target:  `IntegerColumn get lastOrderNumber => integer().nullable()();`
+  - `lastOrderNumberDate`: 
+    - Current: `DateTimeColumn get lastOrderNumberDate => dateTime()();`
+    - Target:  `DateTimeColumn get lastOrderNumberDate => dateTime().nullable()();`
+  - `serviceCharged`: 
+    - Current: `BoolColumn get serviceCharged => boolean()();`
+    - Target:  `BooleanColumn get serviceCharged => boolean().nullable()();`
+  - `serviceChargeRate`: 
+    - Current: `RealColumn get serviceChargeRate => real()();`
+    - Target:  `RealColumn get serviceChargeRate => real().nullable()();`
+  - `serviceChargeTaxId`: 
+    - Current: `TextColumn get serviceChargeTaxId => text()();`
+    - Target:  `TextColumn get serviceChargeTaxId => text().nullable()();`
+  - `serviceChargeTaxRate`: 
+    - Current: `RealColumn get serviceChargeTaxRate => real()();`
+    - Target:  `RealColumn get serviceChargeTaxRate => real().nullable()();`
+  - `serviceChargeBeforeDiscount`: 
+    - Current: `BoolColumn get serviceChargeBeforeDiscount => boolean()();`
+    - Target:  `BooleanColumn get serviceChargeBeforeDiscount => boolean().nullable()();`
+  - `taxed`: 
+    - Current: `BoolColumn get taxed => boolean()();`
+    - Target:  `BooleanColumn get taxed => boolean().nullable()();`
+  - `taxInclusive`: 
+    - Current: `BoolColumn get taxInclusive => boolean()();`
+    - Target:  `BooleanColumn get taxInclusive => boolean().nullable()();`
+  - `taxOnSales`: 
+    - Current: `BoolColumn get taxOnSales => boolean()();`
+    - Target:  `BooleanColumn get taxOnSales => boolean().nullable()();`
+  - `taxOnDiscount`: 
+    - Current: `BoolColumn get taxOnDiscount => boolean()();`
+    - Target:  `BooleanColumn get taxOnDiscount => boolean().withDefault(const Constant(false))();`
+  - `lastSyncTime`: 
+    - Current: `TextColumn get lastSyncTime => text()();`
+    - Target:  `DateTimeColumn get lastSyncTime => dateTime().nullable()();`
+  - `autoPrint`: 
+    - Current: `BoolColumn get autoPrint => boolean()();`
+    - Target:  `BooleanColumn get autoPrint => boolean().nullable()();`
+  - `printCaptainOrder`: 
+    - Current: `BoolColumn get printCaptainOrder => boolean()();`
+    - Target:  `BooleanColumn get printCaptainOrder => boolean().nullable()();`
+  - `copyCaptainOrder`: 
+    - Current: `BoolColumn get copyCaptainOrder => boolean()();`
+    - Target:  `BooleanColumn get copyCaptainOrder => boolean().nullable()();`
+  - `qtyCaptainOrder`: 
+    - Current: `RealColumn get qtyCaptainOrder => real()();`
+    - Target:  `IntegerColumn get qtyCaptainOrder => integer().withDefault(const Constant(1)).nullable()();`
+  - `copyReceipt`: 
+    - Current: `BoolColumn get copyReceipt => boolean()();`
+    - Target:  `BooleanColumn get copyReceipt => boolean().nullable()();`
+  - `qtyReceipt`: 
+    - Current: `RealColumn get qtyReceipt => real()();`
+    - Target:  `IntegerColumn get qtyReceipt => integer().withDefault(const Constant(1)).nullable()();`
+  - `autoLockScreen`: 
+    - Current: `BoolColumn get autoLockScreen => boolean()();`
+    - Target:  `BooleanColumn get autoLockScreen => boolean().withDefault(const Constant(true)).nullable()();`
+  - `address`: 
+    - Current: `TextColumn get address => text()();`
+    - Target:  `TextColumn get address => text().nullable()();`
+  - `pinPoint`: 
+    - Current: `TextColumn get pinPoint => text()();`
+    - Target:  `TextColumn get pinPoint => text().nullable()();`
+  - `email`: 
+    - Current: `TextColumn get email => text()();`
+    - Target:  `TextColumn get email => text().nullable()();`
+  - `phone`: 
+    - Current: `TextColumn get phone => text()();`
+    - Target:  `TextColumn get phone => text().nullable()();`
+  - `fax`: 
+    - Current: `TextColumn get fax => text()();`
+    - Target:  `TextColumn get fax => text().nullable()();`
+  - `facebook`: 
+    - Current: `TextColumn get facebook => text()();`
+    - Target:  `TextColumn get facebook => text().nullable()();`
+  - `instagram`: 
+    - Current: `TextColumn get instagram => text()();`
+    - Target:  `TextColumn get instagram => text().nullable()();`
+  - `twitter`: 
+    - Current: `TextColumn get twitter => text()();`
+    - Target:  `TextColumn get twitter => text().nullable()();`
+  - `website`: 
+    - Current: `TextColumn get website => text()();`
+    - Target:  `TextColumn get website => text().nullable()();`
+  - `billNotes`: 
+    - Current: `TextColumn get billNotes => text()();`
+    - Target:  `TextColumn get billNotes => text().nullable()();`
+  - `closingTime`: 
+    - Current: `TextColumn get closingTime => text()();`
+    - Target:  `TextColumn get closingTime => text().nullable()();`
+  - `pictureUrl`: 
+    - Current: `TextColumn get pictureUrl => text()();`
+    - Target:  `TextColumn get pictureUrl => text().nullable()();`
+  - `pictureLocal`: 
+    - Current: `TextColumn get pictureLocal => text()();`
+    - Target:  `TextColumn get pictureLocal => text().nullable()();`
+  - `requiredOrderName`: 
+    - Current: `BoolColumn get requiredOrderName => boolean()();`
+    - Target:  `BooleanColumn get requiredOrderName => boolean().withDefault(const Constant(false)).nullable()();`
+  - `requiredShift`: 
+    - Current: `BoolColumn get requiredShift => boolean()();`
+    - Target:  `BooleanColumn get requiredShift => boolean().withDefault(const Constant(false)).nullable()();`
+  - `allowCustomPriceOrDiscount`: 
+    - Current: `BoolColumn get allowCustomPriceOrDiscount => boolean()();`
+    - Target:  `BooleanColumn get allowCustomPriceOrDiscount => boolean().withDefault(const Constant(false)).nullable()();`
+  - `lastQueueNumber`: 
+    - Current: `RealColumn get lastQueueNumber => real()();`
+    - Target:  `IntegerColumn get lastQueueNumber => integer().nullable()();`
+  - `lastQueueNumberDate`: 
+    - Current: `DateTimeColumn get lastQueueNumberDate => dateTime()();`
+    - Target:  `DateTimeColumn get lastQueueNumberDate => dateTime().nullable()();`
+  - `maxQueueNumber`: 
+    - Current: `RealColumn get maxQueueNumber => real()();`
+    - Target:  `IntegerColumn get maxQueueNumber => integer().withDefault(const Constant(50)).nullable()();`
+  - `useQueue`: 
+    - Current: `BoolColumn get useQueue => boolean()();`
+    - Target:  `BooleanColumn get useQueue => boolean().withDefault(const Constant(false)).nullable()();`
+  - `hideFinalCashEndShift`: 
+    - Current: `BoolColumn get hideFinalCashEndShift => boolean()();`
+    - Target:  `BooleanColumn get hideFinalCashEndShift => boolean().withDefault(const Constant(false)).nullable()();`
+  - `useDefaultItemNotes`: 
+    - Current: `BoolColumn get useDefaultItemNotes => boolean()();`
+    - Target:  `BooleanColumn get useDefaultItemNotes => boolean().withDefault(const Constant(false)).nullable()();`
+  - `defaultItemNotes`: 
+    - Current: `TextColumn get defaultItemNotes => text()();`
+    - Target:  `TextColumn get defaultItemNotes => text().nullable()();`
+  - `isSyncOpenOrder`: 
+    - Current: `BoolColumn get isSyncOpenOrder => boolean()();`
+    - Target:  `BooleanColumn get isSyncOpenOrder => boolean().nullable()();`
+  - `isCanSaveOrder`: 
+    - Current: `BoolColumn get isCanSaveOrder => boolean()();`
+    - Target:  `BooleanColumn get isCanSaveOrder => boolean().withDefault(const Constant(true)).nullable()();`
+  - `isCanPaymentCash`: 
+    - Current: `BoolColumn get isCanPaymentCash => boolean()();`
+    - Target:  `BooleanColumn get isCanPaymentCash => boolean().withDefault(const Constant(true)).nullable()();`
+  - `isSppMode`: 
+    - Current: `BoolColumn get isSppMode => boolean()();`
+    - Target:  `BooleanColumn get isSppMode => boolean().withDefault(const Constant(false)).nullable()();`
+  - `requiredTable`: 
+    - Current: `BoolColumn get requiredTable => boolean()();`
+    - Target:  `BooleanColumn get requiredTable => boolean().withDefault(const Constant(false)).nullable()();`
+  - `cleanEndShift`: 
+    - Current: `BoolColumn get cleanEndShift => boolean()();`
+    - Target:  `BooleanColumn get cleanEndShift => boolean().withDefault(const Constant(false)).nullable()();`
+  - `useRounding`: 
+    - Current: `BoolColumn get useRounding => boolean()();`
+    - Target:  `BooleanColumn get useRounding => boolean().withDefault(const Constant(false)).nullable()();`
+  - `roundingType`: 
+    - Current: `RealColumn get roundingType => real()();`
+    - Target:  `IntegerColumn get roundingType => integer().withDefault(const Constant(0)).nullable()();`
+  - `roundingBase`: 
+    - Current: `RealColumn get roundingBase => real()();`
+    - Target:  `IntegerColumn get roundingBase => integer().withDefault(const Constant(500)).nullable()();`
+  - `subscriptionDueDateUtc`: 
+    - Current: `DateTimeColumn get subscriptionDueDateUtc => dateTime()();`
+    - Target:  `DateTimeColumn get subscriptionDueDateUtc => dateTime().nullable()();`
+  - `defaultWarehouseId`: 
+    - Current: `TextColumn get defaultWarehouseId => text()();`
+    - Target:  `TextColumn get defaultWarehouseId => text().nullable()();`
+  - `enableStockPreview`: 
+    - Current: `BoolColumn get enableStockPreview => boolean()();`
+    - Target:  `BooleanColumn get enableStockPreview => boolean().withDefault(const Constant(false)).nullable()();`
+
+### [MODIFY] payment_method.dart
+  - `paymentMethodType`: 
+    - Current: `TextColumn get paymentMethodType => text()();`
+    - Target:  `TextColumn get paymentMethodType => text().nullable()();`
+  - `paymentMethodName`: 
+    - Current: `TextColumn get paymentMethodName => text()();`
+    - Target:  `TextColumn get paymentMethodName => text().nullable()();`
+  - `paymentAccountId`: 
+    - Current: `TextColumn get paymentAccountId => text()();`
+    - Target:  `TextColumn get paymentAccountId => text().nullable()();`
+  - `isDefaultCash`: 
+    - Current: `BoolColumn get isDefaultCash => boolean()();`
+    - Target:  `BooleanColumn get isDefaultCash => boolean().nullable()();`
+  - `sortOrder`: 
+    - Current: `IntColumn get sortOrder => integer()();`
+    - Target:  `IntegerColumn get sortOrder => integer().nullable()();`
+  - `deleted`: 
+    - Current: `BoolColumn get deleted => boolean()();`
+    - Target:  `BooleanColumn get deleted => boolean().nullable()();`
+
+### [MODIFY] price_level.dart
+  - `name`: 
+    - Current: `TextColumn get name => text()();`
+    - Target:  `TextColumn get name => text().nullable()();`
+  - `isMaster`: 
+    - Current: `BoolColumn get isMaster => boolean()();`
+    - Target:  `BooleanColumn get isMaster => boolean().nullable()();`
+
+### [MODIFY] price_level_pricelist.dart
+  - `productId`: 
+    - Current: `TextColumn get productId => text()();`
+    - Target:  `TextColumn get productId => text() => const Uuid().v4())();`
+  - `productVariantId`: 
+    - Current: `TextColumn get productVariantId => text()();`
+    - Target:  `TextColumn get productVariantId => text() => const Uuid().v4())();`
+  - `priceLevelId`: 
+    - Current: `TextColumn get priceLevelId => text()();`
+    - Target:  `TextColumn get priceLevelId => text() => const Uuid().v4())();`
+  - `priceLevelName`: 
+    - Current: `TextColumn get priceLevelName => text()();`
+    - Target:  `TextColumn get priceLevelName => text().nullable()();`
+  - `price`: 
+    - Current: `RealColumn get price => real()();`
+    - Target:  `RealColumn get price => real().nullable()();`
+  - `isMaster`: 
+    - Current: `BoolColumn get isMaster => boolean()();`
+    - Target:  `BooleanColumn get isMaster => boolean().nullable()();`
+  - `deleted`: 
+    - Current: `BoolColumn get deleted => boolean()();`
+    - Target:  `BooleanColumn get deleted => boolean().withDefault(const Constant(false)).nullable()();`
+
+### [MODIFY] price_tier.dart
+  - `productId`: 
+    - Current: `TextColumn get productId => text()();`
+    - Target:  `TextColumn get productId => text().nullable()();`
+  - `name`: 
+    - Current: `TextColumn get name => text()();`
+    - Target:  `TextColumn get name => text().nullable()();`
+  - `minimumQty`: 
+    - Current: `RealColumn get minimumQty => real()();`
+    - Target:  `RealColumn get minimumQty => real().nullable()();`
+  - `price`: 
+    - Current: `RealColumn get price => real()();`
+    - Target:  `RealColumn get price => real().nullable()();`
+  - `sortOrder`: 
+    - Current: `RealColumn get sortOrder => real()();`
+    - Target:  `IntegerColumn get sortOrder => integer().nullable()();`
+  - `deleted`: 
+    - Current: `BoolColumn get deleted => boolean()();`
+    - Target:  `BooleanColumn get deleted => boolean().nullable()();`
+
+### [MODIFY] price_tier_order.dart
+  - `priceTierId`: 
+    - Current: `TextColumn get priceTierId => text()();`
+    - Target:  `TextColumn get priceTierId => text() => const Uuid().v4())();`
+  - `orderId`: 
+    - Current: `TextColumn get orderId => text()();`
+    - Target:  `TextColumn get orderId => text() => const Uuid().v4())();`
+  - `orderLineId`: 
+    - Current: `TextColumn get orderLineId => text()();`
+    - Target:  `TextColumn get orderLineId => text() => const Uuid().v4())();`
+  - `productId`: 
+    - Current: `TextColumn get productId => text()();`
+    - Target:  `TextColumn get productId => text() => const Uuid().v4())();`
+  - `id`: 
+    - Current: `TextColumn get id => text()();`
+    - Target:  `TextColumn get id => text() => const Uuid().v4())();`
+  - `priceTierName`: 
+    - Current: `TextColumn get priceTierName => text()();`
+    - Target:  `TextColumn get priceTierName => text().nullable()();`
+  - `minimumQty`: 
+    - Current: `RealColumn get minimumQty => real()();`
+    - Target:  `RealColumn get minimumQty => real().nullable()();`
+  - `price`: 
+    - Current: `RealColumn get price => real()();`
+    - Target:  `RealColumn get price => real().nullable()();`
+  - `sortOrder`: 
+    - Current: `IntColumn get sortOrder => integer().nullable()();`
+    - Target:  `IntegerColumn get sortOrder => integer().nullable()();`
+  - `createDateUtc`: 
+    - Current: `DateTimeColumn get createDateUtc => dateTime()();`
+    - Target:  `DateTimeColumn get createDateUtc => dateTime().nullable()();`
+
+### [MODIFY] printer.dart
+  - `id`: 
+    - Current: `TextColumn get id => text()();`
+    - Target:  `TextColumn get id => text() => const Uuid().v4())();`
+  - `deviceId`: 
+    - Current: `TextColumn get deviceId => text()();`
+    - Target:  `TextColumn get deviceId => text().nullable()();`
+  - `printerAreaId`: 
+    - Current: `TextColumn get printerAreaId => text()();`
+    - Target:  `TextColumn get printerAreaId => text().nullable()();`
+  - `printerType`: 
+    - Current: `TextColumn get printerType => text()();`
+    - Target:  `TextColumn get printerType => text().nullable()();`
+  - `printerModule`: 
+    - Current: `TextColumn get printerModule => text()();`
+    - Target:  `TextColumn get printerModule => text().nullable()();`
+  - `printerConfig`: 
+    - Current: `TextColumn get printerConfig => text()();`
+    - Target:  `TextColumn get printerConfig => text().nullable()();`
+
+### [MODIFY] printer_area.dart
+  - `id`: 
+    - Current: `TextColumn get id => text()();`
+    - Target:  `TextColumn get id => text() => const Uuid().v4())();`
+  - `name`: 
+    - Current: `TextColumn get name => text()();`
+    - Target:  `TextColumn get name => text().nullable()();`
+  - `sortOrder`: 
+    - Current: `RealColumn get sortOrder => real()();`
+    - Target:  `IntegerColumn get sortOrder => integer().nullable()();`
+
+### [MODIFY] printout_template.dart
+  - `id`: 
+    - Current: `TextColumn get id => text()();`
+    - Target:  `TextColumn get id => text() => const Uuid().v4())();`
+  - `name`: 
+    - Current: `TextColumn get name => text()();`
+    - Target:  `TextColumn get name => text().nullable()();`
+  - `showLogo`: 
+    - Current: `BoolColumn get showLogo => boolean()();`
+    - Target:  `BooleanColumn get showLogo => boolean().withDefault(const Constant(true)).nullable()();`
+  - `showOrderNumber`: 
+    - Current: `BoolColumn get showOrderNumber => boolean()();`
+    - Target:  `BooleanColumn get showOrderNumber => boolean().withDefault(const Constant(true)).nullable()();`
+  - `showDate`: 
+    - Current: `BoolColumn get showDate => boolean()();`
+    - Target:  `BooleanColumn get showDate => boolean().withDefault(const Constant(true)).nullable()();`
+  - `showAddress`: 
+    - Current: `BoolColumn get showAddress => boolean()();`
+    - Target:  `BooleanColumn get showAddress => boolean().withDefault(const Constant(true)).nullable()();`
+  - `showAdjustment`: 
+    - Current: `BoolColumn get showAdjustment => boolean()();`
+    - Target:  `BooleanColumn get showAdjustment => boolean().withDefault(const Constant(true)).nullable()();`
+  - `showTax`: 
+    - Current: `BoolColumn get showTax => boolean()();`
+    - Target:  `BooleanColumn get showTax => boolean().withDefault(const Constant(true)).nullable()();`
+  - `showServiceCharge`: 
+    - Current: `BoolColumn get showServiceCharge => boolean()();`
+    - Target:  `BooleanColumn get showServiceCharge => boolean().withDefault(const Constant(true)).nullable()();`
+  - `showUnitPriceProduct`: 
+    - Current: `BoolColumn get showUnitPriceProduct => boolean()();`
+    - Target:  `BooleanColumn get showUnitPriceProduct => boolean().withDefault(const Constant(true)).nullable()();`
+  - `showUnitPriceModifier`: 
+    - Current: `BoolColumn get showUnitPriceModifier => boolean()();`
+    - Target:  `BooleanColumn get showUnitPriceModifier => boolean().withDefault(const Constant(true)).nullable()();`
+  - `sortOrder`: 
+    - Current: `RealColumn get sortOrder => real()();`
+    - Target:  `IntegerColumn get sortOrder => integer().nullable()();`
+
+### [MODIFY] product.dart
+  - `id`: 
+    - Current: `TextColumn get id => text()();`
+    - Target:  `TextColumn get id => text() => const Uuid().v4())();`
+  - `sku`: 
+    - Current: `TextColumn get sku => text()();`
+    - Target:  `TextColumn get sku => text().nullable()();`
+  - `name`: 
+    - Current: `TextColumn get name => text()();`
+    - Target:  `TextColumn get name => text().nullable()();`
+  - `detailDescription`: 
+    - Current: `TextColumn get detailDescription => text()();`
+    - Target:  `TextColumn get detailDescription => text().nullable()();`
+  - `serviceCharged`: 
+    - Current: `BoolColumn get serviceCharged => boolean()();`
+    - Target:  `BooleanColumn get serviceCharged => boolean().nullable()();`
+  - `salesTaxId`: 
+    - Current: `TextColumn get salesTaxId => text()();`
+    - Target:  `TextColumn get salesTaxId => text().nullable()();`
+  - `uom`: 
+    - Current: `TextColumn get uom => text()();`
+    - Target:  `TextColumn get uom => text().nullable()();`
+  - `modifierCount`: 
+    - Current: `RealColumn get modifierCount => real()();`
+    - Target:  `IntegerColumn get modifierCount => integer().nullable()();`
+  - `hasVariants`: 
+    - Current: `BoolColumn get hasVariants => boolean()();`
+    - Target:  `BooleanColumn get hasVariants => boolean().nullable()();`
+  - `variantCount`: 
+    - Current: `RealColumn get variantCount => real()();`
+    - Target:  `IntegerColumn get variantCount => integer().nullable()();`
+  - `variantAttribute1`: 
+    - Current: `TextColumn get variantAttribute1 => text()();`
+    - Target:  `TextColumn get variantAttribute1 => text().nullable()();`
+  - `variantAttribute2`: 
+    - Current: `TextColumn get variantAttribute2 => text()();`
+    - Target:  `TextColumn get variantAttribute2 => text().nullable()();`
+  - `variantAttribute3`: 
+    - Current: `TextColumn get variantAttribute3 => text()();`
+    - Target:  `TextColumn get variantAttribute3 => text().nullable()();`
+  - `masterVariantId`: 
+    - Current: `TextColumn get masterVariantId => text()();`
+    - Target:  `TextColumn get masterVariantId => text().nullable()();`
+  - `pictureUrl`: 
+    - Current: `TextColumn get pictureUrl => text()();`
+    - Target:  `TextColumn get pictureUrl => text().nullable()();`
+  - `pictureLocal`: 
+    - Current: `TextColumn get pictureLocal => text()();`
+    - Target:  `TextColumn get pictureLocal => text().nullable()();`
+  - `printerAreaId`: 
+    - Current: `TextColumn get printerAreaId => text()();`
+    - Target:  `TextColumn get printerAreaId => text().nullable()();`
+  - `printerItemAreaId`: 
+    - Current: `TextColumn get printerItemAreaId => text()();`
+    - Target:  `TextColumn get printerItemAreaId => text().nullable()();`
+  - `isFavorite`: 
+    - Current: `BoolColumn get isFavorite => boolean()();`
+    - Target:  `BooleanColumn get isFavorite => boolean().withDefault(const Constant(false)).nullable()();`
+  - `isOutOfStock`: 
+    - Current: `BoolColumn get isOutOfStock => boolean()();`
+    - Target:  `BooleanColumn get isOutOfStock => boolean().withDefault(const Constant(false)).nullable()();`
+  - `deleted`: 
+    - Current: `BoolColumn get deleted => boolean()();`
+    - Target:  `BooleanColumn get deleted => boolean().withDefault(const Constant(false)).nullable()();`
+  - `availableForAllPosUsers`: 
+    - Current: `BoolColumn get availableForAllPosUsers => boolean()();`
+    - Target:  `BooleanColumn get availableForAllPosUsers => boolean().nullable()();`
+  - `isDiscountDisabled`: 
+    - Current: `BoolColumn get isDiscountDisabled => boolean()();`
+    - Target:  `BooleanColumn get isDiscountDisabled => boolean().nullable()();`
+
+### [MODIFY] product_category_relation.dart
+  - `productId`: 
+    - Current: `TextColumn get productId => text()();`
+    - Target:  `TextColumn get productId => text() => const Uuid().v4())();`
+  - `categoryId`: 
+    - Current: `TextColumn get categoryId => text()();`
+    - Target:  `TextColumn get categoryId => text() => const Uuid().v4())();`
+  - `deleted`: 
+    - Current: `BoolColumn get deleted => boolean()();`
+    - Target:  `BooleanColumn get deleted => boolean().withDefault(const Constant(false)).nullable()();`
+
+### [MODIFY] product_modifier_relation.dart
+  - `productId`: 
+    - Current: `TextColumn get productId => text()();`
+    - Target:  `TextColumn get productId => text() => const Uuid().v4())();`
+  - `modifierId`: 
+    - Current: `TextColumn get modifierId => text()();`
+    - Target:  `TextColumn get modifierId => text() => const Uuid().v4())();`
+  - `sortOrder`: 
+    - Current: `RealColumn get sortOrder => real()();`
+    - Target:  `IntegerColumn get sortOrder => integer().nullable()();`
+  - `deleted`: 
+    - Current: `BoolColumn get deleted => boolean()();`
+    - Target:  `BooleanColumn get deleted => boolean().withDefault(const Constant(false)).nullable()();`
+
+### [MODIFY] product_pricelist.dart
+  - `productId`: 
+    - Current: `TextColumn get productId => text()();`
+    - Target:  `TextColumn get productId => text() => const Uuid().v4())();`
+  - `productVariantId`: 
+    - Current: `TextColumn get productVariantId => text()();`
+    - Target:  `TextColumn get productVariantId => text() => const Uuid().v4())();`
+  - `salesTypeId`: 
+    - Current: `TextColumn get salesTypeId => text()();`
+    - Target:  `TextColumn get salesTypeId => text() => const Uuid().v4())();`
+  - `salesTypeName`: 
+    - Current: `TextColumn get salesTypeName => text()();`
+    - Target:  `TextColumn get salesTypeName => text().nullable()();`
+  - `price`: 
+    - Current: `RealColumn get price => real()();`
+    - Target:  `RealColumn get price => real().nullable()();`
+  - `isMaster`: 
+    - Current: `BoolColumn get isMaster => boolean()();`
+    - Target:  `BooleanColumn get isMaster => boolean().nullable()();`
+  - `deleted`: 
+    - Current: `BoolColumn get deleted => boolean()();`
+    - Target:  `BooleanColumn get deleted => boolean().withDefault(const Constant(false)).nullable()();`
+
+### [MODIFY] product_user_relation.dart
+  - `productId`: 
+    - Current: `TextColumn get productId => text()();`
+    - Target:  `TextColumn get productId => text() => const Uuid().v4())();`
+  - `userId`: 
+    - Current: `TextColumn get userId => text()();`
+    - Target:  `TextColumn get userId => text() => const Uuid().v4())();`
+
+### [MODIFY] product_variant.dart
+  - `id`: 
+    - Current: `TextColumn get id => text()();`
+    - Target:  `TextColumn get id => text() => const Uuid().v4())();`
+  - `sku`: 
+    - Current: `TextColumn get sku => text()();`
+    - Target:  `TextColumn get sku => text().nullable()();`
+  - `name`: 
+    - Current: `TextColumn get name => text()();`
+    - Target:  `TextColumn get name => text().nullable()();`
+  - `variantName`: 
+    - Current: `TextColumn get variantName => text()();`
+    - Target:  `TextColumn get variantName => text().nullable()();`
+  - `unitPrice`: 
+    - Current: `RealColumn get unitPrice => real()();`
+    - Target:  `RealColumn get unitPrice => real().nullable()();`
+  - `isMaster`: 
+    - Current: `BoolColumn get isMaster => boolean()();`
+    - Target:  `BooleanColumn get isMaster => boolean().nullable()();`
+  - `attribute1Value`: 
+    - Current: `TextColumn get attribute1Value => text()();`
+    - Target:  `TextColumn get attribute1Value => text().nullable()();`
+  - `attribute2Value`: 
+    - Current: `TextColumn get attribute2Value => text()();`
+    - Target:  `TextColumn get attribute2Value => text().nullable()();`
+  - `attribute3Value`: 
+    - Current: `TextColumn get attribute3Value => text()();`
+    - Target:  `TextColumn get attribute3Value => text().nullable()();`
+  - `sortOrder`: 
+    - Current: `RealColumn get sortOrder => real()();`
+    - Target:  `IntegerColumn get sortOrder => integer().nullable()();`
+  - `deleted`: 
+    - Current: `BoolColumn get deleted => boolean()();`
+    - Target:  `BooleanColumn get deleted => boolean().withDefault(const Constant(false)).nullable()();`
+
+### [MODIFY] promo.dart
+  - `id`: 
+    - Current: `TextColumn get id => text()();`
+    - Target:  `TextColumn get id => text() => const Uuid().v4())();`
+  - `name`: 
+    - Current: `TextColumn get name => text()();`
+    - Target:  `TextColumn get name => text().nullable()();`
+  - `type`: 
+    - Current: `RealColumn get type => real()();`
+    - Target:  `IntegerColumn get type => integer().nullable()();`
+  - `appliesMultiple`: 
+    - Current: `BoolColumn get appliesMultiple => boolean()();`
+    - Target:  `BooleanColumn get appliesMultiple => boolean().nullable()();`
+  - `canBeCombined`: 
+    - Current: `BoolColumn get canBeCombined => boolean()();`
+    - Target:  `BooleanColumn get canBeCombined => boolean().nullable()();`
+  - `startDateTime`: 
+    - Current: `DateTimeColumn get startDateTime => dateTime()();`
+    - Target:  `DateTimeColumn get startDateTime => dateTime().nullable()();`
+  - `endDateTime`: 
+    - Current: `DateTimeColumn get endDateTime => dateTime()();`
+    - Target:  `DateTimeColumn get endDateTime => dateTime().nullable()();`
+  - `startDate`: 
+    - Current: `TextColumn get startDate => text()();`
+    - Target:  `DateTimeColumn get startDate => dateTime().nullable()();`
+  - `endDate`: 
+    - Current: `TextColumn get endDate => text()();`
+    - Target:  `DateTimeColumn get endDate => dateTime().nullable()();`
+  - `useTimespan`: 
+    - Current: `BoolColumn get useTimespan => boolean()();`
+    - Target:  `BooleanColumn get useTimespan => boolean().nullable()();`
+  - `startTime`: 
+    - Current: `TextColumn get startTime => text()();`
+    - Target:  `TextColumn get startTime => text().nullable()();`
+  - `endTime`: 
+    - Current: `TextColumn get endTime => text()();`
+    - Target:  `TextColumn get endTime => text().nullable()();`
+  - `monday`: 
+    - Current: `BoolColumn get monday => boolean()();`
+    - Target:  `BooleanColumn get monday => boolean().nullable()();`
+  - `tuesday`: 
+    - Current: `BoolColumn get tuesday => boolean()();`
+    - Target:  `BooleanColumn get tuesday => boolean().nullable()();`
+  - `wednesday`: 
+    - Current: `BoolColumn get wednesday => boolean()();`
+    - Target:  `BooleanColumn get wednesday => boolean().nullable()();`
+  - `thursday`: 
+    - Current: `BoolColumn get thursday => boolean()();`
+    - Target:  `BooleanColumn get thursday => boolean().nullable()();`
+  - `friday`: 
+    - Current: `BoolColumn get friday => boolean()();`
+    - Target:  `BooleanColumn get friday => boolean().nullable()();`
+  - `saturday`: 
+    - Current: `BoolColumn get saturday => boolean()();`
+    - Target:  `BooleanColumn get saturday => boolean().nullable()();`
+  - `sunday`: 
+    - Current: `BoolColumn get sunday => boolean()();`
+    - Target:  `BooleanColumn get sunday => boolean().nullable()();`
+  - `allSalesType`: 
+    - Current: `BoolColumn get allSalesType => boolean()();`
+    - Target:  `BooleanColumn get allSalesType => boolean().nullable()();`
+  - `allPaymentMethod`: 
+    - Current: `BoolColumn get allPaymentMethod => boolean()();`
+    - Target:  `BooleanColumn get allPaymentMethod => boolean().nullable()();`
+  - `inactive`: 
+    - Current: `BoolColumn get inactive => boolean()();`
+    - Target:  `BooleanColumn get inactive => boolean().nullable()();`
+  - `deleted`: 
+    - Current: `BoolColumn get deleted => boolean()();`
+    - Target:  `BooleanColumn get deleted => boolean().withDefault(const Constant(false)).nullable()();`
+
+### [MODIFY] promo_extension.dart
+  - `id`: 
+    - Current: `TextColumn get id => text()();`
+    - Target:  `TextColumn get id => text() => const Uuid().v4())();`
+  - `operatorTerm`: 
+    - Current: `TextColumn get operatorTerm => text()();`
+    - Target:  `TextColumn get operatorTerm => text().nullable()();`
+  - `operatorReward`: 
+    - Current: `TextColumn get operatorReward => text()();`
+    - Target:  `TextColumn get operatorReward => text().nullable()();`
+  - `termVariantLength`: 
+    - Current: `RealColumn get termVariantLength => real()();`
+    - Target:  `IntegerColumn get termVariantLength => integer().nullable()();`
+  - `discountType`: 
+    - Current: `RealColumn get discountType => real()();`
+    - Target:  `IntegerColumn get discountType => integer().nullable()();`
+  - `discountPercentage`: 
+    - Current: `BoolColumn get discountPercentage => boolean()();`
+    - Target:  `RealColumn get discountPercentage => real().nullable()();`
+  - `discountAmount`: 
+    - Current: `BoolColumn get discountAmount => boolean()();`
+    - Target:  `RealColumn get discountAmount => real().nullable()();`
+  - `maxDiscountAmount`: 
+    - Current: `BoolColumn get maxDiscountAmount => boolean()();`
+    - Target:  `RealColumn get maxDiscountAmount => real().nullable()();`
+  - `sortOrder`: 
+    - Current: `BoolColumn get sortOrder => boolean()();`
+    - Target:  `IntegerColumn get sortOrder => integer().nullable()();`
+  - `deleted`: 
+    - Current: `BoolColumn get deleted => boolean()();`
+    - Target:  `BooleanColumn get deleted => boolean().withDefault(const Constant(false)).nullable()();`
+
+### [MODIFY] promo_order.dart
+  - `promoId`: 
+    - Current: `TextColumn get promoId => text()();`
+    - Target:  `TextColumn get promoId => text() => const Uuid().v4())();`
+  - `orderId`: 
+    - Current: `TextColumn get orderId => text()();`
+    - Target:  `TextColumn get orderId => text() => const Uuid().v4())();`
+  - `promoName`: 
+    - Current: `TextColumn get promoName => text()();`
+    - Target:  `TextColumn get promoName => text().nullable()();`
+  - `promoType`: 
+    - Current: `RealColumn get promoType => real()();`
+    - Target:  `IntegerColumn get promoType => integer().nullable()();`
+  - `totalPromoAmountLines`: 
+    - Current: `RealColumn get totalPromoAmountLines => real()();`
+    - Target:  `IntegerColumn get totalPromoAmountLines => integer().nullable()();`
+  - `qty`: 
+    - Current: `RealColumn get qty => real()();`
+    - Target:  `IntegerColumn get qty => integer().nullable()();`
+  - `createDateUtc`: 
+    - Current: `DateTimeColumn get createDateUtc => dateTime()();`
+    - Target:  `DateTimeColumn get createDateUtc => dateTime().nullable()();`
+
+### [MODIFY] promo_product_reward.dart
+  - `id`: 
+    - Current: `TextColumn get id => text()();`
+    - Target:  `TextColumn get id => text() => const Uuid().v4())();`
+  - `productId`: 
+    - Current: `TextColumn get productId => text()();`
+    - Target:  `TextColumn get productId => text().nullable()();`
+  - `allVariants`: 
+    - Current: `BoolColumn get allVariants => boolean()();`
+    - Target:  `BooleanColumn get allVariants => boolean().nullable()();`
+  - `sortOrder`: 
+    - Current: `RealColumn get sortOrder => real()();`
+    - Target:  `IntegerColumn get sortOrder => integer().nullable()();`
+  - `deleted`: 
+    - Current: `BoolColumn get deleted => boolean()();`
+    - Target:  `BooleanColumn get deleted => boolean().withDefault(const Constant(false)).nullable()();`
+
+### [MODIFY] promo_product_term.dart
+  - `id`: 
+    - Current: `TextColumn get id => text()();`
+    - Target:  `TextColumn get id => text() => const Uuid().v4())();`
+  - `productId`: 
+    - Current: `TextColumn get productId => text()();`
+    - Target:  `TextColumn get productId => text().nullable()();`
+  - `allVariants`: 
+    - Current: `BoolColumn get allVariants => boolean()();`
+    - Target:  `BooleanColumn get allVariants => boolean().nullable()();`
+  - `sortOrder`: 
+    - Current: `RealColumn get sortOrder => real()();`
+    - Target:  `IntegerColumn get sortOrder => integer().nullable()();`
+  - `deleted`: 
+    - Current: `BoolColumn get deleted => boolean()();`
+    - Target:  `BooleanColumn get deleted => boolean().withDefault(const Constant(false)).nullable()();`
+
+### [MODIFY] promo_product_variant_reward.dart
+  - `id`: 
+    - Current: `TextColumn get id => text()();`
+    - Target:  `TextColumn get id => text() => const Uuid().v4())();`
+  - `productId`: 
+    - Current: `TextColumn get productId => text()();`
+    - Target:  `TextColumn get productId => text().nullable()();`
+  - `productVariantId`: 
+    - Current: `TextColumn get productVariantId => text()();`
+    - Target:  `TextColumn get productVariantId => text().nullable()();`
+  - `qty`: 
+    - Current: `RealColumn get qty => real()();`
+    - Target:  `IntegerColumn get qty => integer().nullable()();`
+  - `sortOrder`: 
+    - Current: `RealColumn get sortOrder => real()();`
+    - Target:  `IntegerColumn get sortOrder => integer().nullable()();`
+  - `deleted`: 
+    - Current: `BoolColumn get deleted => boolean()();`
+    - Target:  `BooleanColumn get deleted => boolean().withDefault(const Constant(false)).nullable()();`
+
+### [MODIFY] promo_product_variant_term.dart
+  - `id`: 
+    - Current: `TextColumn get id => text()();`
+    - Target:  `TextColumn get id => text() => const Uuid().v4())();`
+  - `promoProductTermId`: 
+    - Current: `TextColumn get promoProductTermId => text()();`
+    - Target:  `TextColumn get promoProductTermId => text().nullable()();`
+  - `productId`: 
+    - Current: `TextColumn get productId => text()();`
+    - Target:  `TextColumn get productId => text().nullable()();`
+  - `productVariantId`: 
+    - Current: `TextColumn get productVariantId => text()();`
+    - Target:  `TextColumn get productVariantId => text().nullable()();`
+  - `qty`: 
+    - Current: `RealColumn get qty => real()();`
+    - Target:  `IntegerColumn get qty => integer().nullable()();`
+  - `sortOrder`: 
+    - Current: `RealColumn get sortOrder => real()();`
+    - Target:  `IntegerColumn get sortOrder => integer().nullable()();`
+  - `deleted`: 
+    - Current: `BoolColumn get deleted => boolean()();`
+    - Target:  `BooleanColumn get deleted => boolean().withDefault(const Constant(false)).nullable()();`
+
+### [MODIFY] promo_to_payment_method_rel.dart
+  - `id`: 
+    - Current: `TextColumn get id => text()();`
+    - Target:  `TextColumn get id => text() => const Uuid().v4())();`
+  - `paymentMethodId`: 
+    - Current: `TextColumn get paymentMethodId => text()();`
+    - Target:  `TextColumn get paymentMethodId => text().nullable()();`
+  - `sortOrder`: 
+    - Current: `RealColumn get sortOrder => real()();`
+    - Target:  `IntegerColumn get sortOrder => integer().nullable()();`
+  - `deleted`: 
+    - Current: `BoolColumn get deleted => boolean()();`
+    - Target:  `BooleanColumn get deleted => boolean().withDefault(const Constant(false)).nullable()();`
+
+### [MODIFY] promo_to_sales_type_rel.dart
+  - `id`: 
+    - Current: `TextColumn get id => text()();`
+    - Target:  `TextColumn get id => text() => const Uuid().v4())();`
+  - `sortOrder`: 
+    - Current: `RealColumn get sortOrder => real()();`
+    - Target:  `IntegerColumn get sortOrder => integer().nullable()();`
+  - `deleted`: 
+    - Current: `BoolColumn get deleted => boolean()();`
+    - Target:  `BooleanColumn get deleted => boolean().withDefault(const Constant(false)).nullable()();`
+
+### [MODIFY] qpon_order.dart
+  - `id`: 
+    - Current: `TextColumn get id => text()();`
+    - Target:  `TextColumn get id => text() => const Uuid().v4())();`
+  - `couponId`: 
+    - Current: `TextColumn get couponId => text()();`
+    - Target:  `TextColumn get couponId => text().nullable()();`
+  - `couponType`: 
+    - Current: `TextColumn get couponType => text()();`
+    - Target:  `TextColumn get couponType => text().nullable()();`
+  - `couponAmount`: 
+    - Current: `RealColumn get couponAmount => real()();`
+    - Target:  `RealColumn get couponAmount => real().nullable()();`
+  - `minimumAmountLimit`: 
+    - Current: `RealColumn get minimumAmountLimit => real()();`
+    - Target:  `RealColumn get minimumAmountLimit => real().nullable()();`
+
+### [MODIFY] qris_bank_acquirer.dart
+  - `updatedDateUtc`: 
+    - Current: `DateTimeColumn get updatedDateUtc => dateTime()();`
+    - Target:  `DateTimeColumn get updatedDateUtc => dateTime().nullable()();`
+  - `name`: 
+    - Current: `TextColumn get name => text()();`
+    - Target:  `TextColumn get name => text().nullable()();`
+  - `searchKey`: 
+    - Current: `TextColumn get searchKey => text()();`
+    - Target:  `TextColumn get searchKey => text().nullable()();`
+  - `settlementBankAccountNumber`: 
+    - Current: `TextColumn get settlementBankAccountNumber => text()();`
+    - Target:  `TextColumn get settlementBankAccountNumber => text().nullable()();`
+  - `createUserId`: 
+    - Current: `TextColumn get createUserId => text()();`
+    - Target:  `TextColumn get createUserId => text().nullable()();`
+  - `updateUserId`: 
+    - Current: `TextColumn get updateUserId => text()();`
+    - Target:  `TextColumn get updateUserId => text().nullable()();`
+
+### [MODIFY] qris_history.dart
+  - `tenantId`: 
+    - Current: `RealColumn get tenantId => real()();`
+    - Target:  `IntegerColumn get tenantId => integer().nullable()();`
+  - `outletId`: 
+    - Current: `RealColumn get outletId => real()();`
+    - Target:  `IntegerColumn get outletId => integer().nullable()();`
+  - `createDateUtc`: 
+    - Current: `DateTimeColumn get createDateUtc => dateTime()();`
+    - Target:  `DateTimeColumn get createDateUtc => dateTime().nullable()();`
+  - `updatedDateUtc`: 
+    - Current: `DateTimeColumn get updatedDateUtc => dateTime()();`
+    - Target:  `DateTimeColumn get updatedDateUtc => dateTime().nullable()();`
+  - `transactionNumber`: 
+    - Current: `TextColumn get transactionNumber => text()();`
+    - Target:  `TextColumn get transactionNumber => text().nullable()();`
+  - `description`: 
+    - Current: `TextColumn get description => text()();`
+    - Target:  `TextColumn get description => text().nullable()();`
+  - `transactionAmount`: 
+    - Current: `RealColumn get transactionAmount => real()();`
+    - Target:  `IntegerColumn get transactionAmount => integer().nullable()();`
+  - `mdrRate`: 
+    - Current: `RealColumn get mdrRate => real()();`
+    - Target:  `IntegerColumn get mdrRate => integer().nullable()();`
+  - `mdrAmount`: 
+    - Current: `RealColumn get mdrAmount => real()();`
+    - Target:  `IntegerColumn get mdrAmount => integer().nullable()();`
+  - `transactionTotal`: 
+    - Current: `RealColumn get transactionTotal => real()();`
+    - Target:  `IntegerColumn get transactionTotal => integer().nullable()();`
+  - `refundAmount`: 
+    - Current: `RealColumn get refundAmount => real()();`
+    - Target:  `IntegerColumn get refundAmount => integer().nullable()();`
+  - `transactionDate`: 
+    - Current: `TextColumn get transactionDate => text()();`
+    - Target:  `TextColumn get transactionDate => text().nullable()();`
+  - `transactionTime`: 
+    - Current: `TextColumn get transactionTime => text()();`
+    - Target:  `TextColumn get transactionTime => text().nullable()();`
+  - `transactionDateUtc`: 
+    - Current: `DateTimeColumn get transactionDateUtc => dateTime()();`
+    - Target:  `DateTimeColumn get transactionDateUtc => dateTime().nullable()();`
+  - `paymentDate`: 
+    - Current: `TextColumn get paymentDate => text()();`
+    - Target:  `TextColumn get paymentDate => text().nullable()();`
+  - `paymentTime`: 
+    - Current: `TextColumn get paymentTime => text()();`
+    - Target:  `TextColumn get paymentTime => text().nullable()();`
+  - `paymentDateUtc`: 
+    - Current: `DateTimeColumn get paymentDateUtc => dateTime()();`
+    - Target:  `DateTimeColumn get paymentDateUtc => dateTime().nullable()();`
+  - `paymentMethodId`: 
+    - Current: `TextColumn get paymentMethodId => text()();`
+    - Target:  `TextColumn get paymentMethodId => text().nullable()();`
+  - `subPaymentMethod`: 
+    - Current: `TextColumn get subPaymentMethod => text()();`
+    - Target:  `TextColumn get subPaymentMethod => text().nullable()();`
+  - `bankAcquirerId`: 
+    - Current: `TextColumn get bankAcquirerId => text()();`
+    - Target:  `TextColumn get bankAcquirerId => text().nullable()();`
+  - `internalTransactionId`: 
+    - Current: `TextColumn get internalTransactionId => text()();`
+    - Target:  `TextColumn get internalTransactionId => text().nullable()();`
+  - `bankTransactionId`: 
+    - Current: `TextColumn get bankTransactionId => text()();`
+    - Target:  `TextColumn get bankTransactionId => text().nullable()();`
+  - `bankReferenceNumber`: 
+    - Current: `TextColumn get bankReferenceNumber => text()();`
+    - Target:  `TextColumn get bankReferenceNumber => text().nullable()();`
+  - `bankQrCode`: 
+    - Current: `TextColumn get bankQrCode => text()();`
+    - Target:  `TextColumn get bankQrCode => text().nullable()();`
+  - `bankApprovalDate`: 
+    - Current: `TextColumn get bankApprovalDate => text()();`
+    - Target:  `TextColumn get bankApprovalDate => text().nullable()();`
+  - `isClientTransactionType`: 
+    - Current: `BoolColumn get isClientTransactionType => boolean()();`
+    - Target:  `BooleanColumn get isClientTransactionType => boolean().nullable()();`
+  - `clientTransactionType`: 
+    - Current: `TextColumn get clientTransactionType => text()();`
+    - Target:  `TextColumn get clientTransactionType => text().nullable()();`
+  - `clientTransactionId`: 
+    - Current: `TextColumn get clientTransactionId => text()();`
+    - Target:  `TextColumn get clientTransactionId => text().nullable()();`
+  - `createUserId`: 
+    - Current: `TextColumn get createUserId => text()();`
+    - Target:  `TextColumn get createUserId => text().nullable()();`
+  - `createUserDeviceId`: 
+    - Current: `TextColumn get createUserDeviceId => text()();`
+    - Target:  `TextColumn get createUserDeviceId => text().nullable()();`
+  - `statusQris`: 
+    - Current: `RealColumn get statusQris => real()();`
+    - Target:  `IntegerColumn get statusQris => integer().nullable()();`
+  - `isSync`: 
+    - Current: `BoolColumn get isSync => boolean()();`
+    - Target:  `BooleanColumn get isSync => boolean().withDefault(const Constant(false)).nullable()();`
+  - `syncDate`: 
+    - Current: `DateTimeColumn get syncDate => dateTime()();`
+    - Target:  `DateTimeColumn get syncDate => dateTime().nullable()();`
+
+### [MODIFY] qris_payment_method.dart
+  - `createDateUtc`: 
+    - Current: `TextColumn get createDateUtc => text()();`
+    - Target:  `DateTimeColumn get createDateUtc => dateTime().nullable()();`
+  - `name`: 
+    - Current: `TextColumn get name => text()();`
+    - Target:  `TextColumn get name => text().nullable()();`
+  - `searchKey`: 
+    - Current: `TextColumn get searchKey => text()();`
+    - Target:  `TextColumn get searchKey => text().nullable()();`
+  - `createUserId`: 
+    - Current: `TextColumn get createUserId => text()();`
+    - Target:  `TextColumn get createUserId => text().nullable()();`
+  - `updateUserId`: 
+    - Current: `TextColumn get updateUserId => text()();`
+    - Target:  `TextColumn get updateUserId => text().nullable()();`
+
+### [MODIFY] sales_type.dart
+  - `id`: 
+    - Current: `TextColumn get id => text()();`
+    - Target:  `TextColumn get id => text() => const Uuid().v4())();`
+  - `name`: 
+    - Current: `TextColumn get name => text()();`
+    - Target:  `TextColumn get name => text().nullable()();`
+  - `serviceCharged`: 
+    - Current: `BoolColumn get serviceCharged => boolean()();`
+    - Target:  `BooleanColumn get serviceCharged => boolean().withDefault(const Constant(false)).nullable()();`
+  - `taxed`: 
+    - Current: `BoolColumn get taxed => boolean()();`
+    - Target:  `BooleanColumn get taxed => boolean().withDefault(const Constant(false)).nullable()();`
+  - `isMaster`: 
+    - Current: `BoolColumn get isMaster => boolean()();`
+    - Target:  `BooleanColumn get isMaster => boolean().withDefault(const Constant(false)).nullable()();`
+  - `deleted`: 
+    - Current: `BoolColumn get deleted => boolean()();`
+    - Target:  `BooleanColumn get deleted => boolean().withDefault(const Constant(false)).nullable()();`
+  - `priceLevelId`: 
+    - Current: `TextColumn get priceLevelId => text()();`
+    - Target:  `TextColumn get priceLevelId => text().nullable()();`
+
+### [MODIFY] scanner.dart
+  - `id`: 
+    - Current: `TextColumn get id => text()();`
+    - Target:  `TextColumn get id => text() => const Uuid().v4())();`
+  - `deviceId`: 
+    - Current: `TextColumn get deviceId => text()();`
+    - Target:  `TextColumn get deviceId => text().nullable()();`
+  - `name`: 
+    - Current: `TextColumn get name => text()();`
+    - Target:  `TextColumn get name => text().nullable()();`
+  - `address`: 
+    - Current: `TextColumn get address => text()();`
+    - Target:  `TextColumn get address => text().nullable()();`
+  - `isEnabled`: 
+    - Current: `BoolColumn get isEnabled => boolean()();`
+    - Target:  `BooleanColumn get isEnabled => boolean().withDefault(const Constant(false)).nullable()();`
+
+### [MODIFY] shift_session.dart
+  - `id`: 
+    - Current: `TextColumn get id => text()();`
+    - Target:  `TextColumn get id => text() => const Uuid().v4())();`
+  - `shiftOpeningDate`: 
+    - Current: `DateTimeColumn get shiftOpeningDate => dateTime()();`
+    - Target:  `DateTimeColumn get shiftOpeningDate => dateTime().nullable()();`
+  - `shiftClosingDate`: 
+    - Current: `DateTimeColumn get shiftClosingDate => dateTime()();`
+    - Target:  `DateTimeColumn get shiftClosingDate => dateTime().nullable()();`
+  - `cashOnOpening`: 
+    - Current: `RealColumn get cashOnOpening => real()();`
+    - Target:  `RealColumn get cashOnOpening => real().withDefault(const Constant(0)).nullable()();`
+  - `cashOnClosing`: 
+    - Current: `RealColumn get cashOnClosing => real()();`
+    - Target:  `RealColumn get cashOnClosing => real().withDefault(const Constant(0)).nullable()();`
+  - `paymentCashTotal`: 
+    - Current: `RealColumn get paymentCashTotal => real()();`
+    - Target:  `RealColumn get paymentCashTotal => real().withDefault(const Constant(0)).nullable()();`
+  - `otherPaymentTotal`: 
+    - Current: `RealColumn get otherPaymentTotal => real()();`
+    - Target:  `RealColumn get otherPaymentTotal => real().withDefault(const Constant(0)).nullable()();`
+  - `balance`: 
+    - Current: `RealColumn get balance => real()();`
+    - Target:  `RealColumn get balance => real().withDefault(const Constant(0)).nullable()();`
+  - `difference`: 
+    - Current: `RealColumn get difference => real()();`
+    - Target:  `RealColumn get difference => real().withDefault(const Constant(0)).nullable()();`
+  - `totalTransaction`: 
+    - Current: `RealColumn get totalTransaction => real()();`
+    - Target:  `IntegerColumn get totalTransaction => integer().withDefault(const Constant(0)).nullable()();`
+  - `isSync`: 
+    - Current: `BoolColumn get isSync => boolean()();`
+    - Target:  `BooleanColumn get isSync => boolean().withDefault(const Constant(false)).nullable()();`
+
+### [MODIFY] table.dart
+  - `name`: 
+    - Current: `TextColumn get name => text()();`
+    - Target:  `TextColumn get name => text().nullable()();`
+  - `absisStartingGrid`: 
+    - Current: `RealColumn get absisStartingGrid => real()();`
+    - Target:  `IntegerColumn get absisStartingGrid => integer().nullable()();`
+  - `ordinatStartingGrid`: 
+    - Current: `RealColumn get ordinatStartingGrid => real()();`
+    - Target:  `IntegerColumn get ordinatStartingGrid => integer().nullable()();`
+  - `absisAmountOfGrid`: 
+    - Current: `RealColumn get absisAmountOfGrid => real()();`
+    - Target:  `IntegerColumn get absisAmountOfGrid => integer().nullable()();`
+  - `ordinatAmountOfGrid`: 
+    - Current: `RealColumn get ordinatAmountOfGrid => real()();`
+    - Target:  `IntegerColumn get ordinatAmountOfGrid => integer().nullable()();`
+  - `areaId`: 
+    - Current: `TextColumn get areaId => text()();`
+    - Target:  `TextColumn get areaId => text().nullable()();`
+  - `tableType`: 
+    - Current: `TextColumn get tableType => text()();`
+    - Target:  `TextColumn get tableType => text().withDefault(const Constant('square')).nullable()();`
+  - `hasMaxOrderDuration`: 
+    - Current: `BoolColumn get hasMaxOrderDuration => boolean()();`
+    - Target:  `BooleanColumn get hasMaxOrderDuration => boolean().nullable()();`
+  - `maxOrderDurationMinutes`: 
+    - Current: `RealColumn get maxOrderDurationMinutes => real()();`
+    - Target:  `IntegerColumn get maxOrderDurationMinutes => integer().nullable()();`
+  - `hasMinOrderAmount`: 
+    - Current: `BoolColumn get hasMinOrderAmount => boolean()();`
+    - Target:  `BooleanColumn get hasMinOrderAmount => boolean().nullable()();`
+  - `minOrderAmount`: 
+    - Current: `RealColumn get minOrderAmount => real()();`
+    - Target:  `RealColumn get minOrderAmount => real().nullable()();`
+  - `minOrderAmountType`: 
+    - Current: `RealColumn get minOrderAmountType => real()();`
+    - Target:  `IntegerColumn get minOrderAmountType => integer().nullable()();`
+  - `inUsed`: 
+    - Current: `BoolColumn get inUsed => boolean()();`
+    - Target:  `BooleanColumn get inUsed => boolean().withDefault(const Constant(false)).nullable()();`
+  - `deleted`: 
+    - Current: `BoolColumn get deleted => boolean()();`
+    - Target:  `BooleanColumn get deleted => boolean().withDefault(const Constant(false)).nullable()();`
+
+### [MODIFY] table_management.dart
+  - `tableId`: 
+    - Current: `TextColumn get tableId => text()();`
+    - Target:  `TextColumn get tableId => text().nullable()();`
+  - `orderId`: 
+    - Current: `TextColumn get orderId => text()();`
+    - Target:  `TextColumn get orderId => text().nullable()();`
+  - `capacity`: 
+    - Current: `RealColumn get capacity => real()();`
+    - Target:  `IntegerColumn get capacity => integer().nullable()();`
+  - `sessionDate`: 
+    - Current: `TextColumn get sessionDate => text()();`
+    - Target:  `DateTimeColumn get sessionDate => dateTime().nullable()();`
+  - `startedAt`: 
+    - Current: `RealColumn get startedAt => real()();`
+    - Target:  `IntegerColumn get startedAt => integer().nullable()();`
+  - `endedAt`: 
+    - Current: `RealColumn get endedAt => real()();`
+    - Target:  `IntegerColumn get endedAt => integer().nullable()();`
+  - `notifAt`: 
+    - Current: `RealColumn get notifAt => real()();`
+    - Target:  `IntegerColumn get notifAt => integer().nullable()();`
+  - `notified`: 
+    - Current: `BoolColumn get notified => boolean()();`
+    - Target:  `BooleanColumn get notified => boolean().withDefault(const Constant(false)).nullable()();`
+  - `notifiedScheduled`: 
+    - Current: `BoolColumn get notifiedScheduled => boolean()();`
+    - Target:  `BooleanColumn get notifiedScheduled => boolean().withDefault(const Constant(false)).nullable()();`
+  - `warningAt`: 
+    - Current: `RealColumn get warningAt => real()();`
+    - Target:  `IntegerColumn get warningAt => integer().nullable()();`
+  - `finalNotified`: 
+    - Current: `BoolColumn get finalNotified => boolean()();`
+    - Target:  `BooleanColumn get finalNotified => boolean().withDefault(const Constant(false)).nullable()();`
+  - `finalNotifiedScheduled`: 
+    - Current: `BoolColumn get finalNotifiedScheduled => boolean()();`
+    - Target:  `BooleanColumn get finalNotifiedScheduled => boolean().withDefault(const Constant(false)).nullable()();`
+  - `duration`: 
+    - Current: `RealColumn get duration => real()();`
+    - Target:  `IntegerColumn get duration => integer().nullable()();`
+
+### [MODIFY] tax.dart
+  - `id`: 
+    - Current: `TextColumn get id => text()();`
+    - Target:  `TextColumn get id => text() => const Uuid().v4())();`
+  - `code`: 
+    - Current: `TextColumn get code => text()();`
+    - Target:  `TextColumn get code => text().nullable()();`
+  - `name`: 
+    - Current: `TextColumn get name => text()();`
+    - Target:  `TextColumn get name => text().nullable()();`
+  - `rate`: 
+    - Current: `RealColumn get rate => real()();`
+    - Target:  `RealColumn get rate => real().nullable()();`
+  - `deleted`: 
+    - Current: `BoolColumn get deleted => boolean()();`
+    - Target:  `BooleanColumn get deleted => boolean().withDefault(const Constant(false)).nullable()();`
+
+### [MODIFY] transaction_log.dart
+  - `id`: 
+    - Current: `TextColumn get id => text()();`
+    - Target:  `TextColumn get id => text() => const Uuid().v4())();`
+  - `userId`: 
+    - Current: `TextColumn get userId => text()();`
+    - Target:  `TextColumn get userId => text().nullable()();`
+  - `userName`: 
+    - Current: `TextColumn get userName => text()();`
+    - Target:  `TextColumn get userName => text().nullable()();`
+  - `orderId`: 
+    - Current: `TextColumn get orderId => text()();`
+    - Target:  `TextColumn get orderId => text().nullable()();`
+  - `orderNumber`: 
+    - Current: `TextColumn get orderNumber => text()();`
+    - Target:  `TextColumn get orderNumber => text().nullable()();`
+  - `date`: 
+    - Current: `DateTimeColumn get date => dateTime()();`
+    - Target:  `DateTimeColumn get date => dateTime().nullable()();`
+  - `description`: 
+    - Current: `TextColumn get description => text()();`
+    - Target:  `TextColumn get description => text().nullable()();`
+  - `data1`: 
+    - Current: `TextColumn get data1 => text()();`
+    - Target:  `TextColumn get data1 => text().nullable()();`
+  - `data2`: 
+    - Current: `TextColumn get data2 => text()();`
+    - Target:  `TextColumn get data2 => text().nullable()();`
+  - `data3`: 
+    - Current: `TextColumn get data3 => text()();`
+    - Target:  `TextColumn get data3 => text().nullable()();`
+
+### [MODIFY] user.dart
+  - `id`: 
+    - Current: `TextColumn get id => text()();`
+    - Target:  `TextColumn get id => text() => const Uuid().v4())();`
+  - `firstName`: 
+    - Current: `TextColumn get firstName => text()();`
+    - Target:  `TextColumn get firstName => text().nullable()();`
+  - `lastName`: 
+    - Current: `TextColumn get lastName => text()();`
+    - Target:  `TextColumn get lastName => text().nullable()();`
+  - `fullName`: 
+    - Current: `TextColumn get fullName => text()();`
+    - Target:  `TextColumn get fullName => text().nullable()();`
+  - `pinNumber`: 
+    - Current: `TextColumn get pinNumber => text()();`
+    - Target:  `TextColumn get pinNumber => text().nullable()();`
+  - `pictureUrl`: 
+    - Current: `TextColumn get pictureUrl => text()();`
+    - Target:  `TextColumn get pictureUrl => text().nullable()();`
+  - `pictureLocal`: 
+    - Current: `TextColumn get pictureLocal => text()();`
+    - Target:  `TextColumn get pictureLocal => text().nullable()();`
+  - `deleted`: 
+    - Current: `BoolColumn get deleted => boolean()();`
+    - Target:  `BooleanColumn get deleted => boolean().withDefault(const Constant(false)).nullable()();`
+  - `permissionPay`: 
+    - Current: `BoolColumn get permissionPay => boolean()();`
+    - Target:  `BooleanColumn get permissionPay => boolean().nullable()();`
+  - `permissionEdit`: 
+    - Current: `BoolColumn get permissionEdit => boolean()();`
+    - Target:  `BooleanColumn get permissionEdit => boolean().nullable()();`
+  - `permissionVoidOrder`: 
+    - Current: `BoolColumn get permissionVoidOrder => boolean()();`
+    - Target:  `BooleanColumn get permissionVoidOrder => boolean().nullable()();`
+  - `permissionVoidItem`: 
+    - Current: `BoolColumn get permissionVoidItem => boolean()();`
+    - Target:  `BooleanColumn get permissionVoidItem => boolean().nullable()();`
+  - `permissionDiscount`: 
+    - Current: `BoolColumn get permissionDiscount => boolean()();`
+    - Target:  `BooleanColumn get permissionDiscount => boolean().nullable()();`
+  - `permissionReport`: 
+    - Current: `BoolColumn get permissionReport => boolean()();`
+    - Target:  `BooleanColumn get permissionReport => boolean().nullable()();`
+  - `permissionCustomPrice`: 
+    - Current: `BoolColumn get permissionCustomPrice => boolean()();`
+    - Target:  `BooleanColumn get permissionCustomPrice => boolean().nullable()();`
+  - `permissionCustomItem`: 
+    - Current: `BoolColumn get permissionCustomItem => boolean()();`
+    - Target:  `BooleanColumn get permissionCustomItem => boolean().withDefault(const Constant(true)).nullable()();`
+  - `permissionAdmin`: 
+    - Current: `BoolColumn get permissionAdmin => boolean()();`
+    - Target:  `BooleanColumn get permissionAdmin => boolean().nullable()();`
+  - `permissionPrintBill`: 
+    - Current: `BoolColumn get permissionPrintBill => boolean()();`
+    - Target:  `BooleanColumn get permissionPrintBill => boolean().nullable()();`
+  - `permissionSeeAllUserTransactions`: 
+    - Current: `BoolColumn get permissionSeeAllUserTransactions => boolean()();`
+    - Target:  `BooleanColumn get permissionSeeAllUserTransactions => boolean().nullable()();`
+

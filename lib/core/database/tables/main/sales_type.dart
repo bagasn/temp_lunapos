@@ -6,12 +6,12 @@ class TableSalesType extends Table {
   String get tableName => 'salesTypes';
 
   TextColumn get id => text()();
-  TextColumn get name => text()();
-  BoolColumn get serviceCharged => boolean()();
-  BoolColumn get taxed => boolean()();
-  BoolColumn get isMaster => boolean()();
-  BoolColumn get deleted => boolean()();
-  TextColumn get priceLevelId => text()();
+  TextColumn get name => text().nullable()();
+  BoolColumn get serviceCharged => boolean().withDefault(const Constant(false))();
+  BoolColumn get taxed => boolean().withDefault(const Constant(false))();
+  BoolColumn get isMaster => boolean().withDefault(const Constant(false))();
+  BoolColumn get deleted => boolean().withDefault(const Constant(false))();
+  TextColumn get priceLevelId => text().nullable()();
 
   // Base fields
   DateTimeColumn get createdAt => dateTime().nullable()();

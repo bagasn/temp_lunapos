@@ -7,7 +7,7 @@ class TableProductCategoryRelation extends Table {
 
   TextColumn get productId => text()();
   TextColumn get categoryId => text()();
-  BoolColumn get deleted => boolean()();
+  BoolColumn get deleted => boolean().withDefault(const Constant(false))();
   TextColumn get product => text()();
   TextColumn get category => text()();
 
