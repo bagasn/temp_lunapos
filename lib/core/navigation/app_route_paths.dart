@@ -1,8 +1,8 @@
 enum AppRoutePaths {
-  splash(path: '/boot', navigationPath: '/boot'),
+  welcome(path: '/', navigationPath: '/'),
   login(path: '/auth', navigationPath: '/auth'),
   selectOutlet(path: '/auth/select-outlet', navigationPath: 'select-outlet'),
-  home(path: '/', navigationPath: '/');
+  home(path: '/app', navigationPath: '/app');
 
   final String path;
   final String navigationPath;

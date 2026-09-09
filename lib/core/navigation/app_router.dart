@@ -9,11 +9,11 @@ import 'package:pos/features/home/presentation/home_page.dart';
 
 GoRouter createAppRouter(SessionManager sessionManager) {
   return GoRouter(
-    initialLocation: AppRoutePaths.splash.path,
+    initialLocation: AppRoutePaths.welcome.path,
     redirect: (context, state) async {
       final location = state.uri.toString();
 
-      final isBooting = location.startsWith(AppRoutePaths.splash.path);
+      final isBooting = location.startsWith(AppRoutePaths.welcome.path);
       if (isBooting) {
         return null;
       }
@@ -26,7 +26,7 @@ GoRouter createAppRouter(SessionManager sessionManager) {
         AppRoutePaths.selectOutlet.path,
       );
 
-      if (!isLogged && !isOnLogin) {
+      if (!isOnLogin && !isLogged) {
         return AppRoutePaths.login.path;
       }
 
@@ -44,7 +44,7 @@ GoRouter createAppRouter(SessionManager sessionManager) {
     },
     routes: [
       GoRoute(
-        path: AppRoutePaths.splash.navigationPath,
+        path: AppRoutePaths.welcome.navigationPath,
         builder: (context, state) {
           return BootPage();
         },
@@ -54,7 +54,7 @@ GoRouter createAppRouter(SessionManager sessionManager) {
         builder: (context, state) => const LoginPage(),
         routes: [
           GoRoute(
-            path: 'select-outlet',
+            path: AppRoutePaths.selectOutlet.navigationPath,
             builder: (context, state) => const SelectOutletPage(),
           ),
         ],

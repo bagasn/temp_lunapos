@@ -34,4 +34,9 @@ class SyncEntity {
       promoSynced: promoSynced ?? this.promoSynced,
     );
   }
+
+  @override
+  String toString() {
+    return 'SyncEntity(outletId: $outletId, companyId: $companyId, outletSynced: $outletSynced, productSynced: $productSynced, promoSynced: $promoSynced)';
+  }
 }

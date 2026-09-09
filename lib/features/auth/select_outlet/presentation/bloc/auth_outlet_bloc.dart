@@ -12,6 +12,7 @@ import 'package:pos/core/database/app_database_manager.dart';
 import 'package:pos/features/sync/domain/models/sync_entity.dart';
 import 'package:pos/features/sync/domain/repositories/sync_repository.dart';
 import 'package:pos/shared/domain/entities/failure.dart';
+import 'package:pos/shared/utilities/log_util.dart';
 
 @injectable
 class AuthOutletBloc extends Bloc<AuthOutletEvent, AuthOutletState> {
@@ -36,7 +37,6 @@ class AuthOutletBloc extends Bloc<AuthOutletEvent, AuthOutletState> {
     on<AuthOutletSelected>(_onOutletSelected);
 
     add(AuthOutletFetchStarted());
-    _databaseManager.masterDb;
   }
 
   void _onFetch(AuthOutletFetchStarted event, Emitter emit) async {
@@ -152,7 +152,20 @@ class AuthOutletBloc extends Bloc<AuthOutletEvent, AuthOutletState> {
           );
 
           await _startFetchInitialData(outlet: event.outlet);
-          add(AuthOutletsLoaded());
+
+          final result = await _syncRepo.getInitialData(
+            SyncEntity(
+              outletId: event.outlet.outletId,
+              companyId: event.outlet.companyId,
+              outletSynced: false,
+              productSynced: false,
+              promoSynced: false,
+            ),
+          );
+
+          LogUtil.d('database insert value ${result.toString()}');
+
+          emit(AuthOutletTokenSuccess());
         } on DatabaseFailure catch (error) {
           emit(AuthOutletFailure(error));
         } catch (error) {
@@ -164,19 +177,5 @@ class AuthOutletBloc extends Bloc<AuthOutletEvent, AuthOutletState> {
 
   Future<void> _startFetchInitialData({
     required AuthOutletEntity outlet,
-  }) async {
-    final result = await _syncRepo.getInitialData(
-      SyncEntity(
-        outletId: outlet.outletId,
-        companyId: outlet.companyId,
-        outletSynced: false,
-        productSynced: false,
-        promoSynced: false,
-      ),
-    );
-
-    if (result.isLeft()) {
-      throw DatabaseFailure('Fucking Error');
-    }
-  }
+  }) async {}
 }
