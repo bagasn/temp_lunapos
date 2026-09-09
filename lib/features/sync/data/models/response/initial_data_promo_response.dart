@@ -238,9 +238,9 @@ class PromoProductTerm {
   final String id;
   final int tenantId;
   final String promoId;
-  final String promoItemId;
-  final String productId;
-  final String categoryProductId;
+  final String? promoItemId;
+  final String? productId;
+  final String? categoryProductId;
   final int? sortOrder;
   final bool allVariants;
 

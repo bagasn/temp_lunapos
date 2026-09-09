@@ -5,8 +5,8 @@ class TableDistrict extends Table {
   @override
   String? get tableName => 'districts';
 
-  RealColumn get id => real()();
-  RealColumn get cityId => real()();
+  IntColumn get id => integer().autoIncrement()();
+  IntColumn get cityId => integer()();
   TextColumn get name => text()();
 
   @override

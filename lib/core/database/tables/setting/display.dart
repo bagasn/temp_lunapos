@@ -5,12 +5,12 @@ class TableDisplay extends Table {
   @override
   String? get tableName => 'displays';
 
-  RealColumn get tenantId => real()();
-  RealColumn get outletId => real()();
+  IntColumn get tenantId => integer()();
+  IntColumn get outletId => integer()();
   TextColumn get id => text()();
   TextColumn get title => text()();
   TextColumn get url => text()();
-  RealColumn get type => real()();
+  IntColumn get type => integer()();
 
   // Base fields
   DateTimeColumn get createdAt => dateTime().nullable()();

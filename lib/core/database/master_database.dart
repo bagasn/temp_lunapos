@@ -13,7 +13,8 @@ part 'master_database.g.dart';
   tables: [TableCity, TableProvince, TableVillage, TableDistrict, TableBank],
 )
 class MasterDatabase extends _$MasterDatabase {
-  MasterDatabase() : super(connectDatabase('db_master.db', fromAssets: true));
+  MasterDatabase()
+    : super(connectDatabase('data_master.sqlite', fromAssets: true));
 
   @override
   int get schemaVersion => 1;

@@ -5,7 +5,7 @@ class TableProvince extends Table {
   @override
   String? get tableName => 'provinces';
 
-  RealColumn get id => real()();
+  IntColumn get id => integer().autoIncrement()();
   TextColumn get name => text()();
 
   @override

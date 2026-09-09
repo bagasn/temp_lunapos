@@ -23,54 +23,5 @@ class SyncBloc extends Bloc<SyncEvent, SyncState> {
 
   Future<void> _onInitialData(InitialDataStarted event, Emitter emit) async {
     emit(SyncInProgress());
-
-    // final mainDataJob = _repository.getInitialData();
-    // final productJob = _repository.getInitialDataProduct();
-    // final promoJob = _repository.getInitialDataPromo();
-
-    // final (mainResult, productResult, promoResult) = await (
-    //   mainDataJob,
-    //   productJob,
-    //   promoJob,
-    // ).wait;
-
-    // Failure? syncFailure;
-    // mainResult.fold(
-    //   (failure) {
-    //     syncFailure = failure;
-    //     _initialDataConfig[InitialDataType.dataMain] = false;
-    //   },
-    //   (isSuccess) {
-    //     _initialDataConfig[InitialDataType.dataMain] = true;
-    //   },
-    // );
-    // productResult.fold(
-    //   (failure) {
-    //     if (syncFailure != null) {
-    //       syncFailure = failure;
-    //     }
-    //     _initialDataConfig[InitialDataType.dataProduct] = false;
-    //   },
-    //   (isSuccess) {
-    //     _initialDataConfig[InitialDataType.dataProduct] = true;
-    //   },
-    // );
-    // promoResult.fold(
-    //   (failure) {
-    //     if (syncFailure != null) {
-    //       syncFailure = failure;
-    //     }
-    //     _initialDataConfig[InitialDataType.dataPromo] = false;
-    //   },
-    //   (isSuccess) {
-    //     _initialDataConfig[InitialDataType.dataPromo] = true;
-    //   },
-    // );
-
-    // if (syncFailure != null) {
-    //   emit(SyncFailed(syncFailure!));
-    // } else {
-    //   emit(SyncCompleted());
-    // }
   }
 }

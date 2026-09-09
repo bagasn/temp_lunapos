@@ -5,10 +5,10 @@ class TableCity extends Table {
   @override
   String? get tableName => 'cities';
 
-  RealColumn get id => real()();
-  RealColumn get provinceId => real()();
+  IntColumn get id => integer().autoIncrement()();
+  IntColumn get provinceId => integer()();
   TextColumn get name => text()();
 
   @override
-  Set<Column> get primaryKey => {id};
+  Set<Column<Object>>? get primaryKey => {id};
 }

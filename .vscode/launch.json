@@ -3,14 +3,15 @@
   "configurations": [
     {
       "name": "Dev",
-      "type": "dart",
       "request": "launch",
+      "type": "dart",
+      "deviceId": "chrome",
       "program": "lib/main_dev.dart",
       "args": [
-        "-d",
-        "chrome",
         "--web-browser-flag",
-        "\"--disable-web-security\""
+        "--disable-web-security",
+        "--web-header=Cross-Origin-Opener-Policy=same-origin",
+        "--web-header=Cross-Origin-Embedder-Policy=require-corp"
       ]
     }
   ]

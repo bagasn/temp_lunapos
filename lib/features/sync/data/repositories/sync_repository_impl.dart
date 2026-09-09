@@ -39,7 +39,11 @@ class SyncRepositoryImpl implements SyncRepository {
         SyncPayload(serverTime: serverTime),
       );
 
-      await Future.wait([outletFuture, productFuture, promoFuture]);
+      await Future.wait([
+        outletFuture,
+        productFuture,
+        promoFuture,
+      ], eagerError: true);
 
       final outletResult = await outletFuture;
       final productResult = await productFuture;

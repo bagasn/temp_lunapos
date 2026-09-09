@@ -1,5 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:pos/core/database/app_database_manager.dart';
+import 'package:pos/core/di/injection_container.dart';
 import 'package:pos/core/local_storage/session_manager.dart';
 import 'package:pos/features/auth/login/domain/usecases/login_usecase.dart';
 import 'package:pos/features/auth/login/presentation/bloc/login_event.dart';
@@ -14,6 +16,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     : super(const LoginInitial()) {
     on<LoginSubmitted>(_onLoginSubmitted);
     on<LoginReset>((_, emit) => emit(const LoginInitial()));
+
+    locator<AppDatabaseManager>().masterDb;
   }
 
   Future<void> _onLoginSubmitted(

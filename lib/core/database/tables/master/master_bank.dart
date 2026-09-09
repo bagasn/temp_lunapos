@@ -7,8 +7,8 @@ class TableBank extends Table {
 
   TextColumn get id => text()();
   TextColumn get bankName => text()();
-  RealColumn get code => real()();
-  RealColumn get transferCode => real()();
+  IntColumn get code => integer()();
+  IntColumn get transferCode => integer()();
 
   @override
   Set<Column> get primaryKey => {id};

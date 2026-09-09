@@ -5,8 +5,8 @@ class TableVillage extends Table {
   @override
   String? get tableName => 'villages';
 
-  RealColumn get id => real()();
-  RealColumn get districtId => real()();
+  IntColumn get id => integer().autoIncrement()();
+  IntColumn get districtId => integer()();
   TextColumn get name => text()();
   TextColumn get zipCode => text()();
 

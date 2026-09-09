@@ -5,7 +5,7 @@ class TableSystemSetting extends Table {
   @override
   String? get tableName => 'systemSettings';
 
-  RealColumn get id => real()();
+  IntColumn get id => integer()();
   TextColumn get activeAccount => text()();
   TextColumn get activeAccountId => text()();
 
