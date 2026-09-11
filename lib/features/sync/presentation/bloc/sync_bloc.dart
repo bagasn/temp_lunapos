@@ -3,7 +3,6 @@ import 'package:injectable/injectable.dart';
 import 'package:pos/features/sync/domain/repositories/sync_repository.dart';
 import 'package:pos/features/sync/presentation/bloc/sync_event.dart';
 import 'package:pos/features/sync/presentation/bloc/sync_state.dart';
-import 'package:pos/shared/domain/entities/failure.dart';
 
 enum InitialDataType {
   dataMain, // Initial Data
