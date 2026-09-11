@@ -49,7 +49,7 @@ class PopupService {
         iconData = Icons.info;
         break;
       case PopupType.success:
-        bgColor = AppColors.primaryPurple;
+        bgColor = AppColors.primary;
         iconData = Icons.check_circle;
         break;
       case PopupType.warning:

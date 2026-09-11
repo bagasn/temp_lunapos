@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:pos/core/theme/app_colors.dart';
 import 'package:pos/core/theme/app_text_styles.dart';
 import 'package:pos/features/auth/select_outlet/domain/entities/auth_outlet_entity.dart';
+import 'package:pos/generated/colors.gen.dart';
 
 class OutletCard extends StatelessWidget {
   final AuthOutletEntity outlet;
@@ -51,7 +51,7 @@ class OutletCard extends StatelessWidget {
                     Text(
                       outlet.outletName,
                       style: AppTextStyles.titleLarge.copyWith(
-                        color: AppColorConstants.textWhite,
+                        color: AppColors.textWhite,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -108,7 +108,7 @@ class OutletCard extends StatelessWidget {
               ? outlet.outletName[0].toUpperCase()
               : 'O',
           style: AppTextStyles.headlineMedium.copyWith(
-            color: AppColorConstants.textWhite,
+            color: AppColors.textWhite,
             fontWeight: FontWeight.w700,
           ),
         ),

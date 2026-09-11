@@ -8,7 +8,4 @@ class TableCity extends Table {
   IntColumn get id => integer().autoIncrement()();
   IntColumn get provinceId => integer()();
   TextColumn get name => text()();
-
-  @override
-  Set<Column<Object>>? get primaryKey => {id};
 }

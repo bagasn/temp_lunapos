@@ -9,7 +9,4 @@ class TableVillage extends Table {
   IntColumn get districtId => integer()();
   TextColumn get name => text()();
   TextColumn get zipCode => text()();
-
-  @override
-  Set<Column> get primaryKey => {id};
 }

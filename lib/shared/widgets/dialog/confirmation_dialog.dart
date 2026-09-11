@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pos/core/theme/app_colors.dart';
 import 'package:pos/core/theme/app_text_styles.dart';
+import 'package:pos/generated/colors.gen.dart';
 import 'package:pos/shared/widgets/widgets/luna_button.dart';
 
 Future<bool?> showConfirmationDialog({
@@ -20,7 +20,7 @@ Future<bool?> showConfirmationDialog({
           child: Text(
             cancelLabel,
             style: AppTextStyles.labelLarge.copyWith(
-              color: AppColorConstants.textMedium,
+              color: AppColors.textMedium,
             ),
           ),
         ),

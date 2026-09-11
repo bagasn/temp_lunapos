@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pos/core/theme/app_colors.dart';
 import 'package:pos/core/theme/app_text_styles.dart';
 import 'package:pos/features/auth/login/presentation/bloc/login_bloc.dart';
 import 'package:pos/features/auth/login/presentation/bloc/login_event.dart';
 import 'package:pos/features/auth/login/presentation/bloc/login_state.dart';
+import 'package:pos/generated/colors.gen.dart';
 import 'package:pos/shared/widgets/widgets/luna_button.dart';
 import 'package:pos/shared/widgets/widgets/luna_text_field.dart';
 
@@ -52,7 +52,7 @@ class _LoginFormPanelState extends State<LoginFormPanel> {
         final isLoading = state is LoginLoading;
 
         return Container(
-          color: AppColorConstants.backgroundWhite,
+          color: Colors.white,
           padding: const EdgeInsets.symmetric(horizontal: 48, vertical: 32),
           child: Form(
             key: _formKey,
@@ -65,21 +65,21 @@ class _LoginFormPanelState extends State<LoginFormPanel> {
                 Text(
                   'Selamat Datang',
                   style: AppTextStyles.displayMedium.copyWith(
-                    color: AppColorConstants.primaryPurple,
+                    color: AppColors.primary,
                     fontWeight: FontWeight.w700,
                   ),
                 ),
                 Text(
                   'Sahabat LUNA! 👋',
                   style: AppTextStyles.headlineLarge.copyWith(
-                    color: AppColorConstants.textMedium,
+                    color: AppColors.textMedium,
                   ),
                 ),
                 const SizedBox(height: 8),
                 Text(
                   'Masuk ke akun Anda untuk memulai penjualan.',
                   style: AppTextStyles.bodyMedium.copyWith(
-                    color: AppColorConstants.textLight,
+                    color: AppColors.textLight,
                   ),
                 ),
                 const SizedBox(height: 40),
@@ -106,7 +106,7 @@ class _LoginFormPanelState extends State<LoginFormPanel> {
                       : TextInputType.emailAddress,
                   prefixIcon: Icon(
                     _isAuthKeyMode ? Icons.key_rounded : Icons.email_outlined,
-                    color: AppColorConstants.textLight,
+                    color: AppColors.textLight,
                   ),
                   validator: (v) {
                     if (v == null || v.isEmpty) return 'Field ini wajib diisi';
@@ -125,7 +125,7 @@ class _LoginFormPanelState extends State<LoginFormPanel> {
                     isPassword: true,
                     prefixIcon: const Icon(
                       Icons.lock_outline_rounded,
-                      color: AppColorConstants.textLight,
+                      color: AppColors.textLight,
                     ),
                     validator: (v) {
                       if (v == null || v.isEmpty) {
@@ -143,7 +143,7 @@ class _LoginFormPanelState extends State<LoginFormPanel> {
                       child: Text(
                         'Lupa Password?',
                         style: AppTextStyles.bodyMedium.copyWith(
-                          color: AppColorConstants.primaryPurple,
+                          color: AppColors.primary,
                         ),
                       ),
                     ),
@@ -157,17 +157,17 @@ class _LoginFormPanelState extends State<LoginFormPanel> {
                   Container(
                     padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
-                      color: AppColorConstants.statusError.withAlpha(25),
+                      color: AppColors.statusError.withAlpha(25),
                       borderRadius: BorderRadius.circular(8),
                       border: Border.all(
-                        color: AppColorConstants.statusError.withAlpha(77),
+                        color: AppColors.statusError.withAlpha(77),
                       ),
                     ),
                     child: Row(
                       children: [
                         const Icon(
                           Icons.error_outline,
-                          color: AppColorConstants.statusError,
+                          color: AppColors.statusError,
                           size: 18,
                         ),
                         const SizedBox(width: 8),
@@ -175,7 +175,7 @@ class _LoginFormPanelState extends State<LoginFormPanel> {
                           child: Text(
                             state.error.errorMessage,
                             style: AppTextStyles.bodySmall.copyWith(
-                              color: AppColorConstants.statusError,
+                              color: AppColors.statusError,
                             ),
                           ),
                         ),
@@ -201,7 +201,7 @@ class _LoginFormPanelState extends State<LoginFormPanel> {
                     Text(
                       'Belum punya akun? ',
                       style: AppTextStyles.bodyMedium.copyWith(
-                        color: AppColorConstants.textMedium,
+                        color: AppColors.textMedium,
                       ),
                     ),
                     GestureDetector(
@@ -209,10 +209,10 @@ class _LoginFormPanelState extends State<LoginFormPanel> {
                       child: Text(
                         'Buat Akun Sekarang!',
                         style: AppTextStyles.bodyMedium.copyWith(
-                          color: AppColorConstants.primaryPurple,
+                          color: AppColors.primary,
                           fontWeight: FontWeight.w600,
                           decoration: TextDecoration.underline,
-                          decorationColor: AppColorConstants.primaryPurple,
+                          decorationColor: AppColors.primary,
                         ),
                       ),
                     ),
@@ -230,13 +230,13 @@ class _LoginFormPanelState extends State<LoginFormPanel> {
                       icon: const Icon(Icons.help_outline, size: 16),
                       label: const Text('Butuh Bantuan?'),
                       style: TextButton.styleFrom(
-                        foregroundColor: AppColorConstants.textLight,
+                        foregroundColor: AppColors.textLight,
                       ),
                     ),
                     TextButton(
                       onPressed: () {},
                       style: TextButton.styleFrom(
-                        foregroundColor: AppColorConstants.textLight,
+                        foregroundColor: AppColors.textLight,
                       ),
                       child: const Text('Client'),
                     ),
@@ -257,17 +257,13 @@ class _LoginFormPanelState extends State<LoginFormPanel> {
         duration: const Duration(milliseconds: 200),
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         decoration: BoxDecoration(
-          color: isActive
-              ? AppColorConstants.primaryPurple
-              : AppColorConstants.backgroundLight,
+          color: isActive ? AppColors.primary : AppColors.backgroundLight,
           borderRadius: BorderRadius.circular(8),
         ),
         child: Text(
           label,
           style: AppTextStyles.labelLarge.copyWith(
-            color: isActive
-                ? AppColorConstants.textWhite
-                : AppColorConstants.textMedium,
+            color: isActive ? AppColors.textWhite : AppColors.textMedium,
           ),
         ),
       ),

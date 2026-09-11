@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pos/core/theme/app_colors.dart';
 import 'package:pos/core/theme/app_text_styles.dart';
+import 'package:pos/generated/colors.gen.dart';
 
 class LunaTextField extends StatefulWidget {
   final String label;
@@ -42,9 +42,7 @@ class _LunaTextFieldState extends State<LunaTextField> {
       children: [
         Text(
           widget.label,
-          style: AppTextStyles.labelLarge.copyWith(
-            color: AppColorConstants.textDark,
-          ),
+          style: AppTextStyles.labelLarge.copyWith(color: AppColors.textDark),
         ),
         const SizedBox(height: 8),
         TextFormField(
@@ -64,7 +62,7 @@ class _LunaTextFieldState extends State<LunaTextField> {
                       _obscureText
                           ? Icons.visibility_outlined
                           : Icons.visibility_off_outlined,
-                      color: AppColorConstants.textLight,
+                      color: AppColors.textLight,
                     ),
                     onPressed: () =>
                         setState(() => _obscureText = !_obscureText),

@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Primary Brand Colors -->
-    <color name="primaryPurple">#53387D</color>
-    <color name="primaryPurpleLight">#7B4BBE</color>
-    <color name="primaryPurpleDark">#3D1A6E</color>
+    <color name="primary">#53387D</color>
 
     <!-- Background Colors -->
     <color name="backgroundPurple">#6324B3</color>

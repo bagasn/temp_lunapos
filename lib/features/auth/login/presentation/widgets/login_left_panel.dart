@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pos/core/theme/app_colors.dart';
 import 'package:pos/core/theme/app_text_styles.dart';
+import 'package:pos/generated/colors.gen.dart';
 
 class LoginLeftPanel extends StatelessWidget {
   const LoginLeftPanel({super.key});
@@ -8,17 +8,7 @@ class LoginLeftPanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            AppColorConstants.primaryPurpleDark,
-            AppColorConstants.primaryPurple,
-            AppColorConstants.backgroundPurple,
-          ],
-        ),
-      ),
+      decoration: BoxDecoration(color: AppColors.primary),
       child: Stack(
         children: [
           // Background decorative circles
@@ -72,14 +62,14 @@ class LoginLeftPanel extends StatelessWidget {
                 Text(
                   'Satu Aplikasi Kasir',
                   style: AppTextStyles.displayMedium.copyWith(
-                    color: AppColorConstants.textWhite,
+                    color: AppColors.textWhite,
                     height: 1.2,
                   ),
                 ),
                 Text(
                   'untuk Semua Jenis Usaha',
                   style: AppTextStyles.displayMedium.copyWith(
-                    color: AppColorConstants.textWhite.withAlpha(230),
+                    color: AppColors.textWhite.withAlpha(230),
                     height: 1.2,
                   ),
                 ),
@@ -92,7 +82,10 @@ class LoginLeftPanel extends StatelessWidget {
                 ),
                 const SizedBox(height: 48),
                 // Feature chips
-                _buildFeatureChip(Icons.point_of_sale_rounded, 'Point of Sales'),
+                _buildFeatureChip(
+                  Icons.point_of_sale_rounded,
+                  'Point of Sales',
+                ),
                 const SizedBox(height: 12),
                 _buildFeatureChip(Icons.inventory_2_rounded, 'Manajemen Stok'),
                 const SizedBox(height: 12),
@@ -138,7 +131,7 @@ class LoginLeftPanel extends StatelessWidget {
               style: TextStyle(
                 fontSize: 28,
                 fontWeight: FontWeight.w900,
-                color: AppColorConstants.primaryPurple,
+                color: AppColors.primary,
                 fontFamily: 'Inter',
               ),
             ),
@@ -148,7 +141,7 @@ class LoginLeftPanel extends StatelessWidget {
         Text(
           'Luna POS',
           style: AppTextStyles.headlineLarge.copyWith(
-            color: AppColorConstants.textWhite,
+            color: AppColors.textWhite,
             letterSpacing: 1,
           ),
         ),

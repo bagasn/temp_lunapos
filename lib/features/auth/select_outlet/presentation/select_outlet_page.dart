@@ -5,12 +5,12 @@ import 'package:loader_overlay/loader_overlay.dart';
 import 'package:pos/core/di/injection_container.dart';
 import 'package:pos/core/local_storage/session_manager.dart';
 import 'package:pos/core/navigation/app_route_paths.dart';
-import 'package:pos/core/theme/app_colors.dart';
 import 'package:pos/core/theme/app_text_styles.dart';
 import 'package:pos/features/auth/select_outlet/presentation/bloc/auth_outlet_bloc.dart';
 import 'package:pos/features/auth/select_outlet/presentation/bloc/auth_outlet_event.dart';
 import 'package:pos/features/auth/select_outlet/presentation/bloc/auth_outlet_state.dart';
 import 'package:pos/features/auth/select_outlet/presentation/widgets/outlet_card.dart';
+import 'package:pos/generated/colors.gen.dart';
 import 'package:pos/shared/widgets/dialog/confirmation_dialog.dart';
 
 class SelectOutletPage extends StatelessWidget {
@@ -47,17 +47,7 @@ class _SelectOutletView extends StatelessWidget {
       },
       child: Scaffold(
         body: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                AppColorConstants.primaryPurpleDark,
-                AppColorConstants.backgroundPurple,
-                AppColorConstants.primaryPurpleLight,
-              ],
-            ),
-          ),
+          decoration: const BoxDecoration(color: AppColors.primary),
           child: Column(
             children: [
               _buildHeader(context),
@@ -89,7 +79,7 @@ class _SelectOutletView extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.w900,
-                  color: AppColorConstants.primaryPurple,
+                  color: AppColors.primary,
                   fontFamily: 'Inter',
                 ),
               ),
@@ -141,9 +131,7 @@ class _SelectOutletView extends StatelessWidget {
           border: Border.all(color: Colors.white.withAlpha(77)),
         ),
         child: TextField(
-          style: AppTextStyles.bodyMedium.copyWith(
-            color: AppColorConstants.textWhite,
-          ),
+          style: AppTextStyles.bodyMedium.copyWith(color: AppColors.textWhite),
           decoration: InputDecoration(
             hintText: 'Cari Outlet',
             hintStyle: AppTextStyles.bodyMedium.copyWith(

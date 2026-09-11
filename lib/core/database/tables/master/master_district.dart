@@ -8,7 +8,4 @@ class TableDistrict extends Table {
   IntColumn get id => integer().autoIncrement()();
   IntColumn get cityId => integer()();
   TextColumn get name => text()();
-
-  @override
-  Set<Column> get primaryKey => {id};
 }

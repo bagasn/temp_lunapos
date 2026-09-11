@@ -1,8 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:pos/features/pos/pos_page_view.dart';
 import 'package:pos/generated/colors.gen.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return _HomeView();
+  }
+}
+
+class _HomeView extends StatefulWidget {
+  const _HomeView();
+
+  @override
+  State<_HomeView> createState() => __HomeViewState();
+}
+
+class __HomeViewState extends State<_HomeView> {
+  int _navIndexSelected = 0;
+
+  final _navViews = <Widget>[PosPageView()];
 
   @override
   Widget build(BuildContext context) {
@@ -12,17 +31,9 @@ class HomePage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           _navWidgets(),
-          Expanded(child: _mainWidget()),
+          Expanded(child: _navViews[_navIndexSelected]),
         ],
       ),
-    );
-  }
-
-  Widget _mainWidget() {
-    return Column(
-      mainAxisSize: MainAxisSize.max,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [],
     );
   }
 
@@ -31,7 +42,7 @@ class HomePage extends StatelessWidget {
     return Container(
       width: navWidth,
       height: double.infinity,
-      color: AppColors.primaryPurple,
+      color: AppColors.primary,
       child: Column(
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.stretch,

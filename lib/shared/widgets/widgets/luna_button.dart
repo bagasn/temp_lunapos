@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pos/core/theme/app_colors.dart';
 import 'package:pos/core/theme/app_text_styles.dart';
+import 'package:pos/generated/colors.gen.dart';
 
 enum LunaButtonVariant { primary, outlined, ghost }
 
@@ -31,17 +31,17 @@ class LunaButton extends StatelessWidget {
       height: height,
       child: switch (variant) {
         LunaButtonVariant.primary => ElevatedButton(
-            onPressed: isLoading ? null : onPressed,
-            child: _buildContent(),
-          ),
+          onPressed: isLoading ? null : onPressed,
+          child: _buildContent(),
+        ),
         LunaButtonVariant.outlined => OutlinedButton(
-            onPressed: isLoading ? null : onPressed,
-            child: _buildContent(),
-          ),
+          onPressed: isLoading ? null : onPressed,
+          child: _buildContent(),
+        ),
         LunaButtonVariant.ghost => TextButton(
-            onPressed: isLoading ? null : onPressed,
-            child: _buildContent(),
-          ),
+          onPressed: isLoading ? null : onPressed,
+          child: _buildContent(),
+        ),
       },
     );
   }
@@ -53,7 +53,7 @@ class LunaButton extends StatelessWidget {
         height: 20,
         child: CircularProgressIndicator(
           strokeWidth: 2,
-          color: AppColorConstants.textWhite,
+          color: AppColors.textWhite,
         ),
       );
     }

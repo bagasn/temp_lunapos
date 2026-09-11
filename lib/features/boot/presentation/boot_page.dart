@@ -32,7 +32,7 @@ class __BootContentState extends State<_BootContent> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.primaryPurple,
+      backgroundColor: AppColors.primary,
       body: Container(
         padding: EdgeInsets.all(16),
         alignment: Alignment.center,
