@@ -1,24 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pos/features/pos/domain/entities/product_entity.dart';
+import 'package:pos/features/pos/presentation/bloc/order/pos_order_bloc.dart';
+import 'package:pos/features/pos/presentation/bloc/product/product_bloc.dart';
+import 'package:pos/features/pos/presentation/bloc/product/product_event.dart';
+import 'package:pos/features/pos/presentation/bloc/product/product_state.dart';
 import 'package:pos/features/pos/presentation/widgets/product_item.dart';
 import 'package:pos/generated/colors.gen.dart';
+import 'package:pos/shared/utilities/number_formatter.dart';
 
-// --- Mock Data Models (UI only) ---
-class _MockProduct {
-  final String name;
-  final String price;
-  final String? stockLabel;
-  final bool isOutOfStock;
-  final bool hasVariant;
-
-  const _MockProduct({
-    required this.name,
-    required this.price,
-    this.stockLabel,
-    this.isOutOfStock = false,
-    this.hasVariant = false,
-  });
-}
-
+// --- Mock Category Data (still mock, not yet implemented) ---
 class _MockCategory {
   final String label;
   final int count;
@@ -33,7 +24,6 @@ class _MockCategory {
   });
 }
 
-// --- Mock Data ---
 const _categories = [
   _MockCategory(label: 'Semua', count: 40),
   _MockCategory(
@@ -53,31 +43,6 @@ const _categories = [
   _MockCategory(label: 'Minuman', count: 8),
 ];
 
-const _products = [
-  _MockProduct(
-    name: 'Ayam Penyet + Nasi',
-    price: 'Rp32.000',
-    stockLabel: '10 Pcs',
-    hasVariant: true,
-  ),
-  _MockProduct(name: 'Como Kitchen', price: 'Rp36.000'),
-  _MockProduct(name: 'Parking pizza', price: 'Rp20.000'),
-  _MockProduct(name: 'GreenVita', price: 'Rp18.000'),
-  _MockProduct(name: 'Chickpeas', price: 'Rp36.000', isOutOfStock: true),
-  _MockProduct(name: 'Gelatin', price: 'Rp25.000'),
-  _MockProduct(
-    name: 'Bean sprouts',
-    price: 'Rp47.000',
-    isOutOfStock: true,
-    hasVariant: true,
-  ),
-  _MockProduct(name: 'Minuman 1', price: 'Rp20.000'),
-  _MockProduct(name: 'Pecans', price: 'Rp36.000'),
-  _MockProduct(name: 'Scallops', price: 'Rp40.000', hasVariant: true),
-  _MockProduct(name: 'Cantaloupes', price: 'Rp32.000', hasVariant: true),
-  _MockProduct(name: 'Ginger ale', price: 'Rp36.000'),
-];
-
 class ProductView extends StatefulWidget {
   const ProductView({super.key});
 
@@ -87,6 +52,39 @@ class ProductView extends StatefulWidget {
 
 class _ProductViewState extends State<ProductView> {
   int _selectedCategoryIndex = 0;
+  late final ScrollController _scrollController;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController = ScrollController();
+    _scrollController.addListener(_onScroll);
+
+    // Trigger initial load only if not already loaded
+    final bloc = context.read<PosProductBloc>();
+    if (bloc.state.status == PosProductStatus.initial) {
+      bloc.add(const FetchPosProducts());
+    }
+  }
+
+  @override
+  void dispose() {
+    _scrollController
+      ..removeListener(_onScroll)
+      ..dispose();
+    super.dispose();
+  }
+
+  void _onScroll() {
+    if (_isBottom) context.read<PosProductBloc>().add(const FetchPosProducts());
+  }
+
+  bool get _isBottom {
+    if (!_scrollController.hasClients) return false;
+    final maxScroll = _scrollController.position.maxScrollExtent;
+    final currentScroll = _scrollController.offset;
+    return currentScroll >= (maxScroll * 0.9);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -110,23 +108,29 @@ class _ProductViewState extends State<ProductView> {
       child: Row(
         children: [
           // Title with count
-          Row(
-            children: [
-              const Icon(
-                Icons.apps_rounded,
-                size: 20,
-                color: AppColors.textDark,
-              ),
-              const SizedBox(width: 8),
-              Text(
-                'Semua (${_products.length})',
-                style: const TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.w600,
-                  color: AppColors.textDark,
-                ),
-              ),
-            ],
+          BlocBuilder<PosProductBloc, PosProductState>(
+            buildWhen: (prev, curr) =>
+                prev.products.length != curr.products.length,
+            builder: (context, state) {
+              return Row(
+                children: [
+                  const Icon(
+                    Icons.apps_rounded,
+                    size: 20,
+                    color: AppColors.textDark,
+                  ),
+                  const SizedBox(width: 8),
+                  Text(
+                    'Semua (${state.products.length})',
+                    style: const TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.textDark,
+                    ),
+                  ),
+                ],
+              );
+            },
           ),
           const SizedBox(width: 16),
           // Search Field
@@ -206,7 +210,7 @@ class _ProductViewState extends State<ProductView> {
       height: 52,
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: ListView.separated(
-        padding: EdgeInsets.symmetric(horizontal: 12),
+        padding: const EdgeInsets.symmetric(horizontal: 12),
         scrollDirection: Axis.horizontal,
         itemCount: _categories.length,
         separatorBuilder: (_, _) => const SizedBox(width: 8),
@@ -261,23 +265,66 @@ class _ProductViewState extends State<ProductView> {
   }
 
   Widget _buildProductGrid() {
-    return GridView.builder(
-      padding: const EdgeInsets.all(12),
-      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-        maxCrossAxisExtent: 240,
-        mainAxisSpacing: 10,
-        crossAxisSpacing: 10,
-        childAspectRatio: 3 / 4,
-      ),
-      itemCount: _products.length,
-      itemBuilder: (context, index) {
-        final product = _products[index];
-        return ProductItem(
-          name: product.name,
-          price: product.price,
-          stockLabel: product.stockLabel,
-          isOutOfStock: product.isOutOfStock,
-          hasVariant: product.hasVariant,
+    return BlocBuilder<PosProductBloc, PosProductState>(
+      builder: (context, state) {
+        // Initial / loading with no products yet: show centered spinner
+        if ((state.status == PosProductStatus.initial ||
+                state.status == PosProductStatus.loading) &&
+            state.products.isEmpty) {
+          return const Center(child: CircularProgressIndicator());
+        }
+
+        // Error with no products: show error message
+        if (state.status == PosProductStatus.failure &&
+            state.products.isEmpty) {
+          return Center(
+            child: Padding(
+              padding: const EdgeInsets.all(24),
+              child: Text(
+                state.errorMessage ?? 'Terjadi kesalahan.',
+                textAlign: TextAlign.center,
+                style: const TextStyle(color: AppColors.textMedium),
+              ),
+            ),
+          );
+        }
+
+        final itemCount =
+            state.products.length + (state.hasReachedMax ? 0 : 1);
+
+        return GridView.builder(
+          controller: _scrollController,
+          padding: const EdgeInsets.all(12),
+          gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+            maxCrossAxisExtent: 240,
+            mainAxisSpacing: 10,
+            crossAxisSpacing: 10,
+            childAspectRatio: 3 / 4,
+          ),
+          itemCount: itemCount,
+          itemBuilder: (context, index) {
+            // Last item: loading indicator for next page
+            if (index >= state.products.length) {
+              return const Center(
+                child: Padding(
+                  padding: EdgeInsets.all(16),
+                  child: CircularProgressIndicator(strokeWidth: 2),
+                ),
+              );
+            }
+
+            final PosProductEntity product = state.products[index];
+            return ProductItem(
+              name: product.name ?? '-',
+              price: NumberFormatter.currency(product.unitPrice),
+              imageUrl: product.pictureUrl,
+              isOutOfStock: product.isOutOfStock,
+              hasVariant: product.hasVariants,
+              onTap: () => context
+                  .read<PosOrderBloc>()
+                  .add(AddProductToOrder(product)),
+            );
+          },
         );
       },
     );

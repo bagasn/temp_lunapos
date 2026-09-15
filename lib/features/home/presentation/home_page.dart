@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pos/core/di/injection_container.dart';
 import 'package:pos/features/home/presentation/widgets/nav_item.dart';
+import 'package:pos/features/pos/presentation/bloc/order/pos_order_bloc.dart';
+import 'package:pos/features/pos/presentation/bloc/product/product_bloc.dart';
 import 'package:pos/features/pos/presentation/pos_page_view.dart';
 import 'package:pos/generated/assets.gen.dart';
 import 'package:pos/generated/colors.gen.dart';
@@ -9,7 +13,13 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const _HomeView();
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => locator<PosProductBloc>()),
+        BlocProvider(create: (context) => locator<PosOrderBloc>()),
+      ],
+      child: const _HomeView(),
+    );
   }
 }
 

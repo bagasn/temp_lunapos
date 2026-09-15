@@ -1,5 +1,5 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:pos/generated/assets.gen.dart';
 import 'package:pos/generated/colors.gen.dart';
 
 class ProductItem extends StatelessWidget {
@@ -49,10 +49,17 @@ class ProductItem extends StatelessWidget {
       fit: StackFit.expand,
       children: [
         imageUrl != null
-            ? CachedNetworkImage(
-                imageUrl: imageUrl!,
+            ? Image.network(
+                imageUrl!,
                 fit: BoxFit.cover,
-                errorWidget: (context, url, error) {
+                loadingBuilder: (context, child, loadingProgress) {
+                  if (loadingProgress?.cumulativeBytesLoaded ==
+                      loadingProgress?.expectedTotalBytes) {
+                    return child;
+                  }
+                  return _buildPlaceholderImage();
+                },
+                errorBuilder: (context, error, stackTrace) {
                   return _buildPlaceholderImage();
                 },
               )
@@ -140,11 +147,24 @@ class ProductItem extends StatelessWidget {
   }
 
   Widget _buildPlaceholderImage() {
-    return Container(
-      color: AppColors.backgroundLight,
-      child: const Center(
-        child: Icon(Icons.image_outlined, color: AppColors.textLight, size: 40),
-      ),
+    return Stack(
+      fit: StackFit.expand,
+      children: [
+        Assets.images.imgDoodleBgProduct.image(
+          fit: BoxFit.cover,
+          color: Colors.grey.shade400,
+          colorBlendMode: BlendMode.dstATop,
+        ),
+        Center(
+          child: Text(
+            name,
+            textAlign: TextAlign.center,
+            maxLines: 5,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+          ),
+        ),
+      ],
     );
   }
 

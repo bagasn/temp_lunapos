@@ -1,83 +1,56 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pos/features/pos/domain/entities/pos_order_line_entity.dart';
+import 'package:pos/features/pos/presentation/bloc/order/pos_order_bloc.dart';
 import 'package:pos/generated/colors.gen.dart';
-
-// --- Mock Data Models (UI only) ---
-class _MockOrderModifier {
-  final String name;
-  final String price;
-
-  const _MockOrderModifier({required this.name, required this.price});
-}
-
-class _MockOrderItem {
-  final String name;
-  final String basePrice;
-  final String totalPrice;
-  final List<_MockOrderModifier> modifiers;
-  final String? discount;
-  final int quantity;
-  final bool isFree;
-
-  const _MockOrderItem({
-    required this.name,
-    required this.basePrice,
-    required this.totalPrice,
-    required this.modifiers,
-    this.discount,
-    required this.quantity,
-    this.isFree = false,
-  });
-}
-
-// --- Mock Data ---
-const _mockOrderItems = [
-  _MockOrderItem(
-    name: 'Ayam Penyet + Nasi',
-    basePrice: '@Rp10.000',
-    totalPrice: 'Rp 20.000',
-    modifiers: [
-      _MockOrderModifier(name: 'Dada', price: '+ Rp 3.000'),
-      _MockOrderModifier(name: 'Extra Sambal', price: '+ Rp 3.000'),
-    ],
-    discount: 'Diskon - Promo Malam Minggu (Rp)',
-    quantity: 2,
-  ),
-  _MockOrderItem(
-    name: 'Es Kopyor',
-    basePrice: '',
-    totalPrice: 'Gratis',
-    modifiers: [
-      _MockOrderModifier(name: 'Extra Ice', price: '+ Rp 0'),
-    ],
-    quantity: 2,
-    isFree: true,
-  ),
-];
+import 'package:pos/shared/utilities/number_formatter.dart';
 
 class OrderView extends StatelessWidget {
   const OrderView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        border: Border(left: BorderSide(color: AppColors.borderLight, width: 1.5)),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          _buildHeader(),
-          _buildMetaInfo(),
-          const Divider(height: 1, thickness: 1, color: AppColors.borderLight),
-          Expanded(child: _buildOrderList()),
-          _buildFooter(),
-        ],
+    return BlocListener<PosOrderBloc, PosOrderState>(
+      listenWhen: (prev, curr) => prev.saveStatus != curr.saveStatus,
+      listener: (context, state) {
+        if (state.saveStatus == PosOrderSaveStatus.success) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Order berhasil disimpan!'),
+              backgroundColor: Colors.green,
+            ),
+          );
+        } else if (state.saveStatus == PosOrderSaveStatus.failure) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(state.errorMessage ?? 'Gagal menyimpan order.'),
+              backgroundColor: AppColors.statusError,
+            ),
+          );
+        }
+      },
+      child: Container(
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          border: Border(
+            left: BorderSide(color: AppColors.borderLight, width: 1.5),
+          ),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            _buildHeader(context),
+            _buildMetaInfo(),
+            const Divider(height: 1, thickness: 1, color: AppColors.borderLight),
+            Expanded(child: _buildOrderList()),
+            _buildFooter(context),
+          ],
+        ),
       ),
     );
   }
 
-  Widget _buildHeader() {
+  Widget _buildHeader(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 14, 8, 14),
       child: Row(
@@ -102,6 +75,8 @@ class OrderView extends StatelessWidget {
             icon: Icons.delete_outline_rounded,
             backgroundColor: AppColors.statusError,
             iconColor: Colors.white,
+            onTap: () =>
+                context.read<PosOrderBloc>().add(const ClearOrder()),
           ),
         ],
       ),
@@ -112,15 +87,19 @@ class OrderView extends StatelessWidget {
     required IconData icon,
     required Color backgroundColor,
     required Color iconColor,
+    VoidCallback? onTap,
   }) {
-    return Container(
-      width: 36,
-      height: 36,
-      decoration: BoxDecoration(
-        color: backgroundColor,
-        borderRadius: BorderRadius.circular(18),
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: 36,
+        height: 36,
+        decoration: BoxDecoration(
+          color: backgroundColor,
+          borderRadius: BorderRadius.circular(18),
+        ),
+        child: Icon(icon, color: iconColor, size: 18),
       ),
-      child: Icon(icon, color: iconColor, size: 18),
     );
   }
 
@@ -139,14 +118,14 @@ class OrderView extends StatelessWidget {
               Expanded(
                 child: _buildMetaRow(
                   icon: Icons.person_outline_rounded,
-                  label: 'Steven',
+                  label: 'Pelanggan',
                 ),
               ),
               const SizedBox(width: 8),
               Expanded(
                 child: _buildMetaRow(
                   icon: Icons.groups_outlined,
-                  label: '5 Pax',
+                  label: '- Pax',
                 ),
               ),
             ],
@@ -154,7 +133,7 @@ class OrderView extends StatelessWidget {
           const SizedBox(height: 8),
           _buildMetaRow(
             icon: Icons.chair_outlined,
-            label: 'Smoking Area - Meja 20',
+            label: 'Pilih Meja',
           ),
           const SizedBox(height: 8),
         ],
@@ -190,30 +169,50 @@ class OrderView extends StatelessWidget {
   }
 
   Widget _buildOrderList() {
-    return ListView.separated(
-      padding: const EdgeInsets.symmetric(vertical: 4),
-      itemCount: _mockOrderItems.length,
-      separatorBuilder: (_, __) =>
-          const Divider(height: 1, thickness: 1, color: AppColors.borderLight),
-      itemBuilder: (context, index) {
-        return _buildOrderItem(_mockOrderItems[index]);
+    return BlocBuilder<PosOrderBloc, PosOrderState>(
+      builder: (context, state) {
+        if (state.isEmpty) {
+          return const Center(
+            child: Padding(
+              padding: EdgeInsets.all(24),
+              child: Text(
+                'Belum ada item.\nTap produk untuk menambahkan ke order.',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 13,
+                  color: AppColors.textLight,
+                ),
+              ),
+            ),
+          );
+        }
+
+        final lines = state.order!.lines;
+        return ListView.separated(
+          padding: const EdgeInsets.symmetric(vertical: 4),
+          itemCount: lines.length,
+          separatorBuilder: (_, _) =>
+              const Divider(height: 1, thickness: 1, color: AppColors.borderLight),
+          itemBuilder: (context, index) =>
+              _buildOrderItem(context, lines[index]),
+        );
       },
     );
   }
 
-  Widget _buildOrderItem(_MockOrderItem item) {
+  Widget _buildOrderItem(BuildContext context, PosOrderLineEntity line) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(12, 12, 12, 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Item name and price
+          // Item name and total price
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
                 child: Text(
-                  item.name,
+                  line.name,
                   style: const TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.w600,
@@ -222,88 +221,53 @@ class OrderView extends StatelessWidget {
                 ),
               ),
               Text(
-                item.totalPrice,
-                style: TextStyle(
+                NumberFormatter.currency(line.lineTotal),
+                style: const TextStyle(
                   fontSize: 13,
                   fontWeight: FontWeight.w600,
-                  color: item.isFree ? AppColors.textLight : AppColors.textDark,
+                  color: AppColors.textDark,
                 ),
               ),
             ],
           ),
-          if (item.basePrice.isNotEmpty)
-            Padding(
-              padding: const EdgeInsets.only(top: 1),
-              child: Text(
-                item.basePrice,
-                style: const TextStyle(fontSize: 11, color: AppColors.textLight),
-              ),
+          // Unit price
+          Padding(
+            padding: const EdgeInsets.only(top: 1),
+            child: Text(
+              '@${NumberFormatter.currency(line.unitPrice)}',
+              style: const TextStyle(fontSize: 11, color: AppColors.textLight),
             ),
-
-          // Modifiers
-          for (final mod in item.modifiers)
-            Padding(
-              padding: const EdgeInsets.only(top: 4),
-              child: Row(
-                children: [
-                  const Icon(Icons.people_outline, size: 13, color: AppColors.textLight),
-                  const SizedBox(width: 6),
-                  Expanded(
-                    child: Text(
-                      mod.name,
-                      style: const TextStyle(fontSize: 12, color: AppColors.textMedium),
-                    ),
-                  ),
-                  Text(
-                    mod.price,
-                    style: const TextStyle(fontSize: 12, color: AppColors.textMedium),
-                  ),
-                ],
-              ),
-            ),
-
-          // Discount
-          if (item.discount != null)
-            Padding(
-              padding: const EdgeInsets.only(top: 4),
-              child: Text(
-                item.discount!,
-                style: const TextStyle(
-                  fontSize: 12,
-                  color: AppColors.statusError,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ),
+          ),
 
           const SizedBox(height: 8),
 
-          // Actions row: Catatan | Diskon | Hapus — Quantity
+          // Actions row: Catatan | Hapus — Quantity controls
           Row(
             children: [
-              // Catatan
               _buildTextActionButton(
                 icon: Icons.receipt_outlined,
                 label: 'Catatan',
                 color: AppColors.textMedium,
+                onTap: () {},
               ),
               _buildDividerSeparator(),
-              // Diskon
               _buildTextActionButton(
                 icon: Icons.local_offer_outlined,
                 label: 'Diskon',
                 color: AppColors.textMedium,
+                onTap: () {},
               ),
               _buildDividerSeparator(),
-              // Hapus
               _buildTextActionButton(
                 icon: Icons.delete_outline,
                 label: 'Hapus',
                 color: AppColors.statusError,
+                onTap: () => context
+                    .read<PosOrderBloc>()
+                    .add(RemoveOrderLine(line.id)),
               ),
               const Spacer(),
-              // Quantity controls
-              _buildQuantityControl(item.quantity),
+              _buildQuantityControl(context, line),
             ],
           ),
         ],
@@ -315,17 +279,22 @@ class OrderView extends StatelessWidget {
     required IconData icon,
     required String label,
     required Color color,
+    VoidCallback? onTap,
   }) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Icon(icon, size: 13, color: color),
-        const SizedBox(width: 3),
-        Text(
-          label,
-          style: TextStyle(fontSize: 11, color: color, fontWeight: FontWeight.w500),
-        ),
-      ],
+    return GestureDetector(
+      onTap: onTap,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, size: 13, color: color),
+          const SizedBox(width: 3),
+          Text(
+            label,
+            style:
+                TextStyle(fontSize: 11, color: color, fontWeight: FontWeight.w500),
+          ),
+        ],
+      ),
     );
   }
 
@@ -336,14 +305,25 @@ class OrderView extends StatelessWidget {
     );
   }
 
-  Widget _buildQuantityControl(int quantity) {
+  Widget _buildQuantityControl(
+    BuildContext context,
+    PosOrderLineEntity line,
+  ) {
     return Row(
       children: [
-        _buildQuantityButton(Icons.remove, onTap: () {}),
+        _buildQuantityButton(
+          Icons.remove,
+          onTap: () => context.read<PosOrderBloc>().add(
+                UpdateOrderLineQty(
+                  lineId: line.id,
+                  newQty: line.qty - 1,
+                ),
+              ),
+        ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Text(
-            '$quantity',
+            '${line.qty}',
             style: const TextStyle(
               fontSize: 13,
               fontWeight: FontWeight.w700,
@@ -351,7 +331,15 @@ class OrderView extends StatelessWidget {
             ),
           ),
         ),
-        _buildQuantityButton(Icons.add, onTap: () {}),
+        _buildQuantityButton(
+          Icons.add,
+          onTap: () => context.read<PosOrderBloc>().add(
+                UpdateOrderLineQty(
+                  lineId: line.id,
+                  newQty: line.qty + 1,
+                ),
+              ),
+        ),
       ],
     );
   }
@@ -371,81 +359,99 @@ class OrderView extends StatelessWidget {
     );
   }
 
-  Widget _buildFooter() {
-    return Container(
-      decoration: const BoxDecoration(
-        color: AppColors.orderTotalBackground,
-        border: Border(top: BorderSide(color: AppColors.borderLight)),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          // Total row
-          Padding(
-            padding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
-            child: Row(
-              children: [
-                const Icon(Icons.keyboard_arrow_up_rounded,
-                    size: 20, color: AppColors.textDark),
-                const SizedBox(width: 4),
-                const Text(
-                  'Total (3 items)',
-                  style: TextStyle(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.textDark,
-                  ),
-                ),
-                const Spacer(),
-                const Text(
-                  'Rp 92.000',
-                  style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w700,
-                    color: AppColors.primary,
-                  ),
-                ),
-              ],
-            ),
-          ),
+  Widget _buildFooter(BuildContext context) {
+    return BlocBuilder<PosOrderBloc, PosOrderState>(
+      builder: (context, state) {
+        final isSaving = state.saveStatus == PosOrderSaveStatus.saving;
+        final totalLabel =
+            'Total (${state.totalQty} item${state.totalQty != 1 ? 's' : ''})';
 
-          // Print & Save buttons
-          Padding(
-            padding: const EdgeInsets.fromLTRB(12, 0, 12, 8),
-            child: Row(
-              children: [
-                Expanded(
-                  child: _buildFooterButton(
-                    label: 'Print Tagihan',
-                    backgroundColor: Colors.white,
-                    textColor: AppColors.textDark,
-                    borderColor: AppColors.borderLight,
-                  ),
-                ),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: _buildFooterButton(
-                    label: 'Simpan',
-                    backgroundColor: AppColors.buttonSave,
-                    textColor: Colors.white,
-                  ),
-                ),
-              ],
-            ),
+        return Container(
+          decoration: const BoxDecoration(
+            color: AppColors.orderTotalBackground,
+            border: Border(top: BorderSide(color: AppColors.borderLight)),
           ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              // Total row
+              Padding(
+                padding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
+                child: Row(
+                  children: [
+                    const Icon(
+                      Icons.keyboard_arrow_up_rounded,
+                      size: 20,
+                      color: AppColors.textDark,
+                    ),
+                    const SizedBox(width: 4),
+                    Text(
+                      totalLabel,
+                      style: const TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.textDark,
+                      ),
+                    ),
+                    const Spacer(),
+                    Text(
+                      NumberFormatter.currency(state.subTotal),
+                      style: const TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w700,
+                        color: AppColors.primary,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
 
-          // Pay button
-          Padding(
-            padding: const EdgeInsets.fromLTRB(12, 0, 12, 12),
-            child: _buildFooterButton(
-              label: 'Bayar',
-              backgroundColor: AppColors.buttonPay,
-              textColor: Colors.white,
-              height: 46,
-            ),
+              // Print & Save buttons
+              Padding(
+                padding: const EdgeInsets.fromLTRB(12, 0, 12, 8),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: _buildFooterButton(
+                        label: 'Print Tagihan',
+                        backgroundColor: Colors.white,
+                        textColor: AppColors.textDark,
+                        borderColor: AppColors.borderLight,
+                        onTap: () {},
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: _buildFooterButton(
+                        label: isSaving ? 'Menyimpan...' : 'Simpan',
+                        backgroundColor: AppColors.buttonSave,
+                        textColor: Colors.white,
+                        onTap: isSaving || state.isEmpty
+                            ? null
+                            : () => context
+                                .read<PosOrderBloc>()
+                                .add(const SaveOrderEvent()),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              // Pay button
+              Padding(
+                padding: const EdgeInsets.fromLTRB(12, 0, 12, 12),
+                child: _buildFooterButton(
+                  label: 'Bayar',
+                  backgroundColor: AppColors.buttonPay,
+                  textColor: Colors.white,
+                  height: 46,
+                  onTap: state.isEmpty ? null : () {},
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 
@@ -455,21 +461,27 @@ class OrderView extends StatelessWidget {
     required Color textColor,
     Color? borderColor,
     double height = 38,
+    VoidCallback? onTap,
   }) {
-    return Container(
-      height: height,
-      decoration: BoxDecoration(
-        color: backgroundColor,
-        borderRadius: BorderRadius.circular(8),
-        border: borderColor != null ? Border.all(color: borderColor) : null,
-      ),
-      child: Center(
-        child: Text(
-          label,
-          style: TextStyle(
-            fontSize: 13,
-            fontWeight: FontWeight.w600,
-            color: textColor,
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        height: height,
+        decoration: BoxDecoration(
+          color: onTap == null
+              ? backgroundColor.withAlpha(140)
+              : backgroundColor,
+          borderRadius: BorderRadius.circular(8),
+          border: borderColor != null ? Border.all(color: borderColor) : null,
+        ),
+        child: Center(
+          child: Text(
+            label,
+            style: TextStyle(
+              fontSize: 13,
+              fontWeight: FontWeight.w600,
+              color: textColor,
+            ),
           ),
         ),
       ),
