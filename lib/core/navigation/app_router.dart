@@ -3,6 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:pos/core/local_storage/session_manager.dart';
 import 'package:pos/core/navigation/app_route_paths.dart';
 import 'package:pos/features/auth/login/presentation/login_page.dart';
+import 'package:pos/features/auth/login_pos/presentation/input_pin/login_pos_input_pin.dart';
+import 'package:pos/features/auth/login_pos/presentation/select_user/login_pos_user_page.dart';
 import 'package:pos/features/auth/select_outlet/presentation/select_outlet_page.dart';
 import 'package:pos/features/boot/presentation/boot_page.dart';
 import 'package:pos/features/home/presentation/home_page.dart';
@@ -20,11 +22,13 @@ GoRouter createAppRouter(SessionManager sessionManager) {
 
       final isLogged = await sessionManager.isLoggedIn;
       final hasActiveOutlet = await sessionManager.hasActiveOutlet;
+      final hasActiveUser = await sessionManager.hasActiveUser;
 
       final isOnLogin = location.startsWith(AppRoutePaths.login.path);
       final isOnSelectOutlet = location.startsWith(
         AppRoutePaths.selectOutlet.path,
       );
+      final isOnPosLogin = location.startsWith(AppRoutePaths.loginPos.path);
 
       if (!isOnLogin && !isLogged) {
         return AppRoutePaths.login.path;
@@ -33,6 +37,12 @@ GoRouter createAppRouter(SessionManager sessionManager) {
       if (isLogged && !hasActiveOutlet) {
         if (!isOnSelectOutlet || !isOnLogin) {
           return AppRoutePaths.login.path;
+        }
+      }
+
+      if (isLogged && hasActiveOutlet && !hasActiveUser) {
+        if (!isOnPosLogin) {
+          return AppRoutePaths.loginPos.path;
         }
       }
 
@@ -56,6 +66,16 @@ GoRouter createAppRouter(SessionManager sessionManager) {
           GoRoute(
             path: AppRoutePaths.selectOutlet.navigationPath,
             builder: (context, state) => const SelectOutletPage(),
+          ),
+          GoRoute(
+            path: AppRoutePaths.loginPos.navigationPath,
+            builder: (context, state) => const LoginPosUserPage(),
+            routes: [
+              GoRoute(
+                path: AppRoutePaths.loginPosInputPin.navigationPath,
+                builder: (context, state) => const LoginPosInputPinPage(),
+              ),
+            ],
           ),
         ],
       ),

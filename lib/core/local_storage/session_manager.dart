@@ -3,6 +3,7 @@ import 'package:pos/core/local_storage/auth_preferences.dart';
 import 'package:pos/core/local_storage/device_preferences.dart';
 import 'package:pos/core/local_storage/outlet_preferences.dart';
 import 'package:pos/core/local_storage/setting_preferences.dart';
+import 'package:pos/core/local_storage/user_preferences.dart';
 import 'package:pos/features/auth/select_outlet/domain/entities/auth_outlet_entity.dart';
 
 @singleton
@@ -11,12 +12,14 @@ class SessionManager {
   final ActiveOutletPreferences activeOutlet;
   final SettingPreferences setting;
   final DevicePreferences device;
+  final ActiveUserPreferences posUser;
 
   SessionManager({
     required this.auth,
     required this.activeOutlet,
     required this.setting,
     required this.device,
+    required this.posUser,
   });
 
   Future<void> setupUserLogin({
@@ -59,6 +62,8 @@ class SessionManager {
   Future<bool> get isLoggedIn => auth.isLogged();
 
   Future<bool> get hasActiveOutlet => activeOutlet.hasActiveOutlet();
+
+  Future<bool> get hasActiveUser => posUser.hasActiveUser();
 
   Future<void> clearSession() async {
     await auth.clear();

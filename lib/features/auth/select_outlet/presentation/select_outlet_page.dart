@@ -23,7 +23,7 @@ class SelectOutletPage extends StatelessWidget {
       child: BlocListener<AuthOutletBloc, AuthOutletState>(
         listener: (context, state) {
           if (state is AuthOutletTokenSuccess) {
-            context.go(AppRoutePaths.home.path);
+            context.go(AppRoutePaths.loginPos.path);
           }
         },
         child: const _SelectOutletView(),

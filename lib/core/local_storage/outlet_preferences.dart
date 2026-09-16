@@ -2,7 +2,6 @@ import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final class _Key {
-  const _Key._();
   static const outletId = 'active_outlet_id';
   static const outletPosAuthKey = 'active_outlet_pos_auth_key';
   static const outletName = 'active_outlet_name';
