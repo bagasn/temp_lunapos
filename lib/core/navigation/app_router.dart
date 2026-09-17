@@ -73,7 +73,13 @@ GoRouter createAppRouter(SessionManager sessionManager) {
             routes: [
               GoRoute(
                 path: AppRoutePaths.loginPosInputPin.navigationPath,
-                builder: (context, state) => const LoginPosInputPinPage(),
+                builder: (context, state) {
+                  final extra = state.extra as Map<String, String>? ?? {};
+                  return LoginPosInputPinPage(
+                    userId: extra['userId'] ?? '',
+                    fullName: extra['fullName'] ?? '',
+                  );
+                },
               ),
             ],
           ),

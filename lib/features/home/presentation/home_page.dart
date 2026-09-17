@@ -4,7 +4,8 @@ import 'package:pos/core/di/injection_container.dart';
 import 'package:pos/features/home/presentation/widgets/nav_item.dart';
 import 'package:pos/features/pos/presentation/bloc/order/pos_order_bloc.dart';
 import 'package:pos/features/pos/presentation/bloc/product/product_bloc.dart';
-import 'package:pos/features/pos/presentation/pos_page_view.dart';
+import 'package:pos/features/pos/presentation/pos_nav_view.dart';
+import 'package:pos/features/transaction/presentation/transaction_nav_view.dart';
 import 'package:pos/generated/assets.gen.dart';
 import 'package:pos/generated/colors.gen.dart';
 
@@ -33,7 +34,7 @@ class _HomeView extends StatefulWidget {
 class __HomeViewState extends State<_HomeView> {
   int _navIndexSelected = 0;
 
-  final _navViews = <Widget>[const PosPageView()];
+  final _navViews = <Widget>[const PosNavView(), const TransactionNavView()];
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +95,9 @@ class __HomeViewState extends State<_HomeView> {
                       isActive: _navIndexSelected == i,
                       onTap: () {
                         // Only POS is implemented for now
-                        if (i == 0) setState(() => _navIndexSelected = 0);
+                        if (i == 0 || i == 1) {
+                          setState(() => _navIndexSelected = i);
+                        }
                       },
                     ),
                 ],

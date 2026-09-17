@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:pos/core/theme/app_text_styles.dart';
 import 'package:pos/generated/colors.gen.dart';
+import 'package:pos/generated/fonts.gen.dart';
 
 class AppTheme {
   AppTheme._();
 
   static ThemeData get lightTheme => ThemeData(
     useMaterial3: true,
-    fontFamily: 'Inter',
+    fontFamily: AppFonts.inter,
     colorScheme: ColorScheme.fromSeed(
       seedColor: AppColors.primary,
       primary: AppColors.primary,
@@ -34,28 +35,28 @@ class AppTheme {
       labelLarge: AppTextStyles.labelLarge,
       labelSmall: AppTextStyles.labelSmall,
     ),
-    inputDecorationTheme: InputDecorationTheme(
-      filled: true,
-      fillColor: AppColors.surfaceInput,
-      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(8),
-        borderSide: const BorderSide(color: AppColors.borderLight),
-      ),
-      enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(8),
-        borderSide: const BorderSide(color: AppColors.borderLight),
-      ),
-      focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(8),
-        borderSide: const BorderSide(color: AppColors.primary, width: 2),
-      ),
-      errorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(8),
-        borderSide: const BorderSide(color: AppColors.statusError),
-      ),
-      hintStyle: AppTextStyles.bodyMedium.copyWith(color: AppColors.textLight),
-    ),
+    // inputDecorationTheme: InputDecorationTheme(
+    //   filled: true,
+    //   fillColor: AppColors.surfaceInput,
+    //   contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+    //   border: OutlineInputBorder(
+    //     borderRadius: BorderRadius.circular(8),
+    //     borderSide: const BorderSide(color: AppColors.borderLight),
+    //   ),
+    //   enabledBorder: OutlineInputBorder(
+    //     borderRadius: BorderRadius.circular(8),
+    //     borderSide: const BorderSide(color: AppColors.borderLight),
+    //   ),
+    //   focusedBorder: OutlineInputBorder(
+    //     borderRadius: BorderRadius.circular(8),
+    //     borderSide: const BorderSide(color: AppColors.primary, width: 2),
+    //   ),
+    //   errorBorder: OutlineInputBorder(
+    //     borderRadius: BorderRadius.circular(8),
+    //     borderSide: const BorderSide(color: AppColors.statusError),
+    //   ),
+    //   hintStyle: AppTextStyles.bodyMedium.copyWith(color: AppColors.textLight),
+    // ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.primary,

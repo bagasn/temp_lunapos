@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:pos/features/pos/presentation/widgets/order_view.dart';
 import 'package:pos/features/pos/presentation/widgets/product_view.dart';
 
-class PosPageView extends StatefulWidget {
-  const PosPageView({super.key});
+class PosNavView extends StatefulWidget {
+  const PosNavView({super.key});
 
   @override
-  State<PosPageView> createState() => _PosPageViewState();
+  State<PosNavView> createState() => _PosNavViewState();
 }
 
-class _PosPageViewState extends State<PosPageView> {
+class _PosNavViewState extends State<PosNavView> {
   @override
   Widget build(BuildContext context) {
     return const Row(
