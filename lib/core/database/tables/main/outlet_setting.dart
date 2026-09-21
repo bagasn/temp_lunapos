@@ -1,6 +1,6 @@
 import 'package:drift/drift.dart';
 
-@DataClassName('outletSettings')
+@DataClassName('OutletSettings')
 class TableOutletSetting extends Table {
   @override
   String get tableName => 'outletSettings';

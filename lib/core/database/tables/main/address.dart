@@ -1,6 +1,6 @@
 import 'package:drift/drift.dart';
 
-@DataClassName('addresses')
+@DataClassName('Addresses')
 class TableAddress extends Table {
   @override
   String get tableName => 'addresses';

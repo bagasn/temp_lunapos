@@ -1,6 +1,6 @@
 import 'package:drift/drift.dart';
 
-@DataClassName('productModifierRelations')
+@DataClassName('ProductModifierRelations')
 class TableProductModifierRelation extends Table {
   @override
   String get tableName => 'productModifierRelations';

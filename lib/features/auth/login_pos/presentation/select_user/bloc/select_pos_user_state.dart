@@ -13,10 +13,10 @@ final class SelectPosUserLoading extends SelectPosUserState {}
 
 final class SelectPosUserLoaded extends SelectPosUserState {
   /// Full unfiltered list from the database.
-  final List<users> allUsers;
+  final List<Users> allUsers;
 
   /// Filtered list based on the current search keyword.
-  final List<users> filteredUsers;
+  final List<Users> filteredUsers;
 
   const SelectPosUserLoaded({
     required this.allUsers,

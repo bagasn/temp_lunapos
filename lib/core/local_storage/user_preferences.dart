@@ -24,6 +24,8 @@ class ActiveUserPreferences {
     await _prefs.setString(_KEY.userFullName, userFullName);
   }
 
+  Future<String?> getUserId() => _prefs.getString(_KEY.userId);
+
   Future<bool> hasActiveUser() async {
     final id = await _prefs.getString(_KEY.userId);
     return id != null && id.isNotEmpty;

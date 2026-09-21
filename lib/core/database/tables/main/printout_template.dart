@@ -1,6 +1,6 @@
 import 'package:drift/drift.dart';
 
-@DataClassName('printoutTemplates')
+@DataClassName('PrintoutTemplates')
 class TablePrintoutTemplate extends Table {
   @override
   String get tableName => 'printoutTemplates';

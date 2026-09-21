@@ -1,6 +1,6 @@
 import 'package:drift/drift.dart';
 
-@DataClassName('orderLineModifiers')
+@DataClassName('OrderLineModifiers')
 class TableOrderLineModifier extends Table {
   @override
   String get tableName => 'orderLineModifiers';

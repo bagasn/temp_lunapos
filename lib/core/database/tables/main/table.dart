@@ -1,6 +1,6 @@
 import 'package:drift/drift.dart';
 
-@DataClassName('tables')
+@DataClassName('PosTables')
 class TableTable extends Table {
   @override
   String get tableName => 'tables';

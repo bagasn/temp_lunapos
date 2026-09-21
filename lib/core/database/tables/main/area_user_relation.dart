@@ -1,6 +1,6 @@
 import 'package:drift/drift.dart';
 
-@DataClassName('areaToUserRels')
+@DataClassName('AreaToUserRels')
 class TableAreaToUserRel extends Table {
   @override
   String get tableName => 'areaToUserRels';

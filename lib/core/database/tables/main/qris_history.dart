@@ -1,12 +1,12 @@
 import 'package:drift/drift.dart';
 
-@DataClassName('qrisHistories')
+@DataClassName('QrisHistories')
 class TableQrisHistory extends Table {
   @override
   String get tableName => 'qrisHistories';
 
   TextColumn get id => text()();
-  TextColumn get id_transaction_pos => text()();
+  TextColumn get idTransactionPos => text()();
   IntColumn get tenantId => integer().nullable()();
   IntColumn get outletId => integer().nullable()();
   DateTimeColumn get createDateUtc => dateTime().nullable()();

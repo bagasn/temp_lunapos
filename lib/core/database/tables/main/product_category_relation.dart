@@ -1,6 +1,6 @@
 import 'package:drift/drift.dart';
 
-@DataClassName('productCategoryRelations')
+@DataClassName('ProductCategoryRelations')
 class TableProductCategoryRelation extends Table {
   @override
   String get tableName => 'productCategoryRelations';

@@ -1,6 +1,6 @@
 import 'package:drift/drift.dart';
 
-@DataClassName('commissionToOrderLineRels')
+@DataClassName('CommissionToOrderLineRels')
 class TableCommissionToOrderLine extends Table {
   @override
   String get tableName => 'commissionToOrderLineRels';
