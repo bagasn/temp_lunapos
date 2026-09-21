@@ -42,29 +42,27 @@ class PrevillageService {
   bool _checkAccess(Users user, UserPrevillage previllage) {
     switch (previllage) {
       case UserPrevillage.pay:
-        return user.permissionPay ?? false;
+        return user.permissionPay;
       case UserPrevillage.edit:
-        return user.permissionEdit ?? false;
+        return user.permissionEdit;
       case UserPrevillage.voidOrder:
-        return user.permissionVoidOrder ?? false;
+        return user.permissionVoidOrder;
       case UserPrevillage.voidItem:
-        return user.permissionVoidItem ?? false;
+        return user.permissionVoidItem;
       case UserPrevillage.discount:
-        return user.permissionDiscount ?? false;
+        return user.permissionDiscount;
       case UserPrevillage.report:
-        return user.permissionReport ?? false;
+        return user.permissionReport;
       case UserPrevillage.customPrice:
-        return user.permissionCustomPrice ?? false;
+        return user.permissionCustomPrice;
       case UserPrevillage.customItem:
         return user.permissionCustomItem;
       case UserPrevillage.admin:
-        return user.permissionAdmin ?? false;
+        return user.permissionAdmin;
       case UserPrevillage.printBill:
-        return user.permissionPrintBill ?? false;
+        return user.permissionPrintBill;
       case UserPrevillage.seeAllUserTransactions:
-        return user.permissionSeeAllUserTransactions ?? false;
-      default:
-        return false;
+        return user.permissionSeeAllUserTransactions;
     }
   }
 }

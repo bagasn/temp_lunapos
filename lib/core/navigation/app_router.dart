@@ -8,6 +8,7 @@ import 'package:pos/features/auth/login_pos/presentation/select_user/login_pos_u
 import 'package:pos/features/auth/select_outlet/presentation/select_outlet_page.dart';
 import 'package:pos/features/boot/presentation/boot_page.dart';
 import 'package:pos/features/home/presentation/home_page.dart';
+import 'package:pos/features/settings/presentation/setting_page.dart';
 
 GoRouter createAppRouter(SessionManager sessionManager) {
   return GoRouter(
@@ -88,6 +89,12 @@ GoRouter createAppRouter(SessionManager sessionManager) {
       GoRoute(
         path: AppRoutePaths.home.navigationPath,
         builder: (context, state) => const HomePage(),
+        routes: [
+          GoRoute(
+            path: AppRoutePaths.setting.navigationPath,
+            builder: (context, state) => SettingPage(),
+          ),
+        ],
       ),
     ],
     errorBuilder: (context, state) =>

@@ -84,5 +84,296 @@
   "err_outletNotFound": "Outlet tidak ditemukan",
   "@err_outletNotFound": {
     "description": "No outlet found message"
+  },
+
+  "btn_exit": "Keluar",
+  "@btn_exit": {
+    "description": "Exit button label"
+  },
+
+  "lbl_settingGeneral": "General",
+  "@lbl_settingGeneral": {
+    "description": "Settings sidebar - General menu item"
+  },
+  "lbl_settingOrder": "Order",
+  "@lbl_settingOrder": {
+    "description": "Settings sidebar - Order menu item"
+  },
+  "lbl_settingTemplate": "Template",
+  "@lbl_settingTemplate": {
+    "description": "Settings sidebar - Template menu item"
+  },
+  "lbl_settingPrinter": "Printer",
+  "@lbl_settingPrinter": {
+    "description": "Settings sidebar - Printer menu item"
+  },
+  "lbl_settingSystem": "System",
+  "@lbl_settingSystem": {
+    "description": "Settings sidebar - System menu item"
+  },
+  "lbl_settingAccount": "Account",
+  "@lbl_settingAccount": {
+    "description": "Settings sidebar - Account menu item"
+  },
+  "lbl_settingScanner": "Scanner",
+  "@lbl_settingScanner": {
+    "description": "Settings sidebar - Scanner menu item"
+  },
+  "lbl_settingDualDisplay": "Dual Display",
+  "@lbl_settingDualDisplay": {
+    "description": "Settings sidebar - Dual Display menu item"
+  },
+
+  "title_settingGeneral": "General Settings",
+  "@title_settingGeneral": {
+    "description": "General settings section title"
+  },
+  "title_settingOrder": "Order settings",
+  "@title_settingOrder": {
+    "description": "Order settings section title"
+  },
+  "title_settingTemplate": "Template settings",
+  "@title_settingTemplate": {
+    "description": "Template settings section title"
+  },
+  "title_settingPrinter": "Printer settings",
+  "@title_settingPrinter": {
+    "description": "Printer settings section title"
+  },
+  "title_settingSystem": "System settings",
+  "@title_settingSystem": {
+    "description": "System settings section title"
+  },
+  "title_settingAccount": "Account Settings",
+  "@title_settingAccount": {
+    "description": "Account settings section title"
+  },
+  "title_settingScanner": "Scanner settings",
+  "@title_settingScanner": {
+    "description": "Scanner settings section title"
+  },
+  "title_settingDualDisplay": "Dual Display",
+  "@title_settingDualDisplay": {
+    "description": "Dual Display settings section title"
+  },
+
+  "lbl_settingAppLock": "App lock (After 5 minutes of inactivity)",
+  "@lbl_settingAppLock": {
+    "description": "App lock checkbox label in General settings"
+  },
+  "desc_settingAppLock": "* Aplikasi akan terkunci jika tidak ada aktivitas selama 5 menit. (Restart diperlukan)",
+  "@desc_settingAppLock": {
+    "description": "App lock description in General settings"
+  },
+  "lbl_settingSelectLanguage": "Select Language",
+  "@lbl_settingSelectLanguage": {
+    "description": "Select language label in General settings"
+  },
+
+  "lbl_settingDefaultView": "Default View",
+  "@lbl_settingDefaultView": {
+    "description": "Default view dropdown label in Order settings"
+  },
+  "lbl_settingCustomerRequired": "Customer Required",
+  "@lbl_settingCustomerRequired": {
+    "description": "Customer required checkbox in Order settings"
+  },
+  "lbl_settingShiftSessionRequired": "Shift Session Required Before Creating Order",
+  "@lbl_settingShiftSessionRequired": {
+    "description": "Shift session required checkbox in Order settings"
+  },
+  "lbl_settingShowCashDetail": "Show Cash Detail When Ending Shift",
+  "@lbl_settingShowCashDetail": {
+    "description": "Show cash detail checkbox in Order settings"
+  },
+  "lbl_settingRoundOrderTotal": "Round Order Total",
+  "@lbl_settingRoundOrderTotal": {
+    "description": "Round order total checkbox in Order settings"
+  },
+  "lbl_settingQueueNumbering": "Queue Numbering",
+  "@lbl_settingQueueNumbering": {
+    "description": "Queue numbering checkbox in Order settings"
+  },
+  "lbl_settingAddCustomNotes": "Add Custom Notes",
+  "@lbl_settingAddCustomNotes": {
+    "description": "Add custom notes checkbox in Order settings"
+  },
+  "lbl_settingPrintKitchenSeparately": "Print Kitchen Printer Separately",
+  "@lbl_settingPrintKitchenSeparately": {
+    "description": "Print kitchen separately checkbox in Order settings"
+  },
+  "lbl_settingSyncOpenOrder": "Sync Open Order",
+  "@lbl_settingSyncOpenOrder": {
+    "description": "Sync open order checkbox in Order settings"
+  },
+  "lbl_settingCashPayment": "Cash Payment",
+  "@lbl_settingCashPayment": {
+    "description": "Cash payment checkbox in Order settings"
+  },
+  "lbl_settingAllowSavingOrders": "Allow Saving Orders",
+  "@lbl_settingAllowSavingOrders": {
+    "description": "Allow saving orders checkbox in Order settings"
+  },
+  "lbl_settingEndingShiftNotAllowed": "Ending Shift Is Not Allowed with Active Orders",
+  "@lbl_settingEndingShiftNotAllowed": {
+    "description": "Ending shift not allowed checkbox in Order settings"
+  },
+  "lbl_settingTableSelectionRequired": "Table Selection Required",
+  "@lbl_settingTableSelectionRequired": {
+    "description": "Table selection required checkbox in Order settings"
+  },
+  "lbl_settingShowStock": "Tampilkan Stok",
+  "@lbl_settingShowStock": {
+    "description": "Show stock checkbox in Order settings"
+  },
+
+  "lbl_settingBill": "Bill",
+  "@lbl_settingBill": {
+    "description": "Bill sub-header in Template settings"
+  },
+  "lbl_settingReceipt": "Receipt",
+  "@lbl_settingReceipt": {
+    "description": "Receipt sub-header in Template settings"
+  },
+  "lbl_settingLogo": "Logo",
+  "@lbl_settingLogo": {
+    "description": "Logo checkbox in Template settings"
+  },
+  "lbl_settingOrderNumber": "Order Number",
+  "@lbl_settingOrderNumber": {
+    "description": "Order number checkbox in Template settings"
+  },
+  "lbl_settingOrderDate": "Order Date",
+  "@lbl_settingOrderDate": {
+    "description": "Order date checkbox in Template settings"
+  },
+  "lbl_settingAddress": "Address",
+  "@lbl_settingAddress": {
+    "description": "Address checkbox in Template settings"
+  },
+  "lbl_settingCashierAndUser": "Cashier and User",
+  "@lbl_settingCashierAndUser": {
+    "description": "Cashier and user checkbox in Template settings"
+  },
+  "lbl_settingAdjusmentAmount": "Adjusment Amount",
+  "@lbl_settingAdjusmentAmount": {
+    "description": "Adjusment amount checkbox in Template settings"
+  },
+  "lbl_settingTax": "Tax",
+  "@lbl_settingTax": {
+    "description": "Tax checkbox in Template settings"
+  },
+  "lbl_settingServiceCharge": "Service Charge",
+  "@lbl_settingServiceCharge": {
+    "description": "Service charge checkbox in Template settings"
+  },
+  "lbl_settingProductUnitPrice": "Product Unit Price",
+  "@lbl_settingProductUnitPrice": {
+    "description": "Product unit price checkbox in Template settings"
+  },
+  "lbl_settingModifierUnitPrice": "Modifier Unit Price",
+  "@lbl_settingModifierUnitPrice": {
+    "description": "Modifier unit price checkbox in Template settings"
+  },
+
+  "lbl_settingPrinterMain": "Main",
+  "@lbl_settingPrinterMain": {
+    "description": "Main printer row label in Printer settings"
+  },
+  "lbl_settingPrinterCaptainOrder": "Captain Order",
+  "@lbl_settingPrinterCaptainOrder": {
+    "description": "Captain order printer row label in Printer settings"
+  },
+  "lbl_settingPrinterLabel": "Label",
+  "@lbl_settingPrinterLabel": {
+    "description": "Label printer row label in Printer settings"
+  },
+  "btn_settingTestPrint": "Test Print",
+  "@btn_settingTestPrint": {
+    "description": "Test print button in Printer settings"
+  },
+  "btn_settingAddPrinterArea": "Add Printer Area",
+  "@btn_settingAddPrinterArea": {
+    "description": "Add printer area button in Printer settings"
+  },
+
+  "lbl_settingOutlet": "Outlet",
+  "@lbl_settingOutlet": {
+    "description": "Outlet label in System settings"
+  },
+  "btn_settingChangeOutlet": "Change outlet",
+  "@btn_settingChangeOutlet": {
+    "description": "Change outlet button in System settings"
+  },
+  "lbl_settingConnectionMode": "Connection mode",
+  "@lbl_settingConnectionMode": {
+    "description": "Connection mode label in System settings"
+  },
+  "btn_settingSwitchToClient": "Switch to Client",
+  "@btn_settingSwitchToClient": {
+    "description": "Switch to client button in System settings"
+  },
+  "lbl_settingSync": "Sync",
+  "@lbl_settingSync": {
+    "description": "Sync label in System settings"
+  },
+  "lbl_settingLastSynchronized": "Last synchronized:",
+  "@lbl_settingLastSynchronized": {
+    "description": "Last synchronized label in System settings"
+  },
+  "btn_settingSync": "Sync",
+  "@btn_settingSync": {
+    "description": "Sync button in System settings"
+  },
+  "lbl_settingBackupRestore": "Backup & Restore",
+  "@lbl_settingBackupRestore": {
+    "description": "Backup and restore label in System settings"
+  },
+  "lbl_settingBackupData": "Backup Data",
+  "@lbl_settingBackupData": {
+    "description": "Backup data label in System settings"
+  },
+  "btn_settingBackupDataOffline": "Backup Data Offline",
+  "@btn_settingBackupDataOffline": {
+    "description": "Backup data offline button in System settings"
+  },
+  "lbl_settingRestoreData": "Restore Data",
+  "@lbl_settingRestoreData": {
+    "description": "Restore data label in System settings"
+  },
+  "btn_settingRestoreData": "Restore Data",
+  "@btn_settingRestoreData": {
+    "description": "Restore data button in System settings"
+  },
+  "lbl_settingIpAddress": "IP Address",
+  "@lbl_settingIpAddress": {
+    "description": "IP address label in System settings"
+  },
+
+  "lbl_settingName": "Name",
+  "@lbl_settingName": {
+    "description": "Name label in Account settings"
+  },
+  "btn_settingChangePin": "Change Pin",
+  "@btn_settingChangePin": {
+    "description": "Change pin button in Account settings"
+  },
+
+  "lbl_settingScannerHid": "HID",
+  "@lbl_settingScannerHid": {
+    "description": "HID scanner mode in Scanner settings"
+  },
+  "lbl_settingScannerSpp": "SPP",
+  "@lbl_settingScannerSpp": {
+    "description": "SPP scanner mode in Scanner settings"
+  },
+
+  "lbl_settingActivateDualDisplay": "Activate Dual Display",
+  "@lbl_settingActivateDualDisplay": {
+    "description": "Activate dual display toggle label in Dual Display settings"
+  },
+  "lbl_settingCustomerDisplay": "Customer Display",
+  "@lbl_settingCustomerDisplay": {
+    "description": "Customer display label in Dual Display settings"
   }
 }

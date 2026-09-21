@@ -13,17 +13,28 @@ class TableUser extends Table {
   TextColumn get pictureUrl => text().nullable()();
   TextColumn get pictureLocal => text().nullable()();
   BoolColumn get deleted => boolean().withDefault(const Constant(false))();
-  BoolColumn get permissionPay => boolean().nullable()();
-  BoolColumn get permissionEdit => boolean().nullable()();
-  BoolColumn get permissionVoidOrder => boolean().nullable()();
-  BoolColumn get permissionVoidItem => boolean().nullable()();
-  BoolColumn get permissionDiscount => boolean().nullable()();
-  BoolColumn get permissionReport => boolean().nullable()();
-  BoolColumn get permissionCustomPrice => boolean().nullable()();
-  BoolColumn get permissionCustomItem => boolean().withDefault(const Constant(true))();
-  BoolColumn get permissionAdmin => boolean().nullable()();
-  BoolColumn get permissionPrintBill => boolean().nullable()();
-  BoolColumn get permissionSeeAllUserTransactions => boolean().nullable()();
+  BoolColumn get permissionPay =>
+      boolean().withDefault(const Constant(false))();
+  BoolColumn get permissionEdit =>
+      boolean().withDefault(const Constant(false))();
+  BoolColumn get permissionVoidOrder =>
+      boolean().withDefault(const Constant(false))();
+  BoolColumn get permissionVoidItem =>
+      boolean().withDefault(const Constant(false))();
+  BoolColumn get permissionDiscount =>
+      boolean().withDefault(const Constant(false))();
+  BoolColumn get permissionReport =>
+      boolean().withDefault(const Constant(false))();
+  BoolColumn get permissionCustomPrice =>
+      boolean().withDefault(const Constant(false))();
+  BoolColumn get permissionCustomItem =>
+      boolean().withDefault(const Constant(true))();
+  BoolColumn get permissionAdmin =>
+      boolean().withDefault(const Constant(false))();
+  BoolColumn get permissionPrintBill =>
+      boolean().withDefault(const Constant(false))();
+  BoolColumn get permissionSeeAllUserTransactions =>
+      boolean().withDefault(const Constant(false))();
 
   // Base fields
   DateTimeColumn get createdAt => dateTime().nullable()();

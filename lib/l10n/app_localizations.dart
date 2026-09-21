@@ -223,6 +223,426 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'Outlet tidak ditemukan'**
   String get err_outletNotFound;
+
+  /// Exit button label
+  ///
+  /// In id, this message translates to:
+  /// **'Keluar'**
+  String get btn_exit;
+
+  /// Settings sidebar - General menu item
+  ///
+  /// In id, this message translates to:
+  /// **'General'**
+  String get lbl_settingGeneral;
+
+  /// Settings sidebar - Order menu item
+  ///
+  /// In id, this message translates to:
+  /// **'Order'**
+  String get lbl_settingOrder;
+
+  /// Settings sidebar - Template menu item
+  ///
+  /// In id, this message translates to:
+  /// **'Template'**
+  String get lbl_settingTemplate;
+
+  /// Settings sidebar - Printer menu item
+  ///
+  /// In id, this message translates to:
+  /// **'Printer'**
+  String get lbl_settingPrinter;
+
+  /// Settings sidebar - System menu item
+  ///
+  /// In id, this message translates to:
+  /// **'System'**
+  String get lbl_settingSystem;
+
+  /// Settings sidebar - Account menu item
+  ///
+  /// In id, this message translates to:
+  /// **'Account'**
+  String get lbl_settingAccount;
+
+  /// Settings sidebar - Scanner menu item
+  ///
+  /// In id, this message translates to:
+  /// **'Scanner'**
+  String get lbl_settingScanner;
+
+  /// Settings sidebar - Dual Display menu item
+  ///
+  /// In id, this message translates to:
+  /// **'Dual Display'**
+  String get lbl_settingDualDisplay;
+
+  /// General settings section title
+  ///
+  /// In id, this message translates to:
+  /// **'General Settings'**
+  String get title_settingGeneral;
+
+  /// Order settings section title
+  ///
+  /// In id, this message translates to:
+  /// **'Order settings'**
+  String get title_settingOrder;
+
+  /// Template settings section title
+  ///
+  /// In id, this message translates to:
+  /// **'Template settings'**
+  String get title_settingTemplate;
+
+  /// Printer settings section title
+  ///
+  /// In id, this message translates to:
+  /// **'Printer settings'**
+  String get title_settingPrinter;
+
+  /// System settings section title
+  ///
+  /// In id, this message translates to:
+  /// **'System settings'**
+  String get title_settingSystem;
+
+  /// Account settings section title
+  ///
+  /// In id, this message translates to:
+  /// **'Account Settings'**
+  String get title_settingAccount;
+
+  /// Scanner settings section title
+  ///
+  /// In id, this message translates to:
+  /// **'Scanner settings'**
+  String get title_settingScanner;
+
+  /// Dual Display settings section title
+  ///
+  /// In id, this message translates to:
+  /// **'Dual Display'**
+  String get title_settingDualDisplay;
+
+  /// App lock checkbox label in General settings
+  ///
+  /// In id, this message translates to:
+  /// **'App lock (After 5 minutes of inactivity)'**
+  String get lbl_settingAppLock;
+
+  /// App lock description in General settings
+  ///
+  /// In id, this message translates to:
+  /// **'* Aplikasi akan terkunci jika tidak ada aktivitas selama 5 menit. (Restart diperlukan)'**
+  String get desc_settingAppLock;
+
+  /// Select language label in General settings
+  ///
+  /// In id, this message translates to:
+  /// **'Select Language'**
+  String get lbl_settingSelectLanguage;
+
+  /// Default view dropdown label in Order settings
+  ///
+  /// In id, this message translates to:
+  /// **'Default View'**
+  String get lbl_settingDefaultView;
+
+  /// Customer required checkbox in Order settings
+  ///
+  /// In id, this message translates to:
+  /// **'Customer Required'**
+  String get lbl_settingCustomerRequired;
+
+  /// Shift session required checkbox in Order settings
+  ///
+  /// In id, this message translates to:
+  /// **'Shift Session Required Before Creating Order'**
+  String get lbl_settingShiftSessionRequired;
+
+  /// Show cash detail checkbox in Order settings
+  ///
+  /// In id, this message translates to:
+  /// **'Show Cash Detail When Ending Shift'**
+  String get lbl_settingShowCashDetail;
+
+  /// Round order total checkbox in Order settings
+  ///
+  /// In id, this message translates to:
+  /// **'Round Order Total'**
+  String get lbl_settingRoundOrderTotal;
+
+  /// Queue numbering checkbox in Order settings
+  ///
+  /// In id, this message translates to:
+  /// **'Queue Numbering'**
+  String get lbl_settingQueueNumbering;
+
+  /// Add custom notes checkbox in Order settings
+  ///
+  /// In id, this message translates to:
+  /// **'Add Custom Notes'**
+  String get lbl_settingAddCustomNotes;
+
+  /// Print kitchen separately checkbox in Order settings
+  ///
+  /// In id, this message translates to:
+  /// **'Print Kitchen Printer Separately'**
+  String get lbl_settingPrintKitchenSeparately;
+
+  /// Sync open order checkbox in Order settings
+  ///
+  /// In id, this message translates to:
+  /// **'Sync Open Order'**
+  String get lbl_settingSyncOpenOrder;
+
+  /// Cash payment checkbox in Order settings
+  ///
+  /// In id, this message translates to:
+  /// **'Cash Payment'**
+  String get lbl_settingCashPayment;
+
+  /// Allow saving orders checkbox in Order settings
+  ///
+  /// In id, this message translates to:
+  /// **'Allow Saving Orders'**
+  String get lbl_settingAllowSavingOrders;
+
+  /// Ending shift not allowed checkbox in Order settings
+  ///
+  /// In id, this message translates to:
+  /// **'Ending Shift Is Not Allowed with Active Orders'**
+  String get lbl_settingEndingShiftNotAllowed;
+
+  /// Table selection required checkbox in Order settings
+  ///
+  /// In id, this message translates to:
+  /// **'Table Selection Required'**
+  String get lbl_settingTableSelectionRequired;
+
+  /// Show stock checkbox in Order settings
+  ///
+  /// In id, this message translates to:
+  /// **'Tampilkan Stok'**
+  String get lbl_settingShowStock;
+
+  /// Bill sub-header in Template settings
+  ///
+  /// In id, this message translates to:
+  /// **'Bill'**
+  String get lbl_settingBill;
+
+  /// Receipt sub-header in Template settings
+  ///
+  /// In id, this message translates to:
+  /// **'Receipt'**
+  String get lbl_settingReceipt;
+
+  /// Logo checkbox in Template settings
+  ///
+  /// In id, this message translates to:
+  /// **'Logo'**
+  String get lbl_settingLogo;
+
+  /// Order number checkbox in Template settings
+  ///
+  /// In id, this message translates to:
+  /// **'Order Number'**
+  String get lbl_settingOrderNumber;
+
+  /// Order date checkbox in Template settings
+  ///
+  /// In id, this message translates to:
+  /// **'Order Date'**
+  String get lbl_settingOrderDate;
+
+  /// Address checkbox in Template settings
+  ///
+  /// In id, this message translates to:
+  /// **'Address'**
+  String get lbl_settingAddress;
+
+  /// Cashier and user checkbox in Template settings
+  ///
+  /// In id, this message translates to:
+  /// **'Cashier and User'**
+  String get lbl_settingCashierAndUser;
+
+  /// Adjusment amount checkbox in Template settings
+  ///
+  /// In id, this message translates to:
+  /// **'Adjusment Amount'**
+  String get lbl_settingAdjusmentAmount;
+
+  /// Tax checkbox in Template settings
+  ///
+  /// In id, this message translates to:
+  /// **'Tax'**
+  String get lbl_settingTax;
+
+  /// Service charge checkbox in Template settings
+  ///
+  /// In id, this message translates to:
+  /// **'Service Charge'**
+  String get lbl_settingServiceCharge;
+
+  /// Product unit price checkbox in Template settings
+  ///
+  /// In id, this message translates to:
+  /// **'Product Unit Price'**
+  String get lbl_settingProductUnitPrice;
+
+  /// Modifier unit price checkbox in Template settings
+  ///
+  /// In id, this message translates to:
+  /// **'Modifier Unit Price'**
+  String get lbl_settingModifierUnitPrice;
+
+  /// Main printer row label in Printer settings
+  ///
+  /// In id, this message translates to:
+  /// **'Main'**
+  String get lbl_settingPrinterMain;
+
+  /// Captain order printer row label in Printer settings
+  ///
+  /// In id, this message translates to:
+  /// **'Captain Order'**
+  String get lbl_settingPrinterCaptainOrder;
+
+  /// Label printer row label in Printer settings
+  ///
+  /// In id, this message translates to:
+  /// **'Label'**
+  String get lbl_settingPrinterLabel;
+
+  /// Test print button in Printer settings
+  ///
+  /// In id, this message translates to:
+  /// **'Test Print'**
+  String get btn_settingTestPrint;
+
+  /// Add printer area button in Printer settings
+  ///
+  /// In id, this message translates to:
+  /// **'Add Printer Area'**
+  String get btn_settingAddPrinterArea;
+
+  /// Outlet label in System settings
+  ///
+  /// In id, this message translates to:
+  /// **'Outlet'**
+  String get lbl_settingOutlet;
+
+  /// Change outlet button in System settings
+  ///
+  /// In id, this message translates to:
+  /// **'Change outlet'**
+  String get btn_settingChangeOutlet;
+
+  /// Connection mode label in System settings
+  ///
+  /// In id, this message translates to:
+  /// **'Connection mode'**
+  String get lbl_settingConnectionMode;
+
+  /// Switch to client button in System settings
+  ///
+  /// In id, this message translates to:
+  /// **'Switch to Client'**
+  String get btn_settingSwitchToClient;
+
+  /// Sync label in System settings
+  ///
+  /// In id, this message translates to:
+  /// **'Sync'**
+  String get lbl_settingSync;
+
+  /// Last synchronized label in System settings
+  ///
+  /// In id, this message translates to:
+  /// **'Last synchronized:'**
+  String get lbl_settingLastSynchronized;
+
+  /// Sync button in System settings
+  ///
+  /// In id, this message translates to:
+  /// **'Sync'**
+  String get btn_settingSync;
+
+  /// Backup and restore label in System settings
+  ///
+  /// In id, this message translates to:
+  /// **'Backup & Restore'**
+  String get lbl_settingBackupRestore;
+
+  /// Backup data label in System settings
+  ///
+  /// In id, this message translates to:
+  /// **'Backup Data'**
+  String get lbl_settingBackupData;
+
+  /// Backup data offline button in System settings
+  ///
+  /// In id, this message translates to:
+  /// **'Backup Data Offline'**
+  String get btn_settingBackupDataOffline;
+
+  /// Restore data label in System settings
+  ///
+  /// In id, this message translates to:
+  /// **'Restore Data'**
+  String get lbl_settingRestoreData;
+
+  /// Restore data button in System settings
+  ///
+  /// In id, this message translates to:
+  /// **'Restore Data'**
+  String get btn_settingRestoreData;
+
+  /// IP address label in System settings
+  ///
+  /// In id, this message translates to:
+  /// **'IP Address'**
+  String get lbl_settingIpAddress;
+
+  /// Name label in Account settings
+  ///
+  /// In id, this message translates to:
+  /// **'Name'**
+  String get lbl_settingName;
+
+  /// Change pin button in Account settings
+  ///
+  /// In id, this message translates to:
+  /// **'Change Pin'**
+  String get btn_settingChangePin;
+
+  /// HID scanner mode in Scanner settings
+  ///
+  /// In id, this message translates to:
+  /// **'HID'**
+  String get lbl_settingScannerHid;
+
+  /// SPP scanner mode in Scanner settings
+  ///
+  /// In id, this message translates to:
+  /// **'SPP'**
+  String get lbl_settingScannerSpp;
+
+  /// Activate dual display toggle label in Dual Display settings
+  ///
+  /// In id, this message translates to:
+  /// **'Activate Dual Display'**
+  String get lbl_settingActivateDualDisplay;
+
+  /// Customer display label in Dual Display settings
+  ///
+  /// In id, this message translates to:
+  /// **'Customer Display'**
+  String get lbl_settingCustomerDisplay;
 }
 
 class _AppLocalizationsDelegate

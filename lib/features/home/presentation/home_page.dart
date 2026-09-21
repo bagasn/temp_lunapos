@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:pos/core/di/injection_container.dart';
+import 'package:pos/core/navigation/app_route_paths.dart';
 import 'package:pos/features/home/presentation/widgets/nav_item.dart';
 import 'package:pos/features/pos/presentation/bloc/order/pos_order_bloc.dart';
 import 'package:pos/features/pos/presentation/bloc/product/product_bloc.dart';
@@ -116,7 +118,12 @@ class __HomeViewState extends State<_HomeView> {
                   indent: 16,
                   endIndent: 16,
                 ),
-                NavIconItem(icon: Icons.settings, onTap: () {}),
+                NavIconItem(
+                  icon: Icons.settings,
+                  onTap: () {
+                    context.go(AppRoutePaths.setting.path);
+                  },
+                ),
                 const Divider(
                   color: Colors.white24,
                   height: 1,

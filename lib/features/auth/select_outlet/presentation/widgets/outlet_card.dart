@@ -81,13 +81,13 @@ class OutletCard extends StatelessWidget {
     if (pictureUrl != null && pictureUrl.isNotEmpty) {
       return ClipRRect(
         borderRadius: BorderRadius.circular(30),
-        child: CachedNetworkImage(
-          imageUrl: pictureUrl,
+        child: Image.network(
+          pictureUrl,
           width: 52,
           height: 52,
           fit: BoxFit.cover,
-          placeholder: (ctx, url) => _defaultAvatar(),
-          errorWidget: (ctx, url, err) => _defaultAvatar(),
+          // placeholder: (ctx, url) => _defaultAvatar(),
+          errorBuilder: (ctx, err, stack) => _defaultAvatar(),
         ),
       );
     }

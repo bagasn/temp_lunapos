@@ -71,4 +71,218 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get err_outletNotFound => 'Outlet tidak ditemukan';
+
+  @override
+  String get btn_exit => 'Exit';
+
+  @override
+  String get lbl_settingGeneral => 'General';
+
+  @override
+  String get lbl_settingOrder => 'Order';
+
+  @override
+  String get lbl_settingTemplate => 'Template';
+
+  @override
+  String get lbl_settingPrinter => 'Printer';
+
+  @override
+  String get lbl_settingSystem => 'System';
+
+  @override
+  String get lbl_settingAccount => 'Account';
+
+  @override
+  String get lbl_settingScanner => 'Scanner';
+
+  @override
+  String get lbl_settingDualDisplay => 'Dual Display';
+
+  @override
+  String get title_settingGeneral => 'General Settings';
+
+  @override
+  String get title_settingOrder => 'Order settings';
+
+  @override
+  String get title_settingTemplate => 'Template settings';
+
+  @override
+  String get title_settingPrinter => 'Printer settings';
+
+  @override
+  String get title_settingSystem => 'System settings';
+
+  @override
+  String get title_settingAccount => 'Account Settings';
+
+  @override
+  String get title_settingScanner => 'Scanner settings';
+
+  @override
+  String get title_settingDualDisplay => 'Dual Display';
+
+  @override
+  String get lbl_settingAppLock => 'App lock (After 5 minutes of inactivity)';
+
+  @override
+  String get desc_settingAppLock =>
+      '* The application will be locked if there is no activity for 5 minutes. (Restart required)';
+
+  @override
+  String get lbl_settingSelectLanguage => 'Select Language';
+
+  @override
+  String get lbl_settingDefaultView => 'Default View';
+
+  @override
+  String get lbl_settingCustomerRequired => 'Customer Required';
+
+  @override
+  String get lbl_settingShiftSessionRequired =>
+      'Shift Session Required Before Creating Order';
+
+  @override
+  String get lbl_settingShowCashDetail => 'Show Cash Detail When Ending Shift';
+
+  @override
+  String get lbl_settingRoundOrderTotal => 'Round Order Total';
+
+  @override
+  String get lbl_settingQueueNumbering => 'Queue Numbering';
+
+  @override
+  String get lbl_settingAddCustomNotes => 'Add Custom Notes';
+
+  @override
+  String get lbl_settingPrintKitchenSeparately =>
+      'Print Kitchen Printer Separately';
+
+  @override
+  String get lbl_settingSyncOpenOrder => 'Sync Open Order';
+
+  @override
+  String get lbl_settingCashPayment => 'Cash Payment';
+
+  @override
+  String get lbl_settingAllowSavingOrders => 'Allow Saving Orders';
+
+  @override
+  String get lbl_settingEndingShiftNotAllowed =>
+      'Ending Shift Is Not Allowed with Active Orders';
+
+  @override
+  String get lbl_settingTableSelectionRequired => 'Table Selection Required';
+
+  @override
+  String get lbl_settingShowStock => 'Show Stock';
+
+  @override
+  String get lbl_settingBill => 'Bill';
+
+  @override
+  String get lbl_settingReceipt => 'Receipt';
+
+  @override
+  String get lbl_settingLogo => 'Logo';
+
+  @override
+  String get lbl_settingOrderNumber => 'Order Number';
+
+  @override
+  String get lbl_settingOrderDate => 'Order Date';
+
+  @override
+  String get lbl_settingAddress => 'Address';
+
+  @override
+  String get lbl_settingCashierAndUser => 'Cashier and User';
+
+  @override
+  String get lbl_settingAdjusmentAmount => 'Adjusment Amount';
+
+  @override
+  String get lbl_settingTax => 'Tax';
+
+  @override
+  String get lbl_settingServiceCharge => 'Service Charge';
+
+  @override
+  String get lbl_settingProductUnitPrice => 'Product Unit Price';
+
+  @override
+  String get lbl_settingModifierUnitPrice => 'Modifier Unit Price';
+
+  @override
+  String get lbl_settingPrinterMain => 'Main';
+
+  @override
+  String get lbl_settingPrinterCaptainOrder => 'Captain Order';
+
+  @override
+  String get lbl_settingPrinterLabel => 'Label';
+
+  @override
+  String get btn_settingTestPrint => 'Test Print';
+
+  @override
+  String get btn_settingAddPrinterArea => 'Add Printer Area';
+
+  @override
+  String get lbl_settingOutlet => 'Outlet';
+
+  @override
+  String get btn_settingChangeOutlet => 'Change outlet';
+
+  @override
+  String get lbl_settingConnectionMode => 'Connection mode';
+
+  @override
+  String get btn_settingSwitchToClient => 'Switch to Client';
+
+  @override
+  String get lbl_settingSync => 'Sync';
+
+  @override
+  String get lbl_settingLastSynchronized => 'Last synchronized:';
+
+  @override
+  String get btn_settingSync => 'Sync';
+
+  @override
+  String get lbl_settingBackupRestore => 'Backup & Restore';
+
+  @override
+  String get lbl_settingBackupData => 'Backup Data';
+
+  @override
+  String get btn_settingBackupDataOffline => 'Backup Data Offline';
+
+  @override
+  String get lbl_settingRestoreData => 'Restore Data';
+
+  @override
+  String get btn_settingRestoreData => 'Restore Data';
+
+  @override
+  String get lbl_settingIpAddress => 'IP Address';
+
+  @override
+  String get lbl_settingName => 'Name';
+
+  @override
+  String get btn_settingChangePin => 'Change Pin';
+
+  @override
+  String get lbl_settingScannerHid => 'HID';
+
+  @override
+  String get lbl_settingScannerSpp => 'SPP';
+
+  @override
+  String get lbl_settingActivateDualDisplay => 'Activate Dual Display';
+
+  @override
+  String get lbl_settingCustomerDisplay => 'Customer Display';
 }
