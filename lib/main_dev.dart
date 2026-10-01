@@ -6,6 +6,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:pos/app.dart';
 import 'package:pos/core/di/injection_container.dart';
 import 'package:pos/core/firebase/firebase_options_dev.dart';
+import 'package:pos/shared/services/language_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,7 +15,10 @@ void main() async {
   if (kDebugMode) {
     await useEmulator();
   }
+
   await configureDependencies(Env.dev);
+  await locator<LanguageService>().initLocale();
+
   runApp(const LunaposApp());
 }
 

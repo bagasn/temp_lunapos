@@ -12,6 +12,7 @@ import 'package:pos/core/database/app_database_manager.dart';
 import 'package:pos/features/sync/domain/models/sync_entity.dart';
 import 'package:pos/features/sync/domain/repositories/sync_repository.dart';
 import 'package:pos/shared/domain/entities/failure.dart';
+import 'package:pos/shared/utilities/date_formatter.dart';
 import 'package:pos/shared/utilities/log_util.dart';
 
 @injectable
@@ -87,12 +88,18 @@ class AuthOutletBloc extends Bloc<AuthOutletEvent, AuthOutletState> {
     emit(AuthOutletFetching());
 
     try {
+      final dateNow = DateFormatter.dateToString(DateTime.now().toUtc());
+
       final stQuery = _databaseManager.settingDb.tableOutlet.select()
         ..where((rowItem) {
           final keyword = _searchKeyword.toLowerCase();
-          return Expression.or([
-            rowItem.outletName.containsCase(keyword),
-            rowItem.companyName.containsCase(keyword),
+
+          return Expression.and([
+            rowItem.subscriptionDueDate.isBiggerThanValue(dateNow),
+            Expression.or([
+              rowItem.outletName.containsCase(keyword),
+              rowItem.companyName.containsCase(keyword),
+            ]),
           ]);
         });
 

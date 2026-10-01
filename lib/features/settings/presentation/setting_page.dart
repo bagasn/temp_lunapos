@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:loader_overlay/loader_overlay.dart';
+import 'package:pos/core/di/injection_container.dart';
 import 'package:pos/core/theme/app_text_styles.dart';
+import 'package:pos/features/settings/presentation/section_views/general/bloc/setting_general_bloc.dart';
+import 'package:pos/features/settings/presentation/section_views/general/bloc/setting_general_event.dart';
 import 'package:pos/generated/colors.gen.dart';
 import 'package:pos/features/settings/presentation/section_views/account/account_section.dart';
 import 'package:pos/features/settings/presentation/section_views/dual_display/dual_display_section.dart';
@@ -17,7 +22,15 @@ class SettingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const _SettingView();
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) =>
+              locator<SettingGeneralBloc>()..add(LoadGeneralSettings()),
+        )
+      ],
+      child: const _SettingView(),
+    );
   }
 }
 
@@ -60,83 +73,85 @@ class __SettingViewState extends State<_SettingView> {
       ),
     ];
 
-    return Scaffold(
-      backgroundColor: AppColors.backgroundLight,
-      appBar: AppBar(title: Text('Setting')),
-      body: Row(
-        children: [
-          // ─── Left Sidebar ───────────────────────────────────────
-          Container(
-            width: 240,
-            color: AppColors.backgroundWhite,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                // Menu items
-                Expanded(
-                  child: ListView.builder(
-                    padding: const EdgeInsets.symmetric(vertical: 8),
-                    itemCount: menuItems.length,
-                    itemBuilder: (context, index) {
-                      final item = menuItems[index];
-                      return SettingSidebarItem(
-                        icon: item.icon,
-                        title: item.title,
-                        isSelected: _selectedIndex == index,
-                        onTap: () => setState(() => _selectedIndex = index),
-                      );
-                    },
-                  ),
-                ),
-
-                // Exit button
-                const Divider(height: 1, color: AppColors.borderLight),
-                InkWell(
-                  onTap: () {},
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 20,
-                      vertical: 16,
-                    ),
-                    child: Row(
-                      children: [
-                        const Icon(
-                          Icons.exit_to_app,
-                          color: AppColors.statusError,
-                          size: 20,
-                        ),
-                        const SizedBox(width: 12),
-                        Text(
-                          l10n.btn_exit,
-                          style: AppTextStyles.bodyMedium.copyWith(
-                            color: AppColors.statusError,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-
-          // ─── Vertical Divider ───────────────────────────────────
-          const VerticalDivider(
-            width: 1,
-            thickness: 1,
-            color: AppColors.borderLight,
-          ),
-
-          // ─── Main Content Area ──────────────────────────────────
-          Expanded(
-            child: Container(
+    return LoaderOverlay(
+      child: Scaffold(
+        backgroundColor: AppColors.backgroundLight,
+        appBar: AppBar(title: Text('Setting')),
+        body: Row(
+          children: [
+            // ─── Left Sidebar ───────────────────────────────────────
+            Container(
+              width: 240,
               color: AppColors.backgroundWhite,
-              alignment: Alignment.topCenter,
-              child: _sections[_selectedIndex],
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  // Menu items
+                  Expanded(
+                    child: ListView.builder(
+                      padding: const EdgeInsets.symmetric(vertical: 8),
+                      itemCount: menuItems.length,
+                      itemBuilder: (context, index) {
+                        final item = menuItems[index];
+                        return SettingSidebarItem(
+                          icon: item.icon,
+                          title: item.title,
+                          isSelected: _selectedIndex == index,
+                          onTap: () => setState(() => _selectedIndex = index),
+                        );
+                      },
+                    ),
+                  ),
+
+                  // Exit button
+                  const Divider(height: 1, color: AppColors.borderLight),
+                  InkWell(
+                    onTap: () {},
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                        vertical: 16,
+                      ),
+                      child: Row(
+                        children: [
+                          const Icon(
+                            Icons.exit_to_app,
+                            color: AppColors.statusError,
+                            size: 20,
+                          ),
+                          const SizedBox(width: 12),
+                          Text(
+                            l10n.btn_exit,
+                            style: AppTextStyles.bodyMedium.copyWith(
+                              color: AppColors.statusError,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+
+            // ─── Vertical Divider ───────────────────────────────────
+            const VerticalDivider(
+              width: 1,
+              thickness: 1,
+              color: AppColors.borderLight,
+            ),
+
+            // ─── Main Content Area ──────────────────────────────────
+            Expanded(
+              child: Container(
+                color: AppColors.backgroundWhite,
+                alignment: Alignment.topCenter,
+                child: _sections[_selectedIndex],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
