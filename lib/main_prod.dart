@@ -14,5 +14,5 @@ void main() async {
   await configureDependencies(Env.prod);
   await locator<LanguageService>().initLocale();
 
-  runApp(const LunaposApp());
+  runApp(const Application());
 }

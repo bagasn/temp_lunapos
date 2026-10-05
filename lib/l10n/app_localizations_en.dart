@@ -285,4 +285,28 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get lbl_settingCustomerDisplay => 'Customer Display';
+
+  @override
+  String get btn_save => 'Save';
+
+  @override
+  String get lbl_settingRoundingType => 'Rounding Type';
+
+  @override
+  String get lbl_settingRoundingUp => 'Round Up';
+
+  @override
+  String get lbl_settingRoundingDown => 'Round Down';
+
+  @override
+  String get lbl_settingRoundingNearest => 'Round to Nearest';
+
+  @override
+  String get lbl_settingRoundingBase => 'Rounding Value';
+
+  @override
+  String get lbl_settingMaxQueueNumber => 'Max queue number';
+
+  @override
+  String get msg_settingSaved => 'Settings saved successfully';
 }

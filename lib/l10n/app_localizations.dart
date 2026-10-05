@@ -643,6 +643,54 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'Customer Display'**
   String get lbl_settingCustomerDisplay;
+
+  /// Generic save button
+  ///
+  /// In id, this message translates to:
+  /// **'Simpan'**
+  String get btn_save;
+
+  /// Rounding type dropdown label in Order settings
+  ///
+  /// In id, this message translates to:
+  /// **'Tipe Pembulatan'**
+  String get lbl_settingRoundingType;
+
+  /// Rounding type option: round up (0)
+  ///
+  /// In id, this message translates to:
+  /// **'Pembulatan Keatas'**
+  String get lbl_settingRoundingUp;
+
+  /// Rounding type option: round down (1)
+  ///
+  /// In id, this message translates to:
+  /// **'Pembulatan Kebawah'**
+  String get lbl_settingRoundingDown;
+
+  /// Rounding type option: round to nearest (2)
+  ///
+  /// In id, this message translates to:
+  /// **'Pembulatan Terdekat'**
+  String get lbl_settingRoundingNearest;
+
+  /// Rounding base value input label in Order settings
+  ///
+  /// In id, this message translates to:
+  /// **'Nilai Pembulatan'**
+  String get lbl_settingRoundingBase;
+
+  /// Max queue number input label in Order settings
+  ///
+  /// In id, this message translates to:
+  /// **'Max nomor antrian'**
+  String get lbl_settingMaxQueueNumber;
+
+  /// Snackbar message after a setting is saved
+  ///
+  /// In id, this message translates to:
+  /// **'Pengaturan berhasil disimpan'**
+  String get msg_settingSaved;
 }
 
 class _AppLocalizationsDelegate

@@ -285,4 +285,28 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get lbl_settingCustomerDisplay => 'Customer Display';
+
+  @override
+  String get btn_save => 'Simpan';
+
+  @override
+  String get lbl_settingRoundingType => 'Tipe Pembulatan';
+
+  @override
+  String get lbl_settingRoundingUp => 'Pembulatan Keatas';
+
+  @override
+  String get lbl_settingRoundingDown => 'Pembulatan Kebawah';
+
+  @override
+  String get lbl_settingRoundingNearest => 'Pembulatan Terdekat';
+
+  @override
+  String get lbl_settingRoundingBase => 'Nilai Pembulatan';
+
+  @override
+  String get lbl_settingMaxQueueNumber => 'Max nomor antrian';
+
+  @override
+  String get msg_settingSaved => 'Pengaturan berhasil disimpan';
 }

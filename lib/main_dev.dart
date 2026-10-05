@@ -19,7 +19,7 @@ void main() async {
   await configureDependencies(Env.dev);
   await locator<LanguageService>().initLocale();
 
-  runApp(const LunaposApp());
+  runApp(const Application());
 }
 
 Future<void> useEmulator() async {

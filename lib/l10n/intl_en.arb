@@ -1,11 +1,9 @@
 {
   "@@locale": "en",
-
   "btn_exit": "Exit",
   "@btn_exit": {
     "description": "Exit button label"
   },
-
   "lbl_settingGeneral": "General",
   "@lbl_settingGeneral": {
     "description": "Settings sidebar - General menu item"
@@ -38,7 +36,6 @@
   "@lbl_settingDualDisplay": {
     "description": "Settings sidebar - Dual Display menu item"
   },
-
   "title_settingGeneral": "General Settings",
   "@title_settingGeneral": {
     "description": "General settings section title"
@@ -71,7 +68,6 @@
   "@title_settingDualDisplay": {
     "description": "Dual Display settings section title"
   },
-
   "lbl_settingAppLock": "App lock (After 5 minutes of inactivity)",
   "@lbl_settingAppLock": {
     "description": "App lock checkbox label in General settings"
@@ -84,7 +80,6 @@
   "@lbl_settingSelectLanguage": {
     "description": "Select language label in General settings"
   },
-
   "lbl_settingDefaultView": "Default View",
   "@lbl_settingDefaultView": {
     "description": "Default view dropdown label in Order settings"
@@ -141,7 +136,6 @@
   "@lbl_settingShowStock": {
     "description": "Show stock checkbox in Order settings"
   },
-
   "lbl_settingBill": "Bill",
   "@lbl_settingBill": {
     "description": "Bill sub-header in Template settings"
@@ -190,7 +184,6 @@
   "@lbl_settingModifierUnitPrice": {
     "description": "Modifier unit price checkbox in Template settings"
   },
-
   "lbl_settingPrinterMain": "Main",
   "@lbl_settingPrinterMain": {
     "description": "Main printer row label in Printer settings"
@@ -211,7 +204,6 @@
   "@btn_settingAddPrinterArea": {
     "description": "Add printer area button in Printer settings"
   },
-
   "lbl_settingOutlet": "Outlet",
   "@lbl_settingOutlet": {
     "description": "Outlet label in System settings"
@@ -264,7 +256,6 @@
   "@lbl_settingIpAddress": {
     "description": "IP address label in System settings"
   },
-
   "lbl_settingName": "Name",
   "@lbl_settingName": {
     "description": "Name label in Account settings"
@@ -273,7 +264,6 @@
   "@btn_settingChangePin": {
     "description": "Change pin button in Account settings"
   },
-
   "lbl_settingScannerHid": "HID",
   "@lbl_settingScannerHid": {
     "description": "HID scanner mode in Scanner settings"
@@ -282,7 +272,6 @@
   "@lbl_settingScannerSpp": {
     "description": "SPP scanner mode in Scanner settings"
   },
-
   "lbl_settingActivateDualDisplay": "Activate Dual Display",
   "@lbl_settingActivateDualDisplay": {
     "description": "Activate dual display toggle label in Dual Display settings"
@@ -290,5 +279,37 @@
   "lbl_settingCustomerDisplay": "Customer Display",
   "@lbl_settingCustomerDisplay": {
     "description": "Customer display label in Dual Display settings"
+  },
+  "btn_save": "Save",
+  "@btn_save": {
+    "description": "Generic save button"
+  },
+  "lbl_settingRoundingType": "Rounding Type",
+  "@lbl_settingRoundingType": {
+    "description": "Rounding type dropdown label in Order settings"
+  },
+  "lbl_settingRoundingUp": "Round Up",
+  "@lbl_settingRoundingUp": {
+    "description": "Rounding type option: round up (0)"
+  },
+  "lbl_settingRoundingDown": "Round Down",
+  "@lbl_settingRoundingDown": {
+    "description": "Rounding type option: round down (1)"
+  },
+  "lbl_settingRoundingNearest": "Round to Nearest",
+  "@lbl_settingRoundingNearest": {
+    "description": "Rounding type option: round to nearest (2)"
+  },
+  "lbl_settingRoundingBase": "Rounding Value",
+  "@lbl_settingRoundingBase": {
+    "description": "Rounding base value input label in Order settings"
+  },
+  "lbl_settingMaxQueueNumber": "Max queue number",
+  "@lbl_settingMaxQueueNumber": {
+    "description": "Max queue number input label in Order settings"
+  },
+  "msg_settingSaved": "Settings saved successfully",
+  "@msg_settingSaved": {
+    "description": "Snackbar message after a setting is saved"
   }
 }
