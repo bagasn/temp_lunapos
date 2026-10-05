@@ -11,6 +11,7 @@ class TablePrintoutTemplate extends Table {
   BoolColumn get showOrderNumber => boolean().withDefault(const Constant(true))();
   BoolColumn get showDate => boolean().withDefault(const Constant(true))();
   BoolColumn get showAddress => boolean().withDefault(const Constant(true))();
+  BoolColumn get showCashierAndUser => boolean().withDefault(const Constant(true))();
   BoolColumn get showAdjustment => boolean().withDefault(const Constant(true))();
   BoolColumn get showTax => boolean().withDefault(const Constant(true))();
   BoolColumn get showServiceCharge => boolean().withDefault(const Constant(true))();

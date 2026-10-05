@@ -7,6 +7,8 @@ import 'package:pos/features/settings/presentation/section_views/general/bloc/se
 import 'package:pos/features/settings/presentation/section_views/general/bloc/setting_general_event.dart';
 import 'package:pos/features/settings/presentation/section_views/order/bloc/setting_order_bloc.dart';
 import 'package:pos/features/settings/presentation/section_views/order/bloc/setting_order_event.dart';
+import 'package:pos/features/settings/presentation/section_views/template/bloc/setting_template_bloc.dart';
+import 'package:pos/features/settings/presentation/section_views/template/bloc/setting_template_event.dart';
 import 'package:pos/generated/colors.gen.dart';
 import 'package:pos/features/settings/presentation/section_views/account/account_section.dart';
 import 'package:pos/features/settings/presentation/section_views/dual_display/dual_display_section.dart';
@@ -33,6 +35,10 @@ class SettingPage extends StatelessWidget {
         BlocProvider(
           create: (context) =>
               locator<SettingOrderBloc>()..add(LoadOrderSettings()),
+        ),
+        BlocProvider(
+          create: (context) =>
+              locator<SettingTemplateBloc>()..add(LoadTemplateSettings()),
         ),
       ],
       child: const _SettingView(),

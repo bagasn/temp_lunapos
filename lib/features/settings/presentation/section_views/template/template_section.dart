@@ -1,48 +1,57 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pos/core/theme/app_text_styles.dart';
+import 'package:pos/features/settings/presentation/section_views/template/bloc/setting_template_bloc.dart';
+import 'package:pos/features/settings/presentation/section_views/template/bloc/setting_template_event.dart';
+import 'package:pos/features/settings/presentation/section_views/template/bloc/setting_template_state.dart';
 import 'package:pos/features/settings/presentation/widgets/setting_checkbox_tile.dart';
 import 'package:pos/features/settings/presentation/widgets/setting_section_title.dart';
 import 'package:pos/l10n/app_localizations.dart';
+import 'package:pos/features/settings/domain/entities/setting_template_entity.dart';
 
 /// Template Settings section view.
 ///
 /// Displays two sub-groups: Bill and Receipt, each with the same
 /// set of template element checkboxes.
-class TemplateSection extends StatefulWidget {
+class TemplateSection extends StatelessWidget {
   const TemplateSection({super.key});
 
   @override
-  State<TemplateSection> createState() => _TemplateSectionState();
+  Widget build(BuildContext context) {
+    return BlocConsumer<SettingTemplateBloc, SettingTemplateState>(
+      listener: (context, state) {
+        if (state is SettingTemplateError) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(state.message)),
+          );
+        }
+      },
+      builder: (context, state) {
+        if (state is SettingTemplateLoaded) {
+          return _TemplateSectionContent(settings: state.settings);
+        }
+        return const SizedBox.shrink();
+      },
+    );
+  }
 }
 
-class _TemplateSectionState extends State<TemplateSection> {
-  // Bill checkboxes
-  bool _billLogo = true;
-  bool _billOrderNumber = true;
-  bool _billOrderDate = true;
-  bool _billAddress = true;
-  bool _billCashierAndUser = true;
-  bool _billAdjusmentAmount = true;
-  bool _billTax = true;
-  bool _billServiceCharge = true;
-  bool _billProductUnitPrice = true;
-  bool _billModifierUnitPrice = true;
+class _TemplateSectionContent extends StatelessWidget {
+  final SettingTemplateEntity settings;
 
-  // Receipt checkboxes
-  bool _receiptLogo = true;
-  bool _receiptOrderNumber = true;
-  bool _receiptOrderDate = true;
-  bool _receiptAddress = true;
-  bool _receiptCashierAndUser = true;
-  bool _receiptAdjusmentAmount = true;
-  bool _receiptTax = true;
-  bool _receiptServiceCharge = true;
-  bool _receiptProductUnitPrice = true;
-  bool _receiptModifierUnitPrice = true;
+  const _TemplateSectionContent({required this.settings});
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+    
+    void onBillChange(PrintoutTemplateItem bill) {
+      context.read<SettingTemplateBloc>().add(UpdateBillTemplate(bill));
+    }
+
+    void onReceiptChange(PrintoutTemplateItem receipt) {
+      context.read<SettingTemplateBloc>().add(UpdateReceiptTemplate(receipt));
+    }
 
     return SingleChildScrollView(
       padding: const EdgeInsets.all(24),
@@ -57,60 +66,60 @@ class _TemplateSectionState extends State<TemplateSection> {
           const SizedBox(height: 12),
           SettingCheckboxTile(
             title: l10n.lbl_settingLogo,
-            value: _billLogo,
-            onChanged: (v) => setState(() => _billLogo = v ?? _billLogo),
+            value: settings.bill.showLogo,
+            onChanged: (v) => onBillChange(settings.bill.copyWith(showLogo: v)),
           ),
           SettingCheckboxTile(
             title: l10n.lbl_settingOrderNumber,
-            value: _billOrderNumber,
+            value: settings.bill.showOrderNumber,
             onChanged: (v) =>
-                setState(() => _billOrderNumber = v ?? _billOrderNumber),
+                onBillChange(settings.bill.copyWith(showOrderNumber: v)),
           ),
           SettingCheckboxTile(
             title: l10n.lbl_settingOrderDate,
-            value: _billOrderDate,
+            value: settings.bill.showDate,
             onChanged: (v) =>
-                setState(() => _billOrderDate = v ?? _billOrderDate),
+                onBillChange(settings.bill.copyWith(showDate: v)),
           ),
           SettingCheckboxTile(
             title: l10n.lbl_settingAddress,
-            value: _billAddress,
-            onChanged: (v) => setState(() => _billAddress = v ?? _billAddress),
+            value: settings.bill.showAddress,
+            onChanged: (v) => onBillChange(settings.bill.copyWith(showAddress: v)),
           ),
           SettingCheckboxTile(
             title: l10n.lbl_settingCashierAndUser,
-            value: _billCashierAndUser,
+            value: settings.bill.showCashierAndUser,
             onChanged: (v) =>
-                setState(() => _billCashierAndUser = v ?? _billCashierAndUser),
+                onBillChange(settings.bill.copyWith(showCashierAndUser: v)),
           ),
           SettingCheckboxTile(
             title: l10n.lbl_settingAdjusmentAmount,
-            value: _billAdjusmentAmount,
-            onChanged: (v) => setState(
-                () => _billAdjusmentAmount = v ?? _billAdjusmentAmount),
+            value: settings.bill.showAdjustment,
+            onChanged: (v) => onBillChange(
+                settings.bill.copyWith(showAdjustment: v)),
           ),
           SettingCheckboxTile(
             title: l10n.lbl_settingTax,
-            value: _billTax,
-            onChanged: (v) => setState(() => _billTax = v ?? _billTax),
+            value: settings.bill.showTax,
+            onChanged: (v) => onBillChange(settings.bill.copyWith(showTax: v)),
           ),
           SettingCheckboxTile(
             title: l10n.lbl_settingServiceCharge,
-            value: _billServiceCharge,
+            value: settings.bill.showServiceCharge,
             onChanged: (v) =>
-                setState(() => _billServiceCharge = v ?? _billServiceCharge),
+                onBillChange(settings.bill.copyWith(showServiceCharge: v)),
           ),
           SettingCheckboxTile(
             title: l10n.lbl_settingProductUnitPrice,
-            value: _billProductUnitPrice,
-            onChanged: (v) => setState(
-                () => _billProductUnitPrice = v ?? _billProductUnitPrice),
+            value: settings.bill.showUnitPriceProduct,
+            onChanged: (v) => onBillChange(
+                settings.bill.copyWith(showUnitPriceProduct: v)),
           ),
           SettingCheckboxTile(
             title: l10n.lbl_settingModifierUnitPrice,
-            value: _billModifierUnitPrice,
-            onChanged: (v) => setState(
-                () => _billModifierUnitPrice = v ?? _billModifierUnitPrice),
+            value: settings.bill.showUnitPriceModifier,
+            onChanged: (v) => onBillChange(
+                settings.bill.copyWith(showUnitPriceModifier: v)),
           ),
           const SizedBox(height: 24),
 
@@ -119,61 +128,61 @@ class _TemplateSectionState extends State<TemplateSection> {
           const SizedBox(height: 12),
           SettingCheckboxTile(
             title: l10n.lbl_settingLogo,
-            value: _receiptLogo,
-            onChanged: (v) => setState(() => _receiptLogo = v ?? _receiptLogo),
+            value: settings.receipt.showLogo,
+            onChanged: (v) => onReceiptChange(settings.receipt.copyWith(showLogo: v)),
           ),
           SettingCheckboxTile(
             title: l10n.lbl_settingOrderNumber,
-            value: _receiptOrderNumber,
+            value: settings.receipt.showOrderNumber,
             onChanged: (v) =>
-                setState(() => _receiptOrderNumber = v ?? _receiptOrderNumber),
+                onReceiptChange(settings.receipt.copyWith(showOrderNumber: v)),
           ),
           SettingCheckboxTile(
             title: l10n.lbl_settingOrderDate,
-            value: _receiptOrderDate,
+            value: settings.receipt.showDate,
             onChanged: (v) =>
-                setState(() => _receiptOrderDate = v ?? _receiptOrderDate),
+                onReceiptChange(settings.receipt.copyWith(showDate: v)),
           ),
           SettingCheckboxTile(
             title: l10n.lbl_settingAddress,
-            value: _receiptAddress,
+            value: settings.receipt.showAddress,
             onChanged: (v) =>
-                setState(() => _receiptAddress = v ?? _receiptAddress),
+                onReceiptChange(settings.receipt.copyWith(showAddress: v)),
           ),
           SettingCheckboxTile(
             title: l10n.lbl_settingCashierAndUser,
-            value: _receiptCashierAndUser,
-            onChanged: (v) => setState(
-                () => _receiptCashierAndUser = v ?? _receiptCashierAndUser),
+            value: settings.receipt.showCashierAndUser,
+            onChanged: (v) => onReceiptChange(
+                settings.receipt.copyWith(showCashierAndUser: v)),
           ),
           SettingCheckboxTile(
             title: l10n.lbl_settingAdjusmentAmount,
-            value: _receiptAdjusmentAmount,
-            onChanged: (v) => setState(
-                () => _receiptAdjusmentAmount = v ?? _receiptAdjusmentAmount),
+            value: settings.receipt.showAdjustment,
+            onChanged: (v) => onReceiptChange(
+                settings.receipt.copyWith(showAdjustment: v)),
           ),
           SettingCheckboxTile(
             title: l10n.lbl_settingTax,
-            value: _receiptTax,
-            onChanged: (v) => setState(() => _receiptTax = v ?? _receiptTax),
+            value: settings.receipt.showTax,
+            onChanged: (v) => onReceiptChange(settings.receipt.copyWith(showTax: v)),
           ),
           SettingCheckboxTile(
             title: l10n.lbl_settingServiceCharge,
-            value: _receiptServiceCharge,
-            onChanged: (v) => setState(
-                () => _receiptServiceCharge = v ?? _receiptServiceCharge),
+            value: settings.receipt.showServiceCharge,
+            onChanged: (v) => onReceiptChange(
+                settings.receipt.copyWith(showServiceCharge: v)),
           ),
           SettingCheckboxTile(
             title: l10n.lbl_settingProductUnitPrice,
-            value: _receiptProductUnitPrice,
-            onChanged: (v) => setState(
-                () => _receiptProductUnitPrice = v ?? _receiptProductUnitPrice),
+            value: settings.receipt.showUnitPriceProduct,
+            onChanged: (v) => onReceiptChange(
+                settings.receipt.copyWith(showUnitPriceProduct: v)),
           ),
           SettingCheckboxTile(
             title: l10n.lbl_settingModifierUnitPrice,
-            value: _receiptModifierUnitPrice,
-            onChanged: (v) => setState(() =>
-                _receiptModifierUnitPrice = v ?? _receiptModifierUnitPrice),
+            value: settings.receipt.showUnitPriceModifier,
+            onChanged: (v) => onReceiptChange(
+                settings.receipt.copyWith(showUnitPriceModifier: v)),
           ),
           const SizedBox(height: 16),
         ],

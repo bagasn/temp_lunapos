@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:pos/features/settings/data/datasources/settings_local_datasource.dart';
 import 'package:pos/features/settings/domain/entities/setting_order_entity.dart';
+import 'package:pos/features/settings/domain/entities/setting_template_entity.dart';
 import 'package:pos/features/settings/domain/repositories/settings_repository.dart';
 import 'package:pos/shared/domain/entities/failure.dart';
 
@@ -48,6 +49,29 @@ class SettingsRepositoryImpl implements SettingsRepository {
       return const Right(null);
     } catch (e, stack) {
       return Left(DatabaseFailure('Gagal mengubah order settings: $e\n$stack'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, SettingTemplateEntity>> getTemplateSettings() async {
+    try {
+      final result = await _dataSource.getTemplateSettings();
+      return Right(result);
+    } catch (e, stack) {
+      return Left(
+          DatabaseFailure('Gagal mendapatkan template settings: $e\n$stack'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> updateTemplateSettings(
+      SettingTemplateEntity settings) async {
+    try {
+      await _dataSource.updateTemplateSettings(settings);
+      return const Right(null);
+    } catch (e, stack) {
+      return Left(
+          DatabaseFailure('Gagal mengubah template settings: $e\n$stack'));
     }
   }
 }

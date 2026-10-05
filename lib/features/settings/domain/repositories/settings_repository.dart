@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:pos/features/settings/domain/entities/setting_order_entity.dart';
+import 'package:pos/features/settings/domain/entities/setting_template_entity.dart';
 import 'package:pos/shared/domain/entities/failure.dart';
 
 abstract class SettingsRepository {
@@ -8,4 +9,7 @@ abstract class SettingsRepository {
 
   Future<Either<Failure, SettingOrderEntity>> getOrderSettings();
   Future<Either<Failure, void>> updateOrderSettings(SettingOrderEntity settings);
+
+  Future<Either<Failure, SettingTemplateEntity>> getTemplateSettings();
+  Future<Either<Failure, void>> updateTemplateSettings(SettingTemplateEntity settings);
 }
