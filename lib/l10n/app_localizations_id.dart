@@ -309,4 +309,42 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get msg_settingSaved => 'Pengaturan berhasil disimpan';
+
+  @override
+  String get title_settingSelectPrinter => 'Pilih Printer';
+
+  @override
+  String get lbl_settingPrinterType => 'Tipe Printer';
+
+  @override
+  String get lbl_settingPrinterModule => 'Modul Printer';
+
+  @override
+  String get lbl_settingPrinterItem => 'Printer';
+
+  @override
+  String get lbl_settingSelectItem => 'Pilih item';
+
+  @override
+  String get lbl_settingPaperSize => 'Ukuran Kertas';
+
+  @override
+  String get lbl_settingFeedAfterPrint => 'Feed Setelah Cetak';
+
+  @override
+  String get lbl_settingAutoCutType => 'Tipe Auto Cut';
+
+  @override
+  String get lbl_settingDisconnectAfterPrint =>
+      'Putuskan Koneksi Setelah Cetak';
+
+  @override
+  String get lbl_settingNumberOfCopies => 'Jumlah Salinan Main yang dicetak';
+
+  @override
+  String get lbl_settingAutoPrintReceipt =>
+      'Cetak struk otomatis saat pembayaran';
+
+  @override
+  String get btn_cancel => 'Batal';
 }

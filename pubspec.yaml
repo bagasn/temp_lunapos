@@ -70,11 +70,14 @@ dependencies:
 
   # Icons
   cupertino_icons: ^1.0.8
-  toastification: ^3.2.0
 
+  toastification: ^3.2.0
   vector_graphics: any
   crypto: ^3.0.7
   provider: ^6.1.5+1
+  esc_pos_utils_plus: ^2.0.4
+  thermal_printer_flutter: ^2.1.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -43,8 +43,8 @@ class ActiveOutletPreferences {
   }
 
   Future<bool> hasActiveOutlet() async {
-    final id = await _prefs.getString(_Key.outletId);
-    return id != null && id.isNotEmpty;
+    final id = await _prefs.getInt(_Key.outletId);
+    return id != null && id != 0;
   }
 
   Future<int?> outletId() => _prefs.getInt(_Key.outletId);

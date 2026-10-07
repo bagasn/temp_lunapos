@@ -7,6 +7,7 @@ import 'package:pos/features/settings/presentation/section_views/general/bloc/se
 import 'package:pos/features/settings/presentation/section_views/general/bloc/setting_general_event.dart';
 import 'package:pos/features/settings/presentation/section_views/order/bloc/setting_order_bloc.dart';
 import 'package:pos/features/settings/presentation/section_views/order/bloc/setting_order_event.dart';
+import 'package:pos/features/settings/presentation/section_views/printer/bloc/setting_printer_bloc.dart';
 import 'package:pos/features/settings/presentation/section_views/template/bloc/setting_template_bloc.dart';
 import 'package:pos/features/settings/presentation/section_views/template/bloc/setting_template_event.dart';
 import 'package:pos/generated/colors.gen.dart';
@@ -40,6 +41,7 @@ class SettingPage extends StatelessWidget {
           create: (context) =>
               locator<SettingTemplateBloc>()..add(LoadTemplateSettings()),
         ),
+        BlocProvider(create: (context) => SettingPrinterBloc()),
       ],
       child: const _SettingView(),
     );

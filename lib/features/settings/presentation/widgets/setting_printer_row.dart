@@ -10,12 +10,14 @@ class SettingPrinterRow extends StatelessWidget {
   final String label;
   final String printerName;
   final VoidCallback onTestPrint;
+  final VoidCallback onTap;
 
   const SettingPrinterRow({
     super.key,
     required this.label,
     required this.printerName,
     required this.onTestPrint,
+    required this.onTap,
   });
 
   @override
@@ -33,28 +35,38 @@ class SettingPrinterRow extends StatelessWidget {
         Row(
           children: [
             Expanded(
-              child: Container(
-                height: 52,
-                decoration: BoxDecoration(
-                  border: Border.all(color: AppColors.borderLight),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.print_outlined,
-                      size: 18,
-                      color: AppColors.textLight,
-                    ),
-                    const SizedBox(width: 10),
-                    Text(
-                      printerName.isEmpty ? '-' : printerName,
-                      style: AppTextStyles.bodyMedium.copyWith(
+              child: InkWell(
+                onTap: onTap,
+                borderRadius: BorderRadius.circular(8),
+                child: Container(
+                  height: 52,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: AppColors.borderLight),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.print_outlined,
+                        size: 18,
+                        color: AppColors.textLight,
+                      ),
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: Text(
+                          printerName.isEmpty ? '-' : printerName,
+                          style: AppTextStyles.bodyMedium.copyWith(
+                            color: AppColors.textMedium,
+                          ),
+                        ),
+                      ),
+                      Icon(
+                        Icons.arrow_drop_down,
                         color: AppColors.textMedium,
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),

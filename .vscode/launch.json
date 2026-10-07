@@ -8,6 +8,7 @@
       "deviceId": "chrome",
       "program": "lib/main_dev.dart",
       "args": [
+        "--web-port=8080",
         "--web-browser-flag",
         "--disable-web-security",
         "--web-header=Cross-Origin-Opener-Policy=same-origin",

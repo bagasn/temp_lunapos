@@ -309,4 +309,41 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get msg_settingSaved => 'Settings saved successfully';
+
+  @override
+  String get title_settingSelectPrinter => 'Select Printer';
+
+  @override
+  String get lbl_settingPrinterType => 'Printer Type';
+
+  @override
+  String get lbl_settingPrinterModule => 'Printer Module';
+
+  @override
+  String get lbl_settingPrinterItem => 'Printer';
+
+  @override
+  String get lbl_settingSelectItem => 'Select item';
+
+  @override
+  String get lbl_settingPaperSize => 'Paper Size';
+
+  @override
+  String get lbl_settingFeedAfterPrint => 'Feed After Print';
+
+  @override
+  String get lbl_settingAutoCutType => 'Auto Cut Type';
+
+  @override
+  String get lbl_settingDisconnectAfterPrint => 'Disconnect After Print';
+
+  @override
+  String get lbl_settingNumberOfCopies => 'Number of Copies Main to be printed';
+
+  @override
+  String get lbl_settingAutoPrintReceipt =>
+      'Automatically print receipt upon payment';
+
+  @override
+  String get btn_cancel => 'Cancel';
 }

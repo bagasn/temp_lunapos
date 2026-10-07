@@ -311,5 +311,29 @@
   "msg_settingSaved": "Settings saved successfully",
   "@msg_settingSaved": {
     "description": "Snackbar message after a setting is saved"
-  }
+  },
+  "title_settingSelectPrinter": "Select Printer",
+  "@title_settingSelectPrinter": {"description": "Title of the select printer dialog"},
+  "lbl_settingPrinterType": "Printer Type",
+  "@lbl_settingPrinterType": {"description": "Printer type dropdown label"},
+  "lbl_settingPrinterModule": "Printer Module",
+  "@lbl_settingPrinterModule": {"description": "Printer module dropdown label"},
+  "lbl_settingPrinterItem": "Printer",
+  "@lbl_settingPrinterItem": {"description": "Printer item dropdown label"},
+  "lbl_settingSelectItem": "Select item",
+  "@lbl_settingSelectItem": {"description": "Dropdown placeholder"},
+  "lbl_settingPaperSize": "Paper Size",
+  "@lbl_settingPaperSize": {"description": "Paper size dropdown label"},
+  "lbl_settingFeedAfterPrint": "Feed After Print",
+  "@lbl_settingFeedAfterPrint": {"description": "Feed after print input label"},
+  "lbl_settingAutoCutType": "Auto Cut Type",
+  "@lbl_settingAutoCutType": {"description": "Auto cut type dropdown label"},
+  "lbl_settingDisconnectAfterPrint": "Disconnect After Print",
+  "@lbl_settingDisconnectAfterPrint": {"description": "Disconnect after print checkbox"},
+  "lbl_settingNumberOfCopies": "Number of Copies Main to be printed",
+  "@lbl_settingNumberOfCopies": {"description": "Number of copies label"},
+  "lbl_settingAutoPrintReceipt": "Automatically print receipt upon payment",
+  "@lbl_settingAutoPrintReceipt": {"description": "Auto print receipt checkbox"},
+  "btn_cancel": "Cancel",
+  "@btn_cancel": {"description": "Generic cancel button"}
 }

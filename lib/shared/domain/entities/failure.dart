@@ -105,6 +105,10 @@ class DatabaseFailure extends Failure {
   const DatabaseFailure(super.message);
 }
 
+class PrinterFailure extends Failure {
+  const PrinterFailure(super.message);
+}
+
 class UnknownFailure extends Failure {
   const UnknownFailure(super.message);
 }

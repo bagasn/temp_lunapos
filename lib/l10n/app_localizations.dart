@@ -691,6 +691,78 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'Pengaturan berhasil disimpan'**
   String get msg_settingSaved;
+
+  /// Title of the select printer dialog
+  ///
+  /// In id, this message translates to:
+  /// **'Pilih Printer'**
+  String get title_settingSelectPrinter;
+
+  /// Printer type dropdown label
+  ///
+  /// In id, this message translates to:
+  /// **'Tipe Printer'**
+  String get lbl_settingPrinterType;
+
+  /// Printer module dropdown label
+  ///
+  /// In id, this message translates to:
+  /// **'Modul Printer'**
+  String get lbl_settingPrinterModule;
+
+  /// Printer item dropdown label
+  ///
+  /// In id, this message translates to:
+  /// **'Printer'**
+  String get lbl_settingPrinterItem;
+
+  /// Dropdown placeholder
+  ///
+  /// In id, this message translates to:
+  /// **'Pilih item'**
+  String get lbl_settingSelectItem;
+
+  /// Paper size dropdown label
+  ///
+  /// In id, this message translates to:
+  /// **'Ukuran Kertas'**
+  String get lbl_settingPaperSize;
+
+  /// Feed after print input label
+  ///
+  /// In id, this message translates to:
+  /// **'Feed Setelah Cetak'**
+  String get lbl_settingFeedAfterPrint;
+
+  /// Auto cut type dropdown label
+  ///
+  /// In id, this message translates to:
+  /// **'Tipe Auto Cut'**
+  String get lbl_settingAutoCutType;
+
+  /// Disconnect after print checkbox
+  ///
+  /// In id, this message translates to:
+  /// **'Putuskan Koneksi Setelah Cetak'**
+  String get lbl_settingDisconnectAfterPrint;
+
+  /// Number of copies label
+  ///
+  /// In id, this message translates to:
+  /// **'Jumlah Salinan Main yang dicetak'**
+  String get lbl_settingNumberOfCopies;
+
+  /// Auto print receipt checkbox
+  ///
+  /// In id, this message translates to:
+  /// **'Cetak struk otomatis saat pembayaran'**
+  String get lbl_settingAutoPrintReceipt;
+
+  /// Generic cancel button
+  ///
+  /// In id, this message translates to:
+  /// **'Batal'**
+  String get btn_cancel;
 }
 
 class _AppLocalizationsDelegate

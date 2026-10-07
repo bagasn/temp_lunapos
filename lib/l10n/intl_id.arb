@@ -396,5 +396,29 @@
   "msg_settingSaved": "Pengaturan berhasil disimpan",
   "@msg_settingSaved": {
     "description": "Snackbar message after a setting is saved"
-  }
+  },
+  "title_settingSelectPrinter": "Pilih Printer",
+  "@title_settingSelectPrinter": {"description": "Title of the select printer dialog"},
+  "lbl_settingPrinterType": "Tipe Printer",
+  "@lbl_settingPrinterType": {"description": "Printer type dropdown label"},
+  "lbl_settingPrinterModule": "Modul Printer",
+  "@lbl_settingPrinterModule": {"description": "Printer module dropdown label"},
+  "lbl_settingPrinterItem": "Printer",
+  "@lbl_settingPrinterItem": {"description": "Printer item dropdown label"},
+  "lbl_settingSelectItem": "Pilih item",
+  "@lbl_settingSelectItem": {"description": "Dropdown placeholder"},
+  "lbl_settingPaperSize": "Ukuran Kertas",
+  "@lbl_settingPaperSize": {"description": "Paper size dropdown label"},
+  "lbl_settingFeedAfterPrint": "Feed Setelah Cetak",
+  "@lbl_settingFeedAfterPrint": {"description": "Feed after print input label"},
+  "lbl_settingAutoCutType": "Tipe Auto Cut",
+  "@lbl_settingAutoCutType": {"description": "Auto cut type dropdown label"},
+  "lbl_settingDisconnectAfterPrint": "Putuskan Koneksi Setelah Cetak",
+  "@lbl_settingDisconnectAfterPrint": {"description": "Disconnect after print checkbox"},
+  "lbl_settingNumberOfCopies": "Jumlah Salinan Main yang dicetak",
+  "@lbl_settingNumberOfCopies": {"description": "Number of copies label"},
+  "lbl_settingAutoPrintReceipt": "Cetak struk otomatis saat pembayaran",
+  "@lbl_settingAutoPrintReceipt": {"description": "Auto print receipt checkbox"},
+  "btn_cancel": "Batal",
+  "@btn_cancel": {"description": "Generic cancel button"}
 }
