@@ -11,7 +11,7 @@ class PosNavView extends StatefulWidget {
 
 class _PosNavViewState extends State<PosNavView> {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext mContext) {
     return const Row(
       mainAxisSize: MainAxisSize.max,
       crossAxisAlignment: CrossAxisAlignment.stretch,

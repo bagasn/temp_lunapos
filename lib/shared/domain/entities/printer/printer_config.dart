@@ -3,12 +3,14 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'printer_config.g.dart';
 
-abstract class PrinterConfig {
+@JsonSerializable()
+class PrinterConfig {
   final int paperSize;
   final double feedAfterPrint;
   final bool isAutoCut;
   final int copyNumber;
   final bool disconnectAfterPrint;
+  final PrinterDevice printer;
 
   PrinterConfig({
     required this.paperSize,
@@ -16,28 +18,31 @@ abstract class PrinterConfig {
     required this.isAutoCut,
     required this.copyNumber,
     required this.disconnectAfterPrint,
+    required this.printer,
   });
+
+  factory PrinterConfig.formJson(Map<String, dynamic> json) =>
+      _$PrinterConfigFromJson(json);
+
+  Map<String, dynamic> toMap() => _$PrinterConfigToJson(this);
 }
 
 @JsonSerializable()
-class PrinterBluetoothConfig extends PrinterConfig {
+class PrinterDevice {
   final String printerAddress;
   final String printerName;
+  final String? vendorId;
+  final String? productId;
 
-  PrinterBluetoothConfig({
-    required super.paperSize,
-    required super.feedAfterPrint,
-    required super.isAutoCut,
-    required super.copyNumber,
-    required super.disconnectAfterPrint,
+  PrinterDevice({
     required this.printerAddress,
     required this.printerName,
+    this.vendorId,
+    this.productId,
   });
 
-  factory PrinterBluetoothConfig.fromJson(Map<String, dynamic> json) =>
-      _$PrinterBluetoothConfigFromJson(json);
+  factory PrinterDevice.fromJson(Map<String, dynamic> json) =>
+      _$PrinterDeviceFromJson(json);
 
-  Map<String, dynamic> toMap() => _$PrinterBluetoothConfigToJson(this);
+  Map<String, dynamic> toMap() => _$PrinterDeviceToJson(this);
 }
-
-// {"paperSize":58,"feedAfterPrint":0,"autoCutType":0,"copyNumber":1,"disconnectAfterPrint":true,"printerAddress":"66:32:24:A7:81:92","printerName":"MPT-II"}

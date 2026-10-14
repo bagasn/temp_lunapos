@@ -39,7 +39,7 @@ class __HomeViewState extends State<_HomeView> {
   final _navViews = <Widget>[const PosNavView(), const TransactionNavView()];
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext mContext) {
     return Scaffold(
       body: Row(
         mainAxisSize: MainAxisSize.max,

@@ -87,7 +87,7 @@ class _ProductViewState extends State<ProductView> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext mContext) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -289,8 +289,7 @@ class _ProductViewState extends State<ProductView> {
           );
         }
 
-        final itemCount =
-            state.products.length + (state.hasReachedMax ? 0 : 1);
+        final itemCount = state.products.length + (state.hasReachedMax ? 0 : 1);
 
         return GridView.builder(
           controller: _scrollController,
@@ -320,9 +319,8 @@ class _ProductViewState extends State<ProductView> {
               imageUrl: product.pictureUrl,
               isOutOfStock: product.isOutOfStock,
               hasVariant: product.hasVariants,
-              onTap: () => context
-                  .read<PosOrderBloc>()
-                  .add(AddProductToOrder(product)),
+              onTap: () =>
+                  context.read<PosOrderBloc>().add(AddProductToOrder(product)),
             );
           },
         );

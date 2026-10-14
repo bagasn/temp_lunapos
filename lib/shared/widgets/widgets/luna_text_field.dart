@@ -36,7 +36,7 @@ class _LunaTextFieldState extends State<LunaTextField> {
   bool _obscureText = true;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext mContext) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

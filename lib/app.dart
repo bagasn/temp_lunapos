@@ -40,7 +40,7 @@ class _LunaposAppState extends State<LunaposApp> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext mContext) {
     return GlobalLoaderOverlay(
       child: ToastificationWrapper(
         config: ToastificationConfig(
@@ -53,7 +53,7 @@ class _LunaposAppState extends State<LunaposApp> {
           theme: AppTheme.lightTheme,
           debugShowCheckedModeBanner: false,
           routerConfig: _router,
-          locale: context.watch<LanguageService>().currentLocale,
+          locale: mContext.watch<LanguageService>().currentLocale,
           localizationsDelegates: const [
             AppLocalizations.delegate,
             GlobalMaterialLocalizations.delegate,

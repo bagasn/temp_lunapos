@@ -9,7 +9,7 @@ class TransactionNavView extends StatefulWidget {
 
 class _TransactionNavViewState extends State<TransactionNavView> {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext mContext) {
     return Row(
       mainAxisSize: MainAxisSize.max,
       crossAxisAlignment: CrossAxisAlignment.stretch,

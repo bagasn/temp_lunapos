@@ -36,7 +36,7 @@ class _SearchTextFieldState extends State<SearchTextField> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext mContext) {
     return TextField(
       controller: _searchTextController,
       onChanged: _onSearchChanged,
@@ -63,7 +63,7 @@ class _SearchTextFieldState extends State<SearchTextField> {
                   if (query.isNotEmpty) {
                     _searchTextController.clear();
 
-                    widget.onSearch!(context, '');
+                    widget.onSearch!(mContext, '');
                     setState(() {});
                   }
                 },

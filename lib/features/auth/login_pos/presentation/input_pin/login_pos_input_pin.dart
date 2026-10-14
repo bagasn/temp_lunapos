@@ -67,7 +67,7 @@ class _LoginPosInputPinViewState extends State<_LoginPosInputPinView> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext mContext) {
     return BlocConsumer<LoginPosUserBloc, LoginPosUserState>(
       listener: (context, state) {
         if (state is LoginPosUserSuccess) {

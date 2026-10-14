@@ -70,8 +70,8 @@ class __SettingViewState extends State<_SettingView> {
   ];
 
   @override
-  Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
+  Widget build(BuildContext mContext) {
+    final l10n = AppLocalizations.of(mContext)!;
 
     final List<({IconData icon, String title})> menuItems = [
       (icon: Icons.settings_outlined, title: l10n.lbl_settingGeneral),

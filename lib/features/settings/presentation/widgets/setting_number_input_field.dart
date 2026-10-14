@@ -70,8 +70,8 @@ class _SettingNumberInputFieldState extends State<SettingNumberInputField> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
+  Widget build(BuildContext mContext) {
+    final l10n = AppLocalizations.of(mContext)!;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -122,9 +122,10 @@ class _SettingNumberInputFieldState extends State<SettingNumberInputField> {
                 borderRadius: BorderRadius.circular(6),
               ),
             ),
-            child: Text(l10n.btn_save, style: AppTextStyles.bodyMedium.copyWith(
-              color: Colors.white,
-            )),
+            child: Text(
+              l10n.btn_save,
+              style: AppTextStyles.bodyMedium.copyWith(color: Colors.white),
+            ),
           ),
         ),
       ],

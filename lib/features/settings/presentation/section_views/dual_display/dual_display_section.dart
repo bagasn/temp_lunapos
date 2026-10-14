@@ -19,8 +19,8 @@ class _DualDisplaySectionState extends State<DualDisplaySection> {
   bool _isDualDisplayActive = false;
 
   @override
-  Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
+  Widget build(BuildContext mContext) {
+    final l10n = AppLocalizations.of(mContext)!;
 
     return SingleChildScrollView(
       padding: const EdgeInsets.all(24),

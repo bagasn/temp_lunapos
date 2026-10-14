@@ -30,7 +30,7 @@ class __BootContentState extends State<_BootContent> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext mContext) {
     return Scaffold(
       backgroundColor: AppColors.primary,
       body: Container(

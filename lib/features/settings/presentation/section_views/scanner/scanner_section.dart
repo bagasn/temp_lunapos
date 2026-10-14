@@ -18,8 +18,8 @@ class _ScannerSectionState extends State<ScannerSection> {
   int _selectedMode = 0; // 0 = HID, 1 = SPP
 
   @override
-  Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
+  Widget build(BuildContext mContext) {
+    final l10n = AppLocalizations.of(mContext)!;
 
     return SingleChildScrollView(
       padding: const EdgeInsets.all(24),

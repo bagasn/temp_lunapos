@@ -141,7 +141,7 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext mContext) {
     Color bgColorValue = (_isActive)
         ? widget.backgroundActiveColor
         : (widget.errorText != null ? errorColor : widget.backgroundColor);
@@ -225,7 +225,7 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
               border: InputBorder.none,
               hintText: widget.hintText,
               hintStyle: TextTheme.of(
-                context,
+                mContext,
               ).bodyLarge?.copyWith(color: AppColors.charcoal500),
               prefix: widget.prefix,
               prefixIcon: widget.prefixIcon,
