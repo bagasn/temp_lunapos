@@ -54,6 +54,7 @@ class _LunaTextFieldState extends State<LunaTextField> {
           enabled: widget.enabled,
           style: AppTextStyles.bodyLarge,
           decoration: InputDecoration(
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
             hintText: widget.hint,
             prefixIcon: widget.prefixIcon,
             suffixIcon: widget.isPassword

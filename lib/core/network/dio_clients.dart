@@ -13,7 +13,7 @@ final _dioLogger = PrettyDioLogger(
   maxWidth: 90,
   enabled: kDebugMode,
   filter: (options, args) {
-    // if (options.path.startsWith('/dashboard')) return false;
+    if (options.path.startsWith('/pos/initial-data')) return false;
 
     return true;
   },

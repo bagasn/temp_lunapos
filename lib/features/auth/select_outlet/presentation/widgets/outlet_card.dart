@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:pos/core/theme/app_text_styles.dart';
 import 'package:pos/features/auth/select_outlet/domain/entities/auth_outlet_entity.dart';

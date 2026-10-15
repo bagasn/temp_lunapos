@@ -33,22 +33,31 @@ class __BootContentState extends State<_BootContent> {
   Widget build(BuildContext mContext) {
     return Scaffold(
       backgroundColor: AppColors.primary,
-      body: Container(
-        padding: EdgeInsets.all(16),
-        alignment: Alignment.center,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Assets.images.imgLunaposBrandWhite.svg(width: 350),
-            SizedBox(height: 42),
+      body: Stack(
+        children: [
+          Positioned.fill(
+            child: Assets.images.bgDoodleFullscreen.image(fit: BoxFit.cover),
+          ),
 
-            Text(
-              'Preparing the aplication, please wait...',
-              style: TextStyle(color: Colors.white, fontSize: 16),
+          Positioned.fill(
+            child: Container(
+              padding: EdgeInsets.all(16),
+              alignment: Alignment.center,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Assets.images.imgLunaposBrandWhite.svg(width: 280),
+                  SizedBox(height: 42),
+                  Text(
+                    'Preparing the aplication, please wait...',
+                    style: TextStyle(color: Colors.white, fontSize: 16),
+                  ),
+                ],
+              ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

@@ -63,10 +63,16 @@ class LunaButton extends StatelessWidget {
         children: [
           icon!,
           const SizedBox(width: 8),
-          Text(label, style: AppTextStyles.titleMedium),
+          Text(
+            label,
+            style: AppTextStyles.titleMedium.copyWith(color: Colors.white),
+          ),
         ],
       );
     }
-    return Text(label, style: AppTextStyles.titleMedium);
+    return Text(
+      label,
+      style: AppTextStyles.titleMedium.copyWith(color: Colors.white),
+    );
   }
 }

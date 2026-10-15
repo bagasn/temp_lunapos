@@ -41,7 +41,7 @@ class SettingPage extends StatelessWidget {
           create: (context) =>
               locator<SettingTemplateBloc>()..add(LoadTemplateSettings()),
         ),
-        BlocProvider(create: (context) => SettingPrinterBloc()),
+        BlocProvider(create: (context) => locator<SettingPrinterBloc>()),
       ],
       child: const _SettingView(),
     );

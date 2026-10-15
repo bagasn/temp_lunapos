@@ -8,11 +8,6 @@ import 'package:pos/features/settings/presentation/widgets/setting_section_title
 import 'package:pos/l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
-/// Printer Settings section view.
-///
-/// Displays:
-/// - Three printer rows: Main, Captain Order, Label
-/// - "Add Printer Area" button
 class PrinterSection extends StatelessWidget {
   const PrinterSection({super.key});
 

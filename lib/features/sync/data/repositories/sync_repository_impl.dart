@@ -5,6 +5,7 @@ import 'package:drift/drift.dart';
 import 'package:injectable/injectable.dart';
 import 'package:pos/core/database/app_database_manager.dart';
 import 'package:pos/core/database/main_database.dart';
+import 'package:pos/core/database/tables/main/printer_area.dart';
 import 'package:pos/core/local_storage/session_manager.dart';
 import 'package:pos/features/sync/data/datasources/sync_data_service.dart';
 import 'package:pos/features/sync/data/models/payload/sync_payload.dart';
@@ -14,7 +15,9 @@ import 'package:pos/features/sync/data/models/response/initial_data_response.dar
 import 'package:pos/features/sync/domain/models/sync_entity.dart';
 import 'package:pos/features/sync/domain/repositories/sync_repository.dart';
 import 'package:pos/shared/domain/entities/failure.dart';
+import 'package:pos/shared/utilities/log_util.dart';
 import 'package:uuid/uuid.dart';
+import 'package:uuid/v4.dart';
 
 @LazySingleton(as: SyncRepository)
 class SyncRepositoryImpl implements SyncRepository {
@@ -57,6 +60,9 @@ class SyncRepositoryImpl implements SyncRepository {
       await _saveSyncOutlet(database, outletResult);
       await _saveSyncProduct(database, productResult);
       await _saveSyncPromo(database, promoResult);
+
+      //* Insert Default Value
+      await _generateDefaultData(database);
 
       return right(
         SyncEntity(
@@ -795,4 +801,48 @@ Future<void> _saveSyncPromo(
       }
     });
   });
+}
+
+Future<void> _generateDefaultData(MainDatabase database) async {
+  try {
+    final tablePrinterArea = database.tablePrinterArea;
+    final tablePrinterAreaRel = database.tablePrinterAreaRel;
+    final tablePrinter = database.tablePrinter;
+
+    final printerAreas = await tablePrinterArea.select().get();
+    if (printerAreas.length < 3) {
+      await tablePrinterArea.deleteAll();
+      await tablePrinterAreaRel.deleteAll();
+      await tablePrinter.deleteAll();
+
+      await tablePrinterArea.insertAll(mode: InsertMode.insertOrReplace, [
+        TablePrinterAreaCompanion.insert(
+          id: UuidV4().generate(),
+          name: 'Main',
+          type: PrinterAreaType.primary,
+          sortOrder: 1,
+          createdAt: Value(DateTime.now()),
+          updatedAt: Value(DateTime.now()),
+        ),
+        TablePrinterAreaCompanion.insert(
+          id: UuidV4().generate(),
+          name: 'Captain Order',
+          type: PrinterAreaType.primary,
+          sortOrder: 2,
+          createdAt: Value(DateTime.now()),
+          updatedAt: Value(DateTime.now()),
+        ),
+        TablePrinterAreaCompanion.insert(
+          id: UuidV4().generate(),
+          name: 'Label',
+          type: PrinterAreaType.primary,
+          sortOrder: 3,
+          createdAt: Value(DateTime.now()),
+          updatedAt: Value(DateTime.now()),
+        ),
+      ]);
+    }
+  } catch (error, stackTrace) {
+    LogUtil.e(error.toString(), stackTrace: stackTrace);
+  }
 }

@@ -10,6 +10,7 @@ import 'package:pos/features/auth/select_outlet/presentation/bloc/auth_outlet_bl
 import 'package:pos/features/auth/select_outlet/presentation/bloc/auth_outlet_event.dart';
 import 'package:pos/features/auth/select_outlet/presentation/bloc/auth_outlet_state.dart';
 import 'package:pos/features/auth/select_outlet/presentation/widgets/outlet_card.dart';
+import 'package:pos/generated/assets.gen.dart';
 import 'package:pos/generated/colors.gen.dart';
 import 'package:pos/shared/widgets/dialog/confirmation_dialog.dart';
 
@@ -66,25 +67,7 @@ class _SelectOutletView extends StatelessWidget {
       child: Row(
         children: [
           // Logo
-          Container(
-            width: 40,
-            height: 40,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: const Center(
-              child: Text(
-                'L',
-                style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.w900,
-                  color: AppColors.primary,
-                  fontFamily: 'Inter',
-                ),
-              ),
-            ),
-          ),
+          Assets.icons.icLunaposLogo.svg(height: 40),
           const Expanded(
             child: Center(
               child: Text(

@@ -1,0 +1,25 @@
+{
+  "en": [
+    "appName",
+    "txt_welcomeToLuna",
+    "txt_login",
+    "txt_email",
+    "hint_email",
+    "txt_password",
+    "hint_inputPassword",
+    "lbl_authenticationKey",
+    "btn_forgetPassword",
+    "lbl_notHaveAccountYet",
+    "btn_createAnAccount",
+    "btn_needHelp",
+    "btn_client",
+    "txt_lunaBrandMoto",
+    "txt_lunaHashtag",
+    "copyright",
+    "title_chooseOutlet",
+    "hint_findOutlet",
+    "txt_logout",
+    "txt_logoutConfirmation",
+    "err_outletNotFound"
+  ]
+}
