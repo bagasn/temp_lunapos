@@ -31,7 +31,7 @@ class AppDropdownButton extends StatelessWidget {
         constraints: const BoxConstraints(minHeight: 38),
         decoration: BoxDecoration(
           color: AppColors.charcoal100,
-          borderRadius: BorderRadius.circular(6),
+          borderRadius: BorderRadius.circular(8),
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,

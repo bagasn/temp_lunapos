@@ -4,8 +4,10 @@ sealed class SettingPrinterEvent {
   const SettingPrinterEvent();
 }
 
-final class SettingPrinterInitStarted extends SettingPrinterEvent {}
+final class SettingPrinterLoaded extends SettingPrinterEvent {}
 
-final class SettingPrinterStartPrint extends SettingPrinterEvent {}
+final class SettingPrinterNewAreaAdded extends SettingPrinterEvent {
+  final String newAreaName;
 
-final class SettingPrinterFindDevice extends SettingPrinterEvent {}
+  SettingPrinterNewAreaAdded(this.newAreaName);
+}

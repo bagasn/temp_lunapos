@@ -21,6 +21,7 @@ import 'package:pos/features/settings/presentation/section_views/system/system_s
 import 'package:pos/features/settings/presentation/section_views/template/template_section.dart';
 import 'package:pos/features/settings/presentation/widgets/setting_sidebar_item.dart';
 import 'package:pos/l10n/app_localizations.dart';
+import 'package:pos/shared/widgets/widgets/app_loading_widget.dart';
 
 class SettingPage extends StatelessWidget {
   const SettingPage({super.key});
@@ -41,7 +42,10 @@ class SettingPage extends StatelessWidget {
           create: (context) =>
               locator<SettingTemplateBloc>()..add(LoadTemplateSettings()),
         ),
-        BlocProvider(create: (context) => locator<SettingPrinterBloc>()),
+        BlocProvider(
+          create: (context) =>
+              locator<SettingPrinterBloc>()..add(SettingPrinterLoaded()),
+        ),
       ],
       child: const _SettingView(),
     );
@@ -88,6 +92,7 @@ class __SettingViewState extends State<_SettingView> {
     ];
 
     return LoaderOverlay(
+      overlayWidgetBuilder: (progress) => AppLoadingWidget(),
       child: Scaffold(
         backgroundColor: AppColors.backgroundLight,
         appBar: AppBar(title: Text('Setting')),

@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:pos/core/di/injection_container.dart';
 import 'package:pos/core/theme/app_text_styles.dart';
-import 'package:pos/features/settings/presentation/section_views/printer/widgets/cubit/printer_setup_cubit.dart';
+import 'package:pos/features/settings/presentation/section_views/printer/widgets/printer_setup/cubit/printer_setup_cubit.dart';
 import 'package:pos/generated/colors.gen.dart';
 import 'package:pos/l10n/app_localizations.dart';
-import 'package:pos/shared/data/models/dropdown_item_model.dart';
+import 'package:pos/shared/domain/entities/printer/printer_setup.dart';
+import 'package:pos/shared/utilities/input_formatter/decimal_formatter.dart';
 import 'package:pos/shared/widgets/widgets/dropdown/dropdown_input_model.dart';
+import 'package:pos/shared/widgets/widgets/dropdown/dropdown_menu_field.dart';
 import 'package:pos/shared/widgets/widgets/dropdown/dropdown_text_field.dart';
+import 'package:pos/shared/widgets/widgets/text_field/text_field.dart';
+import 'package:pos/shared/widgets/widgets/text_field/text_form_field.dart';
 
 class SettingPrinterSetupDialog extends StatelessWidget {
   const SettingPrinterSetupDialog({super.key});
@@ -32,18 +37,8 @@ class _SettingPrinterSetupDialog extends StatefulWidget {
 
 class _SettingPrinterSetupDialogState
     extends State<_SettingPrinterSetupDialog> {
-  InputDecoration _decoration(String hint) => InputDecoration(
-    hintText: hint,
-    // contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-    border: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(8),
-      borderSide: const BorderSide(color: AppColors.borderLight),
-    ),
-    enabledBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(8),
-      borderSide: const BorderSide(color: AppColors.borderLight),
-    ),
-  );
+  final _feedController = TextEditingController(text: '0');
+  final _ipAddressController = TextEditingController();
 
   Widget _labeled(String label, Widget child) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
@@ -56,28 +51,6 @@ class _SettingPrinterSetupDialogState
       child,
     ],
   );
-
-  Widget _dropdown({
-    required DropdownItemModel? value,
-    required List<DropdownItemModel> items,
-    required ValueChanged<DropdownItemModel?> onChanged,
-    String hint = '',
-    VoidCallback? onTap,
-  }) {
-    return DropdownButtonFormField<DropdownItemModel>(
-      initialValue: value,
-      isExpanded: true,
-      decoration: _decoration(hint),
-      items: items
-          .map(
-            (value) =>
-                DropdownMenuItem(value: value, child: Text(value.display)),
-          )
-          .toList(),
-      onChanged: onChanged,
-      onTap: onTap,
-    );
-  }
 
   Widget _stepButton(IconData icon, VoidCallback onTap) => InkWell(
     onTap: onTap,
@@ -93,6 +66,43 @@ class _SettingPrinterSetupDialogState
     ),
   );
 
+  Widget _buildPrinterDeviceView(
+    String label, {
+    required PrinterSetupState state,
+  }) {
+    DropdownInputModel? printerDevice;
+    if (state.selectedDevice != null) {
+      printerDevice = DropdownInputModel(
+        mainValue: state.selectedDevice!.printerName,
+        subValues: [state.selectedDevice!.printerAddress],
+      );
+    }
+
+    Widget widget;
+    if (state.selectedModule?.id == SettingPrinterModule.escposNetwork.name ||
+        state.selectedModule?.id ==
+            SettingPrinterModule.escposNetworkBridge.name) {
+      widget = AppTextField(
+        controller: _ipAddressController,
+        constraints: BoxConstraints(minHeight: 54),
+        hintText: '192.168.xxx.xxx',
+        maxLength: 15,
+        inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9.]'))],
+      );
+    } else {
+      widget = AppDropdownTextField(
+        value: printerDevice,
+        hintText: 'Pilih Perangkat Printer',
+        enabled: state.selectedModule != null,
+        onPressed: () {
+          context.read<PrinterSetupCubit>().onRequestPrinterDevices();
+        },
+      );
+    }
+
+    return _labeled(label, widget);
+  }
+
   @override
   Widget build(BuildContext mContext) {
     final l10n = AppLocalizations.of(mContext)!;
@@ -105,16 +115,14 @@ class _SettingPrinterSetupDialogState
           } else {
             context.loaderOverlay.hide();
           }
+          if (state.selectedModule?.id !=
+                  SettingPrinterModule.escposNetwork.name ||
+              state.selectedModule?.id !=
+                  SettingPrinterModule.escposNetworkBridge.name) {
+            _ipAddressController.clear();
+          }
         },
         builder: (context, state) {
-          DropdownItemModel? printerDevice;
-          if (state.selectedDevice != null) {
-            printerDevice = DropdownItemModel(
-              id: state.selectedDevice!.printerAddress,
-              display: state.selectedDevice!.printerName,
-            );
-          }
-
           return Dialog(
             clipBehavior: Clip.antiAlias,
             backgroundColor: Colors.white,
@@ -140,7 +148,7 @@ class _SettingPrinterSetupDialogState
                   ),
                   Flexible(
                     child: SingleChildScrollView(
-                      padding: const EdgeInsets.all(24),
+                      padding: const EdgeInsets.all(16),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -150,10 +158,10 @@ class _SettingPrinterSetupDialogState
                               Expanded(
                                 child: _labeled(
                                   l10n.lbl_settingPrinterType,
-                                  _dropdown(
+                                  AppDropdownMenuField(
+                                    menuItems: state.printerTypes,
                                     value: state.selectedType,
-                                    items: state.printerTypes,
-                                    onChanged: (value) {
+                                    onChange: (value) {
                                       context
                                           .read<PrinterSetupCubit>()
                                           .onChangeDropdownValue(
@@ -167,10 +175,11 @@ class _SettingPrinterSetupDialogState
                               Expanded(
                                 child: _labeled(
                                   l10n.lbl_settingPrinterModule,
-                                  _dropdown(
+                                  AppDropdownMenuField(
+                                    menuItems: state.printerModules,
                                     value: state.selectedModule,
-                                    items: state.printerModules,
-                                    onChanged: (value) {
+                                    hintText: 'Pilih Module Printer',
+                                    onChange: (value) {
                                       context
                                           .read<PrinterSetupCubit>()
                                           .onChangeDropdownValue(
@@ -182,43 +191,24 @@ class _SettingPrinterSetupDialogState
                               ),
                             ],
                           ),
-                          const SizedBox(height: 16),
-                          // _labeled(
-                          //   l10n.lbl_settingPrinterItem,
-                          //   _dropdown(
-                          //     value: printerDevice,
-                          //     items: [],
-                          //     hint: l10n.lbl_settingSelectItem,
-                          //     onChanged: (value) {},
-                          //     onTap: () {},
-                          //   ),
-                          // ),
-                          AppDropdownTextField(
-                            label: 'Printer',
-
-                            value: state.selectedDevice != null
-                                ? DropdownInputModel(
-                                    mainValue:
-                                        state.selectedDevice!.printerName,
-                                  )
-                                : null,
-                            onPressed: () {
-                              context
-                                  .read<PrinterSetupCubit>()
-                                  .onRequestPrinterDevices();
-                            },
+                          Padding(
+                            padding: const EdgeInsets.only(top: 16),
+                            child: _buildPrinterDeviceView(
+                              'Printer',
+                              state: state,
+                            ),
                           ),
-                          const SizedBox(height: 16),
+                          SizedBox(height: 16),
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Expanded(
                                 child: _labeled(
                                   l10n.lbl_settingPaperSize,
-                                  _dropdown(
+                                  AppDropdownMenuField(
+                                    menuItems: state.paperSizes,
                                     value: state.selectedPaperSize,
-                                    items: state.paperSizes,
-                                    onChanged: (value) {
+                                    onChange: (value) {
                                       context
                                           .read<PrinterSetupCubit>()
                                           .onChangeDropdownValue(
@@ -232,10 +222,14 @@ class _SettingPrinterSetupDialogState
                               Expanded(
                                 child: _labeled(
                                   l10n.lbl_settingFeedAfterPrint,
-                                  TextFormField(
-                                    initialValue: '0',
-                                    keyboardType: TextInputType.number,
-                                    decoration: _decoration(''),
+                                  AppTextFormField(
+                                    controller: _feedController,
+                                    constraints: BoxConstraints(minHeight: 54),
+                                    hintText: 'Nilai Feed Line',
+                                    maxLength: 2,
+                                    inputFormatters: [
+                                      ThousandsDecimalFormatter(),
+                                    ],
                                   ),
                                 ),
                               ),

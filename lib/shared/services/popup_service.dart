@@ -22,7 +22,7 @@ class PopupService {
     return toaster.showCustom(
       alignment: Alignment.topCenter,
       animationDuration: Duration(milliseconds: 200),
-      autoCloseDuration: Duration(seconds: 3),
+      autoCloseDuration: Duration(seconds: 5),
       builder: (context, holder) {
         return _buildSnackbar(type: type, message: message, toastItem: holder);
       },

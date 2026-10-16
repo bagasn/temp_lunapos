@@ -5,7 +5,7 @@ import 'package:pos/shared/widgets/widgets/dropdown/dropdown_input_model.dart';
 import 'package:pos/shared/widgets/widgets/text_field/input_label.dart';
 
 class AppDropdownTextField extends StatelessWidget {
-  final String label;
+  final String? label;
   final LabelSuffix labelSuffixType;
   final TextStyle? labelTextStyle;
   final DropdownInputModel? value;
@@ -17,18 +17,23 @@ class AppDropdownTextField extends StatelessWidget {
 
   final void Function()? onPressed;
 
+  final String? hintText;
+  final TextStyle? hintTextStyle;
+
   const AppDropdownTextField({
     super.key,
-    required this.label,
+    this.label,
     this.labelSuffixType = LabelSuffix.none,
     this.labelTextStyle,
     this.value,
     this.valueTextStyle,
     this.prefix,
-    this.suffix = const Icon(Icons.chevron_right, size: 24),
+    this.suffix = const Icon(Icons.arrow_drop_down),
     this.textHelper,
     this.enabled = true,
     this.onPressed,
+    this.hintText,
+    this.hintTextStyle,
   });
 
   @override
@@ -39,7 +44,7 @@ class AppDropdownTextField extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        GestureDetector(
+        InkWell(
           onTap: enabled ? onPressed : null,
           child: Container(
             padding: const EdgeInsets.symmetric(
@@ -48,13 +53,26 @@ class AppDropdownTextField extends StatelessWidget {
             ).copyWith(right: paddingRight),
             decoration: BoxDecoration(
               color: Colors.transparent,
-              border: Border.all(color: AppColors.charcoal700),
+              border: Border.all(
+                color: enabled ? AppColors.charcoal700 : AppColors.charcoal500,
+              ),
               borderRadius: BorderRadius.circular(8),
             ),
             constraints: const BoxConstraints(minHeight: 56),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                if (prefix != null)
+                  Padding(
+                    padding: const EdgeInsets.only(right: 12),
+                    child: IconTheme(
+                      data: IconThemeData(
+                        size: 24,
+                        color: AppColors.charcoal800,
+                      ),
+                      child: prefix!,
+                    ),
+                  ),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,14 +80,22 @@ class AppDropdownTextField extends StatelessWidget {
                     children: [
                       _buildLabelWidget(context),
                       if (value != null) const SizedBox(height: 2),
-                      _buildValueWidget(),
+                      _buildValueWidget(context),
                     ],
                   ),
                 ),
                 if (suffix != null)
                   Padding(
                     padding: const EdgeInsets.only(left: 8),
-                    child: suffix,
+                    child: IconTheme(
+                      data: IconThemeData(
+                        size: 24,
+                        color: enabled
+                            ? AppColors.charcoal800
+                            : AppColors.charcoal500,
+                      ),
+                      child: suffix!,
+                    ),
                   ),
               ],
             ),
@@ -91,8 +117,20 @@ class AppDropdownTextField extends StatelessWidget {
     );
   }
 
-  Widget _buildValueWidget() {
-    if (value == null) return const SizedBox();
+  Widget _buildValueWidget(BuildContext context) {
+    if (value == null) {
+      if (hintText != null) {
+        return Text(
+          hintText!,
+          style:
+              hintTextStyle ??
+              TextTheme.of(context).bodyLarge?.copyWith(
+                color: enabled ? AppColors.charcoal700 : AppColors.charcoal500,
+              ),
+        );
+      }
+      return const SizedBox();
+    }
 
     final widgets = <Text>[];
     widgets.add(
@@ -101,7 +139,11 @@ class AppDropdownTextField extends StatelessWidget {
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
         softWrap: false,
-        style: valueTextStyle,
+        style:
+            valueTextStyle ??
+            TextTheme.of(
+              context,
+            ).bodyLarge?.copyWith(color: AppColors.textDark),
       ),
     );
     if (value?.subValues != null) {
@@ -128,13 +170,17 @@ class AppDropdownTextField extends StatelessWidget {
   }
 
   Widget _buildLabelWidget(BuildContext context) {
+    if (label == null) {
+      return const SizedBox();
+    }
+
     final isLabel = value != null;
     final style =
         labelTextStyle ?? TextStyle(fontSize: 16, color: AppColors.charcoal800);
     final labelStyle = style.copyWith(fontSize: 11);
 
     return InputLabelWidget(
-      label: label,
+      label: label!,
       suffixType: labelSuffixType,
       style: isLabel ? labelStyle : style,
     );

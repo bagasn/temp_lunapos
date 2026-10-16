@@ -17,23 +17,30 @@ class AppLoadingWidget extends StatelessWidget {
       message = progress;
     }
 
-    return Container(
-      decoration: BoxDecoration(color: AppColors.backgroundWhite),
-      alignment: Alignment.center,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Assets.images.gifLoading.image(width: 52),
-          SizedBox(height: 16),
-          Text(
-            message,
-            style: TextStyle(
-              color: AppColors.primary,
-              fontWeight: FontWeight.w500,
+    return Center(
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 24, vertical: 32),
+        decoration: BoxDecoration(
+          color: AppColors.backgroundWhite,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        constraints: BoxConstraints(maxWidth: 250),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Assets.images.gifLoading.image(width: 82, height: 82),
+            SizedBox(height: 16),
+            Text(
+              message,
+              textAlign: TextAlign.center,
+              style: TextTheme.of(context).bodyLarge?.copyWith(
+                color: AppColors.primary,
+                fontWeight: FontWeight.w500,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

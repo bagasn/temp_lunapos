@@ -12,7 +12,7 @@ class PrinterSetupState extends Equatable {
   final DropdownItemModel? selectedPaperSize;
 
   final List<PrinterDevice> printerDevices;
-  final PrinterDevice? selectedDevice;
+  PrinterDevice? selectedDevice;
 
   final int feedAfterPrint;
   final bool isAutoCut;
@@ -22,7 +22,7 @@ class PrinterSetupState extends Equatable {
 
   final bool isLoading;
 
-  const PrinterSetupState({
+  PrinterSetupState({
     required this.printerTypes,
     required this.selectedType,
     required this.printerModules,
@@ -89,6 +89,10 @@ class PrinterSetupState extends Equatable {
       autoPrintOnPayment: autoPrintOnPayment ?? this.autoPrintOnPayment,
       isLoading: isLoading ?? this.isLoading,
     );
+  }
+
+  void remotePrinterDevice() {
+    selectedDevice = null;
   }
 
   @override

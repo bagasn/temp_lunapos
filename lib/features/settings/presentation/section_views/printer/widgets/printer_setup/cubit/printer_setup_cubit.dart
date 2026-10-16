@@ -63,6 +63,7 @@ class PrinterSetupCubit extends Cubit<PrinterSetupState> {
       emit(state.copyWith(selectedType: printerType, isLoading: false));
     }
     if (printerModule != null) {
+      state.remotePrinterDevice();
       emit(state.copyWith(selectedModule: printerModule, isLoading: false));
     }
     if (paperSize != null) {

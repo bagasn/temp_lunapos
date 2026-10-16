@@ -41,39 +41,37 @@ class _LunaposAppState extends State<LunaposApp> {
 
   @override
   Widget build(BuildContext mContext) {
-    return GlobalLoaderOverlay(
-      child: ToastificationWrapper(
-        config: ToastificationConfig(
-          alignment: Alignment.topCenter,
-          maxToastLimit: 1,
-          animationDuration: Duration(milliseconds: 200),
-        ),
-        child: MaterialApp.router(
-          title: 'Luna POS',
-          theme: AppTheme.lightTheme,
-          debugShowCheckedModeBanner: false,
-          routerConfig: _router,
-          locale: mContext.watch<LanguageService>().currentLocale,
-          localizationsDelegates: const [
-            AppLocalizations.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          supportedLocales: const [
-            Locale('id'), // Indonesian
-            Locale('en'), // English
-          ],
-          localeResolutionCallback: (locale, supportedLocales) {
-            if (locale == null) return const Locale('id');
-            for (final supportedLocale in supportedLocales) {
-              if (supportedLocale.languageCode == locale.languageCode) {
-                return supportedLocale;
-              }
+    return ToastificationWrapper(
+      config: ToastificationConfig(
+        alignment: Alignment.topCenter,
+        maxToastLimit: 1,
+        animationDuration: Duration(milliseconds: 200),
+      ),
+      child: MaterialApp.router(
+        title: 'Luna POS',
+        theme: AppTheme.lightTheme,
+        debugShowCheckedModeBanner: false,
+        routerConfig: _router,
+        locale: mContext.watch<LanguageService>().currentLocale,
+        localizationsDelegates: const [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: const [
+          Locale('id'), // Indonesian
+          Locale('en'), // English
+        ],
+        localeResolutionCallback: (locale, supportedLocales) {
+          if (locale == null) return const Locale('id');
+          for (final supportedLocale in supportedLocales) {
+            if (supportedLocale.languageCode == locale.languageCode) {
+              return supportedLocale;
             }
-            return const Locale('id');
-          },
-        ),
+          }
+          return const Locale('id');
+        },
       ),
     );
   }

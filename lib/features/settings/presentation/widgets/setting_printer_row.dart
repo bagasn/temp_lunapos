@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pos/core/theme/app_text_styles.dart';
 import 'package:pos/generated/colors.gen.dart';
+import 'package:pos/shared/widgets/widgets/dropdown/dropdown_input_model.dart';
+import 'package:pos/shared/widgets/widgets/dropdown/dropdown_text_field.dart';
 
 /// A printer row widget for the Printer settings section.
 ///
@@ -27,67 +29,36 @@ class SettingPrinterRow extends StatelessWidget {
       children: [
         Text(
           label,
-          style: AppTextStyles.bodySmall.copyWith(
-            color: AppColors.textMedium,
+          style: AppTextStyles.bodyMedium.copyWith(
+            color: AppColors.textDark,
+            fontWeight: FontWeight.w600,
           ),
         ),
         const SizedBox(height: 8),
         Row(
           children: [
             Expanded(
-              child: InkWell(
-                onTap: onTap,
-                borderRadius: BorderRadius.circular(8),
-                child: Container(
-                  height: 52,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: AppColors.borderLight),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.print_outlined,
-                        size: 18,
-                        color: AppColors.textLight,
-                      ),
-                      const SizedBox(width: 10),
-                      Expanded(
-                        child: Text(
-                          printerName.isEmpty ? '-' : printerName,
-                          style: AppTextStyles.bodyMedium.copyWith(
-                            color: AppColors.textMedium,
-                          ),
-                        ),
-                      ),
-                      Icon(
-                        Icons.arrow_drop_down,
-                        color: AppColors.textMedium,
-                      ),
-                    ],
-                  ),
-                ),
+              child: AppDropdownTextField(
+                onPressed: onTap,
+                prefix: Icon(Icons.print_outlined),
+                hintText: 'Pilih Printer',
               ),
             ),
             const SizedBox(width: 12),
-            SizedBox(
-              width: 160,
-              height: 52,
-              child: ElevatedButton(
-                onPressed: onTestPrint,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.primary,
-                  foregroundColor: AppColors.textWhite,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
+            ElevatedButton(
+              onPressed: onTestPrint,
+              style: ElevatedButton.styleFrom(
+                minimumSize: Size(140, 62),
+                backgroundColor: AppColors.primary,
+                foregroundColor: AppColors.textWhite,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
                 ),
-                child: Text(
-                  'Test Print',
-                  style: AppTextStyles.titleMedium.copyWith(
-                    color: AppColors.textWhite,
-                  ),
+              ),
+              child: Text(
+                'Test Print',
+                style: AppTextStyles.titleMedium.copyWith(
+                  color: AppColors.textWhite,
                 ),
               ),
             ),

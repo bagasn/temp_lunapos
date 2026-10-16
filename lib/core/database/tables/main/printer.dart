@@ -6,17 +6,14 @@ class TablePrinter extends Table {
   String get tableName => 'printers';
 
   TextColumn get id => text()();
-  TextColumn get deviceId => text().nullable()();
-  TextColumn get printerArea => text()();
-  TextColumn get printerAreaId => text().nullable()();
-  TextColumn get printerType => text().nullable()();
-  TextColumn get printerModule => text().nullable()();
-  TextColumn get printerConfig => text().nullable()();
+  TextColumn get printerAreaId => text()();
+  TextColumn get printerType => text()();
+  TextColumn get printerModule => text()();
+  TextColumn get printerConfig => text()();
 
   // Base fields
   DateTimeColumn get createdAt => dateTime().nullable()();
   DateTimeColumn get updatedAt => dateTime().nullable()();
-  DateTimeColumn get deletedAt => dateTime().nullable()();
 
   @override
   Set<Column> get primaryKey => {id};

@@ -8,7 +8,8 @@ class AppTextField extends StatefulWidget {
   final TextEditingController? controller;
   final Color backgroundColor;
   final Color backgroundActiveColor;
-  final InputLabelWidget label;
+  final InputLabelWidget? label;
+  final BoxConstraints? constraints;
 
   final String? errorText;
   final String? helperText;
@@ -51,13 +52,14 @@ class AppTextField extends StatefulWidget {
 
   const AppTextField({
     super.key,
-    required this.label,
+    this.label,
     this.controller,
     this.focusNode,
     this.backgroundColor = AppColors.charcoal700,
     this.backgroundActiveColor = AppColors.primary,
     this.errorText,
     this.helperText,
+    this.constraints,
 
     //* Text Component
     this.keyboardType,
@@ -151,6 +153,8 @@ class _AppTextFieldState extends State<AppTextField> {
               strokeAlign: BorderSide.strokeAlignOutside,
             ),
           ),
+          constraints: widget.constraints,
+          alignment: Alignment.center,
           child: TextField(
             focusNode: _focusNode,
             controller: _controller,
@@ -191,7 +195,7 @@ class _AppTextFieldState extends State<AppTextField> {
             onTap: widget.onTap,
             canRequestFocus: widget.canRequestFocus,
             decoration: InputDecoration(
-              label: widget.label.copyWith(enabled: widget.enabled),
+              label: widget.label?.copyWith(enabled: widget.enabled),
               border: InputBorder.none,
               hintText: widget.hintText,
               hintStyle: TextTheme.of(

@@ -130,17 +130,17 @@ class MainDatabase extends _$MainDatabase {
   MainDatabase(String dbName) : super(connectDatabase(dbName));
 
   @override
-  int get schemaVersion => 2;
+  int get schemaVersion => 1;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
-    onCreate: (m) async {
-      await m.createAll();
+    onCreate: (migrator) async {
+      await migrator.createAll();
     },
-    onUpgrade: (m, from, to) async {
+    onUpgrade: (migrator, from, to) async {
       if (from < 2) {
-        await m.deleteTable(tablePrinterArea.tableName);
-        await m.createTable(tablePrinterArea);
+        // await m.deleteTable(tablePrinterArea.tableName);
+        // await m.createTable(tablePrinterArea);
       }
     },
   );
