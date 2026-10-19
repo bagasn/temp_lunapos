@@ -1,6 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'printer_setup_cubit.dart';
 
+enum PrinterSetupViewState { loading, data, printerSaved }
+
 class PrinterSetupState extends Equatable {
   final List<DropdownItemModel> printerTypes;
   final DropdownItemModel selectedType;
@@ -9,7 +11,7 @@ class PrinterSetupState extends Equatable {
   final DropdownItemModel? selectedModule;
 
   final List<DropdownItemModel> paperSizes;
-  final DropdownItemModel? selectedPaperSize;
+  final DropdownItemModel selectedPaperSize;
 
   final List<PrinterDevice> printerDevices;
   PrinterDevice? selectedDevice;
@@ -20,7 +22,10 @@ class PrinterSetupState extends Equatable {
   final int copyPrint;
   final bool autoPrintOnPayment;
 
-  final bool isLoading;
+  PrinterSetupViewState viewState;
+  final String? errorMessage;
+
+  final bool btnSaveEnabled;
 
   PrinterSetupState({
     required this.printerTypes,
@@ -36,7 +41,9 @@ class PrinterSetupState extends Equatable {
     required this.disconnectAfterPrint,
     required this.copyPrint,
     required this.autoPrintOnPayment,
-    required this.isLoading,
+    required this.viewState,
+    this.errorMessage,
+    this.btnSaveEnabled = false,
   });
 
   @override
@@ -53,7 +60,9 @@ class PrinterSetupState extends Equatable {
     disconnectAfterPrint,
     copyPrint,
     autoPrintOnPayment,
-    isLoading,
+    viewState,
+    errorMessage,
+    btnSaveEnabled,
     ...printerDevices,
   ];
 
@@ -71,7 +80,9 @@ class PrinterSetupState extends Equatable {
     bool? disconnectAfterPrint,
     int? copyPrint,
     bool? autoPrintOnPayment,
-    bool? isLoading,
+    PrinterSetupViewState? viewState,
+    String? errorMessage,
+    bool? btnSaveEnabled,
   }) {
     return PrinterSetupState(
       printerTypes: printerTypes ?? this.printerTypes,
@@ -87,7 +98,9 @@ class PrinterSetupState extends Equatable {
       disconnectAfterPrint: disconnectAfterPrint ?? this.disconnectAfterPrint,
       copyPrint: copyPrint ?? this.copyPrint,
       autoPrintOnPayment: autoPrintOnPayment ?? this.autoPrintOnPayment,
-      isLoading: isLoading ?? this.isLoading,
+      viewState: viewState ?? this.viewState,
+      errorMessage: errorMessage,
+      btnSaveEnabled: btnSaveEnabled ?? this.btnSaveEnabled,
     );
   }
 

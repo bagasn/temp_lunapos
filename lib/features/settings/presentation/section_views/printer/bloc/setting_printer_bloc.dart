@@ -7,6 +7,7 @@ import 'package:pos/core/database/main_database.dart';
 import 'package:pos/core/database/tables/main/printer_area.dart';
 import 'package:pos/features/settings/domain/entities/setting_printer_entity.dart';
 import 'package:pos/shared/domain/entities/failure.dart';
+import 'package:pos/shared/domain/entities/printer/printer_config.dart';
 import 'package:pos/shared/services/printer/printer_service.dart';
 import 'package:pos/shared/utilities/log_util.dart';
 import 'package:uuid/v4.dart';
@@ -42,17 +43,29 @@ class SettingPrinterBloc
         throw DatabaseFailure('Cannot find local database');
       }
 
-      final getPrinterArea = dbMain.tablePrinterArea.select()
-        ..orderBy([(u) => OrderingTerm.asc(u.sortOrder)]);
-      final printerAreas = await getPrinterArea.get();
+      final query = dbMain.select(dbMain.tablePrinterArea).join([
+        leftOuterJoin(
+          dbMain.tablePrinter,
+          dbMain.tablePrinter.printerAreaId.equalsExp(
+            dbMain.tablePrinterArea.id,
+          ),
+        ),
+      ])..orderBy([OrderingTerm.asc(dbMain.tablePrinterArea.sortOrder)]);
+
+      final rows = await query.get();
 
       _printerAreas.clear();
-      for (final pArea in printerAreas) {
+      for (final row in rows) {
+        final pArea = row.readTable(dbMain.tablePrinterArea);
+        final printer = row.readTableOrNull(dbMain.tablePrinter);
+
         _printerAreas.add(
           SettingPrinterEntity(
             id: pArea.id,
             label: pArea.name,
-            printerConfig: null,
+            printerConfig: printer != null
+                ? PrinterConfig.fromJsonString(printer.printerConfig)
+                : null,
           ),
         );
       }

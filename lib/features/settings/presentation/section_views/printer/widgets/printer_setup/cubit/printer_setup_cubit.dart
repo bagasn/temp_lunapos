@@ -1,11 +1,19 @@
+import 'dart:math';
+
+import 'package:drift/drift.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
+import 'package:pos/core/database/app_database_manager.dart';
+import 'package:pos/core/database/main_database.dart';
 import 'package:pos/shared/data/models/dropdown_item_model.dart';
+import 'package:pos/shared/domain/entities/failure.dart';
 import 'package:pos/shared/domain/entities/printer/printer_config.dart';
+import 'package:pos/shared/domain/entities/printer/printer_device.dart';
 import 'package:pos/shared/domain/entities/printer/printer_setup.dart';
 import 'package:pos/shared/services/printer/printer_service.dart';
 import 'package:pos/shared/utilities/log_util.dart';
+import 'package:uuid/v4.dart';
 
 part 'printer_setup_state.dart';
 
@@ -45,33 +53,47 @@ class PrinterSetupCubit extends Cubit<PrinterSetupState> {
       disconnectAfterPrint: true,
       copyPrint: 1,
       autoPrintOnPayment: false,
-      isLoading: false,
+      viewState: PrinterSetupViewState.loading,
+      btnSaveEnabled: true,
     );
   }
 
   final PrinterService _printerService;
+  final AppDatabaseManager _dbManager;
 
-  PrinterSetupCubit(this._printerService) : super(_initState());
+  PrinterSetupCubit(this._printerService, this._dbManager)
+    : super(_initState());
 
   void onChangeDropdownValue({
     DropdownItemModel? printerType,
     DropdownItemModel? printerModule,
     DropdownItemModel? paperSize,
-    DropdownItemModel? device,
   }) async {
     if (printerType != null) {
-      emit(state.copyWith(selectedType: printerType, isLoading: false));
+      emit(
+        state.copyWith(
+          selectedType: printerType,
+          viewState: PrinterSetupViewState.data,
+        ),
+      );
     }
     if (printerModule != null) {
       state.remotePrinterDevice();
-      emit(state.copyWith(selectedModule: printerModule, isLoading: false));
+      emit(
+        state.copyWith(
+          selectedModule: printerModule,
+          viewState: PrinterSetupViewState.data,
+        ),
+      );
     }
     if (paperSize != null) {
-      emit(state.copyWith(selectedPaperSize: paperSize, isLoading: false));
+      emit(
+        state.copyWith(
+          selectedPaperSize: paperSize,
+          viewState: PrinterSetupViewState.data,
+        ),
+      );
     }
-    // if (device != null) {
-    //   emit(state.copyWith(selectedDevice: device));
-    // }
 
     LogUtil.d(state.toString());
   }
@@ -118,5 +140,76 @@ class PrinterSetupCubit extends Cubit<PrinterSetupState> {
     final device = devices.first;
 
     emit(state.copyWith(selectedDevice: device));
+  }
+
+  void onSavePrinterConfig({
+    required String printerAreaId,
+    required PrinterDevice? printerDevice,
+  }) async {
+    final printerModule = SettingPrinterModule.getByName(
+      state.selectedModule?.id,
+    );
+    if (printerModule == null) return;
+
+    if (printerDevice == null) {
+      emit(state.copyWith(errorMessage: 'Device printer belum dipilih'));
+      return;
+    }
+
+    emit(state.copyWith(viewState: PrinterSetupViewState.loading));
+
+    final database = await _dbManager.mainDb;
+
+    if (database == null) {
+      throw DatabaseFailure('Local database not found');
+    }
+
+    try {
+      final table = database.tablePrinter;
+
+      final printerConfig = PrinterConfig(
+        paperSize: state.selectedPaperSize.id,
+        feedAfterPrint: state.feedAfterPrint,
+        isAutoCut: state.isAutoCut,
+        copyPrint: state.copyPrint,
+        disconnectAfterPrint: state.disconnectAfterPrint,
+        printerAddress: printerDevice.printerAddress,
+        printerName: printerDevice.printerName,
+      );
+
+      final query = table.select()
+        ..where((filter) => filter.printerAreaId.equals(printerAreaId));
+      final existing = await query.getSingleOrNull();
+
+      if (existing != null) {
+        final row = existing
+            .copyWith(updatedAt: Value(DateTime.now()))
+            .toCompanion(true);
+
+        await table.insertOnConflictUpdate(row);
+      } else {
+        final row = TablePrinterCompanion.insert(
+          id: UuidV4().generate(),
+          printerAreaId: printerAreaId,
+          printerType: state.selectedType.id,
+          printerModule: printerModule.name,
+          printerConfig: printerConfig.toJsonString(),
+          createdAt: Value(DateTime.now()),
+          updatedAt: Value(DateTime.now()),
+        );
+
+        await table.insertOne(row);
+      }
+
+      emit(state.copyWith(viewState: PrinterSetupViewState.printerSaved));
+    } catch (error, stackTrace) {
+      LogUtil.e(error.toString(), stackTrace: stackTrace);
+      emit(
+        state.copyWith(
+          viewState: PrinterSetupViewState.data,
+          errorMessage: error.toString(),
+        ),
+      );
+    }
   }
 }

@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:pos/core/di/injection_container.dart';
 import 'package:pos/core/theme/app_text_styles.dart';
 import 'package:pos/features/settings/presentation/section_views/printer/widgets/printer_setup/cubit/printer_setup_cubit.dart';
 import 'package:pos/generated/colors.gen.dart';
 import 'package:pos/l10n/app_localizations.dart';
+import 'package:pos/shared/domain/entities/printer/printer_device.dart';
 import 'package:pos/shared/domain/entities/printer/printer_setup.dart';
+import 'package:pos/shared/services/popup_service.dart';
 import 'package:pos/shared/utilities/input_formatter/decimal_formatter.dart';
+import 'package:pos/shared/utilities/regex_util.dart';
 import 'package:pos/shared/widgets/widgets/dropdown/dropdown_input_model.dart';
 import 'package:pos/shared/widgets/widgets/dropdown/dropdown_menu_field.dart';
 import 'package:pos/shared/widgets/widgets/dropdown/dropdown_text_field.dart';
@@ -16,19 +20,35 @@ import 'package:pos/shared/widgets/widgets/text_field/text_field.dart';
 import 'package:pos/shared/widgets/widgets/text_field/text_form_field.dart';
 
 class SettingPrinterSetupDialog extends StatelessWidget {
-  const SettingPrinterSetupDialog({super.key});
+  final String printerAreaId;
+  final void Function() onSubmitted;
+
+  const SettingPrinterSetupDialog({
+    super.key,
+    required this.printerAreaId,
+    required this.onSubmitted,
+  });
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => locator<PrinterSetupCubit>(),
-      child: _SettingPrinterSetupDialog(),
+      child: _SettingPrinterSetupDialog(
+        printerAreaId: printerAreaId,
+        onSubmitted: onSubmitted,
+      ),
     );
   }
 }
 
 class _SettingPrinterSetupDialog extends StatefulWidget {
-  const _SettingPrinterSetupDialog();
+  final String printerAreaId;
+  final void Function() onSubmitted;
+
+  const _SettingPrinterSetupDialog({
+    required this.printerAreaId,
+    required this.onSubmitted,
+  });
 
   @override
   State<_SettingPrinterSetupDialog> createState() =>
@@ -79,9 +99,7 @@ class _SettingPrinterSetupDialogState
     }
 
     Widget widget;
-    if (state.selectedModule?.id == SettingPrinterModule.escposNetwork.name ||
-        state.selectedModule?.id ==
-            SettingPrinterModule.escposNetworkBridge.name) {
+    if (state.selectedModule?.id == SettingPrinterModule.escposNetwork.name) {
       widget = AppTextField(
         controller: _ipAddressController,
         constraints: BoxConstraints(minHeight: 54),
@@ -110,15 +128,22 @@ class _SettingPrinterSetupDialogState
     return LoaderOverlay(
       child: BlocConsumer<PrinterSetupCubit, PrinterSetupState>(
         listener: (context, state) {
-          if (state.isLoading) {
+          if (state.viewState == PrinterSetupViewState.loading) {
             context.loaderOverlay.show();
           } else {
             context.loaderOverlay.hide();
           }
+
+          if (state.viewState == PrinterSetupViewState.printerSaved) {
+            widget.onSubmitted();
+            if (context.canPop()) {
+              context.pop();
+            }
+            return;
+          }
+
           if (state.selectedModule?.id !=
-                  SettingPrinterModule.escposNetwork.name ||
-              state.selectedModule?.id !=
-                  SettingPrinterModule.escposNetworkBridge.name) {
+              SettingPrinterModule.escposNetwork.name) {
             _ipAddressController.clear();
           }
         },
@@ -352,7 +377,11 @@ class _SettingPrinterSetupDialogState
                                   height: 52,
                                   child: ElevatedButton(
                                     // UI only: Save is disabled until a printer is picked.
-                                    onPressed: () {},
+                                    onPressed: state.btnSaveEnabled
+                                        ? () {
+                                            _onSaveConfig(context, state);
+                                          }
+                                        : null,
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor: AppColors.primary,
                                       foregroundColor: AppColors.textWhite,
@@ -376,6 +405,32 @@ class _SettingPrinterSetupDialogState
           );
         },
       ),
+    );
+  }
+
+  void _onSaveConfig(BuildContext context, PrinterSetupState state) async {
+    PrinterDevice? printerDevice = state.selectedDevice;
+
+    if (state.selectedModule?.id == SettingPrinterModule.escposNetwork.name) {
+      final ipAddress = _ipAddressController.text;
+      if (!RegexUtil.isValidIpv4(ipAddress)) {
+        locator<PopupService>().show(
+          context,
+          message: 'Invalid IP Address',
+          type: PopupType.error,
+        );
+        return;
+      }
+
+      printerDevice = PrinterDevice(
+        printerAddress: ipAddress,
+        printerName: ipAddress,
+      );
+    }
+
+    context.read<PrinterSetupCubit>().onSavePrinterConfig(
+      printerAreaId: widget.printerAreaId,
+      printerDevice: printerDevice,
     );
   }
 }

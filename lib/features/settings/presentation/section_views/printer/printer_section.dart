@@ -15,10 +15,17 @@ import 'package:pos/shared/widgets/dialog/input_text_dialog.dart';
 class PrinterSection extends StatelessWidget {
   const PrinterSection({super.key});
 
-  void _showSetupDialog(BuildContext context) {
+  void _showSetupDialog(
+    BuildContext context, {
+    required String printerAreaId,
+    required void Function() onSubmitted,
+  }) {
     showDialog<void>(
       context: context,
-      builder: (_) => const SettingPrinterSetupDialog(),
+      builder: (_) => SettingPrinterSetupDialog(
+        printerAreaId: printerAreaId,
+        onSubmitted: onSubmitted,
+      ),
     );
   }
 
@@ -54,8 +61,17 @@ class PrinterSection extends StatelessWidget {
                 context,
                 state,
                 onPressed: (printerAreaId) {
-                  _showSetupDialog(context);
+                  _showSetupDialog(
+                    context,
+                    printerAreaId: printerAreaId,
+                    onSubmitted: () {
+                      context.read<SettingPrinterBloc>().add(
+                        SettingPrinterLoaded(),
+                      );
+                    },
+                  );
                 },
+
                 onTestPrint: (printerAreaId) {},
               ),
               const SizedBox(height: 24),
@@ -105,7 +121,7 @@ class PrinterSection extends StatelessWidget {
         for (final printer in state.printers)
           SettingPrinterRow(
             label: printer.label,
-            printerName: '-',
+            printerConfig: printer.printerConfig,
             onTestPrint: () {
               if (onTestPrint != null) {
                 onTestPrint(printer.id);

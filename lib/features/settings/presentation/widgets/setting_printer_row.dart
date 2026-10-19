@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pos/core/theme/app_text_styles.dart';
 import 'package:pos/generated/colors.gen.dart';
+import 'package:pos/shared/domain/entities/printer/printer_config.dart';
 import 'package:pos/shared/widgets/widgets/dropdown/dropdown_input_model.dart';
 import 'package:pos/shared/widgets/widgets/dropdown/dropdown_text_field.dart';
 
@@ -10,14 +11,14 @@ import 'package:pos/shared/widgets/widgets/dropdown/dropdown_text_field.dart';
 /// and a "Test Print" action button.
 class SettingPrinterRow extends StatelessWidget {
   final String label;
-  final String printerName;
+  final PrinterConfig? printerConfig;
   final VoidCallback onTestPrint;
   final VoidCallback onTap;
 
   const SettingPrinterRow({
     super.key,
     required this.label,
-    required this.printerName,
+    required this.printerConfig,
     required this.onTestPrint,
     required this.onTap,
   });
@@ -39,6 +40,9 @@ class SettingPrinterRow extends StatelessWidget {
           children: [
             Expanded(
               child: AppDropdownTextField(
+                value: printerConfig != null
+                    ? DropdownInputModel(mainValue: printerConfig!.printerName)
+                    : null,
                 onPressed: onTap,
                 prefix: Icon(Icons.print_outlined),
                 hintText: 'Pilih Printer',

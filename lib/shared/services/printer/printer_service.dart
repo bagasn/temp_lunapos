@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:pos/shared/domain/entities/failure.dart';
 import 'package:pos/shared/domain/entities/printer/printer_config.dart';
+import 'package:pos/shared/domain/entities/printer/printer_device.dart';
 import 'package:pos/shared/domain/entities/printer/printer_setup.dart';
 import 'package:thermal_printer_flutter/thermal_printer_flutter.dart';
 

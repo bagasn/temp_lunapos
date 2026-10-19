@@ -27,17 +27,14 @@ extension SettingPrinterTypeExt on SettingPrinterType {
 enum SettingPrinterModule {
   escposBluetooth,
   escposNetwork,
-  escposNetworkBridge,
   escposUsb;
 
-  static SettingPrinterModule? getByName(String name) {
+  static SettingPrinterModule? getByName(String? name) {
     switch (name) {
       case 'escposBluetooth':
         return SettingPrinterModule.escposBluetooth;
       case 'escposNetwork':
         return SettingPrinterModule.escposNetwork;
-      case 'escposNetworkBridge':
-        return SettingPrinterModule.escposNetworkBridge;
       case 'escposUsb':
         return SettingPrinterModule.escposUsb;
       default:
@@ -49,7 +46,7 @@ enum SettingPrinterModule {
     if (kIsWeb) {
       return [
         SettingPrinterModule.escposBluetooth,
-        SettingPrinterModule.escposNetworkBridge,
+        SettingPrinterModule.escposNetwork,
         SettingPrinterModule.escposUsb,
       ];
     } else {
@@ -68,9 +65,7 @@ extension SettingPrinterModuleExt on SettingPrinterModule {
       case SettingPrinterModule.escposBluetooth:
         return 'Bluetooth';
       case SettingPrinterModule.escposNetwork:
-        return 'Network';
-      case SettingPrinterModule.escposNetworkBridge:
-        return 'Network Bridge';
+        return kIsWeb ? 'Network Bridge' : 'Network';
       case SettingPrinterModule.escposUsb:
         return 'USB';
     }
