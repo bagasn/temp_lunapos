@@ -1,28 +1,26 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:pos/features/sync/domain/usecases/execute_sync_usecase.dart';
+import 'package:pos/features/sync/domain/repositories/sync_repository.dart';
 import 'package:pos/features/sync/presentation/bloc/sync_event.dart';
 import 'package:pos/features/sync/presentation/bloc/sync_state.dart';
 
+enum InitialDataType {
+  dataMain, // Initial Data
+  dataProduct, // Initial Product
+  dataPromo, // Initial Promo
+}
+
 @injectable
 class SyncBloc extends Bloc<SyncEvent, SyncState> {
-  final ExecuteSyncUseCase _executeSyncUseCase;
+  final SyncRepository _repository;
 
-  SyncBloc(this._executeSyncUseCase) : super(const SyncInitial()) {
-    on<SyncStarted>(_onSyncStarted);
+  final _initialDataConfig = <InitialDataType, bool>{};
+
+  SyncBloc(this._repository) : super(const SyncInitial()) {
+    on<InitialDataStarted>(_onInitialData);
   }
 
-  Future<void> _onSyncStarted(
-    SyncStarted event,
-    Emitter<SyncState> emit,
-  ) async {
-    emit(const SyncInProgress());
-    final result = await _executeSyncUseCase(
-      SyncParams(force: event.force),
-    );
-    result.fold(
-      (failure) => emit(SyncFailed(failure.message)),
-      (_) => emit(const SyncCompleted()),
-    );
+  Future<void> _onInitialData(InitialDataStarted event, Emitter emit) async {
+    emit(SyncInProgress());
   }
 }

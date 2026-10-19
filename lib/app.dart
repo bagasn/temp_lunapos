@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:go_router/go_router.dart';
@@ -8,36 +7,52 @@ import 'package:pos/core/local_storage/session_manager.dart';
 import 'package:pos/core/navigation/app_router.dart';
 import 'package:pos/core/theme/app_theme.dart';
 import 'package:pos/l10n/app_localizations.dart';
+import 'package:pos/shared/services/language_service.dart';
+import 'package:provider/provider.dart';
+import 'package:toastification/toastification.dart';
 
-class PosApp extends StatefulWidget {
-  const PosApp({super.key});
+class Application extends StatelessWidget {
+  const Application({super.key});
 
   @override
-  State<PosApp> createState() => _PosAppState();
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (context) => locator<LanguageService>(),
+      child: LunaposApp(),
+    );
+  }
 }
 
-class _PosAppState extends State<PosApp> {
+class LunaposApp extends StatefulWidget {
+  const LunaposApp({super.key});
+
+  @override
+  State<LunaposApp> createState() => _LunaposAppState();
+}
+
+class _LunaposAppState extends State<LunaposApp> {
   late final GoRouter _router;
 
   @override
   void initState() {
     super.initState();
-    // Enable Firestore offline persistence
-    FirebaseFirestore.instance.settings = const Settings(
-      persistenceEnabled: true,
-      cacheSizeBytes: Settings.CACHE_SIZE_UNLIMITED,
-    );
-    _router = createAppRouter(getIt<SessionManager>());
+    _router = createAppRouter(locator<SessionManager>());
   }
 
   @override
-  Widget build(BuildContext context) {
-    return GlobalLoaderOverlay(
+  Widget build(BuildContext mContext) {
+    return ToastificationWrapper(
+      config: ToastificationConfig(
+        alignment: Alignment.topCenter,
+        maxToastLimit: 1,
+        animationDuration: Duration(milliseconds: 200),
+      ),
       child: MaterialApp.router(
         title: 'Luna POS',
         theme: AppTheme.lightTheme,
         debugShowCheckedModeBanner: false,
         routerConfig: _router,
+        locale: mContext.watch<LanguageService>().currentLocale,
         localizationsDelegates: const [
           AppLocalizations.delegate,
           GlobalMaterialLocalizations.delegate,

@@ -44,6 +44,7 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
+.dummy/
 
 # Flutter / Dart generated files
 *.g.dart
@@ -52,3 +53,9 @@ app.*.map.json
 *.config.dart
 *.gr.dart
 *.mocks.dart
+
+# Drift Web pre-compiled files
+web/sqlite3.wasm
+web/drift_worker.js
+# Widget Preview related
+.widget_preview/

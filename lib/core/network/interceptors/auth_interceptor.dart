@@ -1,22 +1,24 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
-import 'package:pos/core/local_storage/session_manager.dart';
+import 'package:pos/core/local_storage/auth_preferences.dart';
 
 @injectable
 class AuthInterceptor extends Interceptor {
-  final SessionManager _sessionManager;
+  final AuthPreferences _authSession;
 
-  AuthInterceptor(this._sessionManager);
+  AuthInterceptor(this._authSession);
 
   @override
   void onRequest(
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) async {
-    final token = await _sessionManager.auth.outletAccessToken();
+    final token = await _authSession.accesToken();
+
     if (token != null && token.isNotEmpty) {
       options.headers['Authorization'] = 'Bearer $token';
     }
-    handler.next(options);
+
+    return handler.next(options);
   }
 }

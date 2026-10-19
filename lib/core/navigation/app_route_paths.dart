@@ -1,8 +1,13 @@
 enum AppRoutePaths {
-  splash(path: '/splash', navigationPath: '/splash'),
-  login(path: '/auth', navigationPath: '/auth'),
+  setting(path: '/app/setting', navigationPath: 'setting'),
+
+  home(path: '/app', navigationPath: '/app'),
+
+  loginPosInputPin(path: '/auth/pos-user/pin', navigationPath: 'pin'),
+  loginPos(path: '/auth/pos-user', navigationPath: 'pos-user'),
   selectOutlet(path: '/auth/select-outlet', navigationPath: 'select-outlet'),
-  home(path: '/', navigationPath: '/');
+  login(path: '/auth', navigationPath: '/auth'),
+  welcome(path: '/', navigationPath: '/');
 
   final String path;
   final String navigationPath;

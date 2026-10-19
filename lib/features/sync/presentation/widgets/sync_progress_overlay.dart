@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pos/core/theme/app_colors.dart';
 import 'package:pos/features/sync/presentation/bloc/sync_bloc.dart';
 import 'package:pos/features/sync/presentation/bloc/sync_state.dart';
+import 'package:pos/generated/colors.gen.dart';
 
 class SyncProgressOverlay extends StatelessWidget {
   const SyncProgressOverlay({super.key});
@@ -18,14 +18,12 @@ class SyncProgressOverlay extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                CircularProgressIndicator(
-                  color: AppColorConstants.primaryPurpleLight,
-                ),
+                CircularProgressIndicator(color: AppColors.primary),
                 SizedBox(height: 16),
                 Text(
                   'Sinkronisasi Data...',
                   style: TextStyle(
-                    color: AppColorConstants.textWhite,
+                    color: AppColors.textWhite,
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
                     fontFamily: 'Inter',

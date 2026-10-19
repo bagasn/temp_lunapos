@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:pos/features/auth/select_outlet/domain/entities/outlet_entity.dart';
+import 'package:pos/shared/domain/entities/failure.dart';
 
 sealed class LoginState extends Equatable {
   const LoginState();
@@ -16,15 +16,12 @@ final class LoginLoading extends LoginState {
 }
 
 final class LoginSuccess extends LoginState {
-  final List<OutletEntity> outlets;
-  const LoginSuccess(this.outlets);
-  @override
-  List<Object?> get props => [outlets];
+  const LoginSuccess();
 }
 
 final class LoginFailure extends LoginState {
-  final String message;
-  const LoginFailure(this.message);
+  final Failure error;
+  const LoginFailure(this.error);
   @override
-  List<Object?> get props => [message];
+  List<Object?> get props => [error];
 }

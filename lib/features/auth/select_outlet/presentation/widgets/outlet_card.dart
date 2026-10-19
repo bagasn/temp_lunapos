@@ -1,11 +1,10 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:pos/core/theme/app_colors.dart';
 import 'package:pos/core/theme/app_text_styles.dart';
-import 'package:pos/features/auth/select_outlet/domain/entities/outlet_entity.dart';
+import 'package:pos/features/auth/select_outlet/domain/entities/auth_outlet_entity.dart';
+import 'package:pos/generated/colors.gen.dart';
 
 class OutletCard extends StatelessWidget {
-  final OutletEntity outlet;
+  final AuthOutletEntity outlet;
   final VoidCallback onTap;
   final bool isSelected;
 
@@ -51,7 +50,7 @@ class OutletCard extends StatelessWidget {
                     Text(
                       outlet.outletName,
                       style: AppTextStyles.titleLarge.copyWith(
-                        color: AppColorConstants.textWhite,
+                        color: AppColors.textWhite,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -81,13 +80,13 @@ class OutletCard extends StatelessWidget {
     if (pictureUrl != null && pictureUrl.isNotEmpty) {
       return ClipRRect(
         borderRadius: BorderRadius.circular(30),
-        child: CachedNetworkImage(
-          imageUrl: pictureUrl,
+        child: Image.network(
+          pictureUrl,
           width: 52,
           height: 52,
           fit: BoxFit.cover,
-          placeholder: (ctx, url) => _defaultAvatar(),
-          errorWidget: (ctx, url, err) => _defaultAvatar(),
+          // placeholder: (ctx, url) => _defaultAvatar(),
+          errorBuilder: (ctx, err, stack) => _defaultAvatar(),
         ),
       );
     }
@@ -108,7 +107,7 @@ class OutletCard extends StatelessWidget {
               ? outlet.outletName[0].toUpperCase()
               : 'O',
           style: AppTextStyles.headlineMedium.copyWith(
-            color: AppColorConstants.textWhite,
+            color: AppColors.textWhite,
             fontWeight: FontWeight.w700,
           ),
         ),

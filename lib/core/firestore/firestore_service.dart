@@ -7,35 +7,6 @@ class FirestoreService {
 
   FirestoreService(this._firestore);
 
-  /// Batch upsert list of documents into a collection.
-  /// Chunks into batches of 500 (Firestore limit).
-  Future<void> batchUpsert({
-    required String collectionPath,
-    required List<Map<String, dynamic>> documents,
-    required String Function(Map<String, dynamic>) idExtractor,
-  }) async {
-    const chunkSize = 400; // under 500 limit for safety
-    final chunks = <List<Map<String, dynamic>>>[];
-    for (var i = 0; i < documents.length; i += chunkSize) {
-      chunks.add(
-        documents.sublist(
-          i,
-          i + chunkSize > documents.length ? documents.length : i + chunkSize,
-        ),
-      );
-    }
-
-    for (final chunk in chunks) {
-      final batch = _firestore.batch();
-      for (final doc in chunk) {
-        final id = idExtractor(doc);
-        final ref = _firestore.collection(collectionPath).doc(id);
-        batch.set(ref, doc, SetOptions(merge: true));
-      }
-      await batch.commit();
-    }
-  }
-
   /// Get all documents from a collection.
   Future<List<Map<String, dynamic>>> getAll(String collectionPath) async {
     final snapshot = await _firestore.collection(collectionPath).get();
@@ -44,8 +15,12 @@ class FirestoreService {
 
   /// Stream all documents from a collection.
   Stream<List<Map<String, dynamic>>> streamAll(String collectionPath) {
-    return _firestore.collection(collectionPath).snapshots().map(
-          (snapshot) => snapshot.docs.map((d) => {'id': d.id, ...d.data()}).toList(),
+    return _firestore
+        .collection(collectionPath)
+        .snapshots()
+        .map(
+          (snapshot) =>
+              snapshot.docs.map((d) => {'id': d.id, ...d.data()}).toList(),
         );
   }
 
@@ -80,10 +55,7 @@ class FirestoreService {
   }
 
   /// Delete a document.
-  Future<void> deleteDocument(
-    String collectionPath,
-    String documentId,
-  ) async {
+  Future<void> deleteDocument(String collectionPath, String documentId) async {
     await _firestore.collection(collectionPath).doc(documentId).delete();
   }
 

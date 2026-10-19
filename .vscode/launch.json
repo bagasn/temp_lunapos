@@ -1,0 +1,19 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Dev",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "chrome",
+      "program": "lib/main_dev.dart",
+      "args": [
+        "--web-port=8080",
+        "--web-browser-flag",
+        "--disable-web-security",
+        "--web-header=Cross-Origin-Opener-Policy=same-origin",
+        "--web-header=Cross-Origin-Embedder-Policy=require-corp"
+      ]
+    }
+  ]
+}

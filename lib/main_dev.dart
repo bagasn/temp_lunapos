@@ -1,14 +1,28 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:pos/app.dart';
 import 'package:pos/core/di/injection_container.dart';
 import 'package:pos/core/firebase/firebase_options_dev.dart';
+import 'package:pos/shared/services/language_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: 'envs/dev.env');
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  if (kDebugMode) {
+    await useEmulator();
+  }
+
   await configureDependencies(Env.dev);
-  runApp(const PosApp());
+  await locator<LanguageService>().initLocale();
+
+  runApp(const Application());
+}
+
+Future<void> useEmulator() async {
+  final hostUrl = 'localhost';
+  FirebaseFirestore.instance.useFirestoreEmulator(hostUrl, 8080);
 }

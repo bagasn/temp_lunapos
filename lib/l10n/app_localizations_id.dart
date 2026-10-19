@@ -12,139 +12,339 @@ class AppLocalizationsId extends AppLocalizations {
   String get appName => 'Luna POS';
 
   @override
-  String get selamatDatangSahabatLuna => 'Selamat Datang Sahabat LUNA!';
+  String get txt_welcomeToLuna => 'Selamat Datang Sahabat LUNA!';
 
   @override
-  String get masuk => 'Masuk';
+  String get txt_login => 'Masuk';
 
   @override
-  String get email => 'Email';
+  String get txt_email => 'Email';
 
   @override
-  String get cthEmail => 'Cth: joe@mail.com';
+  String get hint_email => 'Cth: joe@mail.com';
 
   @override
-  String get kataSandi => 'Kata Sandi';
+  String get txt_password => 'Kata Sandi';
 
   @override
-  String get masukkanKataSandi => 'Masukkan kata sandi';
+  String get hint_inputPassword => 'Masukkan kata sandi';
 
   @override
-  String get authenticationKey => 'Authentication Key';
+  String get lbl_authenticationKey => 'Authentication Key';
 
   @override
-  String get lupaPassword => 'Lupa Password?';
+  String get btn_forgetPassword => 'Lupa Password?';
 
   @override
-  String get belumPunyaAkun => 'Belum punya Akun?';
+  String get lbl_notHaveAccountYet => 'Belum punya Akun?';
 
   @override
-  String get buatAkunSekarang => 'Buat Akun Sekarang!';
+  String get btn_createAnAccount => 'Buat Akun Sekarang!';
 
   @override
-  String get butuhBantuan => 'Butuh Bantuan?';
+  String get btn_needHelp => 'Butuh Bantuan?';
 
   @override
-  String get client => 'Client';
+  String get btn_client => 'Client';
 
   @override
-  String get satuAplikasiKasir => 'Satu Aplikasi Kasir untuk Semua Jenis Usaha';
+  String get txt_lunaBrandMoto => 'Satu Aplikasi Kasir untuk Semua Jenis Usaha';
 
   @override
-  String get untungadaLuna => '#UntungadaLUNA';
+  String get txt_lunaHashtag => '#UntungadaLUNA';
 
   @override
   String get copyright =>
       '© 2022 - PT LUNA Aplikasi Indonesia. All rights reserved.';
 
   @override
-  String get pilihOutlet => 'PILIH OUTLET';
+  String get title_chooseOutlet => 'PILIH OUTLET';
 
   @override
-  String get cariOutlet => 'Cari Outlet';
+  String get hint_findOutlet => 'Cari Outlet';
 
   @override
-  String get logOut => 'Log Out';
+  String get txt_logout => 'Keluar';
 
   @override
-  String get konfirmasiLogout => 'Anda akan keluar. Lanjutkan?';
+  String get txt_logoutConfirmation => 'Anda akan keluar. Lanjutkan?';
 
   @override
-  String get outletTidakDitemukan => 'Outlet tidak ditemukan';
+  String get err_outletNotFound => 'Outlet tidak ditemukan';
 
   @override
-  String get daftarOrder => 'Daftar Order';
+  String get btn_exit => 'Keluar';
 
   @override
-  String get tipePenjualan => 'Tipe Penjualan';
+  String get lbl_settingGeneral => 'General';
 
   @override
-  String get semua => 'Semua';
+  String get lbl_settingOrder => 'Order';
 
   @override
-  String get favorit => 'Favorit';
+  String get lbl_settingTemplate => 'Template';
 
   @override
-  String get promoDiskon => 'Promo & Diskon';
+  String get lbl_settingPrinter => 'Printer';
 
   @override
-  String get printTagihan => 'Print Tagihan';
+  String get lbl_settingSystem => 'System';
 
   @override
-  String get simpan => 'Simpan';
+  String get lbl_settingAccount => 'Account';
 
   @override
-  String get bayar => 'Bayar';
+  String get lbl_settingScanner => 'Scanner';
 
   @override
-  String get hapus => 'Hapus';
+  String get lbl_settingDualDisplay => 'Dual Display';
 
   @override
-  String get diskon => 'Diskon';
+  String get title_settingGeneral => 'General Settings';
 
   @override
-  String get catatan => 'Catatan';
+  String get title_settingOrder => 'Order settings';
 
   @override
-  String get total => 'Total';
+  String get title_settingTemplate => 'Template settings';
 
   @override
-  String totalItem(int count) {
-    return 'Total ($count items)';
-  }
+  String get title_settingPrinter => 'Printer settings';
 
   @override
-  String sisaStok(int count) {
-    return 'Sisa Stok: $count Pcs';
-  }
+  String get title_settingSystem => 'System settings';
 
   @override
-  String get stokHabis => 'STOK HABIS';
+  String get title_settingAccount => 'Account Settings';
 
   @override
-  String get cariNamaSKUProduk => 'Cari Nama/SKU Produk';
+  String get title_settingScanner => 'Scanner settings';
 
   @override
-  String get sinkronisasiData => 'Sinkronisasi Data...';
+  String get title_settingDualDisplay => 'Dual Display';
 
   @override
-  String get sinkronisasiSelesai => 'Sinkronisasi selesai';
+  String get lbl_settingAppLock => 'App lock (After 5 minutes of inactivity)';
 
   @override
-  String get gagalSinkronisasi => 'Gagal sinkronisasi. Coba lagi.';
+  String get desc_settingAppLock =>
+      '* Aplikasi akan terkunci jika tidak ada aktivitas selama 5 menit. (Restart diperlukan)';
 
   @override
-  String get ya => 'Ya';
+  String get lbl_settingSelectLanguage => 'Select Language';
 
   @override
-  String get batal => 'Batal';
+  String get lbl_settingDefaultView => 'Default View';
 
   @override
-  String get lanjutkan => 'Lanjutkan';
+  String get lbl_settingCustomerRequired => 'Customer Required';
 
   @override
-  String get emailAtauPasswordTidakValid => 'Email atau password tidak valid';
+  String get lbl_settingShiftSessionRequired =>
+      'Shift Session Required Before Creating Order';
 
   @override
-  String get terjadi_kesalahan => 'Terjadi kesalahan. Silakan coba lagi.';
+  String get lbl_settingShowCashDetail => 'Show Cash Detail When Ending Shift';
+
+  @override
+  String get lbl_settingRoundOrderTotal => 'Round Order Total';
+
+  @override
+  String get lbl_settingQueueNumbering => 'Queue Numbering';
+
+  @override
+  String get lbl_settingAddCustomNotes => 'Add Custom Notes';
+
+  @override
+  String get lbl_settingPrintKitchenSeparately =>
+      'Print Kitchen Printer Separately';
+
+  @override
+  String get lbl_settingSyncOpenOrder => 'Sync Open Order';
+
+  @override
+  String get lbl_settingCashPayment => 'Cash Payment';
+
+  @override
+  String get lbl_settingAllowSavingOrders => 'Allow Saving Orders';
+
+  @override
+  String get lbl_settingEndingShiftNotAllowed =>
+      'Ending Shift Is Not Allowed with Active Orders';
+
+  @override
+  String get lbl_settingTableSelectionRequired => 'Table Selection Required';
+
+  @override
+  String get lbl_settingShowStock => 'Tampilkan Stok';
+
+  @override
+  String get lbl_settingBill => 'Bill';
+
+  @override
+  String get lbl_settingReceipt => 'Receipt';
+
+  @override
+  String get lbl_settingLogo => 'Logo';
+
+  @override
+  String get lbl_settingOrderNumber => 'Order Number';
+
+  @override
+  String get lbl_settingOrderDate => 'Order Date';
+
+  @override
+  String get lbl_settingAddress => 'Address';
+
+  @override
+  String get lbl_settingCashierAndUser => 'Cashier and User';
+
+  @override
+  String get lbl_settingAdjusmentAmount => 'Adjusment Amount';
+
+  @override
+  String get lbl_settingTax => 'Tax';
+
+  @override
+  String get lbl_settingServiceCharge => 'Service Charge';
+
+  @override
+  String get lbl_settingProductUnitPrice => 'Product Unit Price';
+
+  @override
+  String get lbl_settingModifierUnitPrice => 'Modifier Unit Price';
+
+  @override
+  String get lbl_settingPrinterMain => 'Main';
+
+  @override
+  String get lbl_settingPrinterCaptainOrder => 'Captain Order';
+
+  @override
+  String get lbl_settingPrinterLabel => 'Label';
+
+  @override
+  String get btn_settingTestPrint => 'Test Print';
+
+  @override
+  String get btn_settingAddPrinterArea => 'Add Printer Area';
+
+  @override
+  String get lbl_settingOutlet => 'Outlet';
+
+  @override
+  String get btn_settingChangeOutlet => 'Change outlet';
+
+  @override
+  String get lbl_settingConnectionMode => 'Connection mode';
+
+  @override
+  String get btn_settingSwitchToClient => 'Switch to Client';
+
+  @override
+  String get lbl_settingSync => 'Sync';
+
+  @override
+  String get lbl_settingLastSynchronized => 'Last synchronized:';
+
+  @override
+  String get btn_settingSync => 'Sync';
+
+  @override
+  String get lbl_settingBackupRestore => 'Backup & Restore';
+
+  @override
+  String get lbl_settingBackupData => 'Backup Data';
+
+  @override
+  String get btn_settingBackupDataOffline => 'Backup Data Offline';
+
+  @override
+  String get lbl_settingRestoreData => 'Restore Data';
+
+  @override
+  String get btn_settingRestoreData => 'Restore Data';
+
+  @override
+  String get lbl_settingIpAddress => 'IP Address';
+
+  @override
+  String get lbl_settingName => 'Name';
+
+  @override
+  String get btn_settingChangePin => 'Change Pin';
+
+  @override
+  String get lbl_settingScannerHid => 'HID';
+
+  @override
+  String get lbl_settingScannerSpp => 'SPP';
+
+  @override
+  String get lbl_settingActivateDualDisplay => 'Activate Dual Display';
+
+  @override
+  String get lbl_settingCustomerDisplay => 'Customer Display';
+
+  @override
+  String get btn_save => 'Simpan';
+
+  @override
+  String get lbl_settingRoundingType => 'Tipe Pembulatan';
+
+  @override
+  String get lbl_settingRoundingUp => 'Pembulatan Keatas';
+
+  @override
+  String get lbl_settingRoundingDown => 'Pembulatan Kebawah';
+
+  @override
+  String get lbl_settingRoundingNearest => 'Pembulatan Terdekat';
+
+  @override
+  String get lbl_settingRoundingBase => 'Nilai Pembulatan';
+
+  @override
+  String get lbl_settingMaxQueueNumber => 'Max nomor antrian';
+
+  @override
+  String get msg_settingSaved => 'Pengaturan berhasil disimpan';
+
+  @override
+  String get title_settingSelectPrinter => 'Pilih Printer';
+
+  @override
+  String get lbl_settingPrinterType => 'Tipe Printer';
+
+  @override
+  String get lbl_settingPrinterModule => 'Modul Printer';
+
+  @override
+  String get lbl_settingPrinterItem => 'Printer';
+
+  @override
+  String get lbl_settingSelectItem => 'Pilih item';
+
+  @override
+  String get lbl_settingPaperSize => 'Ukuran Kertas';
+
+  @override
+  String get lbl_settingFeedAfterPrint => 'Feed Setelah Cetak';
+
+  @override
+  String get lbl_settingAutoCutType => 'Tipe Auto Cut';
+
+  @override
+  String get lbl_settingDisconnectAfterPrint =>
+      'Putuskan Koneksi Setelah Cetak';
+
+  @override
+  String get lbl_settingNumberOfCopies => 'Jumlah Salinan Main yang dicetak';
+
+  @override
+  String get lbl_settingAutoPrintReceipt =>
+      'Cetak struk otomatis saat pembayaran';
+
+  @override
+  String get btn_cancel => 'Batal';
 }

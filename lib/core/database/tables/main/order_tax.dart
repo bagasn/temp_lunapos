@@ -1,0 +1,19 @@
+import 'package:drift/drift.dart';
+
+@DataClassName('OrderTaxes')
+class TableOrderTax extends Table {
+  @override
+  String get tableName => 'orderTaxes';
+
+  TextColumn get order => text()();
+  TextColumn get orderId => text()();
+  TextColumn get taxId => text()();
+  RealColumn get taxRate => real().nullable()();
+  RealColumn get baseAmount => real().nullable()();
+  RealColumn get taxAmount => real().nullable()();
+
+  // Base fields
+  DateTimeColumn get createdAt => dateTime().nullable()();
+  DateTimeColumn get updatedAt => dateTime().nullable()();
+  DateTimeColumn get deletedAt => dateTime().nullable()();
+}
