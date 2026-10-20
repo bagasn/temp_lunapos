@@ -54,8 +54,8 @@ app.*.map.json
 *.gr.dart
 *.mocks.dart
 
-# Drift Web pre-compiled files
-web/sqlite3.wasm
-web/drift_worker.js
+# # Drift Web pre-compiled files
+# web/sqlite3.wasm
+# web/drift_worker.js
 # Widget Preview related
 .widget_preview/
