@@ -347,4 +347,10 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get btn_cancel => 'Batal';
+
+  @override
+  String get btn_yes => 'Ya';
+
+  @override
+  String get btn_no => 'Tidak';
 }

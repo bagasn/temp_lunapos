@@ -26,12 +26,18 @@ Future<void> configureDependencies(String environment) async {
 
   locator.registerSingleton(logger);
 
+  Env.current = environment;
   locator.init(environment: environment);
 }
 
 abstract class Env {
   static const dev = 'dev';
   static const prod = 'prod';
+
+  /// Environment passed to [configureDependencies].
+  static String current = prod;
+
+  static bool get isDev => current == dev;
 }
 
 final _logLevelColorsDefault = {

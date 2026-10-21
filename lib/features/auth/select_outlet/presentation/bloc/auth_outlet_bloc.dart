@@ -37,7 +37,7 @@ class AuthOutletBloc extends Bloc<AuthOutletEvent, AuthOutletState> {
     on<AuthOutletSearchChanged>(_onSearchChanged);
     on<AuthOutletSelected>(_onOutletSelected);
 
-    add(AuthOutletFetchStarted());
+    add(AuthOutletsLoaded());
   }
 
   void _onFetch(AuthOutletFetchStarted event, Emitter emit) async {
@@ -104,6 +104,10 @@ class AuthOutletBloc extends Bloc<AuthOutletEvent, AuthOutletState> {
         });
 
       final result = await stQuery.get();
+
+      if (result.isEmpty) {
+        return add(AuthOutletFetchStarted());
+      }
 
       final outlets = result
           .map(

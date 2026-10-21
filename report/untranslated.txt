@@ -19,7 +19,6 @@
     "title_chooseOutlet",
     "hint_findOutlet",
     "txt_logout",
-    "txt_logoutConfirmation",
     "err_outletNotFound"
   ]
 }

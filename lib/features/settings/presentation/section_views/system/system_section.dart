@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:pos/core/navigation/app_route_paths.dart';
 import 'package:pos/core/theme/app_text_styles.dart';
+import 'package:pos/features/settings/presentation/section_views/system/bloc/setting_system_bloc.dart';
 import 'package:pos/generated/colors.gen.dart';
 import 'package:pos/features/settings/presentation/widgets/setting_section_title.dart';
 import 'package:pos/l10n/app_localizations.dart';
+import 'package:pos/shared/widgets/dialog/confirmation_dialog.dart';
 
 /// System Settings section view.
 ///
@@ -16,6 +21,21 @@ class SystemSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
 
+    return BlocConsumer<SettingSystemBloc, SettingSystemState>(
+      listenWhen: (previous, current) =>
+          !previous.isRedirectToSelectOutlet && current.isRedirectToSelectOutlet,
+      listener: (context, state) {
+        context.go(AppRoutePaths.selectOutlet.path);
+      },
+      builder: (context, state) => _buildContent(context, l10n, state),
+    );
+  }
+
+  Widget _buildContent(
+    BuildContext context,
+    AppLocalizations l10n,
+    SettingSystemState state,
+  ) {
     return SingleChildScrollView(
       padding: const EdgeInsets.all(24),
       child: Row(
@@ -32,14 +52,26 @@ class SystemSection extends StatelessWidget {
                 // Outlet row
                 _SystemRow(
                   label: l10n.lbl_settingOutlet,
-                  value: 'BONCAFE JAKARTA',
+                  value: state.outletName,
                   actionButton: OutlinedButton.icon(
-                    onPressed: () {},
+                    onPressed: () async {
+                      final confirm = await showConfirmationDialog(
+                        context: context,
+                        message: l10n.txt_logoutConfirmation,
+                      );
+                      if (confirm == true && context.mounted) {
+                        context.read<SettingSystemBloc>().add(
+                          SettingSystemChangeOutletConfirmed(),
+                        );
+                      }
+                    },
                     style: OutlinedButton.styleFrom(
                       foregroundColor: AppColors.primary,
                       side: const BorderSide(color: AppColors.primary),
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 16, vertical: 12),
+                        horizontal: 16,
+                        vertical: 12,
+                      ),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
@@ -47,32 +79,6 @@ class SystemSection extends StatelessWidget {
                     icon: const Icon(Icons.sync_alt, size: 18),
                     label: Text(
                       l10n.btn_settingChangeOutlet,
-                      style: AppTextStyles.bodyMedium.copyWith(
-                        color: AppColors.primary,
-                      ),
-                    ),
-                  ),
-                ),
-                const Divider(color: AppColors.borderLight, height: 32),
-
-                // Connection mode row
-                _SystemRow(
-                  label: l10n.lbl_settingConnectionMode,
-                  value: 'Server',
-                  actionButton: OutlinedButton.icon(
-                    onPressed: () {},
-                    style: OutlinedButton.styleFrom(
-                      foregroundColor: AppColors.primary,
-                      side: const BorderSide(color: AppColors.primary),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 16, vertical: 12),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                    icon: const Icon(Icons.swap_horiz, size: 18),
-                    label: Text(
-                      l10n.btn_settingSwitchToClient,
                       style: AppTextStyles.bodyMedium.copyWith(
                         color: AppColors.primary,
                       ),
@@ -105,7 +111,9 @@ class SystemSection extends StatelessWidget {
                       backgroundColor: AppColors.primary,
                       foregroundColor: AppColors.textWhite,
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 12),
+                        horizontal: 20,
+                        vertical: 12,
+                      ),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
@@ -145,8 +153,10 @@ class SystemSection extends StatelessWidget {
                           style: TextButton.styleFrom(
                             foregroundColor: AppColors.primary,
                           ),
-                          icon: const Icon(Icons.cloud_upload_outlined,
-                              size: 18),
+                          icon: const Icon(
+                            Icons.cloud_upload_outlined,
+                            size: 18,
+                          ),
                           label: Text(
                             l10n.btn_settingBackupDataOffline,
                             style: AppTextStyles.bodyMedium.copyWith(
@@ -182,67 +192,19 @@ class SystemSection extends StatelessWidget {
                     ),
                   ],
                 ),
-              ],
-            ),
-          ),
-          const SizedBox(width: 24),
-
-          // Right column — QR card + Version card
-          SizedBox(
-            width: 220,
-            child: Column(
-              children: [
-                // QR code card
-                Container(
-                  decoration: BoxDecoration(
-                    color: AppColors.backgroundWhite,
-                    border: Border.all(color: AppColors.borderLight),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  padding: const EdgeInsets.all(16),
-                  child: Column(
-                    children: [
-                      Container(
-                        width: 160,
-                        height: 160,
-                        decoration: BoxDecoration(
-                          color: AppColors.charcoal50,
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: const Center(
-                          child: Icon(
-                            Icons.qr_code_2,
-                            size: 120,
-                            color: AppColors.textDark,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 12),
-                      Text(
-                        l10n.lbl_settingIpAddress,
-                        style: AppTextStyles.bodySmall.copyWith(
-                          color: AppColors.textMedium,
-                        ),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        '10.0.2.16',
-                        style: AppTextStyles.titleMedium,
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 16),
 
                 // Version card
                 Container(
+                  margin: EdgeInsets.only(top: 16),
                   width: double.infinity,
                   decoration: BoxDecoration(
                     color: AppColors.charcoal50,
                     borderRadius: BorderRadius.circular(12),
                   ),
                   padding: const EdgeInsets.symmetric(
-                      horizontal: 16, vertical: 20),
+                    horizontal: 16,
+                    vertical: 20,
+                  ),
                   child: RichText(
                     textAlign: TextAlign.center,
                     text: TextSpan(
@@ -254,7 +216,7 @@ class SystemSection extends StatelessWidget {
                           ),
                         ),
                         TextSpan(
-                          text: '2.0.2.5.1-dev',
+                          text: state.appVersion,
                           style: AppTextStyles.titleMedium.copyWith(
                             color: AppColors.textDark,
                           ),
@@ -266,6 +228,7 @@ class SystemSection extends StatelessWidget {
               ],
             ),
           ),
+          const SizedBox(width: 24),
         ],
       ),
     );
@@ -305,10 +268,7 @@ class _SystemRow extends StatelessWidget {
               if (valueWidget != null)
                 valueWidget!
               else
-                Text(
-                  value ?? '',
-                  style: AppTextStyles.titleMedium,
-                ),
+                Text(value ?? '', style: AppTextStyles.titleMedium),
             ],
           ),
         ),

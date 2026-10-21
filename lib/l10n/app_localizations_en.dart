@@ -67,7 +67,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get txt_logout => 'Keluar';
 
   @override
-  String get txt_logoutConfirmation => 'Anda akan keluar. Lanjutkan?';
+  String get txt_logoutConfirmation => 'You are about to log out. Proceed?';
 
   @override
   String get err_outletNotFound => 'Outlet tidak ditemukan';
@@ -346,4 +346,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get btn_cancel => 'Cancel';
+
+  @override
+  String get btn_yes => 'Yes';
+
+  @override
+  String get btn_no => 'No';
 }

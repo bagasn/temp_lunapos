@@ -335,5 +335,11 @@
   "lbl_settingAutoPrintReceipt": "Automatically print receipt upon payment",
   "@lbl_settingAutoPrintReceipt": {"description": "Auto print receipt checkbox"},
   "btn_cancel": "Cancel",
-  "@btn_cancel": {"description": "Generic cancel button"}
+  "@btn_cancel": {"description": "Generic cancel button"},
+  "btn_yes": "Yes",
+  "@btn_yes": {"description": "Generic Yes button"},
+  "btn_no": "No",
+  "@btn_no": {"description": "Generic No button"},
+  "txt_logoutConfirmation": "You are about to log out. Proceed?",
+  "@txt_logoutConfirmation": {"description": "Logout confirmation message"}
 }

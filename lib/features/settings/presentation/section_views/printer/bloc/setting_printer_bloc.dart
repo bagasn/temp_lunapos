@@ -6,7 +6,6 @@ import 'package:pos/core/database/app_database_manager.dart';
 import 'package:pos/core/database/main_database.dart';
 import 'package:pos/core/database/tables/main/printer_area.dart';
 import 'package:pos/features/settings/domain/entities/setting_printer_entity.dart';
-import 'package:pos/features/settings/presentation/section_views/printer/widgets/printer_setup/cubit/printer_setup_cubit.dart';
 import 'package:pos/shared/domain/entities/failure.dart';
 import 'package:pos/shared/domain/entities/printer/printer_config.dart';
 import 'package:pos/shared/domain/entities/printer/printer_setup.dart';

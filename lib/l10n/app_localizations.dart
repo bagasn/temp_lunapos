@@ -763,6 +763,18 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'Batal'**
   String get btn_cancel;
+
+  /// Generic Yes button
+  ///
+  /// In id, this message translates to:
+  /// **'Ya'**
+  String get btn_yes;
+
+  /// Generic No button
+  ///
+  /// In id, this message translates to:
+  /// **'Tidak'**
+  String get btn_no;
 }
 
 class _AppLocalizationsDelegate
