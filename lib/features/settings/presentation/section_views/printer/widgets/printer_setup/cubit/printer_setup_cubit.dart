@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:drift/drift.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
@@ -183,7 +181,12 @@ class PrinterSetupCubit extends Cubit<PrinterSetupState> {
 
       if (existing != null) {
         final row = existing
-            .copyWith(updatedAt: Value(DateTime.now()))
+            .copyWith(
+              printerType: state.selectedType.id,
+              printerModule: printerModule.name,
+              printerConfig: printerConfig.toJsonString(),
+              updatedAt: Value(DateTime.now()),
+            )
             .toCompanion(true);
 
         await table.insertOnConflictUpdate(row);

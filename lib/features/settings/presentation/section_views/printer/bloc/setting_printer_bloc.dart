@@ -6,8 +6,10 @@ import 'package:pos/core/database/app_database_manager.dart';
 import 'package:pos/core/database/main_database.dart';
 import 'package:pos/core/database/tables/main/printer_area.dart';
 import 'package:pos/features/settings/domain/entities/setting_printer_entity.dart';
+import 'package:pos/features/settings/presentation/section_views/printer/widgets/printer_setup/cubit/printer_setup_cubit.dart';
 import 'package:pos/shared/domain/entities/failure.dart';
 import 'package:pos/shared/domain/entities/printer/printer_config.dart';
+import 'package:pos/shared/domain/entities/printer/printer_setup.dart';
 import 'package:pos/shared/services/printer/printer_service.dart';
 import 'package:pos/shared/utilities/log_util.dart';
 import 'package:uuid/v4.dart';
@@ -26,16 +28,17 @@ class SettingPrinterBloc
   SettingPrinterBloc(this._dbManager, this._printerService)
     : super(
         SettingPrinterState(
-          stateView: SettingPrinterStateView.fetching,
+          stateView: SettingPrinterStateView.loading,
           printers: [],
         ),
       ) {
     on<SettingPrinterLoaded>(_onInitStarted);
     on<SettingPrinterNewAreaAdded>(_onNewAreaAdded);
+    on<SettingPrinterTestPrintStarted>(_onTestPrint);
   }
 
   void _onInitStarted(SettingPrinterLoaded event, Emitter emit) async {
-    emit(state.copyWith(stateView: SettingPrinterStateView.fetching));
+    emit(state.copyWith(stateView: SettingPrinterStateView.loading));
 
     try {
       final dbMain = await _dbManager.mainDb;
@@ -59,10 +62,16 @@ class SettingPrinterBloc
         final pArea = row.readTable(dbMain.tablePrinterArea);
         final printer = row.readTableOrNull(dbMain.tablePrinter);
 
+        SettingPrinterModule? printerModule;
+        if (printer != null) {
+          printerModule = SettingPrinterModule.getByName(printer.printerModule);
+        }
+
         _printerAreas.add(
           SettingPrinterEntity(
             id: pArea.id,
             label: pArea.name,
+            printerModule: printerModule,
             printerConfig: printer != null
                 ? PrinterConfig.fromJsonString(printer.printerConfig)
                 : null,
@@ -72,7 +81,7 @@ class SettingPrinterBloc
 
       emit(
         state.copyWith(
-          stateView: SettingPrinterStateView.success,
+          stateView: SettingPrinterStateView.data,
           printers: _printerAreas,
         ),
       );
@@ -88,7 +97,7 @@ class SettingPrinterBloc
   }
 
   void _onNewAreaAdded(SettingPrinterNewAreaAdded event, Emitter emit) async {
-    emit(state.copyWith(stateView: SettingPrinterStateView.fetching));
+    emit(state.copyWith(stateView: SettingPrinterStateView.loading));
     await Future.delayed(Duration(seconds: 5));
 
     try {
@@ -108,7 +117,7 @@ class SettingPrinterBloc
           state.copyWith(
             errorMessage:
                 'Nama printer area sudah digunakan, silakan masukan nama lain',
-            stateView: SettingPrinterStateView.success,
+            stateView: SettingPrinterStateView.data,
           ),
         );
       }
@@ -138,7 +147,28 @@ class SettingPrinterBloc
       LogUtil.e(error.toString(), stackTrace: stackTrace);
       emit(
         state.copyWith(
-          stateView: SettingPrinterStateView.success,
+          stateView: SettingPrinterStateView.data,
+          errorMessage: error.toString(),
+        ),
+      );
+    }
+  }
+
+  void _onTestPrint(SettingPrinterTestPrintStarted event, Emitter emit) async {
+    emit(state.copyWith(stateView: SettingPrinterStateView.loading));
+
+    try {
+      await _printerService.printTest(
+        printerAreaLabel: event.printerAreaLabel,
+        printerModule: event.printerModule,
+        printerConfig: event.printerConfig,
+      );
+      emit(state.copyWith(stateView: SettingPrinterStateView.data));
+    } catch (error, stackTrace) {
+      LogUtil.e('Fail on test print', error: error, stackTrace: stackTrace);
+      emit(
+        state.copyWith(
+          stateView: SettingPrinterStateView.data,
           errorMessage: error.toString(),
         ),
       );

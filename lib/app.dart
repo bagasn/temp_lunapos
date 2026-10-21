@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:go_router/go_router.dart';
-import 'package:loader_overlay/loader_overlay.dart';
 import 'package:pos/core/di/injection_container.dart';
 import 'package:pos/core/local_storage/session_manager.dart';
 import 'package:pos/core/navigation/app_router.dart';

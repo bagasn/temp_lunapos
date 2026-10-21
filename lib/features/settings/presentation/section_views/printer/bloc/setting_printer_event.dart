@@ -11,3 +11,15 @@ final class SettingPrinterNewAreaAdded extends SettingPrinterEvent {
 
   SettingPrinterNewAreaAdded(this.newAreaName);
 }
+
+final class SettingPrinterTestPrintStarted extends SettingPrinterEvent {
+  final String printerAreaLabel;
+  final SettingPrinterModule printerModule;
+  final PrinterConfig printerConfig;
+
+  SettingPrinterTestPrintStarted({
+    required this.printerAreaLabel,
+    required this.printerModule,
+    required this.printerConfig,
+  });
+}

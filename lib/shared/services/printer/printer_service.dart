@@ -1,18 +1,24 @@
-// ignore_for_file: constant_identifier_names
+import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:pos/core/database/app_database_manager.dart';
 import 'package:pos/shared/domain/entities/failure.dart';
 import 'package:pos/shared/domain/entities/printer/printer_config.dart';
 import 'package:pos/shared/domain/entities/printer/printer_device.dart';
 import 'package:pos/shared/domain/entities/printer/printer_setup.dart';
+import 'package:pos/shared/services/printer/printout/testprint_printout.dart';
+import 'package:pos/shared/utilities/log_util.dart';
 import 'package:thermal_printer_flutter/thermal_printer_flutter.dart';
+import 'package:web_socket_channel/web_socket_channel.dart';
 
-/// Abstraction layer for thermal printer.
-/// Implementation can be swapped when esc_pos_utils_plus is integrated.
 @singleton
 class PrinterService {
   final _thermalPrinterPlugin = ThermalPrinterFlutter();
+
+  final AppDatabaseManager _dbManager;
+
+  PrinterService(this._dbManager);
 
   Future<List<PrinterDevice>> getPrinterDevices(
     SettingPrinterModule printerModule,
@@ -68,5 +74,76 @@ class PrinterService {
       printerAddress: printerAddress,
       printerName: device.name,
     );
+  }
+
+  /// Throw [PrinterFailure] on error.
+  Future<void> printTest({
+    required String printerAreaLabel,
+    required SettingPrinterModule printerModule,
+    required PrinterConfig printerConfig,
+  }) async {
+    final printout = TestprintPrintout();
+    final printData = await printout.getPrintout(
+      printerAreaLabel: printerAreaLabel,
+      printerModule: printerModule,
+      printerConfig: printerConfig,
+    );
+
+    switch (printerModule) {
+      case SettingPrinterModule.escposNetwork:
+        await _printViaBridge(printData, printerConfig.printerAddress);
+        break;
+      case SettingPrinterModule.escposBluetooth:
+        final printer = Printer(
+          type: PrinterType.bluetooth,
+          bleAddress: printerConfig.printerAddress,
+        );
+
+        await _thermalPrinterPlugin.connect(printer: printer);
+        _thermalPrinterPlugin.printBytes(bytes: printData, printer: printer);
+        await _thermalPrinterPlugin.disconnect(printer: printer);
+        break;
+      case SettingPrinterModule.escposUsb:
+        final printer = Printer(
+          type: PrinterType.usb,
+          usbAddress: printerConfig.printerAddress,
+        );
+
+        await _thermalPrinterPlugin.connect(printer: printer);
+        _thermalPrinterPlugin.printBytes(bytes: printData, printer: printer);
+        await _thermalPrinterPlugin.disconnect(printer: printer);
+        break;
+    }
+  }
+
+  Future<void> _printViaBridge(List<int> bytes, String ipAddress) async {
+    try {
+      String wsUrl = 'ws://localhost:8921';
+      final channel = WebSocketChannel.connect(Uri.parse(wsUrl));
+
+      final payload = jsonEncode({"ipAddress": ipAddress, "bytes": bytes});
+
+      channel.sink.add(payload);
+
+      await for (final message in channel.stream) {
+        final data = jsonDecode(message);
+        if (data['status'] != 'success') {
+          final errMessage = data['message'] as String;
+          await channel.sink.close();
+
+          throw PrinterFailure(errMessage);
+        }
+        break;
+      }
+
+      await channel.sink.close();
+    } catch (error, stackTrace) {
+      LogUtil.e(
+        'Web Socket Bridge error',
+        error: error,
+        stackTrace: stackTrace,
+      );
+      rethrow;
+    }
   }
 }

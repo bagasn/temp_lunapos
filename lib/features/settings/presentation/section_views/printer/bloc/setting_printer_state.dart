@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'setting_printer_bloc.dart';
 
-enum SettingPrinterStateView { fetching, success, failure }
+enum SettingPrinterStateView { loading, data, failure }
 
 class SettingPrinterState extends Equatable {
   final SettingPrinterStateView stateView;

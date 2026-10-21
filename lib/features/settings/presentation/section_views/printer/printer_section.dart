@@ -9,6 +9,8 @@ import 'package:pos/features/settings/presentation/widgets/setting_printer_row.d
 import 'package:pos/features/settings/presentation/section_views/printer/widgets/printer_setup/setting_printer_setup_dialog.dart';
 import 'package:pos/features/settings/presentation/widgets/setting_section_title.dart';
 import 'package:pos/l10n/app_localizations.dart';
+import 'package:pos/shared/domain/entities/printer/printer_config.dart';
+import 'package:pos/shared/domain/entities/printer/printer_setup.dart';
 import 'package:pos/shared/services/popup_service.dart';
 import 'package:pos/shared/widgets/dialog/input_text_dialog.dart';
 
@@ -35,7 +37,7 @@ class PrinterSection extends StatelessWidget {
 
     return BlocConsumer<SettingPrinterBloc, SettingPrinterState>(
       listener: (context, state) {
-        if (state.stateView == SettingPrinterStateView.fetching) {
+        if (state.stateView == SettingPrinterStateView.loading) {
           context.loaderOverlay.show();
         } else {
           context.loaderOverlay.hide();
@@ -71,8 +73,15 @@ class PrinterSection extends StatelessWidget {
                     },
                   );
                 },
-
-                onTestPrint: (printerAreaId) {},
+                onTestPrint: (label, module, config) {
+                  context.read<SettingPrinterBloc>().add(
+                    SettingPrinterTestPrintStarted(
+                      printerAreaLabel: label,
+                      printerModule: module,
+                      printerConfig: config,
+                    ),
+                  );
+                },
               ),
               const SizedBox(height: 24),
 
@@ -111,7 +120,8 @@ class PrinterSection extends StatelessWidget {
     BuildContext context,
     SettingPrinterState state, {
     Function(String printerAreaId)? onPressed,
-    Function(String printerAreaId)? onTestPrint,
+    Function(String label, SettingPrinterModule module, PrinterConfig config)?
+    onTestPrint,
   }) {
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -124,7 +134,14 @@ class PrinterSection extends StatelessWidget {
             printerConfig: printer.printerConfig,
             onTestPrint: () {
               if (onTestPrint != null) {
-                onTestPrint(printer.id);
+                if (printer.printerModule != null &&
+                    printer.printerConfig != null) {
+                  onTestPrint(
+                    printer.label,
+                    printer.printerModule!,
+                    printer.printerConfig!,
+                  );
+                }
               }
             },
             onTap: () {
