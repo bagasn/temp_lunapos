@@ -26,6 +26,12 @@ class ActiveUserPreferences {
 
   Future<String?> getUserId() => _prefs.getString(_KEY.userId);
 
+  Future<String?> getUserFullName() => _prefs.getString(_KEY.userFullName);
+
+  Future<String?> getUserFirstName() => _prefs.getString(_KEY.userFirstName);
+
+  Future<String?> getUserLastName() => _prefs.getString(_KEY.userLastName);
+
   Future<void> clear() async {
     await _prefs.remove(_KEY.userId);
     await _prefs.remove(_KEY.userFirstName);

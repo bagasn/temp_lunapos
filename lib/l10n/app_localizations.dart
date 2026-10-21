@@ -775,6 +775,54 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'Tidak'**
   String get btn_no;
+
+  /// Old PIN input label in Change PIN dialog
+  ///
+  /// In id, this message translates to:
+  /// **'PIN Lama'**
+  String get lbl_settingOldPin;
+
+  /// New PIN input label in Change PIN dialog
+  ///
+  /// In id, this message translates to:
+  /// **'PIN Baru'**
+  String get lbl_settingNewPin;
+
+  /// Confirm new PIN input label in Change PIN dialog
+  ///
+  /// In id, this message translates to:
+  /// **'Konfirmasi PIN Baru'**
+  String get lbl_settingConfirmNewPin;
+
+  /// New PIN and confirmation do not match
+  ///
+  /// In id, this message translates to:
+  /// **'PIN tidak sama'**
+  String get err_pinNotMatch;
+
+  /// PIN length validation error
+  ///
+  /// In id, this message translates to:
+  /// **'PIN harus 4 digit'**
+  String get err_pinLength;
+
+  /// Old PIN does not match the stored PIN
+  ///
+  /// In id, this message translates to:
+  /// **'PIN lama tidak sesuai'**
+  String get err_oldPinInvalid;
+
+  /// Active user could not be found
+  ///
+  /// In id, this message translates to:
+  /// **'User tidak ditemukan'**
+  String get err_userNotFound;
+
+  /// Message after PIN is changed
+  ///
+  /// In id, this message translates to:
+  /// **'PIN berhasil diubah'**
+  String get msg_pinChangedSuccess;
 }
 
 class _AppLocalizationsDelegate

@@ -352,4 +352,28 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get btn_no => 'No';
+
+  @override
+  String get lbl_settingOldPin => 'Old PIN';
+
+  @override
+  String get lbl_settingNewPin => 'New PIN';
+
+  @override
+  String get lbl_settingConfirmNewPin => 'Confirm New PIN';
+
+  @override
+  String get err_pinNotMatch => 'PIN does not match';
+
+  @override
+  String get err_pinLength => 'PIN must be 4 digits';
+
+  @override
+  String get err_oldPinInvalid => 'Invalid old PIN';
+
+  @override
+  String get err_userNotFound => 'User not found';
+
+  @override
+  String get msg_pinChangedSuccess => 'PIN changed successfully';
 }

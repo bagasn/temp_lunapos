@@ -452,5 +452,37 @@
   "btn_no": "Tidak",
   "@btn_no": {
     "description": "Generic No button"
+  },
+  "lbl_settingOldPin": "PIN Lama",
+  "@lbl_settingOldPin": {
+    "description": "Old PIN input label in Change PIN dialog"
+  },
+  "lbl_settingNewPin": "PIN Baru",
+  "@lbl_settingNewPin": {
+    "description": "New PIN input label in Change PIN dialog"
+  },
+  "lbl_settingConfirmNewPin": "Konfirmasi PIN Baru",
+  "@lbl_settingConfirmNewPin": {
+    "description": "Confirm new PIN input label in Change PIN dialog"
+  },
+  "err_pinNotMatch": "PIN tidak sama",
+  "@err_pinNotMatch": {
+    "description": "New PIN and confirmation do not match"
+  },
+  "err_pinLength": "PIN harus 4 digit",
+  "@err_pinLength": {
+    "description": "PIN length validation error"
+  },
+  "err_oldPinInvalid": "PIN lama tidak sesuai",
+  "@err_oldPinInvalid": {
+    "description": "Old PIN does not match the stored PIN"
+  },
+  "err_userNotFound": "User tidak ditemukan",
+  "@err_userNotFound": {
+    "description": "Active user could not be found"
+  },
+  "msg_pinChangedSuccess": "PIN berhasil diubah",
+  "@msg_pinChangedSuccess": {
+    "description": "Message after PIN is changed"
   }
 }

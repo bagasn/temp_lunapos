@@ -353,4 +353,28 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get btn_no => 'Tidak';
+
+  @override
+  String get lbl_settingOldPin => 'PIN Lama';
+
+  @override
+  String get lbl_settingNewPin => 'PIN Baru';
+
+  @override
+  String get lbl_settingConfirmNewPin => 'Konfirmasi PIN Baru';
+
+  @override
+  String get err_pinNotMatch => 'PIN tidak sama';
+
+  @override
+  String get err_pinLength => 'PIN harus 4 digit';
+
+  @override
+  String get err_oldPinInvalid => 'PIN lama tidak sesuai';
+
+  @override
+  String get err_userNotFound => 'User tidak ditemukan';
+
+  @override
+  String get msg_pinChangedSuccess => 'PIN berhasil diubah';
 }

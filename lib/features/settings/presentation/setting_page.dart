@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:pos/core/di/injection_container.dart';
 import 'package:pos/core/theme/app_text_styles.dart';
+import 'package:pos/features/settings/presentation/section_views/account/bloc/setting_account_bloc.dart';
 import 'package:pos/features/settings/presentation/section_views/general/bloc/setting_general_bloc.dart';
 import 'package:pos/features/settings/presentation/section_views/general/bloc/setting_general_event.dart';
 import 'package:pos/features/settings/presentation/section_views/order/bloc/setting_order_bloc.dart';
@@ -48,7 +49,12 @@ class SettingPage extends StatelessWidget {
               locator<SettingPrinterBloc>()..add(SettingPrinterLoaded()),
         ),
         BlocProvider(
-          create: (_) => locator<SettingSystemBloc>()..add(SettingSystemLoaded()),
+          create: (_) =>
+              locator<SettingSystemBloc>()..add(SettingSystemLoaded()),
+        ),
+        BlocProvider(
+          create: (_) =>
+              locator<SettingAccountBloc>()..add(SettingAccountLoaded()),
         ),
       ],
       child: const _SettingView(),

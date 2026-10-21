@@ -341,5 +341,21 @@
   "btn_no": "No",
   "@btn_no": {"description": "Generic No button"},
   "txt_logoutConfirmation": "You are about to log out. Proceed?",
-  "@txt_logoutConfirmation": {"description": "Logout confirmation message"}
+  "@txt_logoutConfirmation": {"description": "Logout confirmation message"},
+  "lbl_settingOldPin": "Old PIN",
+  "@lbl_settingOldPin": {"description": "Old PIN input label in Change PIN dialog"},
+  "lbl_settingNewPin": "New PIN",
+  "@lbl_settingNewPin": {"description": "New PIN input label in Change PIN dialog"},
+  "lbl_settingConfirmNewPin": "Confirm New PIN",
+  "@lbl_settingConfirmNewPin": {"description": "Confirm new PIN input label in Change PIN dialog"},
+  "err_pinNotMatch": "PIN does not match",
+  "@err_pinNotMatch": {"description": "New PIN and confirmation do not match"},
+  "err_pinLength": "PIN must be 4 digits",
+  "@err_pinLength": {"description": "PIN length validation error"},
+  "err_oldPinInvalid": "Invalid old PIN",
+  "@err_oldPinInvalid": {"description": "Old PIN does not match the stored PIN"},
+  "err_userNotFound": "User not found",
+  "@err_userNotFound": {"description": "Active user could not be found"},
+  "msg_pinChangedSuccess": "PIN changed successfully",
+  "@msg_pinChangedSuccess": {"description": "Message after PIN is changed"}
 }
