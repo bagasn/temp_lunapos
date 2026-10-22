@@ -484,5 +484,186 @@
   "msg_pinChangedSuccess": "PIN berhasil diubah",
   "@msg_pinChangedSuccess": {
     "description": "Message after PIN is changed"
+  },
+  "lbl_pos": "POS",
+  "@lbl_pos": {
+    "description": "POS order source tab label"
+  },
+  "lbl_onlineOrder": "Online Order",
+  "@lbl_onlineOrder": {
+    "description": "Online Order source tab label"
+  },
+  "hint_searchOrder": "Cari Order",
+  "@hint_searchOrder": {
+    "description": "Search order input placeholder"
+  },
+  "txt_to": "To",
+  "@txt_to": {
+    "description": "Date range separator text"
+  },
+  "lbl_status": "Status",
+  "@lbl_status": {
+    "description": "Order status filter label"
+  },
+  "btn_statusCompleted": "Completed",
+  "@btn_statusCompleted": {
+    "description": "Completed order status filter button"
+  },
+  "btn_statusCancel": "Cancel",
+  "@btn_statusCancel": {
+    "description": "Cancelled order status filter button"
+  },
+  "btn_statusActive": "Active",
+  "@btn_statusActive": {
+    "description": "Active order status filter button"
+  },
+  "btn_resetFilter": "Reset Filter",
+  "@btn_resetFilter": {
+    "description": "Reset filter button"
+  },
+  "lbl_orderNoPrefix": "NO. ORDER:",
+  "@lbl_orderNoPrefix": {
+    "description": "Order number prefix on transaction card"
+  },
+  "txt_synced": "Synced",
+  "@txt_synced": {
+    "description": "Synced status text"
+  },
+  "txt_notSynced": "Not Synced",
+  "@txt_notSynced": {
+    "description": "Not synced status text"
+  },
+  "txt_orderNotFound": "Order tidak ditemukan. Silahkan ubah pencarian anda",
+  "@txt_orderNotFound": {
+    "description": "Empty state text when no transactions match filter"
+  },
+  "lbl_orderDate": "Order Date",
+  "@lbl_orderDate": {
+    "description": "Order date label in transaction detail"
+  },
+  "lbl_closingDate": "Closing Date",
+  "@lbl_closingDate": {
+    "description": "Closing date label in transaction detail"
+  },
+  "lbl_queueNumber": "Queue Number",
+  "@lbl_queueNumber": {
+    "description": "Queue number label in transaction detail"
+  },
+  "lbl_server": "Server",
+  "@lbl_server": {
+    "description": "Server label in transaction detail"
+  },
+  "lbl_cashier": "Cashier",
+  "@lbl_cashier": {
+    "description": "Cashier label in transaction detail"
+  },
+  "lbl_table": "Meja",
+  "@lbl_table": {
+    "description": "Table label in transaction detail"
+  },
+  "lbl_paxGuests": "Pax/Guests",
+  "@lbl_paxGuests": {
+    "description": "Pax or guests label in transaction detail"
+  },
+  "lbl_customer": "Customer",
+  "@lbl_customer": {
+    "description": "Customer label in transaction detail"
+  },
+  "lbl_email": "Email",
+  "@lbl_email": {
+    "description": "Email label in transaction detail"
+  },
+  "lbl_phoneNumber": "No. Phone",
+  "@lbl_phoneNumber": {
+    "description": "Phone number label in transaction detail"
+  },
+  "lbl_orderType": "Order Type",
+  "@lbl_orderType": {
+    "description": "Order type label in transaction detail"
+  },
+  "lbl_salesType": "Sales Type",
+  "@lbl_salesType": {
+    "description": "Sales type label in transaction detail"
+  },
+  "lbl_gift": "Gift",
+  "@lbl_gift": {
+    "description": "Gift badge label on free promo order line"
+  },
+  "title_payment": "Payment",
+  "@title_payment": {
+    "description": "Payment section title in transaction detail footer"
+  },
+  "lbl_totalPayment": "Total Payment",
+  "@lbl_totalPayment": {
+    "description": "Total payment label in transaction detail footer"
+  },
+  "lbl_change": "Change",
+  "@lbl_change": {
+    "description": "Change amount label in transaction detail footer"
+  },
+  "txt_noPayment": "Tidak ada pembayaran",
+  "@txt_noPayment": {
+    "description": "Text shown when order has no payment records"
+  },
+  "lbl_subtotal": "Subtotal",
+  "@lbl_subtotal": {
+    "description": "Subtotal label in accounting summary"
+  },
+  "lbl_discount": "Discount",
+  "@lbl_discount": {
+    "description": "Discount label in accounting summary"
+  },
+  "lbl_serviceCharge": "Svc Charge",
+  "@lbl_serviceCharge": {
+    "description": "Service charge label in accounting summary"
+  },
+  "lbl_tax": "Tax",
+  "@lbl_tax": {
+    "description": "Tax label in accounting summary"
+  },
+  "lbl_adjustment": "Adjustment",
+  "@lbl_adjustment": {
+    "description": "Adjustment label in accounting summary"
+  },
+  "lbl_totalItems": "Total ({count} items)",
+  "@lbl_totalItems": {
+    "description": "Total items label in accounting summary",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "btn_showHistory": "Show History",
+  "@btn_showHistory": {
+    "description": "Button to show transaction log history"
+  },
+  "btn_hideHistory": "Hide History",
+  "@btn_hideHistory": {
+    "description": "Button to hide transaction log history"
+  },
+  "btn_sendPdfReceipt": "Kirim Struk PDF",
+  "@btn_sendPdfReceipt": {
+    "description": "Menu option to send PDF receipt"
+  },
+  "btn_voidOrder": "Batalkan",
+  "@btn_voidOrder": {
+    "description": "Button to void or cancel an order"
+  },
+  "btn_continueOrder": "Lanjutkan",
+  "@btn_continueOrder": {
+    "description": "Button to continue an active open order"
+  },
+  "lbl_logUserName": "Nama User",
+  "@lbl_logUserName": {
+    "description": "Transaction log table header: User Name"
+  },
+  "lbl_logDate": "Tanggal",
+  "@lbl_logDate": {
+    "description": "Transaction log table header: Date"
+  },
+  "lbl_logDescription": "Deskripsi",
+  "@lbl_logDescription": {
+    "description": "Transaction log table header: Description"
   }
 }

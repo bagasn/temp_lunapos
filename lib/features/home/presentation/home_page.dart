@@ -7,6 +7,7 @@ import 'package:pos/features/home/presentation/widgets/nav_item.dart';
 import 'package:pos/features/pos/presentation/bloc/order/pos_order_bloc.dart';
 import 'package:pos/features/pos/presentation/bloc/product/product_bloc.dart';
 import 'package:pos/features/pos/presentation/pos_nav_view.dart';
+import 'package:pos/features/transaction/presentation/bloc/transaction_bloc.dart';
 import 'package:pos/features/transaction/presentation/transaction_nav_view.dart';
 import 'package:pos/generated/assets.gen.dart';
 import 'package:pos/generated/colors.gen.dart';
@@ -20,6 +21,10 @@ class HomePage extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => locator<PosProductBloc>()),
         BlocProvider(create: (context) => locator<PosOrderBloc>()),
+        BlocProvider(
+          create: (context) =>
+              locator<TransactionBloc>()..add(const LoadTransactions()),
+        ),
       ],
       child: const _HomeView(),
     );

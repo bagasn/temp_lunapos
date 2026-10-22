@@ -14,7 +14,7 @@ class PrinterSetupState extends Equatable {
   final DropdownItemModel selectedPaperSize;
 
   final List<PrinterDevice> printerDevices;
-  PrinterDevice? selectedDevice;
+  final PrinterDevice? selectedDevice;
 
   final int feedAfterPrint;
   final bool isAutoCut;
@@ -22,12 +22,12 @@ class PrinterSetupState extends Equatable {
   final int copyPrint;
   final bool autoPrintOnPayment;
 
-  PrinterSetupViewState viewState;
+  final PrinterSetupViewState viewState;
   final String? errorMessage;
 
   final bool btnSaveEnabled;
 
-  PrinterSetupState({
+  const PrinterSetupState({
     required this.printerTypes,
     required this.selectedType,
     required this.printerModules,
@@ -104,8 +104,41 @@ class PrinterSetupState extends Equatable {
     );
   }
 
-  void remotePrinterDevice() {
-    selectedDevice = null;
+  PrinterSetupState copyAndRemoveDevice({
+    List<DropdownItemModel>? printerTypes,
+    DropdownItemModel? selectedType,
+    List<DropdownItemModel>? printerModules,
+    DropdownItemModel? selectedModule,
+    List<DropdownItemModel>? paperSizes,
+    DropdownItemModel? selectedPaperSize,
+    List<PrinterDevice>? printerDevices,
+    int? feedAfterPrint,
+    bool? isAutoCut,
+    bool? disconnectAfterPrint,
+    int? copyPrint,
+    bool? autoPrintOnPayment,
+    PrinterSetupViewState? viewState,
+    String? errorMessage,
+    bool? btnSaveEnabled,
+  }) {
+    return PrinterSetupState(
+      printerTypes: printerTypes ?? this.printerTypes,
+      selectedType: selectedType ?? this.selectedType,
+      printerModules: printerModules ?? this.printerModules,
+      selectedModule: selectedModule ?? this.selectedModule,
+      paperSizes: paperSizes ?? this.paperSizes,
+      selectedPaperSize: selectedPaperSize ?? this.selectedPaperSize,
+      printerDevices: printerDevices ?? this.printerDevices,
+      selectedDevice: null,
+      feedAfterPrint: feedAfterPrint ?? this.feedAfterPrint,
+      isAutoCut: isAutoCut ?? this.isAutoCut,
+      disconnectAfterPrint: disconnectAfterPrint ?? this.disconnectAfterPrint,
+      copyPrint: copyPrint ?? this.copyPrint,
+      autoPrintOnPayment: autoPrintOnPayment ?? this.autoPrintOnPayment,
+      viewState: viewState ?? this.viewState,
+      errorMessage: errorMessage,
+      btnSaveEnabled: btnSaveEnabled ?? this.btnSaveEnabled,
+    );
   }
 
   @override

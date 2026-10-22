@@ -823,6 +823,270 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'PIN berhasil diubah'**
   String get msg_pinChangedSuccess;
+
+  /// POS order source tab label
+  ///
+  /// In id, this message translates to:
+  /// **'POS'**
+  String get lbl_pos;
+
+  /// Online Order source tab label
+  ///
+  /// In id, this message translates to:
+  /// **'Online Order'**
+  String get lbl_onlineOrder;
+
+  /// Search order input placeholder
+  ///
+  /// In id, this message translates to:
+  /// **'Cari Order'**
+  String get hint_searchOrder;
+
+  /// Date range separator text
+  ///
+  /// In id, this message translates to:
+  /// **'To'**
+  String get txt_to;
+
+  /// Order status filter label
+  ///
+  /// In id, this message translates to:
+  /// **'Status'**
+  String get lbl_status;
+
+  /// Completed order status filter button
+  ///
+  /// In id, this message translates to:
+  /// **'Completed'**
+  String get btn_statusCompleted;
+
+  /// Cancelled order status filter button
+  ///
+  /// In id, this message translates to:
+  /// **'Cancel'**
+  String get btn_statusCancel;
+
+  /// Active order status filter button
+  ///
+  /// In id, this message translates to:
+  /// **'Active'**
+  String get btn_statusActive;
+
+  /// Reset filter button
+  ///
+  /// In id, this message translates to:
+  /// **'Reset Filter'**
+  String get btn_resetFilter;
+
+  /// Order number prefix on transaction card
+  ///
+  /// In id, this message translates to:
+  /// **'NO. ORDER:'**
+  String get lbl_orderNoPrefix;
+
+  /// Synced status text
+  ///
+  /// In id, this message translates to:
+  /// **'Synced'**
+  String get txt_synced;
+
+  /// Not synced status text
+  ///
+  /// In id, this message translates to:
+  /// **'Not Synced'**
+  String get txt_notSynced;
+
+  /// Empty state text when no transactions match filter
+  ///
+  /// In id, this message translates to:
+  /// **'Order tidak ditemukan. Silahkan ubah pencarian anda'**
+  String get txt_orderNotFound;
+
+  /// Order date label in transaction detail
+  ///
+  /// In id, this message translates to:
+  /// **'Order Date'**
+  String get lbl_orderDate;
+
+  /// Closing date label in transaction detail
+  ///
+  /// In id, this message translates to:
+  /// **'Closing Date'**
+  String get lbl_closingDate;
+
+  /// Queue number label in transaction detail
+  ///
+  /// In id, this message translates to:
+  /// **'Queue Number'**
+  String get lbl_queueNumber;
+
+  /// Server label in transaction detail
+  ///
+  /// In id, this message translates to:
+  /// **'Server'**
+  String get lbl_server;
+
+  /// Cashier label in transaction detail
+  ///
+  /// In id, this message translates to:
+  /// **'Cashier'**
+  String get lbl_cashier;
+
+  /// Table label in transaction detail
+  ///
+  /// In id, this message translates to:
+  /// **'Meja'**
+  String get lbl_table;
+
+  /// Pax or guests label in transaction detail
+  ///
+  /// In id, this message translates to:
+  /// **'Pax/Guests'**
+  String get lbl_paxGuests;
+
+  /// Customer label in transaction detail
+  ///
+  /// In id, this message translates to:
+  /// **'Customer'**
+  String get lbl_customer;
+
+  /// Email label in transaction detail
+  ///
+  /// In id, this message translates to:
+  /// **'Email'**
+  String get lbl_email;
+
+  /// Phone number label in transaction detail
+  ///
+  /// In id, this message translates to:
+  /// **'No. Phone'**
+  String get lbl_phoneNumber;
+
+  /// Order type label in transaction detail
+  ///
+  /// In id, this message translates to:
+  /// **'Order Type'**
+  String get lbl_orderType;
+
+  /// Sales type label in transaction detail
+  ///
+  /// In id, this message translates to:
+  /// **'Sales Type'**
+  String get lbl_salesType;
+
+  /// Gift badge label on free promo order line
+  ///
+  /// In id, this message translates to:
+  /// **'Gift'**
+  String get lbl_gift;
+
+  /// Payment section title in transaction detail footer
+  ///
+  /// In id, this message translates to:
+  /// **'Payment'**
+  String get title_payment;
+
+  /// Total payment label in transaction detail footer
+  ///
+  /// In id, this message translates to:
+  /// **'Total Payment'**
+  String get lbl_totalPayment;
+
+  /// Change amount label in transaction detail footer
+  ///
+  /// In id, this message translates to:
+  /// **'Change'**
+  String get lbl_change;
+
+  /// Text shown when order has no payment records
+  ///
+  /// In id, this message translates to:
+  /// **'Tidak ada pembayaran'**
+  String get txt_noPayment;
+
+  /// Subtotal label in accounting summary
+  ///
+  /// In id, this message translates to:
+  /// **'Subtotal'**
+  String get lbl_subtotal;
+
+  /// Discount label in accounting summary
+  ///
+  /// In id, this message translates to:
+  /// **'Discount'**
+  String get lbl_discount;
+
+  /// Service charge label in accounting summary
+  ///
+  /// In id, this message translates to:
+  /// **'Svc Charge'**
+  String get lbl_serviceCharge;
+
+  /// Tax label in accounting summary
+  ///
+  /// In id, this message translates to:
+  /// **'Tax'**
+  String get lbl_tax;
+
+  /// Adjustment label in accounting summary
+  ///
+  /// In id, this message translates to:
+  /// **'Adjustment'**
+  String get lbl_adjustment;
+
+  /// Total items label in accounting summary
+  ///
+  /// In id, this message translates to:
+  /// **'Total ({count} items)'**
+  String lbl_totalItems(int count);
+
+  /// Button to show transaction log history
+  ///
+  /// In id, this message translates to:
+  /// **'Show History'**
+  String get btn_showHistory;
+
+  /// Button to hide transaction log history
+  ///
+  /// In id, this message translates to:
+  /// **'Hide History'**
+  String get btn_hideHistory;
+
+  /// Menu option to send PDF receipt
+  ///
+  /// In id, this message translates to:
+  /// **'Kirim Struk PDF'**
+  String get btn_sendPdfReceipt;
+
+  /// Button to void or cancel an order
+  ///
+  /// In id, this message translates to:
+  /// **'Batalkan'**
+  String get btn_voidOrder;
+
+  /// Button to continue an active open order
+  ///
+  /// In id, this message translates to:
+  /// **'Lanjutkan'**
+  String get btn_continueOrder;
+
+  /// Transaction log table header: User Name
+  ///
+  /// In id, this message translates to:
+  /// **'Nama User'**
+  String get lbl_logUserName;
+
+  /// Transaction log table header: Date
+  ///
+  /// In id, this message translates to:
+  /// **'Tanggal'**
+  String get lbl_logDate;
+
+  /// Transaction log table header: Description
+  ///
+  /// In id, this message translates to:
+  /// **'Deskripsi'**
+  String get lbl_logDescription;
 }
 
 class _AppLocalizationsDelegate

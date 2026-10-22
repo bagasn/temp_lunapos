@@ -377,4 +377,139 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get msg_pinChangedSuccess => 'PIN berhasil diubah';
+
+  @override
+  String get lbl_pos => 'POS';
+
+  @override
+  String get lbl_onlineOrder => 'Online Order';
+
+  @override
+  String get hint_searchOrder => 'Cari Order';
+
+  @override
+  String get txt_to => 'To';
+
+  @override
+  String get lbl_status => 'Status';
+
+  @override
+  String get btn_statusCompleted => 'Completed';
+
+  @override
+  String get btn_statusCancel => 'Cancel';
+
+  @override
+  String get btn_statusActive => 'Active';
+
+  @override
+  String get btn_resetFilter => 'Reset Filter';
+
+  @override
+  String get lbl_orderNoPrefix => 'NO. ORDER:';
+
+  @override
+  String get txt_synced => 'Synced';
+
+  @override
+  String get txt_notSynced => 'Not Synced';
+
+  @override
+  String get txt_orderNotFound =>
+      'Order tidak ditemukan. Silahkan ubah pencarian anda';
+
+  @override
+  String get lbl_orderDate => 'Order Date';
+
+  @override
+  String get lbl_closingDate => 'Closing Date';
+
+  @override
+  String get lbl_queueNumber => 'Queue Number';
+
+  @override
+  String get lbl_server => 'Server';
+
+  @override
+  String get lbl_cashier => 'Cashier';
+
+  @override
+  String get lbl_table => 'Meja';
+
+  @override
+  String get lbl_paxGuests => 'Pax/Guests';
+
+  @override
+  String get lbl_customer => 'Customer';
+
+  @override
+  String get lbl_email => 'Email';
+
+  @override
+  String get lbl_phoneNumber => 'No. Phone';
+
+  @override
+  String get lbl_orderType => 'Order Type';
+
+  @override
+  String get lbl_salesType => 'Sales Type';
+
+  @override
+  String get lbl_gift => 'Gift';
+
+  @override
+  String get title_payment => 'Payment';
+
+  @override
+  String get lbl_totalPayment => 'Total Payment';
+
+  @override
+  String get lbl_change => 'Change';
+
+  @override
+  String get txt_noPayment => 'Tidak ada pembayaran';
+
+  @override
+  String get lbl_subtotal => 'Subtotal';
+
+  @override
+  String get lbl_discount => 'Discount';
+
+  @override
+  String get lbl_serviceCharge => 'Svc Charge';
+
+  @override
+  String get lbl_tax => 'Tax';
+
+  @override
+  String get lbl_adjustment => 'Adjustment';
+
+  @override
+  String lbl_totalItems(int count) {
+    return 'Total ($count items)';
+  }
+
+  @override
+  String get btn_showHistory => 'Show History';
+
+  @override
+  String get btn_hideHistory => 'Hide History';
+
+  @override
+  String get btn_sendPdfReceipt => 'Kirim Struk PDF';
+
+  @override
+  String get btn_voidOrder => 'Batalkan';
+
+  @override
+  String get btn_continueOrder => 'Lanjutkan';
+
+  @override
+  String get lbl_logUserName => 'Nama User';
+
+  @override
+  String get lbl_logDate => 'Tanggal';
+
+  @override
+  String get lbl_logDescription => 'Deskripsi';
 }

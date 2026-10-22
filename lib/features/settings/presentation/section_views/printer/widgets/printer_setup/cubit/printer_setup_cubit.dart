@@ -76,9 +76,8 @@ class PrinterSetupCubit extends Cubit<PrinterSetupState> {
       );
     }
     if (printerModule != null) {
-      state.remotePrinterDevice();
       emit(
-        state.copyWith(
+        state.copyAndRemoveDevice(
           selectedModule: printerModule,
           viewState: PrinterSetupViewState.data,
         ),
